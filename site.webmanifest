@@ -1,7 +1,7 @@
 {
   "name": "GastroUp — Gastro Parťák",
   "short_name": "GastroUp",
-  "description": "Gastro Parťák je poradce v telefonu — postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený.",
+  "description": "Gastro Parťák je AI poradce v telefonu pro majitele restaurací — pomůže s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech gastro praxe. Měsíc zdarma.",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#06264C",

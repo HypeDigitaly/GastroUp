@@ -10,6 +10,7 @@ import { escapeHtml, sanitizeHeader, safeUrl, extractFirstName } from "./utils";
 const PDF_URL = process.env.EBOOK_PDF_URL ?? "https://gastroup.cz/ebook/28-tipu.pdf";
 const CTA_URL = process.env.CTA_URL ?? "https://form.fapi.cz/?id=4a82141f-d02b-489d-93b0-66f81a8cec6a";
 const LOGO_URL = process.env.LOGO_URL ?? "https://gastroup.cz/Logo_GastroUp_2_transparent.png";
+const DEMO_URL = process.env.DEMO_URL ?? "https://cal.com/jakub-h-a2wrvi/30min";
 
 // ── Module-init env-var warnings ──────────────────────────────────────────────
 if (!process.env.EBOOK_PDF_URL) {
@@ -20,6 +21,9 @@ if (!process.env.CTA_URL) {
 }
 if (!process.env.LOGO_URL) {
   console.warn("[config] LOGO_URL not set — using default; verify asset exists at production URL");
+}
+if (!process.env.DEMO_URL) {
+  console.warn("[config] DEMO_URL not set — using default cal.com booking URL");
 }
 
 // ── Brand colors ──────────────────────────────────────────────────────────────
@@ -57,9 +61,9 @@ ${body}
 
 function navyHeader(text: string): string {
   return `          <tr>
-            <td style="background-color:${COLORS.navy};padding:24px 32px;">
+            <td style="background-color:${COLORS.cream};padding:24px 32px;border-bottom:3px solid ${COLORS.mustard};">
               <img src="${LOGO_URL}" alt="GastroUP" width="140" height="auto" style="display:block;margin-bottom:12px;">
-              <p style="margin:0;font-size:18px;font-weight:700;color:${COLORS.white};">${escapeHtml(text)}</p>
+              <p style="margin:0;font-size:18px;font-weight:700;color:${COLORS.navy};">${escapeHtml(text)}</p>
             </td>
           </tr>`;
 }
@@ -158,9 +162,19 @@ export function contactConfirmationHTML(data: ContactFormData): string {
             </td>
           </tr>`;
 
+  const demoContent = `          <tr>
+            <td style="padding:4px 32px 0 32px;text-align:center;">
+              <p style="margin:0;font-size:13px;line-height:1.5;color:${COLORS.textMuted};">Co Tě čeká po kliknutí: zaplatíš 465 Kč, obratem dostaneš odkaz do Telegramu. Bez závazku, s garancí — když po prvním měsíci nebudeš spokojený, dostaneš měsíc navíc zdarma.</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:20px 32px 4px 32px;text-align:center;">
+              <p style="margin:0;font-size:14px;line-height:1.6;color:${COLORS.textMuted};">Nebo si rovnou domluv nezávazné demo zdarma:</p>
+            </td>
+          </tr>`;
+
   const infoContent = `          <tr>
-            <td style="padding:0 32px 24px 32px;">
-              <p style="margin:0 0 16px 0;font-size:15px;line-height:1.6;color:${COLORS.text};">Co Tě čeká po kliknutí: zaplatíš 465 Kč, obratem dostaneš email s odkazem do aplikace Telegram a Gastro Parťák se Ti hned ozve. Bez závazku, s garancí — když po prvním měsíci nebudeš spokojený, dostaneš měsíc navíc zdarma.</p>
+            <td style="padding:16px 32px 24px 32px;">
               <p style="margin:0 0 4px 0;font-size:15px;line-height:1.6;color:${COLORS.text};">Brzy na slyšenou,</p>
               <p style="margin:0;font-size:15px;line-height:1.6;color:${COLORS.text};font-weight:600;">Tým GastroUP</p>
             </td>
@@ -170,6 +184,8 @@ export function contactConfirmationHTML(data: ContactFormData): string {
     navyHeader("GastroUP"),
     bodyContent,
     ctaButton("Vyzkoušet Gastro Parťáka za 465 Kč", CTA_URL),
+    demoContent,
+    ctaButton("Rezervovat demo zdarma", DEMO_URL, true),
     infoContent,
     htmlFooter(),
   ].join("\n");
@@ -194,7 +210,10 @@ export function contactConfirmationText(data: ContactFormData): string {
     "Vyzkoušet Gastro Parťáka za 465 Kč:",
     safeUrl(CTA_URL),
     "",
-    "Co Tě čeká po kliknutí: zaplatíš 465 Kč, obratem dostaneš email s odkazem do aplikace Telegram a Gastro Parťák se Ti hned ozve. Bez závazku, s garancí — když po prvním měsíci nebudeš spokojený, dostaneš měsíc navíc zdarma.",
+    "Co Tě čeká po kliknutí: zaplatíš 465 Kč, obratem dostaneš odkaz do Telegramu. Bez závazku, s garancí — když po prvním měsíci nebudeš spokojený, dostaneš měsíc navíc zdarma.",
+    "",
+    "Nebo si rovnou domluv nezávazné demo zdarma:",
+    safeUrl(DEMO_URL),
     "",
     "Brzy na slyšenou,",
     "Tým GastroUP",
@@ -255,8 +274,14 @@ export function ebookDeliveryHTML(): string {
             </td>
           </tr>`;
 
+  const ebookDemoIntro = `          <tr>
+            <td style="padding:20px 32px 4px 32px;text-align:center;">
+              <p style="margin:0;font-size:14px;line-height:1.6;color:${COLORS.textMuted};">Nebo si nejdřív domluv nezávazné demo zdarma:</p>
+            </td>
+          </tr>`;
+
   const signoffContent = `          <tr>
-            <td style="padding:0 32px 24px 32px;">
+            <td style="padding:16px 32px 24px 32px;">
               <p style="margin:0 0 4px 0;font-size:15px;line-height:1.6;color:${COLORS.text};">Využij naše tipy na maximum,</p>
               <p style="margin:0;font-size:15px;line-height:1.6;color:${COLORS.text};font-weight:600;">Tým GastroUP</p>
             </td>
@@ -268,6 +293,8 @@ export function ebookDeliveryHTML(): string {
     ctaButton("Stáhnout 28 tipů (PDF)", PDF_URL),
     middleContent,
     ctaButton("Vyzkoušet Gastro Parťáka za 465 Kč", CTA_URL, true),
+    ebookDemoIntro,
+    ctaButton("Rezervovat demo zdarma", DEMO_URL, true),
     signoffContent,
     htmlFooter(),
   ].join("\n");
@@ -293,6 +320,9 @@ export function ebookDeliveryText(): string {
     "",
     "Vyzkoušet Gastro Parťáka za 465 Kč:",
     safeUrl(CTA_URL),
+    "",
+    "Nebo si nejdřív domluv nezávazné demo zdarma:",
+    safeUrl(DEMO_URL),
     "",
     "Využij naše tipy na maximum,",
     "Tým GastroUP",

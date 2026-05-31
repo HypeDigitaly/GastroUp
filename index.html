@@ -4,8 +4,8 @@
 <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GastroUp — Přestaň táhnout celý podnik sám</title>
-<meta name="description" content="Gastro Parťák je poradce v telefonu — postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený." />
+<title>GastroUp — AI parťák pro majitele restaurací</title>
+<meta name="description" content="Gastro Parťák je AI poradce v telefonu pro majitele restaurací — pomůže s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech gastro praxe. Měsíc zdarma." />
 <link rel="canonical" href="https://gastroup.cz/">
 <meta http-equiv="Content-Language" content="cs">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -13,15 +13,15 @@
 <meta property="og:url" content="https://gastroup.cz/">
 <meta property="og:site_name" content="GastroUp">
 <meta property="og:locale" content="cs_CZ">
-<meta property="og:title" content="GastroUp — Přestaň táhnout celý podnik sám">
-<meta property="og:description" content="Gastro Parťák je poradce v telefonu — postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený.">
+<meta property="og:title" content="GastroUp — AI parťák pro majitele restaurací">
+<meta property="og:description" content="Gastro Parťák je AI poradce v telefonu pro majitele restaurací — pomůže s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech gastro praxe. Měsíc zdarma.">
 <meta property="og:image" content="https://gastroup.cz/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="GastroUp — Gastro Parťák pro majitele restaurací">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GastroUp — Přestaň táhnout celý podnik sám">
-<meta name="twitter:description" content="Gastro Parťák je poradce v telefonu — postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený.">
+<meta name="twitter:title" content="GastroUp — AI parťák pro majitele restaurací">
+<meta name="twitter:description" content="Gastro Parťák je AI poradce v telefonu pro majitele restaurací — pomůže s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech gastro praxe. Měsíc zdarma.">
 <meta name="twitter:image" content="https://gastroup.cz/og-image.png">
 <meta name="twitter:image:alt" content="GastroUp — Gastro Parťák pro majitele restaurací">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -1956,11 +1956,22 @@
   .contact-chip iconify-icon{font-size:15px}
   .contact-chip:hover{border-color:rgba(204,151,45,.5);color:var(--cream)}
   .contact-chip[aria-pressed="true"]{background:rgba(204,151,45,.16);border-color:var(--gold);color:var(--gold-bright)}
-  .contact-success{display:none;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:30px 18px 14px}
+  .contact-success{
+    display:none;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:30px 18px 20px;
+    opacity:0;transform:translateY(10px);
+    transition:opacity .5s var(--ease-out-quart),transform .5s var(--ease-out-quart);
+  }
   .contact-success.show{display:flex}
+  .contact-success.visible{opacity:1;transform:translateY(0)}
   .contact-success iconify-icon{font-size:44px;color:var(--gold-bright)}
   .contact-success h4{font-family:var(--font-display);font-weight:500;font-size:23px;color:var(--cream)}
   .contact-success p{font-size:14px;color:rgba(239,227,211,.85);line-height:1.55;max-width:330px}
+  .contact-success .success-demo-label{font-size:13px;color:rgba(239,227,211,.75);margin-top:4px}
+  .contact-success .btn-success-demo{margin-top:6px;background:rgba(204,151,45,.18);border:1px solid rgba(204,151,45,.45);color:var(--gold-bright);padding:11px 22px;font-size:14px;font-weight:500;border-radius:999px;transition:background .2s,border-color .2s,transform .2s}
+  .contact-success .btn-success-demo:hover{background:rgba(204,151,45,.28);border-color:rgba(229,174,61,.75);transform:translateY(-1px)}
+  @media (prefers-reduced-motion:reduce){
+    .contact-success{transition:none;transform:none}
+  }
 
   /* Soft cross-link z demo bandu → poptávka (cal.com se NEgatuje) */
   .demo-band-alt{margin-top:12px;font-size:13px;color:rgba(239,227,211,.85)}
@@ -1996,7 +2007,7 @@
       "name": "GastroUp",
       "url": "https://gastroup.cz/",
       "logo": "https://gastroup.cz/Logo_GastroUp_2_transparent.png",
-      "description": "Gastro Parťák je poradce v telefonu — postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený.",
+      "description": "GastroUp provozuje Gastro Parťák — AI poradce v telefonu pro majitele restaurací. Pomáhá s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech praxe v gastru.",
       "areaServed": "CZ",
       "knowsLanguage": "cs"
     },
@@ -2004,7 +2015,7 @@
       "@type": "ProfessionalService",
       "@id": "https://gastroup.cz/#service",
       "name": "Gastro Parťák",
-      "description": "Gastro Parťák je poradce v telefonu — postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený.",
+      "description": "Gastro Parťák je AI poradce v telefonu pro majitele restaurací — pomáhá s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený.",
       "areaServed": "CZ",
       "provider": {"@id": "https://gastroup.cz/#organization"},
       "founder": {
@@ -2045,7 +2056,7 @@
       "@type": "WebSite",
       "@id": "https://gastroup.cz/#website",
       "url": "https://gastroup.cz/",
-      "name": "GastroUp — Gastro Parťák",
+      "name": "GastroUp — AI parťák pro majitele restaurací",
       "inLanguage": "cs"
     },
     {
@@ -2728,10 +2739,12 @@
           <button type="submit" class="btn btn-gold">Chci, ať se mi ozvete <span class="arrow">→</span></button>
           <p class="form-foot">Odesláním souhlasíš se zpracováním kontaktu kvůli ozvání. Nikomu ho nedáváme.</p>
         </form>
-        <div class="contact-success" id="contactSuccess" role="status">
+        <div class="contact-success" id="contactSuccess" role="status" aria-live="polite">
           <iconify-icon icon="lucide:party-popper"></iconify-icon>
           <h4>Díky! Máme tvůj kontakt.</h4>
-          <p>Jakub se ti ozve do 24 hodin — většinou ještě dneska. Mezitím klidně mrkni na demo zdarma.</p>
+          <p>Jakub se ti ozve do 24 hodin — většinou ještě dneska.</p>
+          <p class="success-demo-label">Chceš to probrat dřív? Domluv si nezávazné demo zdarma:</p>
+          <button type="button" class="btn btn-success-demo" data-cal-namespace="30min" data-cal-link="jakub-h-a2wrvi/30min" data-cal-config='{"layout":"month_view"}'>Rezervovat demo zdarma <span class="arrow">→</span></button>
         </div>
       </div>
     </div>
@@ -3312,7 +3325,7 @@
         if (descH) descH.hidden = true;
         form.hidden = true;
         var succH = document.getElementById('contactSuccess');
-        if (succH) succH.classList.add('show');
+        if (succH) { succH.classList.add('show'); requestAnimationFrame(function(){ requestAnimationFrame(function(){ succH.classList.add('visible'); }); }); }
         return;
       }
       var origText = btn ? btn.innerHTML : '';
@@ -3331,7 +3344,7 @@
         if (desc) desc.hidden = true;
         form.hidden = true;
         var succ = document.getElementById('contactSuccess');
-        if (succ) succ.classList.add('show');
+        if (succ) { succ.classList.add('show'); requestAnimationFrame(function(){ requestAnimationFrame(function(){ succ.classList.add('visible'); }); }); }
       }).catch(function(err) {
         if (btn) { btn.disabled = false; btn.innerHTML = origText; }
         if (errEl) {

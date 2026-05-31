@@ -1,0 +1,23 @@
+{
+  "name": "GastroUp — Gastro Parťák",
+  "short_name": "GastroUp",
+  "description": "Gastro Parťák je poradce v telefonu — postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#06264C",
+  "background_color": "#EFE3D3",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

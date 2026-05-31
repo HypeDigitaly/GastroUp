@@ -6,10 +6,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>GastroUp — Přestaň táhnout celý podnik sám</title>
 <meta name="description" content="Gastro Parťák je poradce v telefonu — postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený." />
+<link rel="canonical" href="https://gastroup.cz/">
+<meta http-equiv="Content-Language" content="cs">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gastroup.cz/">
+<meta property="og:site_name" content="GastroUp">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:title" content="GastroUp — Přestaň táhnout celý podnik sám">
+<meta property="og:description" content="Gastro Parťák je poradce v telefonu — postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený.">
+<meta property="og:image" content="https://gastroup.cz/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="GastroUp — Gastro Parťák pro majitele restaurací">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GastroUp — Přestaň táhnout celý podnik sám">
+<meta name="twitter:description" content="Gastro Parťák je poradce v telefonu — postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený.">
+<meta name="twitter:image" content="https://gastroup.cz/og-image.png">
+<meta name="twitter:image:alt" content="GastroUp — Gastro Parťák pro majitele restaurací">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#06264C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Geist:wght@300..900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://app.cal.com">
+<link rel="dns-prefetch" href="https://images.unsplash.com">
+<link rel="dns-prefetch" href="https://form.fapi.cz">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,36..144,300..600,0..100,0..1;1,36..144,300..600,0..100,0..1&family=Geist:wght@300..900&family=Geist+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,36..144,300..600,0..100,0..1;1,36..144,300..600,0..100,0..1&family=Geist:wght@300..900&family=Geist+Mono:wght@400;500;600&display=swap"></noscript>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js" defer></script>
 <style>
   :root{
     /* ── Cream surfaces ── */
@@ -77,6 +106,7 @@
   @media (max-width:580px){html{scroll-padding-top:76px}}
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
+  picture{display:contents}
   button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
   /* ============ CUSTOM SCROLLBAR — brand-aligned, thick ============ */
@@ -98,11 +128,14 @@
   /* ============ NO-JS / pre-IO fallback for reveal ============ */
   .no-js .reveal{opacity:1;transform:none}
 
+  /* C1: hamburger icon placeholder before iconify upgrades */
+  iconify-icon:not(:defined){display:inline-block;width:1em;height:1em}
+
   .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
 
   /* ============ NAV ============ */
-  .nav{position:sticky;top:0;z-index:50;background:var(--cream);backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid transparent;transition:border-color .3s ease,background .3s ease}
-  .nav.scrolled{border-color:var(--line);background:rgba(239,227,211,.92)}
+  .nav{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:1px solid transparent;transition:border-color .3s ease,background .3s ease;will-change:transform}
+  .nav.scrolled{border-color:var(--line);background:rgba(239,227,211,.92);backdrop-filter:saturate(140%) blur(6px)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:18px}
   .nav-cta{display:inline-flex;flex-shrink:0;white-space:nowrap}
   @media (min-width:981px) and (max-width:1100px){
@@ -388,9 +421,7 @@
     .demo-band-text p{margin:0 auto}
     .demo-band-cta{width:100%;justify-content:center}
   }
-  /* ghost button made legible on the navy showcase section */
-  .dark-section .btn-ghost{color:var(--cream);border-color:rgba(239,227,211,.4)}
-  .dark-section .btn-ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(239,227,211,.6)}
+  /* .dark-section .btn-ghost removed — .dark-section not in HTML (C6a dead-CSS) */
 
   /* ════════════ EBOOK LEAD MAGNET (static section) ════════════ */
   .ebook-section{padding:30px 0 110px}
@@ -482,25 +513,13 @@
   .lp-success[hidden]{display:none}
 
   /* ============ DARK SHOWCASE ============ */
-  .dark-section{background:var(--navy);color:var(--cream);padding:100px 0;margin:120px 0 0;border-radius:36px 36px 0 0;position:relative;overflow:hidden}
-  .dark-section::before{content:"";position:absolute;inset:0;background:
-    radial-gradient(70% 50% at 80% 10%,rgba(204,151,45,.12),transparent 60%),
-    radial-gradient(50% 40% at 10% 90%,rgba(204,151,45,.08),transparent 60%);
-    pointer-events:none}
-  .dark-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:center;position:relative;z-index:1}
-  .dark-section .eyebrow{background:rgba(204,151,45,.16);color:var(--gold-bright)}
-  .dark-section h2{color:var(--cream)}
-  .dark-section h2 em{color:inherit}
-  .dark-section .sub{color:rgba(239,227,211,.85);margin:18px 0 28px;max-width:none}
-  .dark-tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  /* .dark-section, .dark-grid, .dark-tiles, .dark-foot removed — not in HTML (C6a dead-CSS) */
+  /* .dark-tile rules kept below (shared selector usage) */
   .dark-tile{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:26px;backdrop-filter:blur(6px);transition:background .25s,transform .25s}
   .dark-tile:hover{background:rgba(255,255,255,.07);transform:translateY(-3px)}
   .dark-tile .cat{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--gold-bright);margin-bottom:14px}
   .dark-tile h4{font-family:var(--font-display);font-weight:500;font-size:22px;letter-spacing:-.01em;color:var(--cream);margin-bottom:10px;line-height:1.2}
   .dark-tile p{font-size:14px;color:rgba(239,227,211,.85);line-height:1.55}
-  .dark-foot{margin-top:36px;font-size:15px;color:rgba(239,227,211,.85)}
-  .dark-foot strong{color:var(--gold-bright);font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.01em}
-  .dark-foot em{display:block;font-style:normal;color:rgba(239,227,211,.82);font-size:13px;margin-top:4px}
 
   /* ============ FORM + FOUNDER ============ */
   .formfounder{padding:120px 0 80px;background:var(--navy);color:var(--cream)}
@@ -552,6 +571,8 @@
   /* ============ FADE IN ============ */
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
   .reveal.visible{opacity:1;transform:none}
+  /* C2: hero LCP elements are always visible — override reveal opacity */
+  .hero-left,.hero-visual{opacity:1;transform:none}
 
   /* ============ MOBILE DRAWER MENU ============ */
   .mobile-menu{
@@ -671,13 +692,11 @@
     .price-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}
     .price-card.featured{transform:none}
     .price-card.featured:hover{transform:translateY(-4px)}
-    .dark-grid{grid-template-columns:1fr;gap:40px}
     .ff-grid{grid-template-columns:1fr;gap:40px}
     .foot-grid{grid-template-columns:1fr 1fr;gap:36px}
     .section{padding:80px 0}
     .section-vision{padding:64px 0 48px}
     .section-light{margin:0 16px;padding:72px 0}
-    .dark-section{padding:80px 0;border-radius:28px 28px 0 0}
     .formfounder{padding:80px 0 60px}
     /* Hero CTAs stack more comfortably */
     .hero-ctas{gap:10px}
@@ -710,8 +729,6 @@
     .founder-card{flex-wrap:wrap;gap:10px 14px}
     .founder-card .who{flex:1 1 auto;min-width:140px}
     .founder-card a{flex-shrink:0}
-    /* Lead-strip padding */
-    .lead-strip{padding:18px 0 48px}
     /* Section heads tighter */
     .section-head{margin-bottom:48px}
     /* Stat numbers refined */
@@ -855,20 +872,13 @@
     .hero .hero-visual.is-phone{max-width:380px}
     .foot-grid{grid-template-columns:1fr;gap:32px}
     .founder-info{grid-template-columns:1fr}
-    .dark-tiles{grid-template-columns:1fr}
     .vision-card{flex:1 1 100%;max-width:none}
     .hero-hook{font-size:15px;margin-bottom:14px}
     /* Tighter wraps for very small phones */
     .nav-inner{padding:14px 0;gap:10px}
     .logo{font-size:16px;gap:10px;padding-left:14px}
-    .lead-card{padding:24px 20px}
-    .lead-head h3{font-size:26px}
-    .lead-head .desc{font-size:14px}
-    .lead-card .field input,
-    .lead-card .field textarea,
     .form-card .field input,
     .form-card .field textarea{padding:14px 14px;font-size:14.5px;border-width:2px}
-    .lead-actions .btn{padding:14px 20px;font-size:14.5px}
     .acc-item summary{font-size:15px;gap:12px}
     .acc-body{font-size:14px}
     .acc-body .solution{padding:14px 16px;font-size:13.5px}
@@ -879,9 +889,6 @@
     .stats{padding:28px 0}
     .center-ctas{flex-direction:column;align-items:stretch}
     .center-ctas .btn{justify-content:center;width:100%}
-    .dark-section .btn-gold{width:100%;justify-content:center}
-    .dark-section{padding:64px 0;border-radius:24px 24px 0 0;margin-top:80px}
-    .dark-grid{gap:32px}
     .formfounder{padding:64px 0 48px}
     .founder h3{font-size:28px;line-height:1.1}
     .free-card h3{font-size:42px}
@@ -1095,11 +1102,9 @@
   /* Default heading color on LIGHT surfaces only */
   h1,h2,h3,h4,h5,h6{color:var(--navy)}
   /* Dark surfaces — restore cream */
-  .dark-section h2, .dark-section p, .dark-section h3, .dark-section h4,
   .dark-tile h4, .dark-tile p,
   .free-card h3, .free-card .pitch, .free-card .body,
   .form-card h3, .form-card p, .form-card label,
-  .lead-card h3, .lead-card p, .lead-card label,
   .founder h3, .founder p,
   .price-card.featured .price-num,
   .price-card.featured .price-desc{
@@ -1194,15 +1199,11 @@
     width:5px;height:5px;border-radius:50%;
     background:var(--gold);
   }
-  .dark-section .eyebrow,
-  .lead-card .eyebrow,
   .formfounder .eyebrow{
     background:rgba(239,227,211,.10);
     color:var(--cream);
     border-color:rgba(239,227,211,.18);
   }
-  .dark-section .eyebrow::before,
-  .lead-card .eyebrow::before,
   .formfounder .eyebrow::before{background:var(--gold)}
 
   /* Nav links — Mono, micro, uppercase */
@@ -1250,7 +1251,6 @@
   .stat .n,
   .price-num,
   .free-card h3,
-  .dark-foot strong,
   .founder-card .av,
   .float-br .fc-foot strong{
     font-variation-settings:"opsz" 144, "SOFT" 30, "WONK" 0;
@@ -1345,7 +1345,7 @@
   @media (prefers-reduced-motion:no-preference){
     .btn,.float-video,.lp-close,.foot-socials a,
     .hero-pill,.founder-pill,.nav-links a,.mobile-toggle,.acc-toggle,
-    .price-card,.okruh-card,.dark-tile{
+    .price-card,.okruh-card{
       transition:transform .45s var(--ease-spring),
                  box-shadow .45s var(--ease-out-quart),
                  background .45s var(--ease-out-quart),
@@ -1419,12 +1419,13 @@
     z-index:1;                                  /* above gold fill, below text (z2) */
     animation:gp-spin-border 3.6s linear infinite;
     transition:opacity .35s var(--ease-out-quart);
-    will-change:--gp-spin;
   }
   @keyframes gp-spin-border{ to{ --gp-spin:360deg; } }
   /* hover/focus: ring goes full-strength alongside the warm halo */
   .btn-gold:hover::after,
   .btn-gold:focus-visible::after{ opacity:1; }
+  /* Pause the border spin when the element is off-screen or reduced-motion is on */
+  .btn-gold.anim-paused::after{animation-play-state:paused}
 
   /* ── 3. .btn-primary — solid navy, subtle lift only ── */
   .btn-primary{
@@ -1593,106 +1594,16 @@
   }
 
   /* ── 19. Cards — calm lift only ── */
-  .okruh-card,.price-card,.dark-tile{cursor:default}
+  .okruh-card,.price-card{cursor:default}
   .okruh-card{transition:transform .3s var(--ease-out-quart),box-shadow .3s,border-color .3s}
   .dark-tile{transition:background .3s,transform .3s var(--ease-out-quart),border-color .3s}
   .okruh-card:hover,.dark-tile:hover{transform:translateY(-2px)}
   .price-card{transition:transform .3s var(--ease-out-quart),box-shadow .3s,border-color .3s}
   .price-card:hover{transform:translateY(-3px);box-shadow:0 16px 36px -18px rgba(6,38,76,.22)}
 
-  /* ════════════════════════════════════════════════════════════
-     HERO CONVERSION STRIP — high-priority form right under hero
-     ════════════════════════════════════════════════════════════ */
-  .lead-strip{
-    padding:30px 0 60px;
-    background:var(--cream);
-    position:relative;
-  }
-  .lead-strip .wrap{position:relative;z-index:2}
-  .lead-card{
-    background:var(--navy);
-    color:var(--cream);
-    border-radius:28px;
-    padding:44px 48px 40px;
-    border:1px solid rgba(255,255,255,.06);
-    box-shadow:0 30px 80px -32px rgba(3,21,46,.55), 0 12px 28px -16px rgba(6,38,76,.32);
-    position:relative;
-    overflow:hidden;
-  }
-  .lead-card::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-      radial-gradient(700px circle at 90% -10%, rgba(229,174,61,.10) 0%, transparent 55%),
-      radial-gradient(500px circle at -5% 110%, rgba(229,174,61,.06) 0%, transparent 60%);
-    pointer-events:none;
-  }
-  .lead-card > *{position:relative;z-index:1}
-
-  .lead-head{
-    display:grid;
-    grid-template-columns:1fr auto;
-    gap:24px 40px;
-    align-items:end;
-    margin-bottom:28px;
-    padding-bottom:24px;
-    border-bottom:1px solid rgba(239,227,211,.12);
-  }
-  .lead-head .eyebrow{
-    grid-column:1;grid-row:1;
-    align-self:start;
-    margin-bottom:0;
-  }
-  .lead-head h3{
-    grid-column:1;grid-row:2;
-    font-family:var(--font-display);
-    font-weight:500;
-    font-size:clamp(28px,3.2vw,38px);
-    line-height:1.05;
-    letter-spacing:-.02em;
-    color:var(--cream);
-    margin:14px 0 0;
-  }
-  .lead-head .desc{
-    grid-column:2;grid-row:1 / span 2;
-    font-size:14.5px;
-    color:rgba(239,227,211,.85);
-    line-height:1.6;
-    max-width:440px;
-    margin:0;
-  }
-  .lead-head .desc strong{color:var(--cream);font-weight:600}
-
-  .lead-form-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px 22px;
-  }
-  .lead-form-grid .field-full,
-  .lead-form-grid .lead-actions{grid-column:1 / -1}
-
-  .lead-actions{
-    display:grid;
-    grid-template-columns:auto 1fr;
-    gap:14px 24px;
-    align-items:center;
-    margin-top:8px;
-  }
-  .lead-actions .btn{
-    padding:16px 32px;
-    font-size:15.5px;
-    justify-content:center;
-  }
-  .lead-actions .form-foot{
-    margin-top:0;
-    text-align:left;
-    font-size:12.5px;
-    color:rgba(239,227,211,.82);
-  }
+  /* .lead-strip, .lead-card, .lead-head, .lead-form-grid, .lead-actions removed — not in HTML (C6a dead-CSS) */
 
   /* ── THICK-BORDER FORM FIELDS (dark surfaces) ── */
-  .lead-card .field label,
   .form-card .field label{
     display:block;
     font-family:var(--font-mono);
@@ -1703,15 +1614,6 @@
     margin-bottom:8px;
     font-weight:500;
   }
-  .lead-card .field label .optional{
-    color:rgba(239,227,211,.72);
-    font-weight:400;
-    text-transform:none;
-    letter-spacing:.04em;
-    margin-left:4px;
-  }
-  .lead-card .field input,
-  .lead-card .field textarea,
   .form-card .field input,
   .form-card .field textarea{
     width:100%;
@@ -1728,21 +1630,15 @@
                box-shadow .2s var(--ease-out-quart);
     letter-spacing:-.005em;
   }
-  .lead-card .field input::placeholder,
-  .lead-card .field textarea::placeholder,
   .form-card .field input::placeholder,
   .form-card .field textarea::placeholder{
     color:rgba(239,227,211,.82);
   }
-  .lead-card .field input:hover,
-  .lead-card .field textarea:hover,
   .form-card .field input:hover,
   .form-card .field textarea:hover{
     border-color:#fff;
     background:rgba(255,255,255,.04);
   }
-  .lead-card .field input:focus,
-  .lead-card .field textarea:focus,
   .form-card .field input:focus,
   .form-card .field textarea:focus{
     outline:none;
@@ -1751,13 +1647,11 @@
     box-shadow:0 0 0 4px rgba(204,151,45,.22);
   }
   /* Autofill — keep dark theme intact */
-  .lead-card .field input:-webkit-autofill,
   .form-card .field input:-webkit-autofill{
     -webkit-text-fill-color:var(--cream);
     -webkit-box-shadow:0 0 0 100px var(--navy) inset;
     caret-color:var(--cream);
   }
-  .lead-card .field textarea,
   .form-card .field textarea{min-height:96px;resize:vertical}
 
   /* Light-surface form fields (popup) get thick navy borders */
@@ -1777,16 +1671,7 @@
     background:#fff;
   }
 
-  /* Stack the lead head on smaller screens */
-  @media (max-width:860px){
-    .lead-card{padding:30px 26px 26px;border-radius:22px}
-    .lead-head{grid-template-columns:1fr;gap:14px}
-    .lead-head .eyebrow,.lead-head h3,.lead-head .desc{grid-column:1;grid-row:auto}
-    .lead-head h3{margin-top:6px}
-    .lead-form-grid{grid-template-columns:1fr;gap:16px}
-    .lead-actions{grid-template-columns:1fr;gap:10px}
-    .lead-actions .form-foot{text-align:center}
-  }
+  /* .lead-card @media (max-width:860px) removed — not in HTML (C6a dead-CSS) */
 
   /* Founder-only mode: collapse ff-grid to single column */
   .formfounder--solo .ff-grid{
@@ -1945,7 +1830,6 @@
     border-radius:8px;
   }
   /* Focus on dark surfaces uses gold ring for clarity */
-  .dark-section .btn:focus-visible,
   .formfounder .btn:focus-visible,
   .foot-socials a:focus-visible,
   .foot-col a:focus-visible,
@@ -1991,6 +1875,7 @@
       transition-duration:.15s!important;
     }
     body::before{animation:none}
+    .btn-gold::after{animation:none}
   }
 
   /* ════════════════════════════════════════════════════════════
@@ -2015,57 +1900,7 @@
     .logo-chip{padding:12px 18px;border-radius:15px}
   }
 
-  /* ── Dual CTA decision hub ── */
-  .choice-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;position:relative}
-  .choice-card{position:relative;display:flex;flex-direction:column;
-    border-radius:28px;padding:38px 36px 32px;overflow:hidden;
-    transition:transform .4s var(--ease-out-expo),box-shadow .4s var(--ease-out-expo)}
-  .choice-card:hover{transform:translateY(-5px)}
-  .choice-a{background:var(--navy);color:var(--cream);
-    box-shadow:0 32px 76px -32px rgba(3,21,46,.6),0 12px 28px -18px rgba(6,38,76,.32)}
-  .choice-a::before{content:"";position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(640px circle at 88% -14%,rgba(229,174,61,.18),transparent 56%),
-               radial-gradient(460px circle at -6% 114%,rgba(229,174,61,.08),transparent 60%)}
-  .choice-b{background:var(--cream-pale);color:var(--navy);
-    border:1.5px solid var(--line);box-shadow:var(--shadow-card)}
-  .choice-card > *{position:relative;z-index:1}
-  .choice-badge{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
-    font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    font-weight:500;padding:7px 13px;border-radius:999px;margin-bottom:20px}
-  .choice-badge iconify-icon{font-size:14px}
-  .choice-a .choice-badge{background:rgba(229,174,61,.18);color:var(--gold-bright)}
-  .choice-b .choice-badge{background:rgba(6,38,76,.07);color:var(--navy-soft)}
-  .choice-card h3{font-family:var(--font-display);font-weight:500;
-    font-size:clamp(24px,2.6vw,31px);line-height:1.06;letter-spacing:-.02em;margin-bottom:11px}
-  .choice-card h3 em{font-style:italic;color:var(--gold);font-variation-settings:var(--fr-italic-accent)}
-  .choice-a h3 em{color:var(--gold-bright)}
-  .choice-lead{font-size:14.5px;line-height:1.6;margin-bottom:4px}
-  .choice-a .choice-lead{color:rgba(239,227,211,.82)}
-  .choice-b .choice-lead{color:var(--muted)}
-  .choice-price{display:flex;align-items:baseline;gap:9px;margin:16px 0 20px;flex-wrap:wrap}
-  .choice-price .num{font-family:var(--font-display);font-size:36px;font-weight:500;letter-spacing:-.02em;line-height:1}
-  .choice-price .per{font-size:14px;opacity:.72}
-  .choice-price .was{font-size:14.5px;text-decoration:line-through;opacity:.5}
-  .choice-a .choice-price .num{color:var(--gold-bright)}
-  .choice-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin:0 0 26px;font-size:14px;flex:1}
-  .choice-list li{display:flex;gap:11px;align-items:flex-start;line-height:1.45}
-  .choice-list iconify-icon{flex-shrink:0;margin-top:1px;font-size:18px}
-  .choice-a .choice-list iconify-icon{color:var(--gold-bright)}
-  .choice-b .choice-list iconify-icon{color:var(--emerald)}
-  .choice-a .choice-list li{color:rgba(239,227,211,.9)}
-  .choice-cta{width:100%;justify-content:center;padding:16px}
-  .choice-foot{margin-top:13px;font-size:12.5px;text-align:center}
-  .choice-a .choice-foot{color:rgba(239,227,211,.82)}
-  .choice-b .choice-foot{color:var(--muted)}
-  .choice-divider{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;
-    width:48px;height:48px;border-radius:50%;background:var(--navy);color:var(--gold-bright);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--font-display);font-style:italic;font-size:15px;font-weight:600;
-    box-shadow:0 10px 26px -10px rgba(204,151,45,.7),0 0 0 6px var(--cream)}
-  @media (max-width:860px){
-    .choice-wrap{grid-template-columns:1fr;gap:18px}
-    .choice-divider{position:static;transform:none;margin:-9px auto;box-shadow:0 10px 26px -10px rgba(204,151,45,.7),0 0 0 6px var(--cream)}
-  }
+  /* .choice-* removed — section not present in HTML (C6a dead-CSS) */
 
   /* ── Checkout / demo modal ── */
   .gp-modal{position:fixed;inset:0;z-index:200;display:flex;align-items:flex-start;justify-content:center;
@@ -2147,7 +1982,136 @@
     background: rgba(220,53,69,.12); border:1px solid rgba(220,53,69,.35);
     color:#f08080; font-size:13.5px; line-height:1.45; }
   .btn:disabled, button:disabled { opacity:.6; cursor:not-allowed; pointer-events:none; }
+
+  /* ── C8: visually-hidden utility ── */
+  .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://gastroup.cz/#organization",
+      "name": "GastroUp",
+      "url": "https://gastroup.cz/",
+      "logo": "https://gastroup.cz/Logo_GastroUp_2_transparent.png",
+      "description": "Gastro Parťák je poradce v telefonu — postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený.",
+      "areaServed": "CZ",
+      "knowsLanguage": "cs"
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://gastroup.cz/#service",
+      "name": "Gastro Parťák",
+      "description": "Gastro Parťák je poradce v telefonu — postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený.",
+      "areaServed": "CZ",
+      "provider": {"@id": "https://gastroup.cz/#organization"},
+      "founder": {
+        "@type": "Person",
+        "name": "Jakub Hnát"
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Začátek",
+          "description": "Pro toho, kdo si chce vyřešit pár konkrétních věcí. 50 zpráv s Parťákem za měsíc.",
+          "price": "465",
+          "priceCurrency": "CZK",
+          "availability": "https://schema.org/InStock",
+          "url": "https://gastroup.cz/#cena"
+        },
+        {
+          "@type": "Offer",
+          "name": "Systém",
+          "description": "Pro toho, kdo chce podnik systematicky dát do kupy. 500 zpráv s Parťákem za měsíc.",
+          "price": "4650",
+          "priceCurrency": "CZK",
+          "availability": "https://schema.org/InStock",
+          "url": "https://gastroup.cz/#cena"
+        },
+        {
+          "@type": "Offer",
+          "name": "Růst",
+          "description": "Pro toho, kdo vede víc provozů nebo větší tým. 1 500 zpráv s Parťákem za měsíc.",
+          "price": "11950",
+          "priceCurrency": "CZK",
+          "availability": "https://schema.org/InStock",
+          "url": "https://gastroup.cz/#cena"
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://gastroup.cz/#website",
+      "url": "https://gastroup.cz/",
+      "name": "GastroUp — Gastro Parťák",
+      "inLanguage": "cs"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Kuchař mi ráno napíše, že nepřijde. Co s tím?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gastro Parťák pomůže postavit tým, který nikam neutíká. Poradí, jak vést pohovor, abys špatnou volbu poznal hned — a ne až po třech měsících zaškolování. Jeden odchozí zaměstnanec tě vyjde na 40–60 tisíc."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Slevomat mi shrábne třetinu z účtenky. Jak od něj odejít?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gastro Parťák pomůže od Slevomatu postupně odejít. Naučí tě dělat vlastní akce, které ti přitáhnou hosty platící plnou cenu. Reálně si tím přijdeš na 10 až 15 tisíc měsíčně navíc — a to ještě nepočítáme provize, které přestaneš posílat Slevomatu."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Měsíc skončil, tržby vypadaly slušně, na účtu nula. Kam se peníze ztrácejí?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gastro Parťák pomůže rozsvítit. Spočítáte si spolu, kolik tě stojí každé jídlo v menu — a kolik si na něm reálně vyděláš. Minimálně 5 tisíc měsíčně, které ti teď v tichosti utíkají, jen je zatím nevidíš."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak se dostat k papírům, když pořád někdo něco chce?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gastro Parťák tě tlačí k tomu, abys dělal NA podniku, ne JEN V podniku. Jeden týden — jedna konkrétní věc. Patnáct minut ráno u kafe, jedna otázka, jeden krok. Za tři měsíce nepoznáš, jak jsi to dřív zvládal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Číšník donese menu, řekne „dám vám chvilku” a víc se neukáže. Jak ho naučit prodávat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gastro Parťák dá konkrétní postupy, jak číšníky vytrénovat. Co přesně mají hostovi říct, kdy se k němu mají vrátit, jak nabídnout dezert tak, aby ho host fakt chtěl. Když číšník umí prodávat, zvedne se ti průměrná útrata klidně o 20 tisíc měsíčně."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "V neděli večer otevřu lednici — tři kila masa zítra prostě neprodám. Jak tomu předejít?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gastro Parťák pomůže líp odhadnout, co se bude prodávat. Bere v potaz počasí, podobné dny, kdy u tebe bývá plno a kdy mrtvo, kolik se prodalo loni v tomhle týdnu. Pět tisíc měsíčně, které ti doslova letí do popelnice."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kdy jsi naposledy s někým otevřeně probral, co ti v podniku nefunguje?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gastro Parťák je v telefonu pořád. Když potřebuješ probrat, jak dát výpověď, jak reagovat na blbou recenzi nebo jestli má cenu pouštět se do cateringu — napíšeš a on ti hned odpoví. Slušný kouč tě stojí 20 tisíc za čtyři hodiny měsíčně. Parťák stojí zlomek a máš ho k ruce kdykoliv."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -2155,7 +2119,7 @@
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a href="#" class="logo" aria-label="GastroUp">
-      <img class="logo-img" src="Logo_GastroUp_2_transparent.png" alt="GastroUp" width="957" height="311">
+      <picture><source srcset="Logo_GastroUp_2_transparent.avif" type="image/avif"><source srcset="Logo_GastroUp_2_transparent.webp" type="image/webp"><img class="logo-img" src="Logo_GastroUp_2_transparent.png" alt="GastroUp — poradce pro restaurace" width="957" height="311"></picture>
     </a>
     <nav class="nav-links">
       <a href="#okruhy">Co to je</a>
@@ -2187,7 +2151,7 @@
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="wrap hero-grid">
-    <div class="hero-left reveal">
+    <div class="hero-left">
       <div class="hero-pill">
         <span class="avatars"><span></span><span></span><span></span></span>
         <span><strong>1 200+</strong> majitelů restaurací</span>
@@ -2210,7 +2174,7 @@
       </div>
     </div>
 
-    <div class="hero-visual is-phone reveal">
+    <div class="hero-visual is-phone">
       <!-- soft cream backdrop -->
       <div class="phone-stage" aria-hidden="true">
         <div class="disc"></div>
@@ -2362,6 +2326,8 @@
           </svg>
           <img class="okruh-photo"
                src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=900&q=80"
+               srcset="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=450&q=80 450w, https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=900&q=80 900w"
+               sizes="(max-width:980px) 100vw, 33vw"
                alt="Tým restaurace v briefingu před otevřením"
                loading="lazy" decoding="async"
                onerror="this.style.display='none'"/>
@@ -2394,6 +2360,8 @@
           </svg>
           <img class="okruh-photo"
                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80"
+               srcset="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=450&q=80 450w, https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80 900w"
+               sizes="(max-width:980px) 100vw, 33vw"
                alt="Spokojení hosté u plného stolu v restauraci"
                loading="lazy" decoding="async"
                onerror="this.style.display='none'"/>
@@ -2423,6 +2391,8 @@
           </svg>
           <img class="okruh-photo"
                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80"
+               srcset="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=450&q=80 450w, https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80 900w"
+               sizes="(max-width:980px) 100vw, 33vw"
                alt="Majitel restaurace u stolku s tabletem a fakturami po směně"
                loading="lazy" decoding="async"
                onerror="this.style.display='none'"/>
@@ -2451,8 +2421,8 @@
 <!-- ============ FOUNDER ============ -->
 <section class="formfounder formfounder--solo formfounder--portrait">
   <div class="wrap ff-grid">
-    <div class="founder-portrait reveal" aria-hidden="true">
-      <img src="Zakladatel_Jakub_Hnát.png" alt="">
+    <div class="founder-portrait reveal">
+      <picture><source srcset="Zakladatel_Jakub_Hnat.avif" type="image/avif"><source srcset="Zakladatel_Jakub_Hnat.webp" type="image/webp"><img src="Zakladatel_Jakub_Hnat.png" alt="Jakub Hnát, zakladatel GastroUp" width="426" height="426" loading="lazy" decoding="async"></picture>
       <span class="fp-sig">20 let v gastru</span>
     </div>
     <div class="founder reveal" id="zakladatel">
@@ -2472,7 +2442,7 @@
       </div>
 
       <div class="founder-card">
-        <div class="av av-photo" aria-hidden="true"><img src="Zakladatel_Jakub_Hnát.png" alt=""></div>
+        <div class="av av-photo" aria-hidden="true"><picture><source srcset="Zakladatel_Jakub_Hnat.avif" type="image/avif"><source srcset="Zakladatel_Jakub_Hnat.webp" type="image/webp"><img src="Zakladatel_Jakub_Hnat.png" alt="" width="48" height="48" loading="lazy" decoding="async"></picture></div>
         <div class="who">
           <div>Jakub Hnát</div>
           <div>Zakladatel a mentor</div>
@@ -2775,7 +2745,7 @@
       <div class="foot-brand">
         <a href="#" class="logo" aria-label="GastroUp">
           <span class="logo-chip">
-            <img class="logo-img" src="Logo_GastroUp_2_transparent.png" alt="GastroUp" width="957" height="311">
+            <picture><source srcset="Logo_GastroUp_2_transparent.avif" type="image/avif"><source srcset="Logo_GastroUp_2_transparent.webp" type="image/webp"><img class="logo-img" src="Logo_GastroUp_2_transparent.png" alt="GastroUp — poradce pro restaurace" width="957" height="311" loading="lazy"></picture>
           </span>
         </a>
         <p>Poradce v telefonu pro majitele restaurací. Postavený na 20 letech reálné gastro praxe.</p>
@@ -2870,16 +2840,88 @@
   </div>
 </div>
 
-<!-- ============ cal.com embed (30min demo) ============ -->
+<!-- ============ cal.com embed (30min demo) — lazy, loads on first click ============ -->
 <script type="text/javascript">
-  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-  Cal("init", "30min", { origin: "https://cal.com" });
-  Cal.ns["30min"]("ui", {
-    "theme": "light",
-    "cssVarsPerTheme": { "light": { "cal-brand": "#CC972D" } },
-    "hideEventTypeDetails": false,
-    "layout": "month_view"
-  });
+  (function(){
+    // Cal stub queue — captures calls before embed.js loads so nothing is lost
+    (function(C,A,L){
+      var p=function(a,ar){a.q.push(ar);};
+      var d=C.document;
+      C.Cal=C.Cal||function(){
+        var cal=C.Cal;var ar=arguments;
+        if(!cal.loaded){cal.ns={};cal.q=cal.q||[];}
+        if(ar[0]===L){
+          var api=function(){p(api,arguments);};
+          var namespace=ar[1];api.q=api.q||[];
+          if(typeof namespace==='string'){
+            cal.ns[namespace]=cal.ns[namespace]||api;
+            p(cal.ns[namespace],ar);p(cal,['initNamespace',namespace]);
+          } else p(cal,ar);
+          return;
+        }
+        p(cal,ar);
+      };
+    })(window,'','init');
+
+    var calReady = false;
+    var pendingLink = null;
+
+    function openModal(calLink) {
+      Cal.ns['30min']('modal', { calLink: calLink, config: { layout: 'month_view' } });
+    }
+
+    function initAndOpen(calLink) {
+      if (calReady) { openModal(calLink); return; }
+      pendingLink = calLink;
+      if (document.querySelector('script[data-cal-embed]')) return; // already loading
+      var s = document.createElement('script');
+      s.setAttribute('data-cal-embed', '');
+      s.src = 'https://app.cal.com/embed/embed.js';
+      s.onload = function() {
+        calReady = true;
+        Cal('init', '30min', { origin: 'https://cal.com' });
+        Cal.ns['30min']('ui', {
+          theme: 'light',
+          cssVarsPerTheme: { light: { 'cal-brand': '#CC972D' } },
+          hideEventTypeDetails: false,
+          layout: 'month_view'
+        });
+        if (pendingLink) { openModal(pendingLink); pendingLink = null; }
+      };
+      document.head.appendChild(s);
+    }
+
+    document.querySelectorAll('[data-cal-namespace]').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        var calLink = el.getAttribute('data-cal-link');
+        // Brief disabled/loading state
+        el.setAttribute('disabled', '');
+        el.style.opacity = '0.7';
+        var restore = function() { el.removeAttribute('disabled'); el.style.opacity = ''; };
+        if (calReady) {
+          restore();
+          openModal(calLink);
+        } else {
+          var s = document.querySelector('script[data-cal-embed]');
+          if (s) {
+            // Script tag exists but hasn't fired onload yet — queue the link
+            pendingLink = calLink;
+            var prevOnload = s.onload;
+            s.onload = function() { if(prevOnload) prevOnload.call(this); restore(); };
+          } else {
+            var origOnload = null;
+            initAndOpen(calLink);
+            var ns = document.querySelector('script[data-cal-embed]');
+            if (ns) {
+              var baseOnload = ns.onload;
+              ns.onload = function() { if(baseOnload) baseOnload.call(this); restore(); };
+            } else { restore(); }
+          }
+        }
+      });
+    });
+  })();
 </script>
 
 <script>
@@ -2964,6 +3006,19 @@
     });
   }, {threshold:.12});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // C6b: Pause gp-spin-border animation when .btn-gold is off-screen (saves paint)
+  // Class-based toggle so the ::after pseudo-element is also paused.
+  // Also respects prefers-reduced-motion (reduced-motion users never spin).
+  if ('IntersectionObserver' in window) {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var spinObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        e.target.classList.toggle('anim-paused', reduceMotion || !e.isIntersecting);
+      });
+    }, {rootMargin: '200px'});
+    document.querySelectorAll('.btn-gold').forEach(function(el) { spinObserver.observe(el); });
+  }
 
   // Accordion: each item opens/closes independently with a slow slide and
   // stays open until the user closes it. Falls back to native instant toggle

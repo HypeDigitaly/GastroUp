@@ -1,0 +1,9 @@
+# GastroUp
+
+> GastroUp je služba „Gastro Parťák" — poradce v telefonu pro české restauratéry postavený na 20 letech zkušeností v gastronomii, s garancí měsíce navíc zdarma, pokud nebudete spokojení.
+
+Gastro Parťák poskytuje odborné poradenství majitelům restaurací přímo v telefonu. Pomáhá s týmem, hosty, náklady a strategií podniku. Služba je postavená na dlouholeté praxi v gastronomickém provozu a nabízí konkrétní, prakticky použitelné rady.
+
+## Hlavní stránka
+
+- [GastroUp — Gastro Parťák](https://gastroup.cz/): hlavní stránka služby s popisem, tarify a kontaktem.

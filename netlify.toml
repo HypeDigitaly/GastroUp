@@ -1,14 +1,47 @@
+# ─────────────────────────────────────────────────────────────
+# GO-LIVE CHECKLIST (dashboard / DNS — cannot be set in this file):
+#  1. Domain management -> Primary domain = gastroup.cz (apex), NOT www (avoids loop with the www->apex rule below).
+#  2. HTTPS -> enable "Force HTTPS".
+#  3. Disable legacy "Asset optimization / post-processing" (Build & deploy -> Post processing) -- it would double-process the already-minified HTML.
+#  4. notifications.gastroup.cz -> verify DKIM/SPF/DMARC DNS for Resend.
+#  5. ALLOWED_ORIGIN: production pinned below via [context.production.environment]; deploy-preview/branch contexts fall back to "*" in code so preview CORS works.
+#  6. After CSP-Report-Only is clean in production, promote to enforcing (rename header to Content-Security-Policy).
+# ─────────────────────────────────────────────────────────────
+
 [build]
-  publish = "."
-  command = "npm install"
+  publish = "dist"
+  command = "npm run build"
 
 [build.environment]
   NODE_VERSION = "20"
 
+# Functions are bundled by Netlify from the repo root -- do NOT point this at dist.
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
+# Pin production CORS origin for the email functions (previews fall back to "*").
+[context.production.environment]
+  ALLOWED_ORIGIN = "https://gastroup.cz"
+
+# ---- Redirects (top-to-bottom; canonicalization BEFORE the /api rewrite) ----
+[[redirects]]
+  from = "https://www.gastroup.cz/*"
+  to = "https://gastroup.cz/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# ---- Security headers (apply to everything) ----
 [[headers]]
   for = "/*"
   [headers.values]
@@ -17,8 +50,52 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    X-XSS-Protection = "0"
+    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://app.cal.com https://form.fapi.cz; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://app.cal.com https://cal.com; frame-src https://app.cal.com https://cal.com https://form.fapi.cz; form-action 'self' https://form.fapi.cz; base-uri 'self'; object-src 'none'"
 
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
+# ---- Cache: immutable for stable-named static assets (rename-on-change policy) ----
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.avif"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ---- Cache: HTML always revalidates; API never cached ----
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"

@@ -23,6 +23,24 @@ netlify dev             # Start local dev server at http://localhost:8888
 
 The `netlify dev` command starts a local server simulating the Netlify environment, including Functions. Submit forms to test locally.
 
+## Build Process
+
+The site uses an optimized build pipeline for production:
+
+```bash
+npm run build
+```
+
+This command (also run automatically by Netlify during deploy):
+1. **Minifies `index.html`** — removes whitespace, comments, minifies inline CSS/JS (~22% size reduction)
+2. **Optimizes images** — generates WebP and AVIF variants for PNG images (up to 97% smaller)
+3. **Copies curated files** — bundles only production-ready assets to `dist/` directory
+4. **Excludes development artifacts** — internal pages, brand-assets, design files, node_modules
+
+**Output:** `dist/` directory (served directly to CDN by Netlify)
+
+For detailed build documentation, see **[Build Pipeline](./docs/build-pipeline.md)**.
+
 ## Environment Variables
 
 All variables are **runtime-only** (set in Netlify UI under **Site settings > Environment variables**, scope: **Functions only**). They are not available at build time.
@@ -40,11 +58,16 @@ All variables are **runtime-only** (set in Netlify UI under **Site settings > En
 
 GastroUp automatically deploys to Netlify when changes are pushed to the `main` branch:
 
-- **Build command**: `npm install` (defined in `netlify.toml`)
-- **Publish directory**: `.` (repository root)
-- **Functions directory**: `netlify/functions`
+- **Build command**: `npm run build` (runs optimized build pipeline, defined in `netlify.toml`)
+- **Publish directory**: `dist/` (optimized output)
+- **Functions directory**: `netlify/functions` (bundled automatically by Netlify)
 
-No manual build step is required for the frontend. Netlify bundles and deploys TypeScript Functions automatically.
+Netlify handles:
+1. Running `npm run build` to generate optimized `dist/` directory
+2. Deploying `dist/` contents to CDN (with cache headers)
+3. Bundling and deploying TypeScript Functions
+
+For detailed deployment guide, see **[Netlify Deployment](./docs/netlify-deployment.md)**.
 
 ## Pre-Launch Checklist
 
@@ -76,6 +99,16 @@ No manual build step is required for the frontend. Netlify bundles and deploys T
 - **`Assets/`** — PDFs, images, logos
 
 For a detailed technical guide on email flow, validation, security, and testing, see **[Email Integration Guide](./docs/email-integration.md)**.
+
+## Documentation
+
+Complete documentation is available in the `docs/` directory:
+
+- **[Build Pipeline](./docs/build-pipeline.md)** — HTML/image optimization, build process, troubleshooting
+- **[Performance Optimizations](./docs/performance-optimizations.md)** — Core Web Vitals, render-blocking elimination, image optimization
+- **[SEO](./docs/seo.md)** — Metadata, Open Graph, JSON-LD structured data, verification checklist
+- **[Netlify Deployment](./docs/netlify-deployment.md)** — Deploy workflow, go-live checklist, production configuration
+- **[Deferred Tasks](./docs/deferred-tasks.md)** — Font self-hosting, CSP hardening, GDPR compliance, future optimizations
 
 ## Email Templates
 

@@ -54,260 +54,121 @@ async function makeOgImage() {
   const W = 1200, H = 630;
   console.log('  Building og-image.png...');
 
-  // ---------- SVG: full composition with AI product card layout ----------------
-  // Left column: badge + headline + subtitle + domain
-  // Right column: abstract AI circuit / node decoration + logo below
-  const bgSvg = Buffer.from(`
-<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
+  // ── Layout constants ────────────────────────────────────────────────────────
+  // WhatsApp square-crop safe zone: x=285..915 (630px wide), full height.
+  // ALL key content is centered horizontally and lives within that band.
+  //
+  // Logo: 957×311 original → scaled to 560px wide → 182px tall
+  //   left = (1200-560)/2 = 320   right = 880   (both inside safe zone)
+  //   top  = 108   bottom = 108+182 = 290
+  //
+  // Tagline "AI parťák pro majitele restaurací": navy bold, centered, y≈368
+  // Gold divider: centered 360px wide, y≈410
+  // Domain "gastroup.cz": gold centered, y≈460
+  // Subtitle "Tým • hosté • náklady • strategie": navy muted, centered, y≈498
+
+  const LOGO_TARGET_W = 560;
+  const LOGO_ORIG_W   = 957;
+  const LOGO_ORIG_H   = 311;
+  const LOGO_TARGET_H = Math.round(LOGO_ORIG_H * (LOGO_TARGET_W / LOGO_ORIG_W)); // 182
+  const LOGO_LEFT     = Math.round((W - LOGO_TARGET_W) / 2);  // 320
+  const LOGO_TOP      = 90;
+
+  // SVG layer: cream background + all text (no logo — composited separately)
+  const bgSvg = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
   <defs>
-    <!-- Deep navy gradient: darker bottom-right corner for depth -->
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%"   stop-color="#0A2E5C"/>
-      <stop offset="55%"  stop-color="#06264C"/>
-      <stop offset="100%" stop-color="#020F1F"/>
-    </linearGradient>
-    <!-- Soft gold radial glow anchored to right panel -->
-    <radialGradient id="rightGlow" cx="78%" cy="48%" r="38%">
-      <stop offset="0%"   stop-color="#CC972D" stop-opacity="0.10"/>
-      <stop offset="100%" stop-color="#06264C" stop-opacity="0"/>
+    <!-- Very subtle warm vignette to lift center -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.05"/>
     </radialGradient>
-    <!-- Subtle blue glow top-left behind text -->
-    <radialGradient id="leftGlow" cx="22%" cy="38%" r="48%">
-      <stop offset="0%"   stop-color="#1252A0" stop-opacity="0.30"/>
-      <stop offset="100%" stop-color="#06264C" stop-opacity="0"/>
-    </radialGradient>
-    <!-- Gold fade for horizontal rules -->
-    <linearGradient id="goldRule" x1="0%" y1="0%" x2="100%" y2="0%">
+    <!-- Gold divider fade -->
+    <linearGradient id="goldFade" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%"   stop-color="#CC972D" stop-opacity="0"/>
-      <stop offset="8%"   stop-color="#CC972D" stop-opacity="1"/>
-      <stop offset="70%"  stop-color="#CC972D" stop-opacity="0.7"/>
+      <stop offset="15%"  stop-color="#CC972D" stop-opacity="1"/>
+      <stop offset="85%"  stop-color="#CC972D" stop-opacity="1"/>
       <stop offset="100%" stop-color="#CC972D" stop-opacity="0"/>
-    </linearGradient>
-    <!-- Vertical divider gradient -->
-    <linearGradient id="divider" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%"   stop-color="#CC972D" stop-opacity="0"/>
-      <stop offset="20%"  stop-color="#CC972D" stop-opacity="0.35"/>
-      <stop offset="80%"  stop-color="#CC972D" stop-opacity="0.35"/>
-      <stop offset="100%" stop-color="#CC972D" stop-opacity="0"/>
-    </linearGradient>
-    <!-- Node pulse ring (AI effect) -->
-    <radialGradient id="nodeRing" cx="50%" cy="50%" r="50%">
-      <stop offset="60%"  stop-color="#CC972D" stop-opacity="0"/>
-      <stop offset="85%"  stop-color="#CC972D" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#CC972D" stop-opacity="0"/>
-    </radialGradient>
-    <!-- Badge pill gradient -->
-    <linearGradient id="badgeFill" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%"   stop-color="#CC972D" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="#E5AE3D" stop-opacity="0.12"/>
     </linearGradient>
   </defs>
 
-  <!-- ── Background layers ── -->
-  <rect width="${W}" height="${H}" fill="url(#bg)"/>
-  <rect width="${W}" height="${H}" fill="url(#leftGlow)"/>
-  <rect width="${W}" height="${H}" fill="url(#rightGlow)"/>
+  <!-- ── Cream background ── -->
+  <rect width="${W}" height="${H}" fill="#EFE3D3"/>
+  <!-- Subtle warm vignette for depth -->
+  <rect width="${W}" height="${H}" fill="url(#vignette)"/>
 
-  <!-- ── Subtle dot-grid texture (right panel feel, sparse) ── -->
-  <circle cx="680" cy="80"  r="1.2" fill="#CC972D" opacity="0.11"/>
-  <circle cx="760" cy="80"  r="1.2" fill="#CC972D" opacity="0.11"/>
-  <circle cx="840" cy="80"  r="1.2" fill="#CC972D" opacity="0.11"/>
-  <circle cx="920" cy="80"  r="1.2" fill="#CC972D" opacity="0.11"/>
-  <circle cx="1000" cy="80" r="1.2" fill="#CC972D" opacity="0.11"/>
-  <circle cx="1080" cy="80" r="1.2" fill="#CC972D" opacity="0.11"/>
-  <circle cx="720" cy="120"  r="1.2" fill="#CC972D" opacity="0.08"/>
-  <circle cx="800" cy="120"  r="1.2" fill="#CC972D" opacity="0.08"/>
-  <circle cx="880" cy="120"  r="1.2" fill="#CC972D" opacity="0.08"/>
-  <circle cx="960" cy="120"  r="1.2" fill="#CC972D" opacity="0.08"/>
-  <circle cx="1040" cy="120" r="1.2" fill="#CC972D" opacity="0.08"/>
-  <circle cx="1120" cy="120" r="1.2" fill="#CC972D" opacity="0.08"/>
+  <!-- ── Very faint brand pattern: corner accents (outside safe zone) ── -->
+  <!-- Top-left corner bracket -->
+  <line x1="40"  y1="40"  x2="160" y2="40"  stroke="#CC972D" stroke-width="1.5" stroke-opacity="0.18"/>
+  <line x1="40"  y1="40"  x2="40"  y2="140" stroke="#CC972D" stroke-width="1.5" stroke-opacity="0.18"/>
+  <!-- Top-right corner bracket -->
+  <line x1="1160" y1="40"  x2="1040" y2="40"  stroke="#CC972D" stroke-width="1.5" stroke-opacity="0.18"/>
+  <line x1="1160" y1="40"  x2="1160" y2="140" stroke="#CC972D" stroke-width="1.5" stroke-opacity="0.18"/>
+  <!-- Bottom-left corner bracket -->
+  <line x1="40"  y1="590" x2="160" y2="590" stroke="#CC972D" stroke-width="1.5" stroke-opacity="0.18"/>
+  <line x1="40"  y1="590" x2="40"  y2="490" stroke="#CC972D" stroke-width="1.5" stroke-opacity="0.18"/>
+  <!-- Bottom-right corner bracket -->
+  <line x1="1160" y1="590" x2="1040" y2="590" stroke="#CC972D" stroke-width="1.5" stroke-opacity="0.18"/>
+  <line x1="1160" y1="590" x2="1160" y2="490" stroke="#CC972D" stroke-width="1.5" stroke-opacity="0.18"/>
 
-  <!-- ── Vertical divider ── -->
-  <rect x="630" y="0" width="1.5" height="${H}" fill="url(#divider)"/>
+  <!-- ── Tagline: "AI parťák pro majitele restaurací" ──
+       Centered at x=600, baseline y=375
+       font-size 44, bold, navy #06264C
+       Using HTML entities for Czech: ť=&#357; á=&#225; í=&#237;
+  -->
+  <text x="600" y="375"
+        font-family="Georgia, Arial, Helvetica, sans-serif"
+        font-size="44"
+        font-weight="700"
+        fill="#06264C"
+        text-anchor="middle"
+        letter-spacing="0.3">AI par&#357;&#225;k pro majitele restaurac&#237;</text>
 
-  <!-- ══════════════════════════════════════════════
-       RIGHT PANEL: AI Circuit / Brain Node diagram
-       ══════════════════════════════════════════════ -->
+  <!-- ── Gold divider: 360px wide, centered ── -->
+  <!-- divider left = (1200-360)/2 = 420, right = 780 -->
+  <rect x="420" y="408" width="360" height="2" rx="1" fill="url(#goldFade)"/>
 
-  <!-- Connection lines (neural network style) -->
-  <!-- Central hub → satellite nodes -->
-  <line x1="900" y1="310" x2="780" y2="190" stroke="#CC972D" stroke-width="1.2" stroke-opacity="0.28"/>
-  <line x1="900" y1="310" x2="1040" y2="200" stroke="#CC972D" stroke-width="1.2" stroke-opacity="0.28"/>
-  <line x1="900" y1="310" x2="1060" y2="350" stroke="#CC972D" stroke-width="1.2" stroke-opacity="0.28"/>
-  <line x1="900" y1="310" x2="1000" y2="460" stroke="#CC972D" stroke-width="1.2" stroke-opacity="0.28"/>
-  <line x1="900" y1="310" x2="760" y2="420" stroke="#CC972D" stroke-width="1.2" stroke-opacity="0.28"/>
-  <line x1="900" y1="310" x2="690" y2="290" stroke="#CC972D" stroke-width="1.2" stroke-opacity="0.22"/>
-  <!-- Cross connections (secondary) -->
-  <line x1="780" y1="190" x2="1040" y2="200" stroke="#CC972D" stroke-width="0.7" stroke-opacity="0.14"/>
-  <line x1="1040" y1="200" x2="1060" y2="350" stroke="#CC972D" stroke-width="0.7" stroke-opacity="0.14"/>
-  <line x1="1060" y1="350" x2="1000" y2="460" stroke="#CC972D" stroke-width="0.7" stroke-opacity="0.14"/>
-  <line x1="1000" y1="460" x2="760" y2="420" stroke="#CC972D" stroke-width="0.7" stroke-opacity="0.14"/>
-  <line x1="760" y1="420" x2="780" y2="190" stroke="#CC972D" stroke-width="0.7" stroke-opacity="0.10"/>
-  <!-- Tertiary mini nodes -->
-  <line x1="780" y1="190" x2="830" y2="130" stroke="#CC972D" stroke-width="0.6" stroke-opacity="0.12"/>
-  <line x1="1040" y1="200" x2="1110" y2="160" stroke="#CC972D" stroke-width="0.6" stroke-opacity="0.12"/>
-  <line x1="1060" y1="350" x2="1130" y2="390" stroke="#CC972D" stroke-width="0.6" stroke-opacity="0.12"/>
-  <line x1="1000" y1="460" x2="960" y2="530" stroke="#CC972D" stroke-width="0.6" stroke-opacity="0.12"/>
-  <line x1="760" y1="420" x2="700" y2="490" stroke="#CC972D" stroke-width="0.6" stroke-opacity="0.12"/>
-
-  <!-- Pulse ring on central hub -->
-  <circle cx="900" cy="310" r="48" fill="url(#nodeRing)"/>
-  <circle cx="900" cy="310" r="34" fill="none" stroke="#CC972D" stroke-width="1" stroke-opacity="0.18"/>
-
-  <!-- Central hub node -->
-  <circle cx="900" cy="310" r="22" fill="#06264C" stroke="#CC972D" stroke-width="2.2" stroke-opacity="0.90"/>
-  <!-- AI chip icon inside hub: simple grid cross -->
-  <line x1="892" y1="310" x2="908" y2="310" stroke="#CC972D" stroke-width="1.8" stroke-opacity="0.95"/>
-  <line x1="900" y1="302" x2="900" y2="318" stroke="#CC972D" stroke-width="1.8" stroke-opacity="0.95"/>
-  <rect x="895" y="305" width="10" height="10" rx="2" fill="none" stroke="#CC972D" stroke-width="1.2" stroke-opacity="0.70"/>
-
-  <!-- Satellite nodes — primary -->
-  <circle cx="780" cy="190" r="14" fill="#071E3D" stroke="#CC972D" stroke-width="1.8" stroke-opacity="0.80"/>
-  <circle cx="780" cy="190" r="5"  fill="#CC972D" fill-opacity="0.70"/>
-
-  <circle cx="1040" cy="200" r="14" fill="#071E3D" stroke="#CC972D" stroke-width="1.8" stroke-opacity="0.80"/>
-  <circle cx="1040" cy="200" r="5"  fill="#CC972D" fill-opacity="0.70"/>
-
-  <circle cx="1060" cy="350" r="14" fill="#071E3D" stroke="#CC972D" stroke-width="1.8" stroke-opacity="0.80"/>
-  <circle cx="1060" cy="350" r="5"  fill="#CC972D" fill-opacity="0.70"/>
-
-  <circle cx="1000" cy="460" r="14" fill="#071E3D" stroke="#CC972D" stroke-width="1.8" stroke-opacity="0.80"/>
-  <circle cx="1000" cy="460" r="5"  fill="#CC972D" fill-opacity="0.70"/>
-
-  <circle cx="760" cy="420" r="14" fill="#071E3D" stroke="#CC972D" stroke-width="1.8" stroke-opacity="0.80"/>
-  <circle cx="760" cy="420" r="5"  fill="#CC972D" fill-opacity="0.70"/>
-
-  <!-- Small secondary nodes -->
-  <circle cx="690" cy="290" r="8" fill="#06264C" stroke="#CC972D" stroke-width="1.4" stroke-opacity="0.55"/>
-  <circle cx="830" cy="130" r="8" fill="#06264C" stroke="#CC972D" stroke-width="1.4" stroke-opacity="0.55"/>
-  <circle cx="1110" cy="160" r="8" fill="#06264C" stroke="#CC972D" stroke-width="1.4" stroke-opacity="0.55"/>
-  <circle cx="1130" cy="390" r="8" fill="#06264C" stroke="#CC972D" stroke-width="1.4" stroke-opacity="0.55"/>
-  <circle cx="960"  cy="530" r="8" fill="#06264C" stroke="#CC972D" stroke-width="1.4" stroke-opacity="0.55"/>
-  <circle cx="700"  cy="490" r="8" fill="#06264C" stroke="#CC972D" stroke-width="1.4" stroke-opacity="0.55"/>
-
-  <!-- Node labels (small, ghost text) -->
-  <text x="770" y="174" font-family="Arial, Helvetica, sans-serif" font-size="10"
-        fill="#EFE3D3" opacity="0.38" text-anchor="middle">t&#253;m</text>
-  <text x="1045" y="184" font-family="Arial, Helvetica, sans-serif" font-size="10"
-        fill="#EFE3D3" opacity="0.38" text-anchor="middle">hosté</text>
-  <text x="1072" y="370" font-family="Arial, Helvetica, sans-serif" font-size="10"
-        fill="#EFE3D3" opacity="0.38" text-anchor="middle">n&#225;klady</text>
-  <text x="1003" y="478" font-family="Arial, Helvetica, sans-serif" font-size="10"
-        fill="#EFE3D3" opacity="0.38" text-anchor="middle">marže</text>
-  <text x="754" y="438" font-family="Arial, Helvetica, sans-serif" font-size="10"
-        fill="#EFE3D3" opacity="0.38" text-anchor="middle">strategie</text>
-
-  <!-- ══════════════════════════════════════════════
-       LEFT PANEL: Text content
-       ══════════════════════════════════════════════ -->
-
-  <!-- AI badge pill -->
-  <rect x="60" y="88" width="298" height="36" rx="18"
-        fill="url(#badgeFill)" stroke="#CC972D" stroke-width="1.2" stroke-opacity="0.60"/>
-  <!-- Small circuit dot before text -->
-  <circle cx="82" cy="106" r="4" fill="#CC972D" fill-opacity="0.90"/>
-  <line x1="86" y1="106" x2="94" y2="106" stroke="#CC972D" stroke-width="1.2" stroke-opacity="0.70"/>
-  <text x="100" y="112"
+  <!-- ── Domain "gastroup.cz" centered in gold ── -->
+  <text x="600" y="457"
         font-family="Arial, Helvetica, sans-serif"
-        font-size="14"
+        font-size="24"
         font-weight="700"
         fill="#CC972D"
-        letter-spacing="2.5">AI PORADCE PRO GASTRO</text>
+        text-anchor="middle"
+        letter-spacing="1.2">gastroup.cz</text>
 
-  <!-- Main headline line 1: "Gastro Parťák" — cream, serif, large -->
-  <text x="60" y="210"
-        font-family="Georgia, 'Times New Roman', serif"
-        font-size="80"
-        font-weight="700"
-        fill="#EFE3D3"
-        letter-spacing="-2">Gastro Par&#357;&#225;k</text>
-
-  <!-- Main headline line 2: "AI poradce" — gold -->
-  <text x="60" y="295"
-        font-family="Georgia, 'Times New Roman', serif"
-        font-size="64"
-        font-weight="700"
-        fill="#CC972D"
-        letter-spacing="-1.5">AI poradce</text>
-
-  <!-- Main headline line 3: "pro tv&#367;j podnik." — cream, slightly smaller -->
-  <text x="60" y="367"
-        font-family="Georgia, 'Times New Roman', serif"
-        font-size="56"
-        font-weight="700"
-        fill="#EFE3D3"
-        fill-opacity="0.88"
-        letter-spacing="-1">pro tv&#367;j podnik.</text>
-
-  <!-- Gold rule separator -->
-  <rect x="60" y="392" width="500" height="2" rx="1" fill="url(#goldRule)"/>
-
-  <!-- Subtitle -->
-  <text x="60" y="432"
+  <!-- ── Subtitle: "Tým • hosté • náklady • strategie" — navy muted ── -->
+  <text x="600" y="497"
         font-family="Arial, Helvetica, sans-serif"
-        font-size="22"
+        font-size="18"
         font-weight="400"
-        fill="#EFE3D3"
-        opacity="0.72">T&#253;m &#8231; host&#233; &#8231; n&#225;klady &#8231; strategie</text>
-  <text x="60" y="462"
-        font-family="Arial, Helvetica, sans-serif"
-        font-size="19"
-        font-weight="400"
-        fill="#EFE3D3"
-        opacity="0.52">Postaveno na 20 letech gastro praxe.</text>
-
-  <!-- Bottom bar: domain + tagline -->
-  <rect x="0" y="${H - 68}" width="${W}" height="68" fill="#020F1F" fill-opacity="0.55"/>
-  <text x="60" y="${H - 26}"
-        font-family="Arial, Helvetica, sans-serif"
-        font-size="22"
-        font-weight="700"
-        fill="#CC972D"
-        letter-spacing="0.5">gastroup.cz</text>
-  <text x="${W - 60}" y="${H - 26}"
-        font-family="Arial, Helvetica, sans-serif"
-        font-size="16"
-        font-weight="400"
-        fill="#EFE3D3"
-        opacity="0.45"
-        text-anchor="end">Tv&#367;j partn&#233;r v kapse</text>
+        fill="#06264C"
+        fill-opacity="0.45"
+        text-anchor="middle"
+        letter-spacing="0.5">T&#253;m &#8226; host&#233; &#8226; n&#225;klady &#8226; strategie</text>
 </svg>`);
 
-  // Resize the full logo — place it top-left inside left panel, above the badge
-  // Logo is 957×311 — scale to ~300px wide keeping ratio (≈ 98px tall)
-  const LOGO_W = 300;
-  const LOGO_H = Math.round(311 * (LOGO_W / 957)); // ≈ 97
-
+  // ── Resize the hero logo ─────────────────────────────────────────────────────
+  // Logo has a transparent background — keep as-is on cream, no brightness boost needed.
   const logoResized = await sharp(LOGO_FULL)
-    .resize(LOGO_W, LOGO_H, { fit: 'contain', background: { r:0,g:0,b:0,alpha:0 } })
-    .png()
-    .toBuffer();
-
-  // Position logo: top-left of left panel, generous top margin
-  const logoLeft = 56;
-  const logoTop  = 22;
-
-  // Boost logo brightness slightly so it pops on navy bg
-  const logoBoosted = await sharp(logoResized)
-    .modulate({ brightness: 1.18, saturation: 1.05 })
+    .resize(LOGO_TARGET_W, LOGO_TARGET_H, { fit: 'contain', background: { r:0,g:0,b:0,alpha:0 } })
     .png()
     .toBuffer();
 
   const result = await sharp({
-    create: { width: W, height: H, channels: 4, background: { r:0,g:0,b:0,alpha:255 } }
+    create: { width: W, height: H, channels: 4, background: { r: 239, g: 227, b: 211, alpha: 255 } }
   })
   .composite([
-    { input: bgSvg,       top: 0,       left: 0        },
-    { input: logoBoosted, top: logoTop, left: logoLeft  }
+    { input: bgSvg,      top: 0,        left: 0         },
+    { input: logoResized, top: LOGO_TOP, left: LOGO_LEFT }
   ])
   .png({ compressionLevel: 9, palette: false })
   .toFile(path.join(ROOT, 'og-image.png'));
 
   const stat = fs.statSync(path.join(ROOT, 'og-image.png'));
   console.log(`  og-image.png  → ${result.width}×${result.height}  ${(stat.size/1024).toFixed(1)} KB`);
+  console.log(`  Logo: ${LOGO_TARGET_W}×${LOGO_TARGET_H}px  left=${LOGO_LEFT}  top=${LOGO_TOP}`);
   if (stat.size > 200 * 1024) {
     console.warn('  WARNING: og-image.png exceeds 200 KB — attempting recompression...');
-    // Fallback: palette quantization to temp file, then rename
     const tmpPath = path.join(ROOT, 'og-image.tmp.png');
     await sharp(path.join(ROOT, 'og-image.png'))
       .png({ compressionLevel: 9, palette: true, colors: 192 })

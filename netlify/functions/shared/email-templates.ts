@@ -4,7 +4,7 @@
 // =============================================================================
 
 import type { ContactFormData, EbookFormData, RequestMeta } from "./types";
-import { escapeHtml, sanitizeHeader, safeUrl, extractFirstName } from "./utils";
+import { escapeHtml, sanitizeHeader, safeUrl } from "./utils";
 
 // ── URL constants ─────────────────────────────────────────────────────────────
 const PDF_URL = process.env.EBOOK_PDF_URL ?? "https://gastroup.cz/ebook/28-tipu.pdf";
@@ -60,10 +60,15 @@ ${body}
 }
 
 function navyHeader(text: string): string {
+  // The logo image already shows the "GastroUP" wordmark, so only render a
+  // separate heading line when a meaningful (non-empty) title is passed in
+  // (e.g. internal admin notifications). User-facing emails pass "".
+  const heading = text
+    ? `\n              <p style="margin:12px 0 0 0;font-size:18px;font-weight:700;color:${COLORS.navy};">${escapeHtml(text)}</p>`
+    : "";
   return `          <tr>
             <td style="background-color:${COLORS.cream};padding:24px 32px;border-bottom:3px solid ${COLORS.mustard};">
-              <img src="${LOGO_URL}" alt="GastroUP" width="140" height="auto" style="display:block;margin-bottom:12px;">
-              <p style="margin:0;font-size:18px;font-weight:700;color:${COLORS.navy};">${escapeHtml(text)}</p>
+              <img src="${LOGO_URL}" alt="GastroUP" width="140" height="auto" style="display:block;">${heading}
             </td>
           </tr>`;
 }
@@ -150,9 +155,8 @@ export function contactNotificationText(data: ContactFormData, meta: RequestMeta
 // =============================================================================
 // 3. contactConfirmationHTML
 // =============================================================================
-export function contactConfirmationHTML(data: ContactFormData): string {
-  const firstName = extractFirstName(data.name);
-  const greeting = firstName ? `Ahoj, ${escapeHtml(firstName)},` : "Ahoj,";
+export function contactConfirmationHTML(_data: ContactFormData): string {
+  const greeting = "Ahoj,";
 
   const bodyContent = `          <tr>
             <td style="padding:32px 32px 0 32px;">
@@ -181,7 +185,7 @@ export function contactConfirmationHTML(data: ContactFormData): string {
           </tr>`;
 
   const body = [
-    navyHeader("GastroUP"),
+    navyHeader(""),
     bodyContent,
     ctaButton("Vyzkoušet Gastro Parťáka za 465 Kč", CTA_URL),
     demoContent,
@@ -196,9 +200,8 @@ export function contactConfirmationHTML(data: ContactFormData): string {
 // =============================================================================
 // 4. contactConfirmationText
 // =============================================================================
-export function contactConfirmationText(data: ContactFormData): string {
-  const firstName = extractFirstName(data.name);
-  const greeting = firstName ? `Ahoj, ${firstName},` : "Ahoj,";
+export function contactConfirmationText(_data: ContactFormData): string {
+  const greeting = "Ahoj,";
 
   return [
     greeting,
@@ -288,7 +291,7 @@ export function ebookDeliveryHTML(): string {
           </tr>`;
 
   const body = [
-    navyHeader("GastroUP"),
+    navyHeader(""),
     bodyContent,
     ctaButton("Stáhnout 28 tipů (PDF)", PDF_URL),
     middleContent,

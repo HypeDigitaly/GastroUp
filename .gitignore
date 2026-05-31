@@ -1,0 +1,13 @@
+node_modules/
+.netlify/
+.env
+.env.local
+dist/
+*.log
+.DS_Store
+Thumbs.db
+
+# Large media — exceeds GitHub 100 MB file limit, host externally (Cloudflare R2 / YouTube)
+Assets/gastrupvideo-final.mp4
+*.mp4
+*.mov

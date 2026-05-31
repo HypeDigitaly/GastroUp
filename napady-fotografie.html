@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GastroUp — Fotografická direkce pro tři pilíře</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#CC972D;
+    --gold-light:#E8B954;
+    --gold-deep:#A87718;
+    --navy:#06264C;
+    --navy-deep:#03152E;
+    --navy-mid:#0E3A6D;
+    --cream:#F5EFE3;
+    --cream-deep:#E8DFC9;
+    --ink:#0a0a0a;
+    --paper:#FBF7EE;
+    --line:rgba(245,239,227,.14);
+    --line-strong:rgba(245,239,227,.32);
+    --font-display:"Fraunces",ui-serif,Georgia,serif;
+    --font-body:"Plus Jakarta Sans",ui-sans-serif,system-ui,sans-serif;
+    --font-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--navy-deep);color:var(--cream);font-family:var(--font-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{
+    background:
+      radial-gradient(80% 50% at 100% 0%, rgba(204,151,45,.10), transparent 70%),
+      radial-gradient(60% 40% at 0% 30%, rgba(14,58,109,.40), transparent 70%),
+      linear-gradient(180deg,#03152E 0%, #06264C 50%, #03152E 100%);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+
+  /* film grain overlay */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .96  0 0 0 0 .94  0 0 0 0 .89  0 0 0 .06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode:overlay;opacity:.6;
+  }
+
+  .wrap{max-width:1400px;margin:0 auto;padding:0 48px;position:relative;z-index:2}
+  @media (max-width:780px){.wrap{padding:0 24px}}
+
+  /* ========== HEADER / EDITORIAL MASTHEAD ========== */
+  .masthead{
+    padding:48px 0 24px;border-bottom:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;
+  }
+  .masthead .left{display:flex;align-items:center;gap:14px}
+  .mark{
+    width:44px;height:44px;border-radius:50%;
+    background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-light),var(--gold),var(--gold-deep));
+    display:grid;place-items:center;color:var(--navy-deep);font-family:var(--font-display);font-weight:700;font-size:22px;font-style:italic;letter-spacing:-.02em;
+  }
+  .masthead .id{font-family:var(--font-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);opacity:.85}
+  .masthead .id b{color:var(--cream);font-weight:500;display:block;font-family:var(--font-body);letter-spacing:.04em;text-transform:none;font-size:13px;margin-top:2px}
+  .masthead .right{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);opacity:.55;text-align:right;line-height:1.7}
+
+  /* ========== HERO ========== */
+  .hero{padding:80px 0 100px;position:relative}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:12px;
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold-light);margin-bottom:32px;
+  }
+  .hero .kicker::before{content:"";width:42px;height:1px;background:var(--gold)}
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:300;
+    font-size:clamp(48px,9vw,128px);
+    line-height:.92;letter-spacing:-.035em;
+    color:var(--cream);
+    font-variation-settings:"opsz" 144,"SOFT" 30;
+    max-width:14ch;
+  }
+  .hero h1 em{
+    font-style:italic;font-weight:400;
+    background:linear-gradient(115deg,var(--gold-deep) 0%,var(--gold-light) 40%,var(--gold) 70%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    font-variation-settings:"opsz" 144,"SOFT" 80,"WONK" 1;
+  }
+  .hero .lede{
+    margin-top:48px;max-width:680px;
+    font-size:19px;line-height:1.6;color:rgba(245,239,227,.78);font-weight:300;
+  }
+  .hero .lede b{color:var(--cream);font-weight:500}
+  .hero-meta{
+    margin-top:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border-top:1px solid var(--line);padding-top:24px;
+  }
+  .hero-meta div{padding-right:24px;border-right:1px solid var(--line)}
+  .hero-meta div:last-child{border-right:none}
+  .hero-meta .k{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);opacity:.7;margin-bottom:10px}
+  .hero-meta .v{font-family:var(--font-display);font-weight:400;font-size:16px;color:var(--cream);font-variation-settings:"opsz" 14}
+  @media (max-width:780px){.hero-meta{grid-template-columns:repeat(2,1fr);row-gap:24px}}
+
+  /* ========== CARD ORIGINÁL — REKAPITULACE ========== */
+  .recap{padding:40px 0 80px}
+  .recap-title{
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);margin-bottom:28px;
+  }
+  .orig{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  }
+  @media (max-width:980px){.orig{grid-template-columns:1fr}}
+  .orig-card{
+    background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  }
+  .orig-img{
+    height:140px;display:grid;place-items:center;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,239,227,.7);
+  }
+  .o1{background:linear-gradient(135deg,#1a3d6e,#06264C);}
+  .o2{background:linear-gradient(135deg,#CC972D,#7a5818);}
+  .o3{background:linear-gradient(135deg,#06264C,#0e447e);}
+  .orig-body{padding:22px}
+  .orig-body h4{font-family:var(--font-display);font-weight:500;font-size:18px;color:var(--cream);margin-bottom:8px;font-variation-settings:"opsz" 18}
+  .orig-body p{font-size:13px;line-height:1.6;color:rgba(245,239,227,.62);font-weight:300}
+
+  /* ========== SEKCE PILÍŘ ========== */
+  .pillar{padding:110px 0;border-top:1px solid var(--line);position:relative}
+  .pillar-header{display:grid;grid-template-columns:120px 1fr;gap:48px;margin-bottom:72px;align-items:flex-start}
+  @media (max-width:780px){.pillar-header{grid-template-columns:1fr;gap:24px}}
+  .pillar-num{
+    font-family:var(--font-display);font-weight:300;font-style:italic;
+    font-size:120px;line-height:1;color:var(--gold);
+    font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+    background:linear-gradient(180deg,var(--gold-light),var(--gold-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .pillar-meta{padding-top:20px}
+  .pillar-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px;display:flex;align-items:center;gap:14px}
+  .pillar-tag::before{content:"";width:40px;height:1px;background:var(--gold)}
+  .pillar h2{
+    font-family:var(--font-display);font-weight:300;font-size:clamp(40px,5.5vw,72px);line-height:1;letter-spacing:-.025em;color:var(--cream);
+    font-variation-settings:"opsz" 96,"SOFT" 20;
+  }
+  .pillar h2 em{font-style:italic;font-weight:400;color:var(--gold);font-variation-settings:"opsz" 96,"SOFT" 80,"WONK" 1}
+  .pillar-quote{margin-top:28px;max-width:640px;font-size:16px;line-height:1.7;color:rgba(245,239,227,.7);font-weight:300}
+  .pillar-quote b{color:var(--cream);font-weight:500}
+
+  /* photo grid */
+  .shots{
+    display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px;margin-bottom:48px;
+  }
+  @media (max-width:980px){.shots{grid-template-columns:1fr 1fr}}
+  @media (max-width:600px){.shots{grid-template-columns:1fr}}
+  .shot{
+    position:relative;border-radius:14px;overflow:hidden;
+    aspect-ratio:4/5;
+    background:#0a0a0a;
+    isolation:isolate;
+  }
+  .shot.hero{aspect-ratio:3/4}
+  @media (max-width:980px){.shot{aspect-ratio:4/5}.shot.hero{aspect-ratio:4/5;grid-column:1/-1}}
+  .shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .shot:hover img{transform:scale(1.05)}
+  /* warm cinematic grade overlay */
+  .shot::before{
+    content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:
+      radial-gradient(140% 70% at 50% 0%, transparent 0%, rgba(3,21,46,.0) 30%, rgba(3,21,46,.55) 100%),
+      linear-gradient(180deg, rgba(204,151,45,.06) 0%, transparent 30%, transparent 70%, rgba(6,38,76,.25) 100%);
+    mix-blend-mode:multiply;
+  }
+  .shot::after{
+    content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+    background:linear-gradient(180deg,transparent 40%,rgba(3,21,46,.85) 100%);
+  }
+  .shot .label{
+    position:absolute;left:18px;right:18px;bottom:18px;z-index:4;
+  }
+  .shot .num{
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);margin-bottom:8px;display:flex;align-items:center;gap:10px;
+  }
+  .shot .num::before{content:"";width:18px;height:1px;background:var(--gold)}
+  .shot .ttl{
+    font-family:var(--font-display);font-weight:400;font-size:22px;line-height:1.1;color:var(--cream);letter-spacing:-.015em;font-variation-settings:"opsz" 24,"SOFT" 40;
+  }
+  .shot .ttl em{font-style:italic;color:var(--gold-light);font-variation-settings:"opsz" 24,"SOFT" 100,"WONK" 1}
+
+  /* brief blocks */
+  .briefs{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px}
+  @media (max-width:980px){.briefs{grid-template-columns:1fr 1fr}}
+  @media (max-width:600px){.briefs{grid-template-columns:1fr}}
+  .brief{
+    border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:14px;padding:22px;
+  }
+  .brief .row{display:grid;grid-template-columns:90px 1fr;gap:14px;padding:10px 0;border-bottom:1px dashed var(--line)}
+  .brief .row:last-child{border-bottom:none;padding-bottom:0}
+  .brief .row:first-child{padding-top:0}
+  .brief .k{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);padding-top:3px}
+  .brief .v{font-size:13px;line-height:1.55;color:rgba(245,239,227,.85);font-weight:300}
+  .brief .v b{color:var(--cream);font-weight:500}
+
+  .prompt-block{
+    margin-top:24px;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  }
+  .prompt-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 22px;background:rgba(204,151,45,.06);border-bottom:1px solid var(--line);
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light)
+  }
+  .prompt-head span:last-child{color:rgba(245,239,227,.5)}
+  .prompt-body{padding:22px;font-family:var(--font-mono);font-size:13px;line-height:1.7;color:rgba(245,239,227,.82);font-weight:400}
+  .prompt-body span{color:var(--gold-light)}
+
+  /* mood strip */
+  .mood{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:32px
+  }
+  .swatch{
+    aspect-ratio:1;border-radius:10px;display:grid;place-items:end;padding:12px;
+    font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85);
+  }
+  .swatch.s1{background:linear-gradient(135deg,#2a1a08,#5c3c14)}
+  .swatch.s2{background:linear-gradient(135deg,#CC972D,#E8B954);color:var(--navy-deep)}
+  .swatch.s3{background:linear-gradient(135deg,#06264C,#0E3A6D)}
+  .swatch.s4{background:linear-gradient(135deg,#F5EFE3,#D8C9A8);color:var(--navy-deep)}
+
+  /* ========== DO / DON'T ========== */
+  .rules{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:48px}
+  @media (max-width:780px){.rules{grid-template-columns:1fr}}
+  .rule{
+    border:1px solid var(--line);border-radius:14px;padding:24px;background:rgba(255,255,255,.02);
+  }
+  .rule h5{
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .rule.do h5{color:#9BD9A8}
+  .rule.dont h5{color:#E89A8A}
+  .rule.do h5::before{content:"+";font-size:18px;font-family:var(--font-display);font-weight:400}
+  .rule.dont h5::before{content:"×";font-size:18px;font-family:var(--font-display);font-weight:400}
+  .rule li{list-style:none;padding:8px 0;font-size:14px;line-height:1.55;color:rgba(245,239,227,.78);border-bottom:1px dashed var(--line);font-weight:300}
+  .rule li:last-child{border-bottom:none}
+  .rule li::before{content:"—";color:var(--gold-light);margin-right:10px}
+
+  /* ========== CLOSING ========== */
+  .close{padding:120px 0 80px;border-top:1px solid var(--line);text-align:center}
+  .close .stamp{
+    display:inline-flex;align-items:center;gap:14px;padding:10px 22px;border:1px solid var(--gold);border-radius:100px;
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);margin-bottom:40px;
+  }
+  .close .stamp span{width:6px;height:6px;border-radius:50%;background:var(--gold-light);box-shadow:0 0 12px var(--gold-light)}
+  .close h3{
+    font-family:var(--font-display);font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-.025em;color:var(--cream);max-width:18ch;margin:0 auto 24px;
+    font-variation-settings:"opsz" 96,"SOFT" 30;
+  }
+  .close h3 em{font-style:italic;font-weight:400;color:var(--gold);font-variation-settings:"opsz" 96,"SOFT" 90,"WONK" 1}
+  .close p{max-width:580px;margin:0 auto;font-size:15px;line-height:1.65;color:rgba(245,239,227,.65);font-weight:300}
+
+  footer{
+    border-top:1px solid var(--line);padding:32px 0 48px;margin-top:80px;
+    display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,239,227,.45);
+  }
+  footer b{color:var(--gold-light);font-weight:500}
+
+  /* anchor for sections */
+  section{scroll-margin-top:32px}
+
+  /* selection */
+  ::selection{background:var(--gold);color:var(--navy-deep)}
+</style>
+</head>
+<body>
+
+<header class="wrap masthead">
+  <div class="left">
+    <div class="mark">G</div>
+    <div class="id">
+      Vol. 01 — Photo Direction
+      <b>GastroUp · Tři pilíře transformace</b>
+    </div>
+  </div>
+  <div class="right">
+    Pro: Pavel Čermák · HypeDigitaly<br/>
+    Datum: květen 2026 · Verze A
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="kicker">Návrh fotografií · sekce „okruhy růstu"</div>
+    <h1>Z ilustrací <em>do reality</em> kuchyně.</h1>
+    <p class="lede">
+      Současné karty fungují jako rychlá vizuální zkratka, ale postrádají <b>lidský dotek</b> a důvěryhodnost, kterou gastronom cítí v kostech.
+      Navrhuji nahradit stylizované SVG kompozice trojicí fotografií, které budou působit jako <b>scény ze skutečné provozovny</b> — natočené v jednotném kinematografickém ladění, propojené brandovou paletou navy + zlato a zrnem 35mm filmu.
+    </p>
+
+    <div class="hero-meta">
+      <div>
+        <div class="k">Styl</div>
+        <div class="v">Editorial, dokumentární</div>
+      </div>
+      <div>
+        <div class="k">Světlo</div>
+        <div class="v">Teplé, motivované, golden hour</div>
+      </div>
+      <div>
+        <div class="k">Paleta</div>
+        <div class="v">Navy · Gold · Cream</div>
+      </div>
+      <div>
+        <div class="k">Hloubka</div>
+        <div class="v">f/2.0 — krátká, filmová</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ORIGINAL CARDS ===================== -->
+  <section class="recap">
+    <div class="recap-title">Výchozí stav · současné karty na webu</div>
+    <div class="orig">
+      <div class="orig-card">
+        <div class="orig-img o1">SVG · tým / kruhy</div>
+        <div class="orig-body">
+          <h4>Tým, který nechce odejít</h4>
+          <p>Pohovor, onboarding, trénink číšníků na upsell předkrmu a dezertu.</p>
+        </div>
+      </div>
+      <div class="orig-card">
+        <div class="orig-img o2">SVG · křivka / hosté</div>
+        <div class="orig-body">
+          <h4>Hosté, kteří se vracejí</h4>
+          <p>Vlastní komunikace na sociálních sítích, práce s recenzemi, plnocenoví hosté.</p>
+        </div>
+      </div>
+      <div class="orig-card">
+        <div class="orig-img o3">SVG · sloupcový graf</div>
+        <div class="orig-body">
+          <h4>Čísla, která sedí</h4>
+          <p>Foodcost na položku, kontrola nákupů, stabilní cash flow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PILLAR 01 — TEAM ===================== -->
+  <section class="pillar">
+    <div class="pillar-header">
+      <div class="pillar-num">01</div>
+      <div class="pillar-meta">
+        <div class="pillar-tag">Pilíř · Lidé</div>
+        <h2>Tým, který <em>nechce odejít</em></h2>
+        <p class="pillar-quote">
+          Fotografie musí zachytit <b>nasazení a sounáležitost</b> — nikoli stockový úsměv do kamery. Hledáme moment, kdy je personál „v procesu": briefing před otevřením, vysvětlování menu novému kolegovi, ruka šéfkuchaře na rameni číšníka.
+        </p>
+      </div>
+    </div>
+
+    <!-- SHOTS -->
+    <div class="shots">
+      <div class="shot hero">
+        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=900&q=80" alt="Tým před otevřením"
+             onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#2a1a08,#5c3c14 60%,#06264C)'"/>
+        <div class="label">
+          <div class="num">Hero · 01·A</div>
+          <div class="ttl">Briefing před <em>službou</em></div>
+        </div>
+      </div>
+      <div class="shot">
+        <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=700&q=80" alt="Trénink číšníka"
+             onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#06264C,#0E3A6D)'"/>
+        <div class="label">
+          <div class="num">Detail · 01·B</div>
+          <div class="ttl">Mentor a <em>nováček</em></div>
+        </div>
+      </div>
+      <div class="shot">
+        <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?auto=format&fit=crop&w=700&q=80" alt="Číšník servíruje dezert"
+             onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#A87718,#CC972D)'"/>
+        <div class="label">
+          <div class="num">Akce · 01·C</div>
+          <div class="ttl">Upsell, <em>v praxi</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRIEFS -->
+    <div class="briefs">
+      <div class="brief">
+        <div class="row"><div class="k">Námět</div><div class="v"><b>Briefing před otevřením.</b> Šéfkuchař a tři číšníci stojí v půlkruhu v prázdné restauraci, na stole dnešní menu, někdo si dělá poznámku.</div></div>
+        <div class="row"><div class="k">Kompozice</div><div class="v">Široký záběr 35–50 mm z mírného nadhledu, asymetricky — postavy ve zlatém řezu, vlevo decentně zachycený interiér.</div></div>
+        <div class="row"><div class="k">Světlo</div><div class="v">Motivované okenní světlo z boku (rim light), interiérová wolframka v pozadí jako teplý bokeh.</div></div>
+        <div class="row"><div class="k">Outfit</div><div class="v">Tmavé zástěry, denim, neformálně-uniformní. Žádné bílé kuchařské čepice — gastro 2026, ne 1995.</div></div>
+        <div class="row"><div class="k">Emoce</div><div class="v">Soustředění, ne úsměv. Profesionální klid před výkonem.</div></div>
+      </div>
+      <div class="brief">
+        <div class="row"><div class="k">Námět</div><div class="v"><b>Mentor a nováček.</b> Zkušený číšník drží v ruce desky s nápojovým lístkem a vysvětluje mladšímu kolegovi, ten poslouchá s opravdovým zájmem.</div></div>
+        <div class="row"><div class="k">Kompozice</div><div class="v">Vertikální, polocelek, mírný odshora dolů přes rameno mentora — pohled diváka „přisedá".</div></div>
+        <div class="row"><div class="k">Světlo</div><div class="v">Tlumené nepřímé denní světlo, vyvážené teplým keylightem na obličejích.</div></div>
+        <div class="row"><div class="k">Detail</div><div class="v">Ruce v záběru — gesto, prst ukazuje do menu. Vína na pozadí rozostřeně.</div></div>
+        <div class="row"><div class="k">Emoce</div><div class="v">Předávání know-how, klid, respekt mezi generacemi.</div></div>
+      </div>
+      <div class="brief">
+        <div class="row"><div class="k">Námět</div><div class="v"><b>Servis dezertu.</b> Číšník servíruje dezert hostům, ti se naklánějí, smích u stolu. Talíř v ostrém zaostření, číšník v poloostrém.</div></div>
+        <div class="row"><div class="k">Kompozice</div><div class="v">Nízký úhel od stolu, talíř v popředí, host v rozostřeném pozadí.</div></div>
+        <div class="row"><div class="k">Světlo</div><div class="v">Svíčka na stole + teplý spot z boku. Zlatistý nádech, hluboké stíny.</div></div>
+        <div class="row"><div class="k">Detail</div><div class="v">Dezert vypadá draze — crème brûlée, čokoláda, zlatý lístek.</div></div>
+        <div class="row"><div class="k">Emoce</div><div class="v">„Den den" — moment, kdy host řekne ano dezertu, na který nešel.</div></div>
+      </div>
+    </div>
+
+    <div class="prompt-block">
+      <div class="prompt-head"><span>AI prompt · Midjourney / Flux</span><span>Hero shot 01·A</span></div>
+      <div class="prompt-body">
+        <span>/imagine</span> wide editorial photograph of a small european bistro team — head chef in dark apron speaking to three waiters in denim and aprons before service, warm motivated window light from the left, hands holding tonight's printed menu, slight asymmetric composition, polished wooden tables and brass details in soft bokeh background, navy and gold color grade, kodak portra 400 film grain, shallow depth of field 35mm f/2.0, candid documentary mood, no smiling at camera, czech republic 2026 <span>--ar 3:4 --style raw --stylize 200</span>
+      </div>
+    </div>
+
+    <div class="mood">
+      <div class="swatch s1">Stíny · #2A1A08</div>
+      <div class="swatch s2">Akcent · #CC972D</div>
+      <div class="swatch s3">Hloubka · #06264C</div>
+      <div class="swatch s4">Pleť · #F5EFE3</div>
+    </div>
+  </section>
+
+  <!-- ===================== PILLAR 02 — GUESTS ===================== -->
+  <section class="pillar">
+    <div class="pillar-header">
+      <div class="pillar-num">02</div>
+      <div class="pillar-meta">
+        <div class="pillar-tag">Pilíř · Hosté</div>
+        <h2>Hosté, kteří <em>se vracejí</em></h2>
+        <p class="pillar-quote">
+          Tady prodáváme <b>zážitek a důvěru</b>, nikoli slevu. Záběry musí dýchat tím, že host se nedostavil kvůli kuponu — přišel proto, že tomu místu věří. Důraz na <b>lidská gesta</b>: stisk ruky majitelky, smích u stolu, host fotící talíř telefonem pro Instagram.
+        </p>
+      </div>
+    </div>
+
+    <div class="shots">
+      <div class="shot hero">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80" alt="Hosté u stolu"
+             onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#5c3c14,#CC972D 50%,#06264C)'"/>
+        <div class="label">
+          <div class="num">Hero · 02·A</div>
+          <div class="ttl">Stůl, který <em>se vrací</em></div>
+        </div>
+      </div>
+      <div class="shot">
+        <img src="https://images.unsplash.com/photo-1592861956120-e524fc739696?auto=format&fit=crop&w=700&q=80" alt="Majitelka vítá hosta"
+             onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#CC972D,#E8B954)'"/>
+        <div class="label">
+          <div class="num">Detail · 02·B</div>
+          <div class="ttl">Uvítání jménem</div>
+        </div>
+      </div>
+      <div class="shot">
+        <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=700&q=80" alt="Host fotí jídlo pro Instagram"
+             onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#06264C,#0E3A6D)'"/>
+        <div class="label">
+          <div class="num">Social · 02·C</div>
+          <div class="ttl">Talíř pro <em>Instagram</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="briefs">
+      <div class="brief">
+        <div class="row"><div class="k">Námět</div><div class="v"><b>Plný stůl, plné víno.</b> Skupina 4 přátel u stolu, půl-prázdné talíře, smích, někdo se nahýbá s vyprávěním. Působí jako pátek večer, ne tisková fotka.</div></div>
+        <div class="row"><div class="k">Kompozice</div><div class="v">Středně široký záběr, mírný nadhled. Stůl plný — ale ne přeplácaný. Sklenice na víno odráží světlo svíčky.</div></div>
+        <div class="row"><div class="k">Světlo</div><div class="v">Svíčka + měkký fill z okna. Hluboké teplé stíny, oranžovo-zlatý tone-mapping.</div></div>
+        <div class="row"><div class="k">Lidé</div><div class="v">Mix věku 30–55, civilně oblečení, žádné business outfity. Diverzita, ale autenticky česká.</div></div>
+        <div class="row"><div class="k">Emoce</div><div class="v">Spontánní smích, ne pózování. Někdo právě dovyprávěl.</div></div>
+      </div>
+      <div class="brief">
+        <div class="row"><div class="k">Námět</div><div class="v"><b>Uvítání jménem.</b> Majitelka (ne stockový muž v obleku) podává ruku hostovi u dveří. Oba se usmívají, jako by se znali.</div></div>
+        <div class="row"><div class="k">Kompozice</div><div class="v">Vertikální polocelek, mělká hloubka. V pozadí rozsvícený interiér restaurace.</div></div>
+        <div class="row"><div class="k">Světlo</div><div class="v">Modrá hodina venku skrz dveře + teplé interiérové světlo zezadu (kontrast venku vs. uvnitř).</div></div>
+        <div class="row"><div class="k">Detail</div><div class="v">Ruce ve středu kompozice. Majitelka v zástěře nebo košili, ne v obleku.</div></div>
+        <div class="row"><div class="k">Emoce</div><div class="v">Rozpoznání, „jste tu zase". Domácí, ne korporátní.</div></div>
+      </div>
+      <div class="brief">
+        <div class="row"><div class="k">Námět</div><div class="v"><b>Talíř na Instagram.</b> Ruce držící telefon nad krásně naservírovaným talířem. Talíř v ostrém zaostření, telefon v poloostrém.</div></div>
+        <div class="row"><div class="k">Kompozice</div><div class="v">Pohled shora (flat lay), mírně z úhlu, telefon orámuje jen část talíře — kus je vidět vedle.</div></div>
+        <div class="row"><div class="k">Světlo</div><div class="v">Měkké okenní světlo zboku, neutrální až lehce teplý balanc.</div></div>
+        <div class="row"><div class="k">Detail</div><div class="v">Talíř hodný share — barevný, autorský, ne řízek a brambor. Sklenice vína v rohu.</div></div>
+        <div class="row"><div class="k">Emoce</div><div class="v">Host investuje pozornost — značka roste organicky.</div></div>
+      </div>
+    </div>
+
+    <div class="prompt-block">
+      <div class="prompt-head"><span>AI prompt · Midjourney / Flux</span><span>Hero shot 02·A</span></div>
+      <div class="prompt-body">
+        <span>/imagine</span> intimate editorial photograph of four friends laughing at a dinner table inside a warm european bistro, half-finished plates and red wine glasses catching candlelight, slight overhead angle, one person leaning forward mid-story, deep golden shadows, navy painted wall in soft bokeh background, kodak gold 200 film aesthetic with subtle grain, candid not posed, shallow depth of field 50mm f/1.8, friday evening mood <span>--ar 3:4 --style raw --stylize 250</span>
+      </div>
+    </div>
+
+    <div class="mood">
+      <div class="swatch s1">Stíny · #2A1A08</div>
+      <div class="swatch s2">Svíčka · #CC972D</div>
+      <div class="swatch s3">Stěna · #06264C</div>
+      <div class="swatch s4">Ubrus · #F5EFE3</div>
+    </div>
+  </section>
+
+  <!-- ===================== PILLAR 03 — NUMBERS ===================== -->
+  <section class="pillar">
+    <div class="pillar-header">
+      <div class="pillar-num">03</div>
+      <div class="pillar-meta">
+        <div class="pillar-tag">Pilíř · Čísla</div>
+        <h2>Čísla, která <em>sedí</em></h2>
+        <p class="pillar-quote">
+          Tady musíme jít proti pokušení ukázat dashboard nebo Excel. Lidé v gastru se rozhodují <b>fyzicky</b> — váží maso, počítají faktury u stolku v kuchyni, kontrolují účtenku z trhu. Fotografie kombinuje <b>papír + tablet + ruce</b>, ne tabulky v MacBooku.
+        </p>
+      </div>
+    </div>
+
+    <div class="shots">
+      <div class="shot hero">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80" alt="Majitel u stolku s tabletem a fakturami"
+             onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#06264C,#0E3A6D 60%,#CC972D)'"/>
+        <div class="label">
+          <div class="num">Hero · 03·A</div>
+          <div class="ttl">Účet konce <em>měsíce</em></div>
+        </div>
+      </div>
+      <div class="shot">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=700&q=80" alt="Vážení masa v kuchyni"
+             onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#A87718,#CC972D)'"/>
+        <div class="label">
+          <div class="num">Detail · 03·B</div>
+          <div class="ttl">Foodcost <em>na gram</em></div>
+        </div>
+      </div>
+      <div class="shot">
+        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=700&q=80" alt="Ranní příjem zboží od dodavatele"
+             onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#06264C,#0E3A6D)'"/>
+        <div class="label">
+          <div class="num">Akce · 03·C</div>
+          <div class="ttl">Méně <em>masa do koše</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="briefs">
+      <div class="brief">
+        <div class="row"><div class="k">Námět</div><div class="v"><b>Majitel po směně.</b> Sedí u stolku v zavřené restauraci, na stole tablet s grafem, papírové faktury, šálek kávy. Tvář klidná, ne stresovaná.</div></div>
+        <div class="row"><div class="k">Kompozice</div><div class="v">Záběr ze strany / z mírného nadhledu. Stolek diagonálně. Tablet svítí — světlo z displeje na obličej (modrý nádech vs. teplý interiér).</div></div>
+        <div class="row"><div class="k">Světlo</div><div class="v">Jediné keylight z lampy nad stolem + záře tabletu. Zbytek restaurace zavřený, tma — symbol klidu po směně.</div></div>
+        <div class="row"><div class="k">Detail</div><div class="v">Na tabletu jednoduchý graf v navy/gold paletě. Papíry — účtenky, ne tabulky.</div></div>
+        <div class="row"><div class="k">Emoce</div><div class="v">Úleva, kontrola. „Konečně vím." Žádný stres ani sláva.</div></div>
+      </div>
+      <div class="brief">
+        <div class="row"><div class="k">Námět</div><div class="v"><b>Ruka, váha, maso.</b> Detail rukou v kuchyni — kus libového steaku na digitální váze, displej ukazuje 180 g. Pozadí ostrý nůž a prkno.</div></div>
+        <div class="row"><div class="k">Kompozice</div><div class="v">Makro / detail, čtvercový rám. Ostrost na váze, ruce v poloostrém.</div></div>
+        <div class="row"><div class="k">Světlo</div><div class="v">Studené denní světlo kuchyně, lehce kontrastní. Realismus, ne foodporn.</div></div>
+        <div class="row"><div class="k">Detail</div><div class="v">Displej váhy čitelný — 180 g. Symbol toho, že každý gram má cenu.</div></div>
+        <div class="row"><div class="k">Emoce</div><div class="v">Disciplína, řemeslo, vědomá kontrola.</div></div>
+      </div>
+      <div class="brief">
+        <div class="row"><div class="k">Námět</div><div class="v"><b>Příjem zboží ráno.</b> Šéfkuchař stojí v zadní místnosti, kontroluje bednu zeleniny, v ruce telefon nebo papírovou objednávku. Dodavatel mimo záběr.</div></div>
+        <div class="row"><div class="k">Kompozice</div><div class="v">Polocelek, vertikální. Bedny v popředí, šéfkuchař za nimi.</div></div>
+        <div class="row"><div class="k">Světlo</div><div class="v">Ranní studené světlo zadními dveřmi + zářivka uvnitř. Realistický kontrast.</div></div>
+        <div class="row"><div class="k">Detail</div><div class="v">Sezónní zelenina — rajčata, bylinky. Není tu nic na vyhození.</div></div>
+        <div class="row"><div class="k">Emoce</div><div class="v">Provozní rutina pod kontrolou. „Vím přesně, co jsem objednal a proč."</div></div>
+      </div>
+    </div>
+
+    <div class="prompt-block">
+      <div class="prompt-head"><span>AI prompt · Midjourney / Flux</span><span>Hero shot 03·A</span></div>
+      <div class="prompt-body">
+        <span>/imagine</span> cinematic photograph of a restaurant owner sitting alone at a small table in a closed bistro late at night, tablet glowing on the table showing a simple revenue chart in navy and gold tones, paper receipts and a coffee cup beside it, single warm pendant lamp overhead, deep navy shadows in the background, calm reflective expression — relief not stress, kodak portra 800 film aesthetic, slight grain, 35mm f/2.0, czech bistro 2026, no laptop, no excel <span>--ar 3:4 --style raw --stylize 220</span>
+      </div>
+    </div>
+
+    <div class="mood">
+      <div class="swatch s1">Noc · #03152E</div>
+      <div class="swatch s2">Lampa · #CC972D</div>
+      <div class="swatch s3">Tablet · #06264C</div>
+      <div class="swatch s4">Papír · #F5EFE3</div>
+    </div>
+  </section>
+
+  <!-- ===================== RULES ===================== -->
+  <section class="pillar">
+    <div class="pillar-header">
+      <div class="pillar-num">04</div>
+      <div class="pillar-meta">
+        <div class="pillar-tag">Pravidla · konzistence napříč třemi kartami</div>
+        <h2>Co <em>ano</em> a co <em>nikdy</em></h2>
+        <p class="pillar-quote">Tři fotky budou stát vedle sebe na jedné mřížce. Bez jednotného ladění se rozpadne celý dojem značky. Tady jsou hranice.</p>
+      </div>
+    </div>
+
+    <div class="rules">
+      <div class="rule do">
+        <h5>Dělej</h5>
+        <li>Jednotná barevná korekce: navy stíny + zlaté světlo + krémové pleti.</li>
+        <li>Jemné filmové zrno na všech třech záběrech (Portra 400 / 800).</li>
+        <li>Krátká hloubka ostrosti — pocit důvěrnosti a profesionálního objektivu.</li>
+        <li>Lidé „v procesu" — soustředění, gesto, akce. Ne pohled do kamery.</li>
+        <li>Reálné české prostředí — neformální zástěry, dřevěné stoly, mosaz.</li>
+        <li>Detaily, které prozradí péči: lístek menu, zápisník, váha, talíř.</li>
+      </div>
+      <div class="rule dont">
+        <h5>Nedělej</h5>
+        <li>Stockové úsměvy do objektivu, palce nahoru, „high five" gesta.</li>
+        <li>Bílé kuchařské čepice a obleky — to je jiné století.</li>
+        <li>Screenshoty Excelu, MacBooky, dashboardy v cloudu.</li>
+        <li>Chladné modré filtry, neutrální digitální look bez zrna.</li>
+        <li>Generická AI estetika — symetrická kompozice, dokonalá pleť, plast.</li>
+        <li>Slevomatové vizuály, výprodejové cedule, „akce 50 %".</li>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CLOSE ===================== -->
+  <section class="close">
+    <div class="stamp"><span></span>Připraveno k focení / generování</div>
+    <h3>Tři pilíře. Jeden <em>fotografický jazyk</em>.</h3>
+    <p>
+      Doporučuji jeden focení den s českým fotografem (gastro/lifestyle, např. Adam Mašek, Vojta Veškrna nebo Salim Issa) v reálném podniku v Praze či Brně.
+      Alternativně AI generování přes Flux 1.1 Pro s přiloženými prompty — předpokládaný čas pipeline 4–6 hodin pro 12 finálních záběrů.
+    </p>
+  </section>
+
+  <footer>
+    <div>HypeDigitaly · <b>GastroUp creative direction</b> · 2026</div>
+    <div>Pavel Čermák · <b>pavelcermak@hypedigitaly.ai</b></div>
+  </footer>
+</main>
+
+</body>
+</html>

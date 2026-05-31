@@ -1,0 +1,3421 @@
+<!DOCTYPE html>
+<html lang="cs" class="no-js">
+<head>
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GastroUp — Přestaň táhnout celý podnik sám</title>
+<meta name="description" content="Gastro Parťák je poradce v telefonu — postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Geist:wght@300..900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
+<style>
+  :root{
+    /* ── Cream surfaces ── */
+    --cream:#EFE3D3;
+    --cream-pale:#F6EFE3;
+    --cream-deep:#E5D5BF;
+    --cream-2:#E5D5BF;   /* legacy alias */
+    --cream-3:#F6EFE3;   /* legacy alias */
+    /* ── Mustard gold ── */
+    --gold:#CC972D;
+    --gold-bright:#E5AE3D;
+    --gold-deep:#A87718;
+    --gold-2:#A87718;    /* legacy alias */
+    /* ── Deep navy ── */
+    --navy:#06264C;
+    --navy-soft:#0E3A6D;
+    --navy-deep:#03152E;
+    --navy-2:#0E3A6D;    /* legacy alias */
+    --navy-3:#03152E;    /* legacy alias */
+    /* ── Ink & utility ── */
+    --ink:#1A0F00;
+    --muted:rgba(6,38,76,.65);
+    --line:rgba(6,38,76,.12);
+    --line-strong:rgba(6,38,76,.22);
+    --radius:22px;
+    --radius-sm:14px;
+    /* ── Typography ── */
+    --font-display:'Fraunces','Playfair Display',Georgia,serif;
+    --font-sans:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-mono:'Geist Mono','JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --shadow-card:0 1px 0 rgba(6,38,76,.06), 0 12px 40px -16px rgba(6,38,76,.18);
+
+    /* ── Premium accents ── */
+    --amber:#F2B544;
+    --peach:#F8C883;
+    --rose:#F5A78A;
+    --emerald:#22B67C;
+
+    /* Aurora gradients (warm, premium) */
+    --aurora-gold:linear-gradient(115deg,#A87718 0%,#CC972D 22%,#E5AE3D 48%,#F2B544 72%,#CC972D 100%);
+    --aurora-gold-soft:linear-gradient(115deg,rgba(168,119,24,.95),rgba(229,174,61,.95),rgba(242,181,68,.95),rgba(204,151,45,.95));
+    --aurora-navy:linear-gradient(135deg,#06264C 0%,#0E3A6D 50%,#03152E 100%);
+    --aurora-ink:linear-gradient(140deg,#03152E 0%,#06264C 35%,#0E3A6D 70%,#06264C 100%);
+
+    /* Glow / halo shadows */
+    --glow-gold:0 18px 50px -16px rgba(229,174,61,.55), 0 6px 18px -6px rgba(204,151,45,.4), 0 0 0 1px rgba(255,210,120,.15) inset;
+    --glow-gold-strong:0 22px 60px -14px rgba(242,181,68,.65), 0 10px 30px -8px rgba(229,174,61,.5), 0 0 0 1px rgba(255,225,160,.22) inset;
+    --glow-navy:0 22px 60px -18px rgba(6,38,76,.55), 0 8px 22px -6px rgba(3,21,46,.45), 0 0 0 1px rgba(120,160,220,.10) inset;
+
+    /* Premium easing curves */
+    --ease-spring:cubic-bezier(.34,1.56,.64,1);
+    --ease-out-quart:cubic-bezier(.25,1,.5,1);
+    --ease-out-expo:cubic-bezier(.16,1,.3,1);
+
+    /* Fraunces axis presets — keep consistent across headings */
+    --fr-display:"opsz" 144, "SOFT" 50, "WONK" 0;
+    --fr-italic-accent:"opsz" 144, "SOFT" 100, "WONK" 1;
+    --fr-body-display:"opsz" 36, "SOFT" 50, "WONK" 0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--cream);color:var(--navy);font-family:var(--font-sans);font-weight:400;-webkit-font-smoothing:antialiased;line-height:1.55;font-feature-settings:"ss01","ss02","cv01"}
+  ::selection{background:var(--gold);color:var(--navy-deep)}
+  body{overflow-x:hidden}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  @media (max-width:580px){html{scroll-padding-top:76px}}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+  /* ============ CUSTOM SCROLLBAR — brand-aligned, thick ============ */
+  html{scrollbar-width:auto;scrollbar-color:var(--gold) var(--cream-deep)}
+  ::-webkit-scrollbar{width:14px;height:14px}
+  ::-webkit-scrollbar-track{background:var(--cream-deep);border-left:1px solid rgba(6,38,76,.06)}
+  ::-webkit-scrollbar-thumb{
+    background:linear-gradient(180deg,var(--gold-bright),var(--gold) 50%,var(--gold-deep));
+    border:3px solid var(--cream-deep);
+    border-radius:999px;
+    background-clip:padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover{
+    background:linear-gradient(180deg,var(--gold),var(--gold-deep));
+    background-clip:padding-box;
+  }
+  ::-webkit-scrollbar-corner{background:var(--cream-deep)}
+
+  /* ============ NO-JS / pre-IO fallback for reveal ============ */
+  .no-js .reveal{opacity:1;transform:none}
+
+  .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+
+  /* ============ NAV ============ */
+  .nav{position:sticky;top:0;z-index:50;background:var(--cream);backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid transparent;transition:border-color .3s ease,background .3s ease}
+  .nav.scrolled{border-color:var(--line);background:rgba(239,227,211,.92)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:18px}
+  .nav-cta{display:inline-flex;flex-shrink:0;white-space:nowrap}
+  @media (min-width:981px) and (max-width:1100px){
+    .nav-links{gap:22px}
+    .nav-cta{padding:10px 18px;font-size:13.5px}
+    .nav-cta .price-strike{display:none}
+  }
+  .logo{font-family:var(--font-display);font-weight:500;font-size:18px;letter-spacing:-.02em;display:flex;align-items:center;gap:12px;color:var(--navy);font-variation-settings:var(--fr-display);flex-shrink:0;white-space:nowrap}
+  .logo-dot{display:inline-flex;width:34px;height:34px;border-radius:11px;background:var(--navy);color:var(--cream);align-items:center;justify-content:center;font-size:18px;font-weight:600;font-family:var(--font-display)}
+  .logo-text{line-height:1}
+  .logo-text strong{font-weight:600}
+  .logo-text em{font-style:italic;color:var(--gold);font-weight:600;font-variation-settings:var(--fr-italic-accent)}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{font-size:14.5px;font-weight:500;color:var(--ink);opacity:.78;transition:opacity .2s}
+  .nav-links a:hover{opacity:1}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;font-weight:500;font-size:14.5px;transition:transform .2s ease,background .2s ease,box-shadow .2s ease;white-space:nowrap}
+  .btn-primary{background:var(--navy);color:var(--cream)}
+  .btn-primary:hover{background:var(--navy-3);transform:translateY(-1px)}
+  .btn-gold{background:linear-gradient(135deg,var(--navy-soft),var(--navy));color:var(--cream)}
+  .btn-gold:hover{background:var(--gold-2);transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line-strong)}
+  .btn-ghost:hover{background:rgba(6,38,76,.06)}
+  .btn-light{background:var(--cream-3);color:var(--ink);border:1px solid var(--line)}
+  .btn-light:hover{background:#fff}
+  .btn .arrow{transition:transform .2s}
+  .btn:hover .arrow{transform:translateX(3px)}
+  /* .mobile-toggle visibility controlled in the dedicated block below */
+
+  /* ============ HERO HOOK (above H1) ============ */
+  .hero-hook{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:clamp(16px,1.7vw,21px);color:rgba(6,38,76,.72);line-height:1.45;margin-bottom:24px;letter-spacing:-.005em;max-width:540px}
+
+  /* ============ HERO ============ */
+  .hero{padding:48px 0 100px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+  .hero-pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;background:rgba(6,38,76,.06);border:1px solid var(--line);font-size:13px;font-weight:500;color:var(--ink);margin-bottom:28px}
+  .hero-pill .avatars{display:flex}
+  .hero-pill .avatars span{width:22px;height:22px;border-radius:50%;border:2px solid var(--cream);margin-right:-6px;background-size:cover;background-position:center}
+  .hero-pill .avatars span:nth-child(1){background:linear-gradient(135deg,#CC972D,#E8B954)}
+  .hero-pill .avatars span:nth-child(2){background:linear-gradient(135deg,#06264C,#3A5A8C)}
+  .hero-pill .avatars span:nth-child(3){background:linear-gradient(135deg,#8B6534,#CC972D)}
+  .hero h1{font-family:var(--font-display);font-weight:500;font-size:clamp(40px,5.4vw,72px);line-height:1.02;letter-spacing:-.025em;color:var(--navy);margin-bottom:24px}
+  .hero h1 em{font-style:italic;color:inherit;font-weight:500}
+  .hero p.lead{font-size:17px;line-height:1.6;color:var(--muted);max-width:540px;margin-bottom:36px}
+  .hero p.lead em{font-style:italic;color:var(--ink)}
+  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+  .hero-ctas .btn{padding:15px 26px;font-size:15px}
+  .micro{font-size:13px;color:var(--muted);margin-bottom:28px}
+  .partners{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .partners-label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .partners-marks{display:flex;gap:26px;align-items:center;font-family:var(--font-display);font-style:italic;font-size:22px;color:var(--ink);opacity:.55}
+  .partners-marks span:nth-child(1){font-weight:600}
+  .partners-marks span:nth-child(2){font-family:var(--font-sans);font-style:normal;font-weight:600;letter-spacing:.04em;font-size:18px}
+  .partners-marks span:nth-child(3){font-family:var(--font-display);font-style:italic;font-weight:400;font-size:24px}
+
+  /* hero visual */
+  .hero-visual{position:relative;aspect-ratio:5/6;border-radius:28px;overflow:hidden;background:radial-gradient(120% 90% at 30% 30%,#0c3b73 0%,#06264C 55%,#02132A 100%);box-shadow:0 30px 80px -30px rgba(6,38,76,.55), 0 1px 0 rgba(255,255,255,.04) inset}
+  .hero-visual::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(60% 50% at 70% 30%,rgba(204,151,45,.25),transparent 60%),
+    radial-gradient(40% 40% at 20% 80%,rgba(204,151,45,.18),transparent 60%);
+    mix-blend-mode:screen}
+  .hero-visual::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");opacity:.6;mix-blend-mode:overlay;pointer-events:none}
+
+  /* ============ THREE OKRUHY ============ */
+  .section{padding:120px 0}
+  .section-head{text-align:center;max-width:780px;margin:0 auto 64px}
+  .eyebrow{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px;padding:6px 14px;background:rgba(204,151,45,.12);border-radius:999px}
+  .section h2{font-family:var(--font-display);font-weight:500;font-size:clamp(34px,4vw,52px);line-height:1.05;letter-spacing:-.02em;color:var(--navy);margin-bottom:18px}
+  .section h2 em{font-style:italic;color:inherit;font-weight:500}
+  .section .sub{font-size:16.5px;color:var(--muted);line-height:1.6;max-width:640px;margin:0 auto 28px}
+  .center-ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+  .okruhy{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px;align-items:start}
+  @media (max-width:980.98px){.okruhy{grid-template-columns:1fr;gap:20px}}
+
+  .okruh-card{
+    position:relative;background:var(--cream-pale);border-radius:var(--radius);overflow:hidden;
+    border:1px solid var(--line);
+    transition:transform .55s var(--ease-out-quart), box-shadow .55s var(--ease-out-quart), border-color .35s ease;
+  }
+  .okruh-card::before{
+    content:"";position:absolute;top:0;left:24px;right:24px;height:1px;z-index:6;
+    background:linear-gradient(90deg,transparent,var(--gold-bright),transparent);
+    opacity:0;transition:opacity .5s var(--ease-out-quart);
+  }
+  .okruh-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-card);border-color:rgba(204,151,45,.32)}
+  .okruh-card:hover::before{opacity:1}
+
+  /* Editorial asymmetry — middle card drops slightly on desktop.
+     We reserve vertical space below the grid so the offset card never overlaps
+     the stats strip that follows. */
+  @media (min-width:981px){
+    .okruhy > .okruh-card:nth-child(2){transform:translateY(28px)}
+    .okruhy > .okruh-card:nth-child(2):hover{transform:translateY(20px)}
+    .okruhy{padding-bottom:56px}
+  }
+
+  .okruh-img{aspect-ratio:4/5;position:relative;overflow:hidden;isolation:isolate}
+  .okruh-img.o1{background:linear-gradient(135deg,#1a3d6e,#06264C);}
+  .okruh-img.o2{background:linear-gradient(135deg,#CC972D,#7a5818);}
+  .okruh-img.o3{background:linear-gradient(135deg,#06264C,#0e447e);}
+  /* SVG layer — visible only when photo fails to load (graceful fallback) */
+  .okruh-img > svg{position:absolute;inset:0;width:100%;height:100%;opacity:.85;z-index:1}
+
+  /* Photograph layer */
+  .okruh-photo{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;
+    transition:transform 1.4s var(--ease-out-quart), filter .7s ease;
+    filter:saturate(.94) contrast(1.04);
+  }
+  .okruh-card:hover .okruh-photo{transform:scale(1.06);filter:saturate(1.05) contrast(1.08)}
+
+  /* Brand color grade — navy shadows + gold cast */
+  .okruh-grade{
+    position:absolute;inset:0;z-index:3;pointer-events:none;
+    background:
+      linear-gradient(180deg, rgba(3,21,46,0) 28%, rgba(3,21,46,.55) 78%, rgba(3,21,46,.85) 100%),
+      linear-gradient(135deg, rgba(204,151,45,.10) 0%, transparent 45%, rgba(6,38,76,.20) 100%);
+  }
+  /* Film grain */
+  .okruh-img::after{
+    content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .98  0 0 0 0 .95  0 0 0 0 .87  0 0 0 .08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity:.45;mix-blend-mode:overlay;
+  }
+
+  /* Editorial numeral */
+  .okruh-num{
+    position:absolute;top:20px;left:24px;z-index:5;display:flex;align-items:flex-start;gap:10px;
+    font-family:var(--font-display);font-style:italic;font-weight:300;font-size:52px;line-height:.85;
+    color:var(--cream-pale);letter-spacing:-.04em;
+    font-variation-settings:"opsz" 96,"SOFT" 100,"WONK" 1;
+    text-shadow:0 2px 22px rgba(0,0,0,.4);
+  }
+  .okruh-num::before{
+    content:"";display:block;width:24px;height:1px;background:var(--gold-bright);margin-top:24px;
+    transition:width .55s var(--ease-out-quart);
+    box-shadow:0 0 8px rgba(229,174,61,.6);
+  }
+  .okruh-card:hover .okruh-num::before{width:54px}
+
+  /* Photo caption strip */
+  .okruh-caption{
+    position:absolute;left:24px;right:24px;bottom:18px;z-index:5;
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    color:rgba(246,239,227,.92);
+    transition:transform .55s var(--ease-out-quart),color .35s;
+  }
+  .okruh-caption span:last-child{color:var(--gold-bright);font-weight:500}
+  .okruh-card:hover .okruh-caption{transform:translateY(-3px)}
+  .okruh-card:hover .okruh-caption{color:rgba(246,239,227,.95)}
+
+  .okruh-body{padding:28px 30px 32px;position:relative}
+  .okruh-body .pillar-tag{
+    font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold);font-weight:500;margin-bottom:14px;display:inline-flex;align-items:center;gap:10px;
+  }
+  .okruh-body .pillar-tag::before{content:"";width:18px;height:1px;background:var(--gold)}
+  .okruh-body h3{font-family:var(--font-display);font-weight:500;font-size:25px;letter-spacing:-.015em;color:var(--navy);margin-bottom:12px;line-height:1.15;font-variation-settings:"opsz" 36,"SOFT" 50,"WONK" 0}
+  .okruh-body h3 em{font-style:italic;color:var(--gold);font-weight:500;font-variation-settings:"opsz" 36,"SOFT" 100,"WONK" 1}
+  .okruh-body p{font-size:14.5px;color:var(--muted);line-height:1.65}
+
+  @media (max-width:980.98px){
+    .okruh-img{aspect-ratio:16/11}
+    .okruh-num{font-size:42px}
+  }
+
+  /* ============ VIZE (7 bodů) ============ */
+  .section-vision{padding:80px 0 64px}
+  .section-vision .section-head{margin-bottom:48px}
+  .vision-grid{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;max-width:1180px;margin:0 auto}
+  .vision-grid::after{content:"";flex:1 1 240px;max-width:280px;visibility:hidden}
+  .vision-card{flex:1 1 240px;max-width:280px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 22px;display:flex;flex-direction:column;gap:14px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+  .vision-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card);border-color:var(--line-strong)}
+  .vision-icon{width:44px;height:44px;border-radius:12px;background:rgba(204,151,45,.14);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:22px}
+  .vision-text{font-family:var(--font-display);font-weight:500;font-size:17px;line-height:1.3;color:var(--navy);letter-spacing:-.005em}
+
+  /* ============ STATS ============ */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:24px;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);padding:36px 0}
+  .stat{text-align:left;padding:0 28px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:none}
+  .stat .n{font-family:var(--font-display);font-weight:500;font-size:clamp(34px,3.6vw,44px);line-height:1;letter-spacing:-.02em;color:var(--navy);margin-bottom:10px;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+  .stat .n em{color:inherit;font-style:normal}
+  .stat .n .unit{font-family:var(--font-sans);font-weight:500;font-size:.42em;color:var(--muted);letter-spacing:.005em;line-height:1.1}
+  .stat .l{font-size:13.5px;color:var(--muted);line-height:1.45}
+
+  /* ============ SITUACE / ACCORDION ============ */
+  .section-light{background:var(--cream-3);border-radius:36px;padding:96px 0;margin:0 28px}
+  .situace-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:36px;align-items:flex-start;max-width:1180px;margin:0 auto;padding:0 28px}
+  .free-card{background:var(--navy);color:var(--cream);border-radius:24px;padding:34px 32px;position:sticky;top:100px;box-shadow:0 24px 60px -24px rgba(6,38,76,.5)}
+  .free-badge{display:inline-block;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px}
+  .free-card h3{font-family:var(--font-display);font-weight:500;font-size:54px;line-height:1.1;letter-spacing:-.02em;margin-bottom:6px}
+  .free-card .sub-h3{font-size:14px;color:rgba(239,227,211,.82);margin-bottom:22px}
+  .free-card .pitch{font-family:var(--font-display);font-size:18px;line-height:1.35;color:var(--cream);margin-bottom:14px;letter-spacing:-.01em}
+  .free-card .body{font-size:14px;line-height:1.6;color:rgba(239,227,211,.85);margin-bottom:22px}
+  .free-card .included{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(239,227,211,.82);margin:18px 0 12px}
+  .free-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+  .free-list li{display:flex;gap:10px;font-size:14px;color:rgba(239,227,211,.92);align-items:flex-start}
+  .free-list li iconify-icon{color:var(--gold-bright);font-size:18px;margin-top:1px}
+  .free-card .btn{width:100%;justify-content:center;padding:14px}
+
+  .accordion{display:flex;flex-direction:column;gap:14px}
+  .acc-item{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 24px;transition:border-color .2s,box-shadow .2s}
+  .acc-item:hover{border-color:var(--line-strong)}
+  .acc-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:24px;font-family:var(--font-display);font-weight:500;font-size:18px;line-height:1.35;letter-spacing:-.01em;color:var(--navy)}
+  .acc-item summary::-webkit-details-marker{display:none}
+  .acc-num{font-family:var(--font-display);font-size:14px;color:var(--gold);font-weight:600;flex-shrink:0;margin-right:4px}
+  .acc-toggle{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;transition:background .2s,transform .3s ease;color:var(--navy)}
+  .acc-item[open] .acc-toggle{background:var(--navy);color:var(--gold-bright);transform:rotate(45deg)}
+  .acc-body{padding:18px 0 6px;font-size:14.5px;color:var(--muted);line-height:1.65}
+  .acc-body .solution{margin-top:14px;padding:16px 18px;background:var(--cream);border-radius:12px;border-left:3px solid var(--gold);color:var(--navy)}
+  .acc-body .solution strong{color:var(--navy);font-weight:600;display:block;margin-bottom:6px;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+  .acc-body .solution mark{background:rgba(204,151,45,.22);color:var(--navy);font-weight:600;padding:1px 4px;border-radius:3px}
+
+  /* JS-enhanced accordion: items open/close with a slow slide and stay open
+     independently. Open state is driven by .is-open (not [open]) so the toggle
+     icon + accents track the visual animation, not the underlying attribute. */
+  .accordion.js-acc .acc-item{overflow:hidden}
+  .accordion.js-acc .acc-toggle{
+    transition:background .45s var(--ease-out-quart),
+               color .45s var(--ease-out-quart),
+               transform .55s var(--ease-out-expo);
+  }
+  .accordion.js-acc .acc-item[open] .acc-toggle,
+  .accordion.js-acc .acc-item[open]:hover .acc-toggle{
+    background:var(--cream);color:var(--navy);transform:none;
+  }
+  .accordion.js-acc .acc-item.is-open .acc-toggle,
+  .accordion.js-acc .acc-item.is-open:hover .acc-toggle{
+    background:var(--navy);color:var(--gold-bright);transform:rotate(45deg);
+  }
+  .accordion.js-acc .acc-item.is-open{
+    border-color:rgba(6,38,76,.22);
+    box-shadow:0 10px 28px -16px rgba(6,38,76,.18);
+  }
+
+  /* ============ PRICING ============ */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1100px;margin:0 auto}
+  .price-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:32px 30px;position:relative;display:flex;flex-direction:column;gap:18px;transition:transform .25s ease,box-shadow .25s ease}
+  .price-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card)}
+  .price-card.featured{background:var(--navy);color:var(--cream);border-color:transparent;transform:scale(1.03)}
+  .price-card.featured:hover{transform:scale(1.03) translateY(-4px)}
+  .price-tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--navy-deep);color:var(--gold-bright);border:1px solid rgba(229,174,61,.55);box-shadow:0 6px 16px -8px rgba(3,21,46,.6);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:5px 12px;border-radius:999px;white-space:nowrap}
+  .price-head{display:flex;align-items:center;gap:10px}
+  .price-icon{width:36px;height:36px;border-radius:10px;background:var(--cream);color:var(--navy);display:flex;align-items:center;justify-content:center}
+  .price-card.featured .price-icon{background:rgba(204,151,45,.22);color:var(--gold)}
+  .price-name{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+  .price-card.featured .price-name{color:var(--gold)}
+  .price-num{font-family:var(--font-display);font-weight:500;font-size:46px;line-height:1;letter-spacing:-.02em}
+  .price-num span{font-size:14px;color:var(--muted);font-family:var(--font-sans);font-weight:400;margin-left:6px}
+  .price-card.featured .price-num span{color:rgba(239,227,211,.82)}
+  .price-desc{font-size:14px;color:var(--muted);line-height:1.5}
+  .price-card.featured .price-desc{color:rgba(239,227,211,.85)}
+  .price-list{list-style:none;display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--line);padding-top:18px}
+  .price-card.featured .price-list{border-top-color:rgba(255,255,255,.12)}
+  .price-list li{font-size:13.8px;display:flex;gap:10px;align-items:flex-start}
+  .price-list li iconify-icon{color:var(--gold);font-size:17px;flex-shrink:0;margin-top:2px}
+  .price-card.featured .price-list li{color:rgba(239,227,211,.92)}
+  .price-card .btn{width:100%;justify-content:center}
+  .price-foot{text-align:center;margin-top:36px;font-size:14px;color:var(--muted)}
+  .price-foot a{color:var(--navy);border-bottom:1px solid var(--line-strong);font-weight:500}
+  .anchor-offset{display:block;height:0;overflow:hidden}
+
+  /* ── Demo band: second main path, directly under the tariffs ── */
+  .demo-band{max-width:1100px;margin:30px auto 0;position:relative;overflow:hidden;
+    background:var(--navy);color:var(--cream);border-radius:24px;
+    box-shadow:0 30px 70px -34px rgba(3,21,46,.55),0 10px 26px -18px rgba(6,38,76,.3)}
+  .demo-band::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(640px circle at 92% -30%,rgba(229,174,61,.18),transparent 55%),
+               radial-gradient(420px circle at 2% 140%,rgba(229,174,61,.08),transparent 60%)}
+  .demo-band-inner{position:relative;z-index:1;display:flex;align-items:center;gap:26px;padding:28px 34px}
+  .demo-band-icon{flex-shrink:0;width:60px;height:60px;border-radius:16px;
+    background:rgba(229,174,61,.16);color:var(--gold-bright);
+    display:flex;align-items:center;justify-content:center;font-size:28px}
+  .demo-band-text{flex:1;min-width:0}
+  .demo-band-text h3{font-family:var(--font-display);font-weight:500;font-size:clamp(20px,2.2vw,26px);
+    letter-spacing:-.02em;line-height:1.1;margin-bottom:6px;color:var(--cream)}
+  .demo-band-text h3 em{font-style:italic;color:var(--gold-bright);font-variation-settings:var(--fr-italic-accent)}
+  .demo-band-text p{font-size:14px;color:rgba(239,227,211,.8);line-height:1.55;max-width:580px}
+  .demo-band-cta{flex-shrink:0;padding:15px 28px}
+  @media (max-width:760px){
+    .demo-band-inner{flex-direction:column;text-align:center;gap:18px;padding:28px 24px}
+    .demo-band-text p{margin:0 auto}
+    .demo-band-cta{width:100%;justify-content:center}
+  }
+  /* ghost button made legible on the navy showcase section */
+  .dark-section .btn-ghost{color:var(--cream);border-color:rgba(239,227,211,.4)}
+  .dark-section .btn-ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(239,227,211,.6)}
+
+  /* ════════════ EBOOK LEAD MAGNET (static section) ════════════ */
+  .ebook-section{padding:30px 0 110px}
+  .ebook-panel{position:relative;display:grid;grid-template-columns:.92fr 1.08fr;gap:50px;align-items:center;
+    background:var(--navy);color:var(--cream);border-radius:32px;padding:54px 58px;overflow:hidden;
+    box-shadow:0 44px 100px -44px rgba(3,21,46,.62),0 14px 30px -20px rgba(6,38,76,.34)}
+  .ebook-panel::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(720px circle at 76% -18%,rgba(229,174,61,.18),transparent 56%),
+               radial-gradient(520px circle at -4% 122%,rgba(229,174,61,.09),transparent 60%)}
+  .ebook-panel > *{position:relative;z-index:1}
+
+  /* ── CSS ebook cover mockup ── */
+  .ebook-visual{display:flex;align-items:center;justify-content:center;min-height:344px;position:relative}
+  .ebook-cover{position:relative;width:250px;aspect-ratio:3/4.05;border-radius:5px 14px 14px 5px;
+    background:linear-gradient(158deg,#F6EFE3 0%,#EADCC4 58%,#DEC9A6 100%);
+    transform:rotate(-6deg);padding:26px 24px 22px;display:flex;flex-direction:column;
+    box-shadow:0 44px 70px -26px rgba(3,21,46,.72),0 12px 26px -12px rgba(0,0,0,.45),
+               inset 0 0 0 1px rgba(255,255,255,.55);
+    transition:transform .55s var(--ease-out-expo)}
+  .ebook-cover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:13px;border-radius:5px 0 0 5px;
+    background:linear-gradient(90deg,rgba(6,38,76,.22),rgba(6,38,76,0))}
+  .ebook-panel:hover .ebook-cover{transform:rotate(-3deg) translateY(-7px)}
+  .ebook-cover-kicker{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold-deep);font-weight:600;margin-bottom:auto}
+  .ebook-cover h4{font-family:var(--font-display);font-weight:600;font-size:25px;line-height:1.06;
+    letter-spacing:-.02em;color:var(--navy);margin:16px 0 0}
+  .ebook-cover h4 .n{color:var(--gold-deep)}
+  .ebook-cover-rule{height:3px;width:48px;background:var(--gold);margin:14px 0 12px;border-radius:2px}
+  .ebook-cover .ec-sub{font-size:12.5px;color:rgba(6,38,76,.72);font-style:italic;font-family:var(--font-display)}
+  .ebook-cover-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:18px;
+    font-size:10.5px;letter-spacing:.04em;color:rgba(6,38,76,.72);font-weight:500}
+  .ebook-cover-foot iconify-icon{color:var(--gold-deep);font-size:16px}
+  .ebook-badge{position:absolute;display:inline-flex;align-items:center;gap:6px;
+    font-size:12px;font-weight:600;padding:8px 13px;border-radius:999px;white-space:nowrap;
+    box-shadow:0 14px 28px -10px rgba(3,21,46,.5)}
+  .ebook-badge iconify-icon{font-size:14px}
+  .ebook-badge.eb1{top:6%;right:2%;background:linear-gradient(135deg,var(--navy-soft),var(--navy));color:var(--gold-bright);animation:eb-float 5.5s ease-in-out infinite}
+  .ebook-badge.eb2{bottom:9%;left:-2%;background:var(--cream);color:var(--navy);animation:eb-float 6.6s ease-in-out infinite .8s}
+  @keyframes eb-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+  /* ── ebook body / form ── */
+  .ebook-body .eyebrow{background:rgba(229,174,61,.18);color:var(--gold-bright);margin-bottom:16px}
+  .ebook-body h2{font-family:var(--font-display);font-weight:500;font-size:clamp(26px,3.2vw,38px);
+    line-height:1.05;letter-spacing:-.02em;color:var(--cream);margin-bottom:14px}
+  .ebook-body h2 em{font-style:italic;color:var(--gold-bright);font-variation-settings:var(--fr-italic-accent)}
+  .ebook-lead{font-size:15px;line-height:1.6;color:rgba(239,227,211,.82);margin-bottom:22px;max-width:540px}
+  .ebook-points{list-style:none;display:flex;flex-direction:column;gap:11px;margin:0 0 26px}
+  .ebook-points li{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:rgba(239,227,211,.9);line-height:1.45}
+  .ebook-points iconify-icon{flex-shrink:0;margin-top:1px;font-size:18px;color:var(--gold-bright)}
+  .ebook-form{display:flex;flex-direction:column;gap:12px;max-width:540px}
+  .ebook-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .ebook-form input{width:100%;background:rgba(255,255,255,.04);border:2px solid rgba(239,227,211,.22);
+    color:var(--cream);font-family:var(--font-sans);font-size:15px;padding:15px 17px;border-radius:13px;
+    transition:border-color .2s,background .2s}
+  .ebook-form input::placeholder{color:rgba(239,227,211,.82)}
+  .ebook-form input:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.07)}
+  .ebook-form .btn{justify-content:center;padding:16px}
+  .ebook-foot{display:flex;align-items:center;gap:7px;margin-top:14px;font-size:12.5px;color:rgba(239,227,211,.82)}
+  .ebook-foot iconify-icon{font-size:14px;color:var(--gold-bright)}
+  .ebook-success{display:none;align-items:flex-start;gap:14px;padding:22px 24px;border-radius:16px;
+    background:rgba(229,174,61,.12);border:1px solid rgba(229,174,61,.32);margin-top:2px;max-width:540px}
+  .ebook-success iconify-icon{font-size:30px;color:var(--gold-bright);flex-shrink:0}
+  .ebook-success h4{font-family:var(--font-display);font-weight:500;font-size:19px;color:var(--cream);margin-bottom:4px}
+  .ebook-success p{font-size:13.5px;color:rgba(239,227,211,.85);line-height:1.5}
+  .ebook-form.sent{display:none}
+  .ebook-form.sent + .ebook-foot{display:none}
+  .ebook-success.show{display:flex}
+  @media (max-width:880px){
+    .ebook-panel{grid-template-columns:1fr;gap:34px;padding:44px 38px;text-align:center}
+    .ebook-visual{min-height:300px;order:-1}
+    .ebook-body .eyebrow,.ebook-lead,.ebook-form,.ebook-success{margin-left:auto;margin-right:auto}
+    .ebook-points{text-align:left;max-width:440px;margin:0 auto 26px}
+    .ebook-foot{justify-content:center}
+  }
+  @media (max-width:560px){
+    .ebook-section{padding:20px 0 80px}
+    .ebook-panel{padding:34px 22px;border-radius:24px}
+    .ebook-fields{grid-template-columns:1fr}
+    .ebook-cover{width:208px}
+  }
+
+  /* ── popup ebook success state ── */
+  .lp-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--gold-deep);font-weight:600;margin-bottom:8px}
+  .lp-success{display:flex;align-items:center;gap:11px;padding:15px 16px;border-radius:12px;
+    background:rgba(204,151,45,.14);border:1px solid rgba(204,151,45,.32);color:var(--navy);
+    font-size:13.5px;font-weight:500;line-height:1.4}
+  .lp-success iconify-icon{color:var(--gold-deep);font-size:24px;flex-shrink:0}
+  .lp-success[hidden]{display:none}
+
+  /* ============ DARK SHOWCASE ============ */
+  .dark-section{background:var(--navy);color:var(--cream);padding:100px 0;margin:120px 0 0;border-radius:36px 36px 0 0;position:relative;overflow:hidden}
+  .dark-section::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(70% 50% at 80% 10%,rgba(204,151,45,.12),transparent 60%),
+    radial-gradient(50% 40% at 10% 90%,rgba(204,151,45,.08),transparent 60%);
+    pointer-events:none}
+  .dark-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:center;position:relative;z-index:1}
+  .dark-section .eyebrow{background:rgba(204,151,45,.16);color:var(--gold-bright)}
+  .dark-section h2{color:var(--cream)}
+  .dark-section h2 em{color:inherit}
+  .dark-section .sub{color:rgba(239,227,211,.85);margin:18px 0 28px;max-width:none}
+  .dark-tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .dark-tile{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:26px;backdrop-filter:blur(6px);transition:background .25s,transform .25s}
+  .dark-tile:hover{background:rgba(255,255,255,.07);transform:translateY(-3px)}
+  .dark-tile .cat{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--gold-bright);margin-bottom:14px}
+  .dark-tile h4{font-family:var(--font-display);font-weight:500;font-size:22px;letter-spacing:-.01em;color:var(--cream);margin-bottom:10px;line-height:1.2}
+  .dark-tile p{font-size:14px;color:rgba(239,227,211,.85);line-height:1.55}
+  .dark-foot{margin-top:36px;font-size:15px;color:rgba(239,227,211,.85)}
+  .dark-foot strong{color:var(--gold-bright);font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.01em}
+  .dark-foot em{display:block;font-style:normal;color:rgba(239,227,211,.82);font-size:13px;margin-top:4px}
+
+  /* ============ FORM + FOUNDER ============ */
+  .formfounder{padding:120px 0 80px;background:var(--navy);color:var(--cream)}
+  .ff-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:flex-start}
+  .form-card{background:var(--navy-2);border-radius:24px;padding:36px;border:1px solid rgba(255,255,255,.08)}
+  .form-card .eyebrow{background:rgba(204,151,45,.16);color:var(--gold-bright);margin-bottom:18px}
+  .form-card h3{font-family:var(--font-display);font-weight:500;font-size:34px;line-height:1.1;letter-spacing:-.02em;color:var(--cream);margin-bottom:14px}
+  .form-card .desc{font-size:14.5px;color:rgba(239,227,211,.85);line-height:1.6;margin-bottom:24px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:12.5px;letter-spacing:.04em;color:rgba(239,227,211,.85);margin-bottom:6px;font-weight:500}
+  .field input,.field textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--cream);font-family:var(--font-sans);font-size:14.5px;padding:12px 14px;border-radius:12px;transition:border-color .2s,background .2s}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.06)}
+  .field textarea{min-height:84px;resize:vertical}
+  .form-card .btn{width:100%;justify-content:center;padding:14px;margin-top:6px}
+  .form-foot{font-size:12px;color:rgba(239,227,211,.82);margin-top:12px;text-align:center}
+
+  .founder-pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;background:rgba(204,151,45,.15);border:1px solid rgba(204,151,45,.3);font-size:13px;color:var(--gold-bright);font-weight:500;margin-bottom:22px}
+  .founder h3{font-family:var(--font-display);font-weight:500;font-size:clamp(30px,3.4vw,42px);line-height:1.05;letter-spacing:-.02em;color:var(--cream);margin-bottom:22px}
+  .founder p{font-size:15px;line-height:1.65;color:rgba(239,227,211,.85);margin-bottom:16px}
+  .founder p strong{color:var(--cream);font-weight:600}
+  .founder p em{font-style:italic;color:inherit;font-weight:500}
+  .founder-info{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+  .founder-info div{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px}
+  .founder-info h5{font-size:13px;letter-spacing:.04em;color:var(--gold-bright);font-weight:600;margin-bottom:6px}
+  .founder-info p{font-size:13.5px;color:rgba(239,227,211,.85);margin:0;line-height:1.5}
+  .founder-card{margin-top:30px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:14px}
+  .founder-card .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#E5AE3D,#A87718);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);color:var(--navy-deep);font-weight:600;font-size:18px}
+  .founder-card .who{flex:1}
+  .founder-card .who div:first-child{font-weight:600;font-size:14.5px;color:var(--cream)}
+  .founder-card .who div:last-child{font-size:12.5px;color:rgba(239,227,211,.82)}
+  .founder-card a{font-size:13px;color:var(--gold-bright);border-bottom:1px solid rgba(204,151,45,.4);padding-bottom:2px;font-weight:500}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--navy-3);color:var(--cream);padding:80px 0 32px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;margin-bottom:60px}
+  .foot-brand .logo{color:var(--cream);margin-bottom:18px}
+  .foot-brand p{font-size:14px;color:rgba(239,227,211,.82);line-height:1.6;margin-bottom:26px;max-width:340px}
+  .foot-cta-label{font-size:13px;color:var(--gold);font-style:italic;font-family:var(--font-display);margin-bottom:10px;font-weight:500}
+  .foot-col h6{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(239,227,211,.82);margin-bottom:18px;font-weight:600}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .foot-col ul a{font-size:14px;color:rgba(239,227,211,.85);transition:color .2s}
+  .foot-col ul a:hover{color:var(--gold)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);font-size:13px;color:rgba(239,227,211,.82)}
+  .foot-bottom ul{display:flex;gap:18px;list-style:none}
+  .foot-socials{display:flex;gap:10px}
+  .foot-socials a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:rgba(239,227,211,.85);transition:background .2s,color .2s}
+  .foot-socials a:hover{background:var(--navy-soft);color:var(--gold-bright)}
+
+  /* ============ FADE IN ============ */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* ============ MOBILE DRAWER MENU ============ */
+  .mobile-menu{
+    position:absolute;
+    top:calc(100% + 8px);
+    left:12px;right:12px;
+    z-index:56;
+    background:var(--cream-pale);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:20px 22px 22px;
+    box-shadow:0 30px 60px -20px rgba(6,38,76,.32), 0 8px 22px -10px rgba(6,38,76,.22);
+    transform:translateY(-12px) scale(.98);
+    transform-origin:top center;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .25s var(--ease-out-quart), transform .35s var(--ease-out-quart), visibility .25s;
+    max-height:calc(100vh - 110px);
+    max-height:calc(100dvh - 110px); /* dynamic viewport: bottom CTA stays reachable when mobile URL bar is visible */
+    overflow-y:auto;
+    overscroll-behavior:contain;        /* don't chain scroll to the (locked) page behind */
+    -webkit-overflow-scrolling:touch;   /* momentum scroll inside the drawer on iOS */
+  }
+  .mobile-menu[aria-hidden="false"]{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0) scale(1);
+  }
+  .mobile-menu-links{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    margin-bottom:18px;
+    padding-bottom:18px;
+    border-bottom:1px solid var(--line);
+  }
+  .mobile-menu-links a{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:18px;
+    letter-spacing:-.01em;
+    color:var(--navy);
+    padding:12px 4px;
+    border-radius:10px;
+    transition:background .2s, color .2s, padding-left .2s var(--ease-out-quart);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    min-height:48px;
+  }
+  .mobile-menu-links a::after{
+    content:"→";
+    color:var(--gold);
+    opacity:0;
+    transform:translateX(-4px);
+    transition:opacity .2s, transform .2s var(--ease-out-quart);
+    font-family:var(--font-sans);
+    font-size:18px;
+  }
+  .mobile-menu-links a:hover,
+  .mobile-menu-links a:focus-visible{
+    background:rgba(6,38,76,.05);
+    padding-left:14px;
+    outline:none;
+  }
+  .mobile-menu-links a:hover::after,
+  .mobile-menu-links a:focus-visible::after{
+    opacity:1;
+    transform:translateX(0);
+  }
+  .mobile-menu-cta{
+    width:100%;
+    justify-content:center;
+    padding:14px 22px;
+    font-size:14.5px;
+  }
+  .mobile-menu-foot{
+    margin-top:12px;
+    font-size:12px;
+    color:var(--muted);
+    text-align:center;
+    line-height:1.5;
+  }
+  .mobile-menu-backdrop{
+    position:fixed;
+    inset:0;
+    z-index:54;
+    background:rgba(3,21,46,.4);
+    backdrop-filter:blur(2px);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .25s, visibility .25s;
+  }
+  .mobile-menu-backdrop[aria-hidden="false"]{
+    opacity:1;
+    visibility:visible;
+  }
+  /* Non-modal drawer: the page stays scrollable while the menu is open.
+     The drawer is anchored to the sticky header, so it follows the top of
+     the viewport as the user scrolls; the backdrop dims but does not trap scroll. */
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:980.98px){
+    .nav-links{display:none}
+    .nav-cta{display:none}
+    /* .mobile-toggle is visible by default — desktop @media hides it */
+    .logo{padding-left:16px}
+    .hero{padding:36px 0 72px}
+    .hero-grid{grid-template-columns:1fr;gap:48px}
+    .hero-visual{aspect-ratio:4/5;max-width:520px;margin:0 auto}
+    .okruhy{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(2,1fr);gap:20px 0}
+    .stat{border-right:none;padding:14px 20px}
+    .stat:nth-child(odd){border-right:1px solid var(--line)}
+    .situace-grid{grid-template-columns:1fr}
+    .free-card{position:static}
+    .price-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}
+    .price-card.featured{transform:none}
+    .price-card.featured:hover{transform:translateY(-4px)}
+    .dark-grid{grid-template-columns:1fr;gap:40px}
+    .ff-grid{grid-template-columns:1fr;gap:40px}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:36px}
+    .section{padding:80px 0}
+    .section-vision{padding:64px 0 48px}
+    .section-light{margin:0 16px;padding:72px 0}
+    .dark-section{padding:80px 0;border-radius:28px 28px 0 0}
+    .formfounder{padding:80px 0 60px}
+    /* Hero CTAs stack more comfortably */
+    .hero-ctas{gap:10px}
+    .hero-ctas .btn{padding:14px 22px;font-size:14.5px}
+    .hero-ctas .btn-gold{flex:1 1 100%;justify-content:center}
+    .hero-ctas .btn-ghost{flex:1 1 auto;justify-content:center;min-width:160px}
+    /* Vision section: tighter cards */
+    .vision-card{padding:22px 18px}
+    /* Free-card: tame the huge "Čestný" headline */
+    .free-card{padding:28px 26px;border-radius:22px}
+    .free-card h3{font-size:clamp(38px,7vw,46px);line-height:1.05}
+    .free-card .pitch{font-size:16.5px}
+    /* Situace section grid keeps stacking with breathing room */
+    .situace-grid{padding:0 18px;gap:28px}
+    /* Accordion: tighter on mobile, but still readable */
+    .acc-item{padding:18px 20px;border-radius:16px}
+    .acc-item summary{font-size:16px;gap:14px;line-height:1.4}
+    .acc-num{font-size:10.5px}
+    .acc-toggle{width:32px;height:32px}
+    /* Pricing: featured card no longer overflows when scaled */
+    .price-card.featured{transform:none}
+    .price-card.featured:hover{transform:translateY(-3px)}
+    .price-card{padding:28px 24px}
+    /* Dark tiles slightly tighter */
+    .dark-tile{padding:22px 20px;border-radius:18px}
+    /* Footer bottom — center & stack */
+    .foot-bottom{justify-content:center;text-align:center;flex-direction:column;gap:14px}
+    .foot-bottom ul{justify-content:center;flex-wrap:wrap;gap:14px}
+    /* Founder card stays tidy */
+    .founder-card{flex-wrap:wrap;gap:10px 14px}
+    .founder-card .who{flex:1 1 auto;min-width:140px}
+    .founder-card a{flex-shrink:0}
+    /* Lead-strip padding */
+    .lead-strip{padding:18px 0 48px}
+    /* Section heads tighter */
+    .section-head{margin-bottom:48px}
+    /* Stat numbers refined */
+    .stat .n{font-size:32px}
+    .stat .l{font-size:12.5px}
+    /* Form-card tightening */
+    .form-card{padding:28px 24px;border-radius:22px}
+    /* Margin under "okruhy" — no longer needs the desktop offset */
+    .okruhy{padding-bottom:0}
+  }
+  /* ════ HERO PHONE — STACKED layout for laptop & mobile (≤980px) ════
+     When the hero grid collapses to one column, the phone-visual loses its
+     side-by-side context. The desktop layered floats (which assume a wide
+     hero-visual) start swamping the phone. So at any width ≤980px we switch
+     to the compact composition: tall 2/3 container, phone fully visible,
+     compact navy badge below bottom-right, video pill below bottom-left. */
+  @media (max-width:980.98px){
+    /* .hero prefix bumps specificity (0,3,0) over base .hero-visual.is-phone (0,2,0) */
+    .hero .hero-visual.is-phone{
+      aspect-ratio:2/3;
+      width:100%;
+      max-width:420px;
+      margin:0 auto;
+      display:flex;
+      flex-direction:row;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+      gap:0;
+      height:auto;
+      overflow:visible;
+    }
+    /* Disc backdrop — gentle halo behind phone */
+    .hero-visual.is-phone .phone-stage{
+      display:flex;
+      position:absolute;
+      inset:0;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .hero-visual.is-phone .phone-stage .disc{width:62%}
+
+    /* Phone — fully visible top-to-bottom */
+    .hero-visual.is-phone .phone{
+      position:relative;
+      width:52%;
+      max-width:none;
+      max-height:none;
+      aspect-ratio:9/19;
+      margin:0;
+      order:initial;
+      isolation:auto;
+      z-index:2;
+      animation:phoneFloat 7s ease-in-out infinite;
+    }
+    .hero-visual.is-phone .phone::after{display:none}
+
+    /* ⚠ All overrides use .hero-visual.is-phone prefix → specificity (0,3,0)
+       beats the (0,1,0) base rules that come LATER in source order. */
+
+    /* Chip ABOVE phone, slight top-bezel touch only */
+    .hero-visual.is-phone .float-tl{
+      position:absolute;
+      top:6%;
+      left:0;
+      right:auto;
+      bottom:auto;
+      max-width:60%;
+      margin:0;
+      order:initial;
+      align-self:auto;
+      padding:9px 13px;
+      border-radius:14px;
+      z-index:5;
+      display:flex;
+    }
+    .hero-visual.is-phone .float-tl .fc-dot{width:8px;height:8px}
+    .hero-visual.is-phone .float-tl .fc-text{font-size:12.5px;line-height:1.22}
+    .hero-visual.is-phone .float-tl .fc-text span{font-size:10.5px;margin-top:2px}
+
+    /* Navy card — COMPACT badge below phone bottom-right */
+    .hero-visual.is-phone .float-br{
+      display:block;
+      position:absolute;
+      bottom:-2%;
+      right:0;
+      top:auto;
+      left:auto;
+      width:auto;
+      max-width:54%;
+      margin:0;
+      order:initial;
+      padding:10px 12px 10px;
+      border-radius:14px;
+      z-index:5;
+    }
+    .hero-visual.is-phone .float-br .fc-eyebrow{font-size:8px;letter-spacing:.18em;margin-bottom:5px;gap:6px}
+    .hero-visual.is-phone .float-br .fc-pulse{width:5px;height:5px;box-shadow:0 0 0 2px rgba(34,182,124,.22), 0 0 6px rgba(34,182,124,.7)}
+    .hero-visual.is-phone .float-br .fc-title{font-size:11px;line-height:1.22}
+    .hero-visual.is-phone .float-br .fc-stats{
+      grid-template-columns:repeat(3,1fr);
+      gap:4px;
+      margin:7px 0 0;
+      padding:7px 0 0;
+      border-top:1px solid rgba(229,174,61,.16);
+      border-bottom:none;
+    }
+    .hero-visual.is-phone .float-br .fc-stats li{display:flex;padding-right:3px;border-right:1px solid rgba(255,255,255,.06)}
+    .hero-visual.is-phone .float-br .fc-stats li:last-child{border-right:none}
+    .hero-visual.is-phone .float-br .fc-stats .val{font-size:10px}
+    .hero-visual.is-phone .float-br .fc-stats .val em{font-size:8px}
+    .hero-visual.is-phone .float-br .fc-stats .lbl{font-size:7px;letter-spacing:.12em}
+    /* Hide noisy bits on stacked layouts so the card stays a small badge */
+    .hero-visual.is-phone .float-br .fc-tags{display:none}
+    .hero-visual.is-phone .float-br .fc-foot{display:none}
+
+    /* Video pill — BELOW phone, no overlap */
+    .hero-visual.is-phone .float-video{
+      position:absolute;
+      left:0;
+      bottom:-2%;
+      top:auto;
+      right:auto;
+      transform:none;
+      margin:0;
+      order:initial;
+      align-self:auto;
+      font-size:11.5px;
+      padding:5px 13px 5px 5px;
+      gap:8px;
+      z-index:6;
+    }
+    .hero-visual.is-phone .float-video .play{width:24px;height:24px;font-size:11px}
+    .hero-visual.is-phone .float-video:hover{transform:translateY(-2px)}
+  }
+
+  @media (max-width:580px){
+    .wrap{padding:0 18px}
+    /* Mobile-specific phone container size tweaks */
+    .hero .hero-visual.is-phone{max-width:380px}
+    .foot-grid{grid-template-columns:1fr;gap:32px}
+    .founder-info{grid-template-columns:1fr}
+    .dark-tiles{grid-template-columns:1fr}
+    .vision-card{flex:1 1 100%;max-width:none}
+    .hero-hook{font-size:15px;margin-bottom:14px}
+    /* Tighter wraps for very small phones */
+    .nav-inner{padding:14px 0;gap:10px}
+    .logo{font-size:16px;gap:10px;padding-left:14px}
+    .lead-card{padding:24px 20px}
+    .lead-head h3{font-size:26px}
+    .lead-head .desc{font-size:14px}
+    .lead-card .field input,
+    .lead-card .field textarea,
+    .form-card .field input,
+    .form-card .field textarea{padding:14px 14px;font-size:14.5px;border-width:2px}
+    .lead-actions .btn{padding:14px 20px;font-size:14.5px}
+    .acc-item summary{font-size:15px;gap:12px}
+    .acc-body{font-size:14px}
+    .acc-body .solution{padding:14px 16px;font-size:13.5px}
+    .price-card{padding:26px 22px}
+    .price-num{font-size:38px}
+    .stat{padding:0 16px}
+    .stat .n{font-size:28px;gap:5px}
+    .stats{padding:28px 0}
+    .center-ctas{flex-direction:column;align-items:stretch}
+    .center-ctas .btn{justify-content:center;width:100%}
+    .dark-section .btn-gold{width:100%;justify-content:center}
+    .dark-section{padding:64px 0;border-radius:24px 24px 0 0;margin-top:80px}
+    .dark-grid{gap:32px}
+    .formfounder{padding:64px 0 48px}
+    .founder h3{font-size:28px;line-height:1.1}
+    .free-card h3{font-size:42px}
+    .free-card .pitch{font-size:15.5px}
+    .free-card .body{font-size:13.5px}
+    .section{padding:64px 0}
+    .section-head{margin-bottom:36px}
+    .mobile-menu{left:8px;right:8px;padding:18px 18px 20px}
+    .mobile-menu-links a{font-size:17px;padding:11px 4px}
+  }
+  @media (max-width:420px){
+    .wrap{padding:0 14px}
+    .hero h1{font-size:36px;letter-spacing:-.02em}
+    .hero p.lead{font-size:15.5px}
+    .section h2{font-size:28px}
+    .free-card h3{font-size:38px}
+    .stat .n{font-size:26px}
+    .price-num{font-size:34px}
+    /* Two-column stats become single-row when too cramped */
+    .stats{grid-template-columns:1fr;gap:16px 0}
+    .stat:nth-child(odd){border-right:none}
+    .stat{padding:14px 16px;border-right:none;border-bottom:1px solid var(--line)}
+    .stat:last-child{border-bottom:none}
+    /* Tiny screens — tighten further but keep same layout (high-specificity) */
+    .hero .hero-visual.is-phone{max-width:340px}
+    .hero-visual.is-phone .phone{width:50%}
+    .hero-visual.is-phone .float-tl{top:5%;max-width:56%;padding:8px 11px}
+    .hero-visual.is-phone .float-tl .fc-text{font-size:11.5px}
+    .hero-visual.is-phone .float-tl .fc-text span{font-size:10px}
+    .hero-visual.is-phone .float-br{bottom:-3%;right:-1%;max-width:52%;padding:9px 11px 9px}
+    .hero-visual.is-phone .float-br .fc-title{font-size:10px}
+    .hero-visual.is-phone .float-br .fc-stats .val{font-size:9.5px}
+    .hero-visual.is-phone .float-br .fc-stats .lbl{font-size:6.5px}
+    .hero-visual.is-phone .float-video{left:-1%;bottom:-3%;font-size:10.5px;padding:4px 11px 4px 4px}
+    .hero-visual.is-phone .float-video .play{width:22px;height:22px;font-size:10px}
+  }
+
+  /* ============ LEAD POPUP ============ */
+  .lead-popup{position:fixed;bottom:24px;right:24px;z-index:60;width:360px;max-width:calc(100vw - 32px);background:#fff;border-radius:20px;border:1px solid var(--line);padding:26px 24px 22px;box-shadow:0 24px 60px -16px rgba(6,38,76,.35);transform:translateY(24px);opacity:0;transition:transform .35s ease,opacity .35s ease}
+  .lead-popup[aria-hidden="false"]{transform:translateY(0);opacity:1}
+  .lp-close{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:var(--cream);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:16px;transition:background .2s;cursor:pointer;border:none}
+  .lp-close:hover{background:var(--cream-2)}
+  .lp-icon{width:42px;height:42px;border-radius:12px;background:rgba(204,151,45,.16);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+  .lp-title{font-family:var(--font-display);font-weight:500;font-size:20px;line-height:1.25;color:var(--navy);letter-spacing:-.01em;margin-bottom:8px}
+  .lp-sub{font-size:13.5px;color:var(--muted);line-height:1.5;margin-bottom:18px}
+  .lead-popup form{display:flex;flex-direction:column;gap:10px}
+  .lead-popup input{background:var(--cream-3);border:1px solid var(--line);color:var(--ink);font-family:var(--font-sans);font-size:14.5px;padding:12px 14px;border-radius:12px}
+  .lead-popup input:focus{outline:none;border-color:var(--gold);background:#fff}
+  .lead-popup .btn{width:100%;justify-content:center;padding:13px}
+  .lp-foot{font-size:11.5px;color:var(--muted);margin-top:10px;text-align:center}
+  @media (max-width:580px){
+    .lead-popup{left:12px;right:12px;bottom:12px;width:auto;padding:22px 20px 18px}
+    .lp-title{font-size:18px}
+  }
+
+  /* ============ LOGO MARK (brand emblem) ============ */
+  .logo-mark{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;flex-shrink:0;transition:transform .35s cubic-bezier(.2,.8,.2,1);position:relative;isolation:isolate}
+  .logo-mark img{width:100%;height:100%;display:block;object-fit:contain;filter:drop-shadow(0 6px 14px rgba(6,38,76,.18));position:relative;z-index:2}
+  .logo:hover .logo-mark{transform:translateY(-2px) rotate(-4deg) scale(1.04)}
+  .foot-brand .logo-mark{width:72px;height:72px}
+  .foot-brand .logo-mark img{filter:drop-shadow(0 6px 14px rgba(0,0,0,.35))}
+
+  /* ── Glowing animated bubbles around the logo ── */
+  .logo-bubbles{position:absolute;inset:-14px;pointer-events:none;z-index:1}
+  .logo-bubbles .bubble{
+    position:absolute;
+    border-radius:50%;
+    background:radial-gradient(circle at 32% 30%, rgba(255,236,196,.95), rgba(204,151,45,.55) 55%, rgba(204,151,45,0) 78%);
+    box-shadow:0 0 10px 2px rgba(204,151,45,.55), 0 0 22px 4px rgba(204,151,45,.28), inset 0 0 6px rgba(255,255,255,.55);
+    opacity:0;
+    animation:bubbleFloat 6s var(--ease-out-quart) infinite;
+    will-change:transform,opacity;
+  }
+  .logo-bubbles .bubble.b1{width:10px;height:10px;top:-2px;left:8%;animation-delay:0s;animation-duration:6.4s}
+  .logo-bubbles .bubble.b2{width:7px;height:7px;top:14%;right:-4px;animation-delay:.9s;animation-duration:5.6s;background:radial-gradient(circle at 30% 30%, rgba(220,232,255,.95), rgba(14,58,109,.45) 55%, rgba(14,58,109,0) 78%);box-shadow:0 0 8px 2px rgba(14,58,109,.45),0 0 18px 4px rgba(14,58,109,.22),inset 0 0 5px rgba(255,255,255,.5)}
+  .logo-bubbles .bubble.b3{width:13px;height:13px;bottom:-4px;right:18%;animation-delay:1.7s;animation-duration:7s}
+  .logo-bubbles .bubble.b4{width:6px;height:6px;bottom:22%;left:-6px;animation-delay:2.4s;animation-duration:5.2s;background:radial-gradient(circle at 30% 30%, rgba(220,232,255,.95), rgba(14,58,109,.45) 55%, rgba(14,58,109,0) 78%);box-shadow:0 0 7px 2px rgba(14,58,109,.4),0 0 16px 4px rgba(14,58,109,.2),inset 0 0 4px rgba(255,255,255,.5)}
+  .logo-bubbles .bubble.b5{width:5px;height:5px;top:48%;right:-8px;animation-delay:3.1s;animation-duration:4.8s}
+  .logo-bubbles .bubble.b6{width:8px;height:8px;top:-6px;right:30%;animation-delay:.4s;animation-duration:6.8s}
+  @keyframes bubbleFloat{
+    0%   {transform:translate(0,0) scale(.6);opacity:0}
+    15%  {opacity:1}
+    50%  {transform:translate(-3px,-10px) scale(1);opacity:.95}
+    85%  {opacity:.6}
+    100% {transform:translate(4px,-22px) scale(.5);opacity:0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .logo-bubbles .bubble{animation:none;opacity:.6;transform:none}
+  }
+  @media (max-width:720px){
+    .logo-mark{width:54px;height:54px}
+    .foot-brand .logo-mark{width:60px;height:60px}
+  }
+
+  /* ============ HERO PHONE MOCKUP ============ */
+  .hero-visual.is-phone{position:relative;aspect-ratio:5/6;background:transparent;box-shadow:none;border-radius:0;overflow:visible;display:flex;align-items:center;justify-content:center}
+  .hero-visual.is-phone::before,.hero-visual.is-phone::after{display:none}
+
+  .phone-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+  .phone-stage .disc{width:82%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 38% 32%, #F6EFE3 0%, #E8D6B5 70%, #D4B98A 100%);position:relative;box-shadow:0 40px 80px -30px rgba(6,38,76,.18), inset 0 -20px 60px rgba(6,38,76,.06)}
+  .phone-stage .disc::before{content:"";position:absolute;inset:8%;border-radius:50%;border:1px solid rgba(6,38,76,.05)}
+
+  .phone{position:relative;width:54%;max-width:300px;max-height:96%;aspect-ratio:9/19;background:linear-gradient(180deg,#0B315E 0%, #06264C 100%);border-radius:40px;padding:6px;box-shadow:
+    0 50px 100px -30px rgba(6,38,76,.55),
+    0 18px 40px -14px rgba(6,38,76,.4),
+    0 0 0 1px rgba(255,255,255,.06) inset,
+    0 1px 0 rgba(255,255,255,.10) inset;
+    z-index:2;
+    animation:phoneFloat 7s ease-in-out infinite}
+  @keyframes phoneFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .phone-screen{width:100%;height:100%;background:#F2EADB;border-radius:34px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+  .phone-notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:84px;height:22px;border-radius:14px;background:#06264C;z-index:5}
+
+  .phone-statusbar{display:flex;justify-content:space-between;align-items:center;padding:13px 24px 0;font-size:10.5px;font-weight:600;color:var(--navy);font-family:var(--font-sans);letter-spacing:-.005em}
+  .phone-statusbar .icons{display:inline-flex;gap:5px;align-items:center;color:var(--navy)}
+  .phone-statusbar .icons iconify-icon{font-size:11px}
+
+  .chat-header{display:flex;align-items:center;gap:10px;padding:36px 16px 12px;border-bottom:1px solid rgba(6,38,76,.07)}
+  .chat-avatar{width:36px;height:36px;border-radius:11px;background:var(--navy);color:var(--cream);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:600;font-size:16px;flex-shrink:0;letter-spacing:-.02em}
+  .chat-name{font-family:var(--font-display);font-weight:500;font-size:13.5px;color:var(--navy);line-height:1.1;letter-spacing:-.005em}
+  .chat-status{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:5px;margin-top:3px}
+  .chat-status .online{width:6px;height:6px;border-radius:50%;background:#22B67C;box-shadow:0 0 0 2px rgba(34,182,124,.22)}
+  .chat-menu{margin-left:auto;color:var(--muted);font-size:16px}
+
+  .chat-body{padding:14px 12px 14px;display:flex;flex-direction:column;gap:8px;flex:1;overflow:hidden}
+  .msg{font-size:11px;line-height:1.45;padding:8px 11px;border-radius:14px;max-width:84%;letter-spacing:-.002em}
+  .msg-user{align-self:flex-end;background:var(--navy);color:var(--cream);border-bottom-right-radius:5px;box-shadow:0 2px 6px -2px rgba(6,38,76,.25)}
+  .msg-bot{align-self:flex-start;background:#fff;color:var(--navy);border-bottom-left-radius:5px;border:1px solid rgba(6,38,76,.05)}
+  .msg-bot strong{color:var(--gold);font-weight:600;margin-right:3px}
+  .msg-bot-list{display:flex;flex-direction:column;gap:5px;font-size:10.5px;line-height:1.4}
+  .msg-bot-list span{display:flex;gap:6px}
+  .msg-typing{align-self:flex-start;display:flex;gap:4px;padding:9px 12px;background:#fff;border-radius:14px;border-bottom-left-radius:5px;border:1px solid rgba(6,38,76,.05)}
+  .msg-typing i{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:typingBlink 1.4s ease-in-out infinite}
+  .msg-typing i:nth-child(2){animation-delay:.18s}
+  .msg-typing i:nth-child(3){animation-delay:.36s}
+  @keyframes typingBlink{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+
+  .chat-input{margin:0 12px 12px;background:#fff;border-radius:999px;padding:8px 8px 8px 14px;display:flex;align-items:center;gap:8px;border:1px solid rgba(6,38,76,.07)}
+  .chat-input .ci-placeholder{flex:1;font-size:11px;color:var(--muted)}
+  .chat-input .ci-send{width:26px;height:26px;border-radius:50%;background:var(--navy);color:var(--gold-bright);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+
+  /* floating cards around the phone */
+  .float-card{position:absolute;background:#fff;border-radius:16px;padding:14px 18px;box-shadow:0 24px 50px -18px rgba(6,38,76,.30), 0 1px 0 rgba(255,255,255,.7) inset;z-index:6;border:1px solid rgba(6,38,76,.05)}
+  .float-tl{top:14%;left:-4%;display:flex;align-items:center;gap:11px}
+  .float-tl .fc-dot{width:8px;height:8px;border-radius:50%;background:#22B67C;flex-shrink:0;box-shadow:0 0 0 3px rgba(34,182,124,.18)}
+  .float-tl .fc-text{font-size:13.5px;font-weight:500;color:var(--navy);line-height:1.25}
+  .float-tl .fc-text span{display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px}
+
+  .float-br{position:absolute;bottom:-6%;right:-8%;background:linear-gradient(155deg,var(--navy) 0%,var(--navy-deep) 100%);color:var(--cream);border:1px solid rgba(229,174,61,.18);max-width:260px;padding:16px 18px 14px;box-shadow:0 30px 60px -22px rgba(3,21,46,.55), 0 1px 0 rgba(255,255,255,.06) inset, 0 0 0 1px rgba(0,0,0,.2)}
+  .float-br::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 85% 0%, rgba(229,174,61,.18) 0%, transparent 55%);pointer-events:none}
+  .float-br .fc-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-bright);font-weight:500;margin-bottom:10px;display:flex;align-items:center;gap:8px;position:relative}
+  .float-br .fc-eyebrow::before{content:none}
+  .float-br .fc-pulse{width:7px;height:7px;border-radius:50%;background:#22B67C;box-shadow:0 0 0 3px rgba(34,182,124,.22), 0 0 10px rgba(34,182,124,.7);animation:fcPulse 1.8s ease-in-out infinite;flex-shrink:0}
+  @keyframes fcPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.18);opacity:.75}}
+  .float-br .fc-title{font-family:var(--font-display);font-weight:500;font-size:15.5px;line-height:1.22;letter-spacing:-.01em;color:var(--cream);position:relative;font-variation-settings:"opsz" 36, "SOFT" 50, "WONK" 0}
+
+  /* Mini stats grid */
+  .float-br .fc-stats{list-style:none;margin:14px 0 12px;padding:12px 0;border-top:1px solid rgba(229,174,61,.16);border-bottom:1px solid rgba(229,174,61,.16);display:grid;grid-template-columns:repeat(3,1fr);gap:6px;position:relative}
+  .float-br .fc-stats li{display:flex;flex-direction:column;gap:3px;align-items:flex-start;padding-right:6px;border-right:1px solid rgba(255,255,255,.06)}
+  .float-br .fc-stats li:last-child{border-right:none;padding-right:0}
+  .float-br .fc-stats .lbl{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(239,227,211,.82);font-weight:500}
+  .float-br .fc-stats .val{font-family:var(--font-display);font-size:14.5px;line-height:1;color:var(--cream);font-weight:500;letter-spacing:-.015em;font-variation-settings:"opsz" 144, "SOFT" 30, "WONK" 0;font-feature-settings:"tnum","lnum"}
+  .float-br .fc-stats .val em{font-style:normal;color:var(--gold-bright);font-size:11px;margin-left:1px;letter-spacing:0}
+
+  /* Topic tags row */
+  .float-br .fc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;position:relative}
+  .float-br .fc-tags span{font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:rgba(239,227,211,.85);padding:4px 8px 3px;border:1px solid rgba(239,227,211,.14);border-radius:999px;background:rgba(255,255,255,.03)}
+
+  /* Foot row redesigned */
+  .float-br .fc-foot{margin-top:0;padding-top:12px;border-top:1px solid rgba(255,255,255,.10);display:flex;justify-content:space-between;align-items:center;font-size:10.5px;color:rgba(239,227,211,.85);position:relative}
+  .float-br .fc-status{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;font-size:9.5px;font-weight:500}
+  .float-br .fc-status i{width:6px;height:6px;border-radius:50%;background:#22B67C;display:inline-block;box-shadow:0 0 8px rgba(34,182,124,.7);animation:fcPulse 1.8s ease-in-out infinite}
+  .float-br .fc-foot strong{font-family:var(--font-display);font-size:20px;font-weight:500;color:var(--gold-bright);letter-spacing:-.025em;font-variation-settings:"opsz" 144, "SOFT" 30, "WONK" 0;font-feature-settings:"tnum","lnum";line-height:1}
+
+  .float-video{position:absolute;bottom:14%;left:-7%;background:#fff;border-radius:999px;padding:7px 16px 7px 7px;display:inline-flex;align-items:center;gap:10px;box-shadow:0 18px 36px -14px rgba(6,38,76,.32);border:1px solid rgba(6,38,76,.05);font-size:12.5px;font-weight:600;color:var(--navy);cursor:pointer;z-index:6;text-decoration:none}
+  .float-video .play{width:28px;height:28px;border-radius:50%;background:var(--navy);color:var(--gold-bright);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+
+  /* ════════════════════════════════════════════════════
+     BRANDING TYPOGRAPHY · per Logo-Design guidelines
+     - Display: Fraunces (variable opsz/SOFT/WONK)
+     - Body:    Geist
+     - Mono:    Geist Mono (labels, eyebrows, captions)
+     - Italic gold accents always carry WONK 1 / SOFT 100
+     ════════════════════════════════════════════════════ */
+
+  /* Body text — slightly softer color, refined rendering */
+  body{color:var(--navy);font-weight:400;font-feature-settings:"ss01","ss02","cv01","cv11"}
+
+  /* All display headings inherit a Fraunces preset that is
+     opsz-tuned to their size. We re-apply per element so
+     specificity always wins over the legacy declarations.
+     IMPORTANT: no color here — each section sets its own. */
+  h1,h2,h3,h4,h5,h6,
+  .hero h1,
+  .section h2,
+  .okruh-body h3,
+  .free-card h3,
+  .free-card h3 + *,
+  .acc-item summary,
+  .price-num,
+  .dark-tile h4,
+  .form-card h3,
+  .founder h3,
+  .lp-title,
+  .chat-name,
+  .float-br .fc-title{
+    font-family:var(--font-display);
+    font-variation-settings:var(--fr-display);
+    font-feature-settings:"ss01";
+  }
+  /* Default heading color on LIGHT surfaces only */
+  h1,h2,h3,h4,h5,h6{color:var(--navy)}
+  /* Dark surfaces — restore cream */
+  .dark-section h2, .dark-section p, .dark-section h3, .dark-section h4,
+  .dark-tile h4, .dark-tile p,
+  .free-card h3, .free-card .pitch, .free-card .body,
+  .form-card h3, .form-card p, .form-card label,
+  .lead-card h3, .lead-card p, .lead-card label,
+  .founder h3, .founder p,
+  .price-card.featured .price-num,
+  .price-card.featured .price-desc{
+    color:var(--cream);
+  }
+
+  /* Hero headline: max optical size + a touch of softness */
+  .hero h1{
+    font-weight:400;
+    font-size:clamp(42px,5.8vw,80px);
+    line-height:.98;
+    letter-spacing:-.03em;
+    font-variation-settings:"opsz" 144, "SOFT" 60, "WONK" 0;
+  }
+
+  /* Section H2 — slightly lighter weight reads more editorial */
+  .section h2{
+    font-weight:400;
+    font-size:clamp(34px,4.2vw,56px);
+    line-height:1.02;
+    letter-spacing:-.025em;
+    font-variation-settings:"opsz" 144, "SOFT" 50, "WONK" 0;
+  }
+
+  /* Mid headings */
+  .okruh-body h3, .dark-tile h4, .free-card h3, .form-card h3,
+  .founder h3, .acc-item summary{
+    font-weight:500;
+    font-variation-settings:"opsz" 60, "SOFT" 50, "WONK" 0;
+  }
+
+  /* Italic accent — SAME color as the heading, just italic for emphasis.
+     No multi-color text — accessibility & calm reading first. */
+  .hero h1 em, .section h2 em, .founder h3 em, .form-card h3 em,
+  .free-card h3 em, .dark-tile h4 em, .acc-item summary em,
+  .foot-cta-label em, .float-br .fc-title em{
+    font-style:italic;
+    color:inherit;
+    font-weight:500;
+    font-variation-settings:"opsz" 144, "SOFT" 50, "WONK" 0;
+    letter-spacing:-.005em;
+  }
+
+  /* Hero hook — Fraunces italic in muted navy */
+  .hero-hook{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:400;
+    font-variation-settings:"opsz" 36, "SOFT" 100, "WONK" 0;
+    color:rgba(6,38,76,.72);
+    letter-spacing:-.005em;
+  }
+
+  /* ── Mono labels: eyebrow, badges, micro-captions ── */
+  .eyebrow,
+  .free-badge,
+  .partners-label,
+  .dark-tile .cat,
+  .free-card .included,
+  .acc-body .solution strong,
+  .price-tag,
+  .price-name,
+  .foot-col h6,
+  .founder-info h5,
+  .float-br .fc-eyebrow,
+  .foot-cta-label,
+  .field label,
+  .nav-links a{
+    font-family:var(--font-mono);
+    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-feature-settings:"ss01";
+  }
+
+  /* Eyebrow — refined pill, calm and readable */
+  .eyebrow{
+    font-size:10.5px;
+    letter-spacing:.16em;
+    padding:6px 12px 5px;
+    background:rgba(6,38,76,.06);
+    color:var(--navy);
+    border:1px solid rgba(6,38,76,.10);
+    font-weight:600;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:5px;height:5px;border-radius:50%;
+    background:var(--gold);
+  }
+  .dark-section .eyebrow,
+  .lead-card .eyebrow,
+  .formfounder .eyebrow{
+    background:rgba(239,227,211,.10);
+    color:var(--cream);
+    border-color:rgba(239,227,211,.18);
+  }
+  .dark-section .eyebrow::before,
+  .lead-card .eyebrow::before,
+  .formfounder .eyebrow::before{background:var(--gold)}
+
+  /* Nav links — Mono, micro, uppercase */
+  .nav-links a{
+    font-size:11.5px;
+    letter-spacing:.14em;
+    opacity:.72;
+    color:var(--navy);
+  }
+  .nav-links a:hover{opacity:1}
+
+  /* Section sub-captions / quiet labels */
+  .free-badge{
+    color:var(--gold-bright);
+    background:rgba(229,174,61,.15);
+    padding:5px 12px 4px;
+    border-radius:999px;
+    font-size:10.5px;letter-spacing:.16em;
+    display:inline-block;
+    border:1px solid rgba(229,174,61,.34);
+    font-weight:600;
+  }
+  .partners-label{font-size:11px;letter-spacing:.14em;color:rgba(6,38,76,.72)}
+  .dark-tile .cat{font-size:10.5px;letter-spacing:.16em;color:var(--gold-bright)}
+  .free-card .included{font-size:10px;letter-spacing:.16em;color:rgba(239,227,211,.82)}
+  .acc-body .solution strong{font-size:11px;letter-spacing:.12em;color:var(--gold-deep)}
+  .price-tag{font-size:10px;letter-spacing:.14em;padding:5px 12px 4px;font-weight:600}
+  .price-name{font-size:10.5px;letter-spacing:.16em;color:rgba(6,38,76,.72)}
+  .foot-col h6{font-size:10.5px;letter-spacing:.16em;color:rgba(239,227,211,.82)}
+  .founder-info h5{font-size:11px;letter-spacing:.14em;color:var(--gold-bright)}
+  .float-br .fc-eyebrow{font-size:10px;letter-spacing:.18em;color:var(--gold-bright)}
+  .field label{font-size:10.5px;letter-spacing:.12em;color:rgba(239,227,211,.85)}
+
+  /* "foot-cta-label" footer eyebrow — italic accent style */
+  .foot-cta-label{
+    font-family:var(--font-mono);
+    font-style:normal;
+    font-size:10.5px;
+    letter-spacing:.16em;
+    color:var(--gold-bright);
+    font-weight:500;
+  }
+
+  /* Stat numbers — Fraunces with optical sizing */
+  .stat .n,
+  .price-num,
+  .free-card h3,
+  .dark-foot strong,
+  .founder-card .av,
+  .float-br .fc-foot strong{
+    font-variation-settings:"opsz" 144, "SOFT" 30, "WONK" 0;
+    font-feature-settings:"tnum","lnum","ss01";
+    letter-spacing:-.025em;
+  }
+
+  /* Accordion number — gold mustard digit */
+  .acc-num{
+    font-family:var(--font-mono);
+    font-weight:500;
+    color:var(--gold-deep);
+    font-size:11px;
+    letter-spacing:.06em;
+    font-variation-settings:normal;
+  }
+
+  /* Buttons — Geist, slightly tighter tracking */
+  .btn{
+    font-family:var(--font-sans);
+    font-weight:500;
+    letter-spacing:-.005em;
+  }
+
+  /* Hero pill — small Geist label with rounded chip */
+  .hero-pill{
+    font-family:var(--font-sans);
+    font-weight:500;
+    font-size:12.5px;
+    letter-spacing:.005em;
+    color:var(--navy);
+  }
+
+  /* Inputs */
+  .field input, .field textarea,
+  .lead-popup input{
+    font-family:var(--font-sans);
+    font-weight:400;
+    letter-spacing:-.005em;
+  }
+
+  /* Code-style mono touches inside small UI labels */
+  .partners-marks span:nth-child(2){
+    font-family:var(--font-mono);
+    font-weight:500;
+    letter-spacing:.06em;
+    font-size:14px;
+    text-transform:uppercase;
+  }
+  .partners-marks span:nth-child(1),
+  .partners-marks span:nth-child(3){
+    font-variation-settings:"opsz" 144, "SOFT" 100, "WONK" 1;
+  }
+
+  /* Footer chat avatar — mono initial */
+  .chat-avatar{
+    font-family:var(--font-display);
+    font-variation-settings:"opsz" 60, "SOFT" 50, "WONK" 0;
+    font-weight:500;
+  }
+
+  /* Phone status bar — mono, micro */
+  .phone-statusbar{
+    font-family:var(--font-mono);
+    font-weight:500;
+    font-size:10px;
+    letter-spacing:.04em;
+  }
+
+  /* Floating widget title in hero */
+  .float-br .fc-title{
+    font-variation-settings:"opsz" 36, "SOFT" 50, "WONK" 0;
+    font-weight:500;
+  }
+
+  /* Founder pill chip */
+  .founder-pill{
+    font-family:var(--font-mono);
+    text-transform:uppercase;
+    font-size:10.5px;
+    letter-spacing:.14em;
+    font-weight:500;
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     PREMIUM MOTION SYSTEM · "Aurora Gold"
+     Living, breathing micro-interactions for every clickable surface.
+     Tokens: --aurora-gold, --ease-spring, --glow-gold
+     ════════════════════════════════════════════════════════════ */
+
+  /* ── 0. Universal kinetic baseline ── */
+  @media (prefers-reduced-motion:no-preference){
+    .btn,.float-video,.lp-close,.foot-socials a,
+    .hero-pill,.founder-pill,.nav-links a,.mobile-toggle,.acc-toggle,
+    .price-card,.okruh-card,.dark-tile{
+      transition:transform .45s var(--ease-spring),
+                 box-shadow .45s var(--ease-out-quart),
+                 background .45s var(--ease-out-quart),
+                 color .25s var(--ease-out-quart),
+                 border-color .35s var(--ease-out-quart);
+    }
+  }
+
+  /* ── 1. Universal .btn — calm, premium, no flashy effects ── */
+  .btn{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+    transform:translateZ(0);
+    padding:13px 24px;
+    font-weight:500;
+    letter-spacing:-.005em;
+    border:1px solid transparent;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+    transition:transform .35s var(--ease-out-quart),
+               box-shadow .35s var(--ease-out-quart),
+               border-color .25s var(--ease-out-quart);
+  }
+  .btn > *{position:relative;z-index:2}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0);transition-duration:.08s}
+
+  /* ── 2. .btn-gold — solid mustard, no flow animation ── */
+  .btn-gold{
+    background:linear-gradient(135deg,var(--navy-soft) 0%,var(--navy) 60%,var(--navy-deep) 100%);
+    color:var(--cream);
+    box-shadow:0 12px 28px -12px rgba(3,21,46,.6),
+               0 0 0 1px rgba(229,174,61,.32),
+               0 6px 22px -10px rgba(229,174,61,.30);
+  }
+  .btn-gold:hover{
+    background:linear-gradient(135deg,#14457e 0%,var(--navy) 55%,var(--navy-deep) 100%);
+    color:#fff;
+    box-shadow:0 16px 36px -12px rgba(3,21,46,.72),
+               0 0 0 1px rgba(242,181,68,.5),
+               0 0 30px -6px rgba(242,181,68,.5);
+  }
+
+  /* ── 2b. Animated traveling-light border on gold CTAs ──
+        A conic gradient (a faint warm rim + one bright comet) rotates around
+        the pill, masked to a 1.6px ring so only the border edge lights up.
+        Runs on every gold CTA + the gold newsletter button. ── */
+  @property --gp-spin{ syntax:"<angle>"; initial-value:0deg; inherits:false; }
+  .btn-gold::after{
+    content:"";
+    position:absolute; inset:0;
+    border-radius:inherit;
+    padding:1.8px;                              /* ring thickness */
+    background:conic-gradient(from var(--gp-spin),
+        #FFF1CC 0deg,
+        rgba(245,196,90,.95) 14deg,
+        rgba(229,174,61,.22) 70deg,
+        rgba(229,174,61,.16) 255deg,
+        rgba(245,196,90,.62) 326deg,
+        #FFF1CC 360deg);
+    /* show only the ring (border-box minus content-box) */
+    -webkit-mask:linear-gradient(#000 0 0) content-box,
+                 linear-gradient(#000 0 0);
+            mask:linear-gradient(#000 0 0) content-box,
+                 linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+            mask-composite:exclude;
+    opacity:.92;
+    pointer-events:none;
+    z-index:1;                                  /* above gold fill, below text (z2) */
+    animation:gp-spin-border 3.6s linear infinite;
+    transition:opacity .35s var(--ease-out-quart);
+    will-change:--gp-spin;
+  }
+  @keyframes gp-spin-border{ to{ --gp-spin:360deg; } }
+  /* hover/focus: ring goes full-strength alongside the warm halo */
+  .btn-gold:hover::after,
+  .btn-gold:focus-visible::after{ opacity:1; }
+
+  /* ── 3. .btn-primary — solid navy, subtle lift only ── */
+  .btn-primary{
+    background:linear-gradient(135deg,var(--navy-soft),var(--navy));
+    color:var(--cream);
+    box-shadow:0 6px 16px -8px rgba(3,21,46,.45),
+               0 0 0 1px rgba(229,174,61,.2);
+  }
+  .btn-primary:hover{
+    background:var(--navy);
+    box-shadow:0 12px 24px -10px rgba(3,21,46,.55), 0 0 0 1px rgba(229,174,61,.30);
+  }
+
+  /* ── 4. .btn-ghost — clean outline, soft border tint on hover ── */
+  .btn-ghost{
+    background:transparent;
+    color:var(--navy);
+    border:1.5px solid rgba(6,38,76,.22);
+  }
+  .btn-ghost:hover{
+    border-color:rgba(204,151,45,.6);
+    background:rgba(204,151,45,.07);
+    box-shadow:0 6px 16px -10px rgba(6,38,76,.25);
+  }
+
+  /* ── 5. .btn-light — soft cream pill ── */
+  .btn-light{
+    background:#fff;
+    color:var(--navy);
+    border:1px solid var(--line);
+    box-shadow:0 4px 12px -6px rgba(6,38,76,.14);
+  }
+  .btn-light:hover{
+    background:#fff;
+    border-color:rgba(6,38,76,.22);
+    box-shadow:0 10px 20px -10px rgba(6,38,76,.20);
+  }
+
+  /* ── 6. Arrow — gentle slide only ── */
+  .btn .arrow{
+    display:inline-block;
+    transition:transform .35s var(--ease-out-quart);
+  }
+  .btn:hover .arrow{transform:translateX(4px)}
+
+  /* ── 7. Hero CTAs are slightly larger ── */
+  .hero-ctas .btn{padding:16px 30px;font-size:15px;border-radius:999px}
+
+  /* ── 8. Nav links — opacity-only hover (no color shift) ── */
+  .nav-links a{
+    position:relative;
+    padding:6px 0;
+    transition:opacity .25s var(--ease-out-quart);
+  }
+  .nav-links a:hover{opacity:1}
+
+  /* ── 11. Mobile toggle — soft squircle.
+     Default = visible (inline-flex). Desktop media below hides it.
+     Two competing rules earlier in the file caused it to never show; this
+     inverted approach is robust regardless of source order. */
+  .mobile-toggle{
+    width:46px;height:46px;
+    border-radius:14px;
+    background:transparent;
+    border:1px solid transparent;
+    box-shadow:none;
+    padding:0;
+    margin-right:-10px;
+    display:inline-flex;
+    align-items:center;justify-content:center;
+    color:var(--navy);
+    font-size:22px;
+    transition:transform .25s var(--ease-out-quart),box-shadow .25s,border-color .25s,background .25s;
+    flex-shrink:0;
+  }
+  .mobile-toggle iconify-icon{font-size:22px;display:inline-flex}
+  .mobile-toggle:hover{border-color:rgba(6,38,76,.18);background:rgba(6,38,76,.06);box-shadow:none}
+  .mobile-toggle:active{transform:scale(.96)}
+  .mobile-toggle[aria-expanded="true"]{
+    background:var(--navy);
+    color:var(--cream);
+    border-color:var(--navy);
+  }
+  .mobile-toggle[aria-expanded="true"] iconify-icon{color:var(--cream)}
+  @media (min-width:981px){
+    .mobile-toggle{display:none !important}
+  }
+
+  /* ── 12. Float-video — calm lift + soft glow ── */
+  .float-video{
+    transition:transform .35s var(--ease-out-quart),box-shadow .35s var(--ease-out-quart);
+    position:absolute;
+  }
+  .float-video:hover{
+    transform:translateY(-2px);
+    box-shadow:0 16px 32px -14px rgba(6,38,76,.35);
+  }
+  .float-video .play{
+    position:relative;
+    background:var(--gold);
+    transition:transform .35s var(--ease-out-quart);
+  }
+  .float-video:hover .play{transform:scale(1.05)}
+
+  /* ── 13. Lp-close — gentle rotate, no color flash ── */
+  .lp-close{
+    transition:transform .3s var(--ease-out-quart),background .25s,border-color .25s;
+    cursor:pointer;
+    position:absolute;
+    border:1px solid transparent;
+  }
+  .lp-close:hover{
+    transform:rotate(90deg);
+    background:var(--cream-deep);
+  }
+  .lp-close:active{transform:rotate(90deg) scale(.94)}
+
+  /* ── 15. Hero pill — soft hover, no scale ── */
+  .hero-pill{
+    position:relative;
+    transition:border-color .3s var(--ease-out-quart),background .3s,box-shadow .3s;
+    cursor:default;
+  }
+  .hero-pill:hover{
+    border-color:rgba(6,38,76,.22);
+    background:rgba(6,38,76,.04);
+  }
+
+  /* ── 16. Founder pill — static, no breathing animation ── */
+  .founder-pill{
+    position:relative;
+    cursor:default;
+    transition:border-color .3s,background .3s;
+  }
+  .founder-pill:hover{background:rgba(168,119,24,.16)}
+
+  /* ── 17. Foot social icons — gentle lift, brand-aligned ── */
+  .foot-socials a{
+    position:relative;
+    overflow:hidden;
+    transition:transform .3s var(--ease-out-quart),color .25s,background .25s;
+  }
+  .foot-socials a:hover{
+    transform:translateY(-2px);
+    color:var(--gold-bright);
+    background:var(--navy-soft);
+    border-color:rgba(229,174,61,.4);
+  }
+  .foot-socials a:active{transform:translateY(0)}
+
+  /* ── 18. Accordion — calm hover, gold accent only on focus ── */
+  .acc-toggle{
+    position:relative;
+    transition:transform .3s var(--ease-out-quart),background .25s;
+  }
+  .acc-item:hover .acc-toggle{background:var(--cream-deep)}
+  .acc-item[open]:hover .acc-toggle{transform:rotate(45deg)}
+  .acc-item{transition:border-color .3s var(--ease-out-quart),box-shadow .3s,background .3s}
+  .acc-item:hover{
+    border-color:rgba(6,38,76,.22);
+    box-shadow:0 8px 20px -14px rgba(6,38,76,.18);
+  }
+  .acc-item[open]{
+    border-color:rgba(6,38,76,.22);
+    box-shadow:0 10px 28px -16px rgba(6,38,76,.18);
+  }
+
+  /* ── 19. Cards — calm lift only ── */
+  .okruh-card,.price-card,.dark-tile{cursor:default}
+  .okruh-card{transition:transform .3s var(--ease-out-quart),box-shadow .3s,border-color .3s}
+  .dark-tile{transition:background .3s,transform .3s var(--ease-out-quart),border-color .3s}
+  .okruh-card:hover,.dark-tile:hover{transform:translateY(-2px)}
+  .price-card{transition:transform .3s var(--ease-out-quart),box-shadow .3s,border-color .3s}
+  .price-card:hover{transform:translateY(-3px);box-shadow:0 16px 36px -18px rgba(6,38,76,.22)}
+
+  /* ════════════════════════════════════════════════════════════
+     HERO CONVERSION STRIP — high-priority form right under hero
+     ════════════════════════════════════════════════════════════ */
+  .lead-strip{
+    padding:30px 0 60px;
+    background:var(--cream);
+    position:relative;
+  }
+  .lead-strip .wrap{position:relative;z-index:2}
+  .lead-card{
+    background:var(--navy);
+    color:var(--cream);
+    border-radius:28px;
+    padding:44px 48px 40px;
+    border:1px solid rgba(255,255,255,.06);
+    box-shadow:0 30px 80px -32px rgba(3,21,46,.55), 0 12px 28px -16px rgba(6,38,76,.32);
+    position:relative;
+    overflow:hidden;
+  }
+  .lead-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(700px circle at 90% -10%, rgba(229,174,61,.10) 0%, transparent 55%),
+      radial-gradient(500px circle at -5% 110%, rgba(229,174,61,.06) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  .lead-card > *{position:relative;z-index:1}
+
+  .lead-head{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:24px 40px;
+    align-items:end;
+    margin-bottom:28px;
+    padding-bottom:24px;
+    border-bottom:1px solid rgba(239,227,211,.12);
+  }
+  .lead-head .eyebrow{
+    grid-column:1;grid-row:1;
+    align-self:start;
+    margin-bottom:0;
+  }
+  .lead-head h3{
+    grid-column:1;grid-row:2;
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(28px,3.2vw,38px);
+    line-height:1.05;
+    letter-spacing:-.02em;
+    color:var(--cream);
+    margin:14px 0 0;
+  }
+  .lead-head .desc{
+    grid-column:2;grid-row:1 / span 2;
+    font-size:14.5px;
+    color:rgba(239,227,211,.85);
+    line-height:1.6;
+    max-width:440px;
+    margin:0;
+  }
+  .lead-head .desc strong{color:var(--cream);font-weight:600}
+
+  .lead-form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px 22px;
+  }
+  .lead-form-grid .field-full,
+  .lead-form-grid .lead-actions{grid-column:1 / -1}
+
+  .lead-actions{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:14px 24px;
+    align-items:center;
+    margin-top:8px;
+  }
+  .lead-actions .btn{
+    padding:16px 32px;
+    font-size:15.5px;
+    justify-content:center;
+  }
+  .lead-actions .form-foot{
+    margin-top:0;
+    text-align:left;
+    font-size:12.5px;
+    color:rgba(239,227,211,.82);
+  }
+
+  /* ── THICK-BORDER FORM FIELDS (dark surfaces) ── */
+  .lead-card .field label,
+  .form-card .field label{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgba(239,227,211,.82);
+    margin-bottom:8px;
+    font-weight:500;
+  }
+  .lead-card .field label .optional{
+    color:rgba(239,227,211,.72);
+    font-weight:400;
+    text-transform:none;
+    letter-spacing:.04em;
+    margin-left:4px;
+  }
+  .lead-card .field input,
+  .lead-card .field textarea,
+  .form-card .field input,
+  .form-card .field textarea{
+    width:100%;
+    background:transparent;
+    border:2.5px solid var(--cream);
+    color:var(--cream);
+    font-family:var(--font-sans);
+    font-size:15px;
+    font-weight:400;
+    padding:16px 18px;
+    border-radius:14px;
+    transition:border-color .2s var(--ease-out-quart),
+               background .2s var(--ease-out-quart),
+               box-shadow .2s var(--ease-out-quart);
+    letter-spacing:-.005em;
+  }
+  .lead-card .field input::placeholder,
+  .lead-card .field textarea::placeholder,
+  .form-card .field input::placeholder,
+  .form-card .field textarea::placeholder{
+    color:rgba(239,227,211,.82);
+  }
+  .lead-card .field input:hover,
+  .lead-card .field textarea:hover,
+  .form-card .field input:hover,
+  .form-card .field textarea:hover{
+    border-color:#fff;
+    background:rgba(255,255,255,.04);
+  }
+  .lead-card .field input:focus,
+  .lead-card .field textarea:focus,
+  .form-card .field input:focus,
+  .form-card .field textarea:focus{
+    outline:none;
+    border-color:var(--gold);
+    background:rgba(255,255,255,.05);
+    box-shadow:0 0 0 4px rgba(204,151,45,.22);
+  }
+  /* Autofill — keep dark theme intact */
+  .lead-card .field input:-webkit-autofill,
+  .form-card .field input:-webkit-autofill{
+    -webkit-text-fill-color:var(--cream);
+    -webkit-box-shadow:0 0 0 100px var(--navy) inset;
+    caret-color:var(--cream);
+  }
+  .lead-card .field textarea,
+  .form-card .field textarea{min-height:96px;resize:vertical}
+
+  /* Light-surface form fields (popup) get thick navy borders */
+  .lead-popup .field input,
+  .lead-popup input[type="email"]{
+    border-width:2px;
+    border-color:rgba(6,38,76,.20);
+    border-radius:14px;
+    padding:14px 16px;
+    transition:border-color .25s,box-shadow .25s,background .25s;
+  }
+  .lead-popup input:hover{border-color:rgba(6,38,76,.4)}
+  .lead-popup input:focus{
+    outline:none;
+    border-color:var(--gold);
+    box-shadow:0 0 0 4px rgba(204,151,45,.18);
+    background:#fff;
+  }
+
+  /* Stack the lead head on smaller screens */
+  @media (max-width:860px){
+    .lead-card{padding:30px 26px 26px;border-radius:22px}
+    .lead-head{grid-template-columns:1fr;gap:14px}
+    .lead-head .eyebrow,.lead-head h3,.lead-head .desc{grid-column:1;grid-row:auto}
+    .lead-head h3{margin-top:6px}
+    .lead-form-grid{grid-template-columns:1fr;gap:16px}
+    .lead-actions{grid-template-columns:1fr;gap:10px}
+    .lead-actions .form-foot{text-align:center}
+  }
+
+  /* Founder-only mode: collapse ff-grid to single column */
+  .formfounder--solo .ff-grid{
+    grid-template-columns:1fr;
+    max-width:820px;
+    margin:0 auto;
+  }
+  /* Founder-only WITH portrait: two-column, portrait left */
+  .formfounder--solo.formfounder--portrait .ff-grid{
+    grid-template-columns:minmax(260px,360px) 1fr;
+    max-width:1080px;
+    gap:64px;
+    align-items:center;
+  }
+
+  /* Circular founder portrait — gold double ring + warm glow */
+  .founder-portrait{
+    position:relative;
+    width:100%;
+    aspect-ratio:1/1;
+    border-radius:50%;
+    isolation:isolate;
+    justify-self:center;
+  }
+  .founder-portrait::before{
+    content:"";
+    position:absolute;
+    inset:-22px;
+    border-radius:50%;
+    background:radial-gradient(circle at 50% 45%, rgba(204,151,45,.32), rgba(204,151,45,0) 62%);
+    filter:blur(8px);
+    z-index:-1;
+  }
+  .founder-portrait::after{
+    content:"";
+    position:absolute;
+    inset:-6px;
+    border-radius:50%;
+    border:1px solid rgba(204,151,45,.55);
+    box-shadow:
+      inset 0 0 0 6px rgba(6,38,76,.96),
+      inset 0 0 0 7px rgba(204,151,45,.35),
+      0 24px 60px -18px rgba(0,0,0,.6);
+    pointer-events:none;
+    z-index:1;
+  }
+  .founder-portrait img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:50% 28%;
+    border-radius:50%;
+    display:block;
+    filter:saturate(.96) contrast(1.02);
+  }
+  .founder-portrait .fp-sig{
+    position:absolute;
+    left:50%;
+    bottom:-14px;
+    transform:translateX(-50%);
+    background:linear-gradient(180deg,var(--gold-bright),var(--gold));
+    color:var(--navy);
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:.04em;
+    padding:9px 18px;
+    border-radius:999px;
+    box-shadow:
+      0 0 0 4px var(--navy),
+      0 0 0 5px rgba(204,151,45,.55),
+      0 14px 28px -10px rgba(0,0,0,.55);
+    white-space:nowrap;
+    z-index:3;
+  }
+
+  /* Small circular photo inside the founder-card (replaces "JH" text avatar) */
+  .founder-card .av.av-photo{
+    background:var(--navy-2);
+    overflow:hidden;
+    padding:0;
+    box-shadow:inset 0 0 0 1px rgba(204,151,45,.5);
+  }
+  .founder-card .av.av-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:50% 28%;
+    display:block;
+  }
+
+  @media (max-width:900px){
+    .formfounder--solo.formfounder--portrait .ff-grid{
+      grid-template-columns:1fr;
+      gap:32px;
+      max-width:560px;
+    }
+    .founder-portrait{
+      max-width:240px;
+      margin:0 auto;
+    }
+    .founder-portrait .fp-sig{font-size:12px;padding:7px 14px;bottom:-12px}
+  }
+
+  /* ── Price strike prefix inside CTA buttons ── */
+  .btn .price-strike{
+    display:inline-flex;
+    align-items:center;
+    position:relative;
+    font-family:var(--font-mono);
+    font-weight:500;
+    font-size:.78em;
+    letter-spacing:.02em;
+    margin-right:8px;
+    padding:2px 8px 1px;
+    border-radius:6px;
+    opacity:.72;
+    text-decoration:line-through;
+    text-decoration-thickness:1.5px;
+    text-decoration-color:currentColor;
+  }
+  .btn-gold .price-strike{
+    background:rgba(255,255,255,.12);
+    color:var(--cream);
+    text-decoration-color:rgba(239,227,211,.9);
+  }
+  .btn-primary .price-strike{
+    background:rgba(255,255,255,.10);
+    color:var(--cream);
+    text-decoration-color:rgba(239,227,211,.9);
+  }
+  .btn-light .price-strike,
+  .btn-ghost .price-strike{
+    background:rgba(6,38,76,.06);
+    color:var(--navy);
+    text-decoration-color:rgba(6,38,76,.85);
+  }
+  /* On narrow buttons, allow wrap so strike can sit above */
+  @media (max-width:520px){
+    .btn .price-strike{font-size:.72em;padding:1px 6px;margin-right:6px}
+  }
+
+  /* ── 20. Focus-visible rings (a11y) — comprehensive ── */
+  .btn:focus-visible,
+  .float-video:focus-visible,
+  .lp-close:focus-visible,
+  .foot-socials a:focus-visible,
+  .mobile-toggle:focus-visible,
+  .nav-links a:focus-visible,
+  .price-foot a:focus-visible,
+  .founder-card a:focus-visible,
+  .foot-col a:focus-visible,
+  .foot-bottom a:focus-visible{
+    outline:none;
+    box-shadow:0 0 0 2px var(--cream), 0 0 0 4px var(--navy);
+    border-radius:8px;
+  }
+  /* Focus on dark surfaces uses gold ring for clarity */
+  .dark-section .btn:focus-visible,
+  .formfounder .btn:focus-visible,
+  .foot-socials a:focus-visible,
+  .foot-col a:focus-visible,
+  .foot-bottom a:focus-visible,
+  .founder-card a:focus-visible{
+    box-shadow:0 0 0 2px var(--navy-deep), 0 0 0 4px var(--gold);
+  }
+  /* Accordion summary keyboard focus */
+  .acc-item summary:focus-visible{
+    outline:none;
+    box-shadow:0 0 0 3px rgba(204,151,45,.5);
+    border-radius:8px;
+  }
+  /* Details summary needs offset */
+  details > summary:focus{outline:none}
+
+  /* ── Minimum tap targets 44x44 (WCAG 2.5.5) ── */
+  @media (pointer:coarse){
+    .nav-links a,
+    .foot-col ul a,
+    .foot-bottom ul a,
+    .price-foot a{
+      min-height:44px;
+      display:inline-flex;
+      align-items:center;
+    }
+    .btn{min-height:44px}
+    .lp-close{width:36px;height:36px}
+  }
+
+  /* ── Improved contrast on dark surfaces (WCAG AA) ── */
+  .foot-col h6,
+  .free-card .included,
+  .foot-bottom{color:rgba(239,227,211,.85)}
+  .foot-brand p{color:rgba(239,227,211,.85)}
+  .foot-bottom > div{color:rgba(239,227,211,.82)}
+
+  /* ── 22. Reduced motion: kill animations ── */
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+      animation-duration:.001s!important;
+      animation-iteration-count:1!important;
+      transition-duration:.15s!important;
+    }
+    body::before{animation:none}
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     GASTROUP · 2026 ADDITIONS
+     Full-lockup logo · Dual CTA hub · FAPI checkout · cal.com demo
+     ════════════════════════════════════════════════════════════ */
+
+  /* ── Brand logo: full transparent lockup ── */
+  .logo-img{height:42px;width:auto;display:block;
+    filter:drop-shadow(0 5px 14px rgba(6,38,76,.16));
+    transition:transform .45s var(--ease-out-expo)}
+  .logo:hover .logo-img{transform:translateY(-1px) scale(1.015)}
+  .foot-brand .logo{display:inline-flex;margin-bottom:22px}
+  /* footer sits on navy → wrap lockup in a soft cream chip so the navy wordmark stays legible */
+  .logo-chip{display:inline-flex;align-items:center;padding:14px 22px;border-radius:18px;
+    background:var(--cream);
+    box-shadow:0 16px 40px -18px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.05)}
+  .foot-brand .logo-img{height:40px;filter:none}
+  @media (max-width:580px){
+    .logo-img{height:34px}
+    .foot-brand .logo-img{height:36px}
+    .logo-chip{padding:12px 18px;border-radius:15px}
+  }
+
+  /* ── Dual CTA decision hub ── */
+  .choice-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;position:relative}
+  .choice-card{position:relative;display:flex;flex-direction:column;
+    border-radius:28px;padding:38px 36px 32px;overflow:hidden;
+    transition:transform .4s var(--ease-out-expo),box-shadow .4s var(--ease-out-expo)}
+  .choice-card:hover{transform:translateY(-5px)}
+  .choice-a{background:var(--navy);color:var(--cream);
+    box-shadow:0 32px 76px -32px rgba(3,21,46,.6),0 12px 28px -18px rgba(6,38,76,.32)}
+  .choice-a::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(640px circle at 88% -14%,rgba(229,174,61,.18),transparent 56%),
+               radial-gradient(460px circle at -6% 114%,rgba(229,174,61,.08),transparent 60%)}
+  .choice-b{background:var(--cream-pale);color:var(--navy);
+    border:1.5px solid var(--line);box-shadow:var(--shadow-card)}
+  .choice-card > *{position:relative;z-index:1}
+  .choice-badge{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:500;padding:7px 13px;border-radius:999px;margin-bottom:20px}
+  .choice-badge iconify-icon{font-size:14px}
+  .choice-a .choice-badge{background:rgba(229,174,61,.18);color:var(--gold-bright)}
+  .choice-b .choice-badge{background:rgba(6,38,76,.07);color:var(--navy-soft)}
+  .choice-card h3{font-family:var(--font-display);font-weight:500;
+    font-size:clamp(24px,2.6vw,31px);line-height:1.06;letter-spacing:-.02em;margin-bottom:11px}
+  .choice-card h3 em{font-style:italic;color:var(--gold);font-variation-settings:var(--fr-italic-accent)}
+  .choice-a h3 em{color:var(--gold-bright)}
+  .choice-lead{font-size:14.5px;line-height:1.6;margin-bottom:4px}
+  .choice-a .choice-lead{color:rgba(239,227,211,.82)}
+  .choice-b .choice-lead{color:var(--muted)}
+  .choice-price{display:flex;align-items:baseline;gap:9px;margin:16px 0 20px;flex-wrap:wrap}
+  .choice-price .num{font-family:var(--font-display);font-size:36px;font-weight:500;letter-spacing:-.02em;line-height:1}
+  .choice-price .per{font-size:14px;opacity:.72}
+  .choice-price .was{font-size:14.5px;text-decoration:line-through;opacity:.5}
+  .choice-a .choice-price .num{color:var(--gold-bright)}
+  .choice-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin:0 0 26px;font-size:14px;flex:1}
+  .choice-list li{display:flex;gap:11px;align-items:flex-start;line-height:1.45}
+  .choice-list iconify-icon{flex-shrink:0;margin-top:1px;font-size:18px}
+  .choice-a .choice-list iconify-icon{color:var(--gold-bright)}
+  .choice-b .choice-list iconify-icon{color:var(--emerald)}
+  .choice-a .choice-list li{color:rgba(239,227,211,.9)}
+  .choice-cta{width:100%;justify-content:center;padding:16px}
+  .choice-foot{margin-top:13px;font-size:12.5px;text-align:center}
+  .choice-a .choice-foot{color:rgba(239,227,211,.82)}
+  .choice-b .choice-foot{color:var(--muted)}
+  .choice-divider{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;
+    width:48px;height:48px;border-radius:50%;background:var(--navy);color:var(--gold-bright);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);font-style:italic;font-size:15px;font-weight:600;
+    box-shadow:0 10px 26px -10px rgba(204,151,45,.7),0 0 0 6px var(--cream)}
+  @media (max-width:860px){
+    .choice-wrap{grid-template-columns:1fr;gap:18px}
+    .choice-divider{position:static;transform:none;margin:-9px auto;box-shadow:0 10px 26px -10px rgba(204,151,45,.7),0 0 0 6px var(--cream)}
+  }
+
+  /* ── Checkout / demo modal ── */
+  .gp-modal{position:fixed;inset:0;z-index:200;display:flex;align-items:flex-start;justify-content:center;
+    padding:38px 16px;overflow-y:auto;overscroll-behavior:contain;background:rgba(3,21,46,.55);backdrop-filter:blur(7px);
+    opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+  .gp-modal.open{opacity:1;visibility:visible}
+  .gp-modal-card{position:relative;width:100%;max-width:660px;margin:0 auto;
+    background:var(--cream-pale);border-radius:24px;
+    box-shadow:0 44px 110px -34px rgba(3,21,46,.65),0 0 0 1px rgba(6,38,76,.06);
+    padding:30px 30px 32px;transform:translateY(18px) scale(.985);
+    transition:transform .38s var(--ease-out-expo)}
+  .gp-modal.open .gp-modal-card{transform:none}
+  .gp-modal-close{position:absolute;top:15px;right:15px;width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;background:rgba(6,38,76,.07);
+    color:var(--navy);font-size:18px;transition:background .2s,transform .25s;z-index:4}
+  .gp-modal-close:hover{background:rgba(6,38,76,.14);transform:rotate(90deg)}
+  .gp-modal-head{margin-bottom:18px;padding-right:46px}
+  .gp-modal-eyebrow{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold-deep);font-weight:500;margin-bottom:9px}
+  .gp-modal-head h3{font-family:var(--font-display);font-weight:500;font-size:clamp(22px,3vw,27px);
+    letter-spacing:-.02em;color:var(--navy);line-height:1.08}
+  .gp-modal-head p{font-size:13.5px;color:var(--muted);margin-top:7px;line-height:1.5}
+  .fapi-host{min-height:120px}
+  .fapi-loading{display:flex;flex-direction:column;align-items:center;gap:15px;padding:46px 0;
+    color:var(--muted);font-size:13.5px}
+  .fapi-spinner{width:32px;height:32px;border-radius:50%;border:3px solid rgba(6,38,76,.14);
+    border-top-color:var(--gold);animation:gp-spin .8s linear infinite}
+  @keyframes gp-spin{to{transform:rotate(360deg)}}
+  .fapi-fallback{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+    font-size:12.5px;text-align:center;color:var(--muted)}
+  .fapi-fallback a{color:var(--gold-deep);text-decoration:underline;font-weight:600}
+  body.gp-modal-open{overflow:hidden}
+
+  /* ── Poptávka / kontakt: třetí, nezávazná cesta (nahradila newsletter) ── */
+  .contact-section{position:relative;overflow:hidden}
+  .contact-section::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(58% 80% at 90% -5%,rgba(204,151,45,.12),transparent 60%)}
+  .contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center;max-width:1080px;margin:0 auto}
+  .contact-copy h2{font-family:var(--font-display);font-weight:400;font-size:clamp(30px,3.6vw,46px);line-height:1.06;letter-spacing:-.02em;color:var(--navy)}
+  .contact-copy h2 em{font-style:italic;color:var(--gold-deep);font-variation-settings:var(--fr-italic-accent)}
+  .contact-copy .sub{font-size:15.5px;line-height:1.65;color:var(--muted);margin:18px 0 30px;max-width:470px}
+  .contact-trust{list-style:none;display:flex;flex-direction:column;gap:18px}
+  .contact-trust li{display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:var(--navy);line-height:1.45}
+  .contact-trust li > iconify-icon{flex-shrink:0;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(204,151,45,.14);color:var(--gold-deep);font-size:20px}
+  .contact-trust strong{display:block;font-weight:600;color:var(--navy)}
+  .contact-trust span{color:var(--muted);font-size:13px}
+  .contact-card .req{color:var(--gold-bright)}
+  .contact-card .opt{color:rgba(239,227,211,.82);font-weight:400;letter-spacing:0}
+  .contact-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .contact-chip{font-family:var(--font-sans);font-size:13px;font-weight:500;color:rgba(239,227,211,.82);
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:999px;
+    padding:8px 15px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:color .2s,background .2s,border-color .2s}
+  .contact-chip iconify-icon{font-size:15px}
+  .contact-chip:hover{border-color:rgba(204,151,45,.5);color:var(--cream)}
+  .contact-chip[aria-pressed="true"]{background:rgba(204,151,45,.16);border-color:var(--gold);color:var(--gold-bright)}
+  .contact-success{display:none;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:30px 18px 14px}
+  .contact-success.show{display:flex}
+  .contact-success iconify-icon{font-size:44px;color:var(--gold-bright)}
+  .contact-success h4{font-family:var(--font-display);font-weight:500;font-size:23px;color:var(--cream)}
+  .contact-success p{font-size:14px;color:rgba(239,227,211,.85);line-height:1.55;max-width:330px}
+
+  /* Soft cross-link z demo bandu → poptávka (cal.com se NEgatuje) */
+  .demo-band-alt{margin-top:12px;font-size:13px;color:rgba(239,227,211,.85)}
+  .demo-band-alt a{color:var(--gold-bright);font-weight:500;border-bottom:1px solid rgba(229,174,61,.45);padding-bottom:1px;transition:color .2s,border-color .2s}
+  .demo-band-alt a:hover{color:#fff;border-color:rgba(229,174,61,.85)}
+
+  /* Footer kontaktní blok (nahradil newsletter widget) */
+  .foot-contact-copy{font-size:13px;color:rgba(239,227,211,.82);line-height:1.55;margin-bottom:14px;max-width:300px}
+  .foot-contact-link{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--cream);background:var(--navy-soft);border:1px solid rgba(229,174,61,.4);border-radius:12px;padding:11px 18px;transition:transform .2s,box-shadow .2s}
+  .foot-contact-link iconify-icon{font-size:16px}
+  .foot-contact-link:hover{transform:translateY(-2px);box-shadow:var(--glow-gold)}
+
+  @media (max-width:880px){
+    .contact-grid{grid-template-columns:1fr;gap:34px}
+  }
+
+  /* ── Form error state & disabled submit ── */
+  .form-error { margin-top:10px; padding:10px 14px; border-radius:8px;
+    background: rgba(220,53,69,.12); border:1px solid rgba(220,53,69,.35);
+    color:#f08080; font-size:13.5px; line-height:1.45; }
+  .btn:disabled, button:disabled { opacity:.6; cursor:not-allowed; pointer-events:none; }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo" aria-label="GastroUp">
+      <img class="logo-img" src="Logo_GastroUp_2_transparent.png" alt="GastroUp" width="957" height="311">
+    </a>
+    <nav class="nav-links">
+      <a href="#okruhy">Co to je</a>
+      <a href="#situace">Jak to funguje</a>
+      <a href="#cena">Pro koho</a>
+      <a href="#cena">Cena</a>
+      <a href="#zakladatel">O zakladateli</a>
+      <a href="#poptavka">Kontakt</a>
+    </nav>
+    <a href="#cena" data-checkout="start" class="btn btn-primary nav-cta"><span class="price-strike">990&nbsp;Kč</span> Objednat za&nbsp;465,&#8209;&nbsp;Kč</a>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu"><iconify-icon icon="lucide:menu" id="mobileToggleIcon"></iconify-icon></button>
+  </div>
+  <!-- Mobile drawer menu — absolutely positioned within sticky header -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav class="mobile-menu-links">
+      <a href="#okruhy">Co to je</a>
+      <a href="#situace">Jak to funguje</a>
+      <a href="#cena">Pro koho</a>
+      <a href="#cena">Cena</a>
+      <a href="#zakladatel">O zakladateli</a>
+      <a href="#poptavka">Kontakt</a>
+    </nav>
+    <a href="#cena" data-checkout="start" class="btn btn-gold mobile-menu-cta"><span class="price-strike">990&nbsp;Kč</span> Objednat výhodně a&nbsp;vyzkoušet <span class="arrow">→</span></a>
+    <p class="mobile-menu-foot">Měsíc navíc zdarma · Bez závazku</p>
+  </div>
+  <div class="mobile-menu-backdrop" id="mobileMenuBackdrop" aria-hidden="true"></div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-left reveal">
+      <div class="hero-pill">
+        <span class="avatars"><span></span><span></span><span></span></span>
+        <span><strong>1 200+</strong> majitelů restaurací</span>
+      </div>
+      <p class="hero-hook">Ráno otvíráš podnik. Večer ho zavíráš. A přesto máš pocit, že jsi celý den jenom hasil.</p>
+      <h1>Přestaň být restauratérem, který <em>táhne všechno sám</em>.</h1>
+      <p class="lead">Máš pocit, že to v podniku šlape, jen když tam stojíš ty? Gastro Parťák je <em>poradce v telefonu</em>, postavený na 20 letech praxe v gastru. Napíšeš mu jako kámošovi — třeba <em>„utekl mi kuchař, co teď?"</em> nebo <em>„jak nacenit menu, ať na tom vydělám?"</em> — a on ti za pár minut odpoví. Žádný obecný rady z internetu, ale konkrétně na tvůj podnik.</p>
+      <div class="hero-ctas">
+        <a href="#cena" data-checkout="start" class="btn btn-gold"><span class="price-strike">990&nbsp;Kč</span> Objednat výhodně a&nbsp;vyzkoušet <span class="arrow">→</span></a>
+        <button type="button" class="btn btn-ghost" data-cal-namespace="30min" data-cal-link="jakub-h-a2wrvi/30min" data-cal-config='{"layout":"month_view"}'>Demo zdarma</button>
+      </div>
+      <div class="micro">Měsíc navíc zdarma, když nebudeš spokojený &middot; Bez závazku &middot; Hotovo za 5 minut</div>
+      <div class="partners">
+        <div class="partners-label">Postavil ho restauratér s&nbsp;20 lety v&nbsp;gastru</div>
+        <div class="partners-marks">
+          <span>Bistro</span>
+          <span>echo</span>
+          <span>Galleria</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual is-phone reveal">
+      <!-- soft cream backdrop -->
+      <div class="phone-stage" aria-hidden="true">
+        <div class="disc"></div>
+      </div>
+
+      <!-- phone mockup -->
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="phone-notch"></div>
+          <div class="phone-statusbar">
+            <span>9:41</span>
+            <span class="icons">
+              <iconify-icon icon="lucide:signal"></iconify-icon>
+              <iconify-icon icon="lucide:wifi"></iconify-icon>
+              <iconify-icon icon="lucide:battery-full"></iconify-icon>
+            </span>
+          </div>
+
+          <div class="chat-header">
+            <div class="chat-avatar">P</div>
+            <div>
+              <div class="chat-name">Gastro Parťák</div>
+              <div class="chat-status"><span class="online"></span> Aktivní · odpoví hned</div>
+            </div>
+            <iconify-icon icon="lucide:more-vertical" class="chat-menu"></iconify-icon>
+          </div>
+
+          <div class="chat-body">
+            <div class="msg msg-user">Hele Parťáku, utekl mi kuchař. Co teď?</div>
+            <div class="msg msg-bot">Klídek. Tři kroky, co zvládneš ještě dneska:</div>
+            <div class="msg msg-bot msg-bot-list">
+              <span><strong>1.</strong> Stáhni dnešní menu na 6 hotovek.</span>
+              <span><strong>2.</strong> Brnkni Honzovi (loni u tebe vypomáhal).</span>
+              <span><strong>3.</strong> Inzerát na kuchaře hodím večer.</span>
+            </div>
+            <div class="msg-typing"><i></i><i></i><i></i></div>
+          </div>
+
+          <div class="chat-input">
+            <span class="ci-placeholder">Napiš Parťákovi…</span>
+            <span class="ci-send"><iconify-icon icon="lucide:arrow-up"></iconify-icon></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- floating cards -->
+      <div class="float-card float-tl">
+        <span class="fc-dot"></span>
+        <div class="fc-text">Odpoví do 2 minut<span>Reálný poradce, ne robot</span></div>
+      </div>
+
+      <div class="float-card float-br">
+        <div class="fc-eyebrow"><span class="fc-pulse"></span> 24/7 v&nbsp;mobilu</div>
+        <div class="fc-title">Poradí kdykoliv — i v&nbsp;neděli ve&nbsp;22:30.</div>
+
+        <ul class="fc-stats">
+          <li><span class="lbl">Reakce</span><span class="val">do&nbsp;2&nbsp;min</span></li>
+          <li><span class="lbl">Témat</span><span class="val">30&nbsp;+</span></li>
+          <li><span class="lbl">Hodnocení</span><span class="val">4,9 <em>★</em></span></li>
+        </ul>
+
+        <div class="fc-tags">
+          <span>Personál</span><span>Hosté</span><span>Marže</span>
+        </div>
+
+        <div class="fc-foot">
+          <span class="fc-status"><i></i> V&nbsp;telefonu · online</span>
+          <strong>24/7</strong>
+        </div>
+      </div>
+
+      <a href="#situace" class="float-video">
+        <span class="play"><iconify-icon icon="lucide:play" style="font-size:13px"></iconify-icon></span>
+        Podívat se na video
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- (Dual-CTA hub sloučena do unifikované sekce #cena — objednávka i demo jsou nyní na jednom místě, plus přímé CTA v celé stránce.) -->
+
+<!-- ============ VIZE — 7 BODŮ ============ -->
+<section class="section-vision" id="vize">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Kam směřuješ</span>
+      <h2>Takhle bude tvůj podnik vypadat <em>za pár měsíců</em></h2>
+      <p class="sub">Konkrétní věci, kterých s Parťákem dosáhneš. Krok za krokem, problém za problémem.</p>
+    </div>
+
+    <div class="vision-grid reveal">
+      <div class="vision-card">
+        <div class="vision-icon"><iconify-icon icon="lucide:heart-handshake"></iconify-icon></div>
+        <div class="vision-text">Máš čas na sebe a na rodinu — bez výčitek</div>
+      </div>
+      <div class="vision-card">
+        <div class="vision-icon"><iconify-icon icon="lucide:compass"></iconify-icon></div>
+        <div class="vision-text">Konečně víš, kam s podnikem míříš</div>
+      </div>
+      <div class="vision-card">
+        <div class="vision-icon"><iconify-icon icon="lucide:wallet"></iconify-icon></div>
+        <div class="vision-text">Víš na korunu, kolik vyděláváš</div>
+      </div>
+      <div class="vision-card">
+        <div class="vision-icon"><iconify-icon icon="lucide:sliders-horizontal"></iconify-icon></div>
+        <div class="vision-text">Tým ti šlape jako hodinky</div>
+      </div>
+      <div class="vision-card">
+        <div class="vision-icon"><iconify-icon icon="lucide:award"></iconify-icon></div>
+        <div class="vision-text">Jsi nejoblíbenější podnik v okolí</div>
+      </div>
+      <div class="vision-card">
+        <div class="vision-icon"><iconify-icon icon="lucide:users"></iconify-icon></div>
+        <div class="vision-text">Plno i přes všední dny</div>
+      </div>
+      <div class="vision-card">
+        <div class="vision-icon"><iconify-icon icon="lucide:trending-up"></iconify-icon></div>
+        <div class="vision-text">Tržby o desítky tisíc měsíčně výš</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THREE OKRUHY ============ -->
+<section class="section" id="okruhy">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Konkrétní příklady z praxe</span>
+      <h2>S čím ti Parťák <em>reálně</em> pomůže</h2>
+      <p class="sub">Tři oblasti, kde restaurace nejčastěji přicházejí o peníze a o klid v hlavě. Parťák s tebou zabere na všech najednou — konkrétní situace, konkrétní postupy, konkrétní výsledky. Žádné obecné rady z knížek.</p>
+      <div class="center-ctas">
+        <a href="#cena" data-checkout="start" class="btn btn-primary"><span class="price-strike">990&nbsp;Kč</span> Objednat výhodně a&nbsp;vyzkoušet</a>
+        <button type="button" class="btn btn-ghost" data-cal-namespace="30min" data-cal-link="jakub-h-a2wrvi/30min" data-cal-config='{"layout":"month_view"}'>Demo zdarma</button>
+      </div>
+    </div>
+
+    <div class="okruhy">
+      <div class="okruh-card reveal">
+        <div class="okruh-img o1">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><linearGradient id="g1" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#CC972D" stop-opacity=".5"/><stop offset="1" stop-color="#06264C" stop-opacity="0"/></linearGradient></defs>
+            <rect width="400" height="250" fill="url(#g1)"/>
+            <g opacity=".7">
+              <circle cx="120" cy="120" r="38" fill="#CC972D"/>
+              <circle cx="200" cy="100" r="46" fill="#E8B954"/>
+              <circle cx="280" cy="130" r="34" fill="#CC972D"/>
+              <rect x="80" y="170" width="240" height="46" rx="20" fill="rgba(255,255,255,.15)"/>
+            </g>
+          </svg>
+          <img class="okruh-photo"
+               src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=900&q=80"
+               alt="Tým restaurace v briefingu před otevřením"
+               loading="lazy" decoding="async"
+               onerror="this.style.display='none'"/>
+          <div class="okruh-grade"></div>
+          <div class="okruh-num"><span>01</span></div>
+          <div class="okruh-caption"><span>Lidé · Briefing</span><span>Praha</span></div>
+        </div>
+        <div class="okruh-body">
+          <div class="pillar-tag">Pilíř 01 · Lidé</div>
+          <h3>Tým, který <em>nechce pryč</em></h3>
+          <p>Přestaň být šéfem, co každý ráno čeká, jestli mu zase někdo nepřijde do práce. Naučíš se vést pohovor tak, abys špatnou volbu poznal hned na začátku. Zaškolíš nového člověka tak, aby u tebe vydržel. A vytrénuješ číšníky, aby uměli prodat předkrm i dezert.</p>
+        </div>
+      </div>
+
+      <div class="okruh-card reveal">
+        <div class="okruh-img o2">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="rgba(255,255,255,.85)">
+              <path d="M60 200 Q120 100 200 130 Q280 160 340 80" stroke="#06264C" stroke-width="6" fill="none"/>
+              <circle cx="60" cy="200" r="9" fill="#06264C"/>
+              <circle cx="200" cy="130" r="9" fill="#06264C"/>
+              <circle cx="340" cy="80" r="9" fill="#06264C"/>
+            </g>
+            <g opacity=".8" fill="#06264C">
+              <rect x="80" y="40" width="50" height="6" rx="3"/>
+              <rect x="80" y="56" width="80" height="6" rx="3"/>
+              <rect x="240" y="180" width="50" height="6" rx="3"/>
+              <rect x="240" y="196" width="80" height="6" rx="3"/>
+            </g>
+          </svg>
+          <img class="okruh-photo"
+               src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80"
+               alt="Spokojení hosté u plného stolu v restauraci"
+               loading="lazy" decoding="async"
+               onerror="this.style.display='none'"/>
+          <div class="okruh-grade"></div>
+          <div class="okruh-num"><span>02</span></div>
+          <div class="okruh-caption"><span>Hosté · Pátek 21:14</span><span>Stůl 7</span></div>
+        </div>
+        <div class="okruh-body">
+          <div class="pillar-tag">Pilíř 02 · Hosté</div>
+          <h3>Hosté, kteří <em>se vracejí</em></h3>
+          <p>Přestaň přežívat na Slevomatu a podobných portálech. Rozjedeš si vlastní Facebook a Instagram a naučíš se odpovídat na recenze tak, aby ti nedělaly škodu. Hosté, co zaplatí plnou cenu — a vrátí se k tobě znovu.</p>
+        </div>
+      </div>
+
+      <div class="okruh-card reveal">
+        <div class="okruh-img o3">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="#CC972D" opacity=".85">
+              <rect x="60" y="160" width="40" height="60" rx="4"/>
+              <rect x="120" y="120" width="40" height="100" rx="4"/>
+              <rect x="180" y="80" width="40" height="140" rx="4"/>
+              <rect x="240" y="60" width="40" height="160" rx="4"/>
+              <rect x="300" y="40" width="40" height="180" rx="4"/>
+            </g>
+            <path d="M60 200 Q150 140 220 110 T340 60" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <circle cx="340" cy="60" r="8" fill="#fff"/>
+          </svg>
+          <img class="okruh-photo"
+               src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80"
+               alt="Majitel restaurace u stolku s tabletem a fakturami po směně"
+               loading="lazy" decoding="async"
+               onerror="this.style.display='none'"/>
+          <div class="okruh-grade"></div>
+          <div class="okruh-num"><span>03</span></div>
+          <div class="okruh-caption"><span>Čísla · Konec měsíce</span><span>23:48</span></div>
+        </div>
+        <div class="okruh-body">
+          <div class="pillar-tag">Pilíř 03 · Čísla</div>
+          <h3>Čísla, která <em>sedí</em></h3>
+          <p>Přestaň se bát podívat na účet na konci měsíce. Konečně budeš vědět, kolik tě stojí každé jídlo v menu — a kolik si na něm vyděláš. Míň zbytečných nákupů, míň masa do koše, peníze, co tečou rovnoměrně.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats reveal">
+      <div class="stat"><div class="n"><em>70&nbsp;000</em><span class="unit">Kč</span></div><div class="l">průměrně víc peněz za&nbsp;měsíc — úspory plus tržby</div></div>
+      <div class="stat"><div class="n">24<em>/</em>7</div><div class="l">Parťáka máš v&nbsp;mobilu pořád</div></div>
+      <div class="stat"><div class="n">5<span class="unit">minut</span></div><div class="l">spustíš, nic nenastavuješ</div></div>
+      <div class="stat"><div class="n"><em>Měsíc</em></div><div class="l">navíc zdarma, když nebudeš spokojený</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOUNDER ============ -->
+<section class="formfounder formfounder--solo formfounder--portrait">
+  <div class="wrap ff-grid">
+    <div class="founder-portrait reveal" aria-hidden="true">
+      <img src="Zakladatel_Jakub_Hnát.png" alt="">
+      <span class="fp-sig">20 let v gastru</span>
+    </div>
+    <div class="founder reveal" id="zakladatel">
+      <h3>Postavil ho člověk <em>z gastra</em></h3>
+      <p>Za Gastro Parťákem stojí <strong>Jakub Hnát</strong>. V restauracích strávil přes půlku života — v kuchyni, za barem, jako majitel. Zná to ze všech stran. I z té, ze které tenhle text čteš ty.</p>
+      <p>Když jsem viděl, jak chytří dokážou být dnešní pomocníci v telefonu, postavil jsem z nich Parťáka. Žádný obecný program z internetu — konkrétního pomocníka pro české podniky. Vytrénovaného na postupech, které jsem sám zkoušel a které mi reálně fungovaly.</p>
+
+      <div class="founder-info">
+        <div>
+          <h5>Z reálné praxe</h5>
+          <p>Konkrétní postupy, které prošly desítkami českých podniků.</p>
+        </div>
+        <div>
+          <h5>100 % na rovinu</h5>
+          <p>Když Parťák odpověď nezná, rovnou ti řekne, kde ji najít.</p>
+        </div>
+      </div>
+
+      <div class="founder-card">
+        <div class="av av-photo" aria-hidden="true"><img src="Zakladatel_Jakub_Hnát.png" alt=""></div>
+        <div class="who">
+          <div>Jakub Hnát</div>
+          <div>Zakladatel a mentor</div>
+        </div>
+        <a href="#" data-cal-namespace="30min" data-cal-link="jakub-h-a2wrvi/30min" data-cal-config='{"layout":"month_view"}'>Demo zdarma →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SITUACE / ACCORDION ============ -->
+<section class="section-light" id="situace">
+  <div class="situace-grid">
+    <div>
+      <div class="section-head reveal" style="text-align:left;margin:0 0 28px">
+        <span class="eyebrow">Situace z praxe</span>
+        <h2 style="font-size:clamp(30px,3.4vw,42px)">Tohle ti bude <em>povědomé</em></h2>
+      </div>
+
+      <div class="free-card reveal">
+        <div class="free-badge">Garance</div>
+        <h3>Čestný</h3>
+        <div class="sub-h3">Gastro Parťákovský</div>
+        <div class="pitch">Když za první měsíc neuvidíš výsledky, ze kterých budeš nadšený, ozvi se nám.</div>
+        <div class="body">Projdeme si spolu tvoji situaci a dostaneš měsíc navíc zdarma. Takhle prostě funguje Gastro Parťákovská garance.</div>
+        <div class="included">Co u nás dostaneš</div>
+        <ul class="free-list">
+          <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon>Začínáš na 465 Kč měsíčně</li>
+          <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon>Plný přístup k Parťákovi přes Telegram</li>
+          <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon>Osobní zaškolení přes Telegram</li>
+          <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon>Měsíc navíc zdarma, když nebudeš spokojený</li>
+        </ul>
+        <a href="#cena" data-checkout="start" class="btn btn-gold"><span class="price-strike">990&nbsp;Kč</span> Objednat výhodně a&nbsp;vyzkoušet <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="accordion reveal">
+      <details class="acc-item" open>
+        <summary><span><span class="acc-num">01 / </span>Kuchař ti ráno napíše, že nepřijde. A ty stojíš u plotny místo u snídaně s rodinou.</span><span class="acc-toggle"><iconify-icon icon="lucide:plus"></iconify-icon></span></summary>
+        <div class="acc-body">
+          Třetí měsíc po sobě. Inzerát už máš v hlavě napsaný, ale víš, jak to dopadne — nový vydrží do první soboty. Někde se to zastavit musí. Jenže teď to neřešíš, protože za hodinu otvíráš.
+          <div class="solution"><strong>Co s tím Parťák udělá</strong>Pomůže ti postavit tým, který nikam neutíká. Poradí ti, jak vést pohovor, abys špatnou volbu poznal hned — a ne až po třech měsících zaškolování. <mark>Jeden odchozí zaměstnanec tě vyjde na 40–60 tisíc</mark> — Parťák ti tenhle kolotoč zastaví.</div>
+        </div>
+      </details>
+
+      <details class="acc-item">
+        <summary><span><span class="acc-num">02 / </span>Slevomat ti shrábne třetinu z účtenky. A host pak napíše, že porce byly malé.</span><span class="acc-toggle"><iconify-icon icon="lucide:plus"></iconify-icon></span></summary>
+        <div class="acc-body">
+          Říkáš si: tohle není můj host. Tohle je člověk, co plnou cenu nikdy nezaplatí, dá ti tři hvězdy a víckrát ho neuvidíš. Jenže ve středu večer je u tebe prázdno — tak co s tím máš dělat.
+          <div class="solution"><strong>Co s tím Parťák udělá</strong>Pomůže ti od Slevomatu postupně odejít. Naučí tě dělat vlastní akce, které ti přitáhnou hosty platící plnou cenu. <mark>Reálně si tím přijdeš na 10 až 15 tisíc měsíčně navíc</mark> — a to ještě nepočítáme provize, které přestaneš posílat Slevomatu.</div>
+        </div>
+      </details>
+
+      <details class="acc-item">
+        <summary><span><span class="acc-num">03 / </span>Měsíc skončil. Tržby vypadaly slušně. Na účtu nula.</span><span class="acc-toggle"><iconify-icon icon="lucide:plus"></iconify-icon></span></summary>
+        <div class="acc-body">
+          Kam se to ztratilo? Někde mezi nákupy, výplatami, energiemi a slevou pro stálé hosty. Konkrétně? Nevíš. Víš jen, že se to opakuje každý měsíc — a že bys hrozně rád věděl, kde to teče.
+          <div class="solution"><strong>Co s tím Parťák udělá</strong>Pomůže ti rozsvítit. Spočítáme si spolu, kolik tě stojí každé jídlo v menu — a kolik si na něm reálně vyděláš. <mark>Minimálně 5 tisíc měsíčně, které ti teď v tichosti utíkají</mark>, jen je zatím nevidíš.</div>
+        </div>
+      </details>
+
+      <details class="acc-item">
+        <summary><span><span class="acc-num">04 / </span>V neděli si říkáš: „V pondělí konečně sednu k papírům." V pondělí ti přijde dodavatel s problémem.</span><span class="acc-toggle"><iconify-icon icon="lucide:plus"></iconify-icon></span></summary>
+        <div class="acc-body">
+          A je úterý. Středa. Čtvrtek. K papírům se nedostaneš nikdy, protože pořád někdo něco chce. Restaurace jede tak nějak ze setrvačnosti. Ty to víš — a víš taky, že rok od roku to bude horší.
+          <div class="solution"><strong>Co s tím Parťák udělá</strong>Tlačí tě k tomu, abys dělal NA podniku, ne JEN V podniku. Jeden týden — jedna konkrétní věc. Patnáct minut ráno u kafe, jedna otázka, jeden krok. <mark>Za tři měsíce nepoznáš, jak jsi to dřív zvládal.</mark></div>
+        </div>
+      </details>
+
+      <details class="acc-item">
+        <summary><span><span class="acc-num">05 / </span>Číšník donese hostovi menu, řekne „dám vám chvilku" a víc se neukáže.</span><span class="acc-toggle"><iconify-icon icon="lucide:plus"></iconify-icon></span></summary>
+        <div class="acc-body">
+          Host si dá jenom hlavní chod. Žádný předkrm, žádný dezert, dvě piva místo lahve vína. Možná je spokojený, možná ne — ale nadšený se rozhodně nevrací. A ty to vidíš každý den.
+          <div class="solution"><strong>Co s tím Parťák udělá</strong>Dá ti konkrétní postupy, jak číšníky vytrénovat. Co přesně mají hostovi říct, kdy se k němu mají vrátit, jak nabídnout dezert tak, aby ho host fakt chtěl. <mark>Když číšník umí prodávat, zvedne se ti průměrná útrata klidně o 20 tisíc měsíčně.</mark></div>
+        </div>
+      </details>
+
+      <details class="acc-item">
+        <summary><span><span class="acc-num">06 / </span>V neděli večer otevřeš lednici. Tři kila masa zítra prostě neprodáš.</span><span class="acc-toggle"><iconify-icon icon="lucide:plus"></iconify-icon></span></summary>
+        <div class="acc-body">
+          Nakoupil jsi od oka, jenže se otočilo počasí. Nebo se ti zrušila rezervace na 12 lidí. Půlka jde do koše, druhá jako „personální oběd" — což je v podstatě taky koš, akorát pomalejší.
+          <div class="solution"><strong>Co s tím Parťák udělá</strong>Pomůže ti líp odhadnout, co se bude prodávat. Bere v potaz počasí, podobné dny, kdy u tebe bývá plno a kdy mrtvo, kolik se prodalo loni v tomhle týdnu. <mark>Pět tisíc měsíčně, které ti doslova letí do popelnice.</mark></div>
+        </div>
+      </details>
+
+      <details class="acc-item">
+        <summary><span><span class="acc-num">07 / </span>Kdy jsi naposledy s někým otevřeně probral, co ti v podniku nefunguje?</span><span class="acc-toggle"><iconify-icon icon="lucide:plus"></iconify-icon></span></summary>
+        <div class="acc-body">
+          Manželka už to poslouchat nechce. Kuchař ti nic neřekne, protože ho platíš. Známí to nepochopí — nedělají v gastru. Drahý kouč přijde za dva týdny — jenže ten problém je <em>teď</em>, v neděli ve 22:30, a ty s ním sedíš sám.
+          <div class="solution"><strong>Co s tím Parťák udělá</strong>Je v telefonu pořád. Když potřebuješ probrat, jak dát výpověď, jak reagovat na blbou recenzi nebo jestli má cenu pouštět se do cateringu — napíšeš a on ti hned odpoví. <mark>Slušný kouč tě stojí 20 tisíc za čtyři hodiny měsíčně. Parťák stojí zlomek a máš ho k ruce kdykoliv.</mark></div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ UNIFIED: OBJEDNAT / DEMO ============ -->
+<section class="section" id="cena">
+  <span id="formular" class="anchor-offset" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Začni ještě dnes</span>
+      <h2>Objednej rovnou — nebo si nech <em>poradit</em></h2>
+      <p class="sub">Vyber si tarif a Parťák se ti ozve na Telegramu ještě dnes. Nevíš, který zvolit? Pojď na demo zdarma. <strong>Garance:</strong> když po prvním měsíci nebudeš spokojený, dostaneš měsíc navíc zdarma.</p>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-card reveal">
+        <div class="price-head">
+          <div class="price-icon"><iconify-icon icon="lucide:sprout" style="font-size:20px"></iconify-icon></div>
+          <div class="price-name">Začátek</div>
+        </div>
+        <div>
+          <div class="price-num">465 Kč<span>/ měsíc</span></div>
+        </div>
+        <div class="price-desc">Pro toho, kdo si chce vyřešit pár konkrétních věcí.</div>
+        <ul class="price-list">
+          <li><iconify-icon icon="lucide:check"></iconify-icon>50 zpráv s Parťákem za měsíc</li>
+          <li><iconify-icon icon="lucide:check"></iconify-icon>Plný přístup přes Telegram</li>
+          <li><iconify-icon icon="lucide:check"></iconify-icon>Odpověď do pár minut</li>
+        </ul>
+        <button type="button" class="btn btn-light" data-checkout="start">Objednat za 465&nbsp;Kč <span class="arrow">→</span></button>
+      </div>
+
+      <div class="price-card featured reveal">
+        <div class="price-tag">Nejčastější volba</div>
+        <div class="price-head">
+          <div class="price-icon"><iconify-icon icon="lucide:flame" style="font-size:20px"></iconify-icon></div>
+          <div class="price-name">Systém</div>
+        </div>
+        <div>
+          <div class="price-num">4 650 Kč<span>/ měsíc</span></div>
+        </div>
+        <div class="price-desc">Pro toho, kdo chce podnik systematicky dát do kupy.</div>
+        <ul class="price-list">
+          <li><iconify-icon icon="lucide:check"></iconify-icon>500 zpráv s Parťákem za měsíc</li>
+          <li><iconify-icon icon="lucide:check"></iconify-icon>Plný přístup přes Telegram</li>
+          <li><iconify-icon icon="lucide:check"></iconify-icon>Prioritní podpora</li>
+          <li><iconify-icon icon="lucide:check"></iconify-icon>Strategické vedení podniku</li>
+        </ul>
+        <button type="button" class="btn btn-gold" data-checkout="system">Objednat za 4&nbsp;650&nbsp;Kč <span class="arrow">→</span></button>
+      </div>
+
+      <div class="price-card reveal">
+        <div class="price-head">
+          <div class="price-icon"><iconify-icon icon="lucide:trending-up" style="font-size:20px"></iconify-icon></div>
+          <div class="price-name">Růst</div>
+        </div>
+        <div>
+          <div class="price-num">11 950 Kč<span>/ měsíc</span></div>
+        </div>
+        <div class="price-desc">Pro toho, kdo vede víc provozů nebo větší tým.</div>
+        <ul class="price-list">
+          <li><iconify-icon icon="lucide:check"></iconify-icon>1 500 zpráv s Parťákem za měsíc</li>
+          <li><iconify-icon icon="lucide:check"></iconify-icon>Plný přístup přes Telegram</li>
+          <li><iconify-icon icon="lucide:check"></iconify-icon>Strategické vedení více provozoven</li>
+          <li><iconify-icon icon="lucide:check"></iconify-icon>Prioritní podpora</li>
+        </ul>
+        <button type="button" class="btn btn-light" data-checkout="growth">Objednat za 11&nbsp;950&nbsp;Kč <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+    <!-- DEMO BAND — druhá hlavní cesta, přímo pod tarify -->
+    <div class="demo-band reveal">
+      <div class="demo-band-inner">
+        <div class="demo-band-icon"><iconify-icon icon="lucide:calendar-check"></iconify-icon></div>
+        <div class="demo-band-text">
+          <h3>Nechce se ti vybírat <em>sám</em>?</h3>
+          <p>Pojď na nezávazné demo. 30 minut online s&nbsp;Jakubem zdarma — ukáže ti Parťáka naživo a&nbsp;poradí, který tarif sedne přesně tobě.</p>
+          <p class="demo-band-alt">Nehodí se ti žádný termín? <a href="#poptavka" data-contact-jump>Nech nám kontakt a ozveme se ti sami →</a></p>
+        </div>
+        <button type="button" class="btn btn-gold demo-band-cta" data-cal-namespace="30min" data-cal-link="jakub-h-a2wrvi/30min" data-cal-config='{"layout":"month_view"}'>Demo zdarma <span class="arrow">→</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EBOOK LEAD MAGNET (statická sekce + popup) ============ -->
+<section class="section ebook-section" id="ebook">
+  <div class="wrap">
+    <div class="ebook-panel reveal">
+      <div class="ebook-visual" aria-hidden="true">
+        <span class="ebook-badge eb1"><iconify-icon icon="lucide:calendar-days"></iconify-icon> Na celý rok</span>
+        <div class="ebook-cover">
+          <span class="ebook-cover-kicker">Ebook · zdarma</span>
+          <h4><span class="n">28</span> námětů na tematické akce</h4>
+          <div class="ebook-cover-rule"></div>
+          <span class="ec-sub">Inspirace pro celý rok</span>
+          <div class="ebook-cover-foot"><span>Jakub Hnát · GastroUp</span><iconify-icon icon="lucide:utensils-crossed"></iconify-icon></div>
+        </div>
+        <span class="ebook-badge eb2"><iconify-icon icon="lucide:sparkles"></iconify-icon> 28 nápadů</span>
+      </div>
+
+      <div class="ebook-body">
+        <span class="eyebrow">Ebook zdarma</span>
+        <h2>28 námětů na akce, co ti <em>zaplní podnik</em></h2>
+        <p class="ebook-lead">Hotové nápady na tematické akce a sezónní menu — připravené na celý rok. Nech nám e-mail a pošleme ti je obratem. Telefon přidej, jen pokud chceš, ať se ti můžeme ozvat.</p>
+        <ul class="ebook-points">
+          <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon> 28 konkrétních námětů — od sezónních menu po tematické večery</li>
+          <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon> Rozplánované na celý rok, připravené hned použít</li>
+          <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon> Zdarma, bez závazku — a žádné otravné maily</li>
+        </ul>
+        <form class="ebook-form" id="ebookForm">
+          <input type="text" name="company_website" tabindex="-1" autocomplete="new-password" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;opacity:0;width:1px;height:1px;">
+          <div class="ebook-fields">
+            <input type="email" name="email" required placeholder="vase@restaurace.cz" autocomplete="email" aria-label="E-mailová adresa">
+            <input type="tel" name="phone" placeholder="Telefon (nepovinné)" autocomplete="tel" inputmode="tel" aria-label="Telefon (nepovinné)">
+          </div>
+          <div class="form-error" id="ebookError" hidden role="alert"></div>
+          <button type="submit" class="btn btn-gold">Stáhnout ebook zdarma <span class="arrow">→</span></button>
+        </form>
+        <p class="ebook-foot"><iconify-icon icon="lucide:lock"></iconify-icon> Tvůj e-mail nikomu nedáváme. Odhlásíš se jedním kliknutím.</p>
+        <div class="ebook-success" id="ebookSuccess" role="status">
+          <iconify-icon icon="lucide:party-popper"></iconify-icon>
+          <div>
+            <h4>Hotovo! Ebook už letí k tobě.</h4>
+            <p>Mrkni do e-mailu (i do spamu) — za chvilku ti dorazí 28 námětů na celý rok.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DARK SHOWCASE odstraněn — sloučeno do sekce #okruhy (sjednoceno kvůli redundanci) -->
+
+<!-- ============ POPTÁVKA / KONTAKT — třetí, nezávazná cesta vedle Objednat + Demo ============ -->
+<section class="section contact-section" id="poptavka">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-copy reveal">
+        <span class="eyebrow">Třetí cesta · bez závazku</span>
+        <h2>Nechceš hned platit ani vybírat termín? <em>Nech nám kontakt.</em></h2>
+        <p class="sub">Napiš pár řádků o svém podniku a co řešíš. Jakub se ti ozve osobně — v klidu, bez prodejního tlaku. Jen ti poradí, jestli a jak ti Parťák sedne.</p>
+        <ul class="contact-trust">
+          <li>
+            <iconify-icon icon="lucide:clock-3"></iconify-icon>
+            <div><strong>Ozveme se do 24 hodin</strong><span>Většinou ještě dneska.</span></div>
+          </li>
+          <li>
+            <iconify-icon icon="lucide:shield-check"></iconify-icon>
+            <div><strong>Nezávazné a zdarma</strong><span>Žádný prodejní nátlak, žádné otravné maily.</span></div>
+          </li>
+          <li>
+            <iconify-icon icon="lucide:message-circle-more"></iconify-icon>
+            <div><strong>Jak ti vyhovuje</strong><span>Ozveme se přes telefon, Telegram i e-mail — vyber si.</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-card contact-card reveal">
+        <span class="eyebrow">Poptávka</span>
+        <h3>Ozveme se ti</h3>
+        <p class="desc">Stačí pár údajů. Pole s <span class="req">*</span> jsou povinná.</p>
+        <form id="contactForm">
+          <input type="text" name="company_website" tabindex="-1" autocomplete="new-password" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;opacity:0;width:1px;height:1px;">
+          <div class="field">
+            <label for="cName">Jméno <span class="req">*</span></label>
+            <input id="cName" name="name" type="text" required placeholder="Tvoje jméno" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="cPhone">Telefon <span class="req">*</span></label>
+            <input id="cPhone" name="phone" type="tel" required placeholder="+420…" autocomplete="tel" inputmode="tel">
+          </div>
+          <div class="field">
+            <label for="cEmail">E-mail <span class="opt">(nepovinné)</span></label>
+            <input id="cEmail" name="email" type="email" placeholder="vase@restaurace.cz" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="cMsg">S čím potřebuješ pomoct? <span class="opt">(nepovinné)</span></label>
+            <textarea id="cMsg" name="message" placeholder="Mám bistro pro 40 lidí, řeším fluktuaci personálu a marže…"></textarea>
+          </div>
+          <div class="field">
+            <label>Jak se ti ozvat?</label>
+            <div class="contact-chips" role="group" aria-label="Preferovaný způsob kontaktu">
+              <button type="button" class="contact-chip" data-pref="Telefon" aria-pressed="true"><iconify-icon icon="lucide:phone"></iconify-icon>Telefon</button>
+              <button type="button" class="contact-chip" data-pref="Telegram" aria-pressed="false"><iconify-icon icon="lucide:send"></iconify-icon>Telegram</button>
+              <button type="button" class="contact-chip" data-pref="E-mail" aria-pressed="false"><iconify-icon icon="lucide:mail"></iconify-icon>E-mail</button>
+            </div>
+            <input type="hidden" name="preference" id="cPref" value="Telefon">
+          </div>
+          <div class="form-error" id="contactError" hidden role="alert"></div>
+          <button type="submit" class="btn btn-gold">Chci, ať se mi ozvete <span class="arrow">→</span></button>
+          <p class="form-foot">Odesláním souhlasíš se zpracováním kontaktu kvůli ozvání. Nikomu ho nedáváme.</p>
+        </form>
+        <div class="contact-success" id="contactSuccess" role="status">
+          <iconify-icon icon="lucide:party-popper"></iconify-icon>
+          <h4>Díky! Máme tvůj kontakt.</h4>
+          <p>Jakub se ti ozve do 24 hodin — většinou ještě dneska. Mezitím klidně mrkni na demo zdarma.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#" class="logo" aria-label="GastroUp">
+          <span class="logo-chip">
+            <img class="logo-img" src="Logo_GastroUp_2_transparent.png" alt="GastroUp" width="957" height="311">
+          </span>
+        </a>
+        <p>Poradce v telefonu pro majitele restaurací. Postavený na 20 letech reálné gastro praxe.</p>
+        <div class="foot-cta-label">Radši napsat než hned volat?</div>
+        <p class="foot-contact-copy">Nech nám kontakt a Jakub se ti ozve do 24 hodin — nezávazně a bez prodejního tlaku.</p>
+        <a href="#poptavka" class="foot-contact-link" data-contact-jump><iconify-icon icon="lucide:pen-line"></iconify-icon> Nech nám kontakt</a>
+      </div>
+
+      <div class="foot-col">
+        <h6>Co nabízíme</h6>
+        <ul>
+          <li><a href="#okruhy">Co to je</a></li>
+          <li><a href="#situace">Jak to funguje</a></li>
+          <li><a href="#cena">Pro koho</a></li>
+          <li><a href="#cena">Cena</a></li>
+          <li><a href="#ebook">Ebook zdarma</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h6>Pomoc</h6>
+        <ul>
+          <li><a href="#cena" data-checkout="start">Objednat Parťáka</a></li>
+          <li><a href="#" data-cal-namespace="30min" data-cal-link="jakub-h-a2wrvi/30min" data-cal-config='{"layout":"month_view"}'>Demo zdarma</a></li>
+          <li><a href="#poptavka" data-contact-jump>Kontakt</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h6>O nás</h6>
+        <ul>
+          <li><a href="#zakladatel">O zakladateli</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Mediální zmínky</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>© 2026 GastroUp</div>
+      <ul>
+        <li><a href="#">Ochrana osobních údajů</a></li>
+        <li><a href="#">Obchodní podmínky</a></li>
+      </ul>
+      <div class="foot-socials">
+        <a href="#" aria-label="Facebook"><iconify-icon icon="lucide:facebook"></iconify-icon></a>
+        <a href="#" aria-label="Instagram"><iconify-icon icon="lucide:instagram"></iconify-icon></a>
+        <a href="#" aria-label="LinkedIn"><iconify-icon icon="lucide:linkedin"></iconify-icon></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ LEAD POPUP (28 nápadů na tematická menu) ============ -->
+<aside class="lead-popup" id="leadPopup" role="dialog" aria-labelledby="lpTitle" aria-modal="false" aria-hidden="true" hidden>
+  <button class="lp-close" type="button" aria-label="Zavřít" id="lpClose">
+    <iconify-icon icon="lucide:x"></iconify-icon>
+  </button>
+  <div class="lp-icon"><iconify-icon icon="lucide:book-open-text"></iconify-icon></div>
+  <div class="lp-eyebrow">Ebook zdarma</div>
+  <div class="lp-title" id="lpTitle">28 námětů na tematické akce</div>
+  <div class="lp-sub">Inspirace na celý rok. Nech nám e-mail (telefon jen pokud chceš) a ebook ti hned pošleme.</div>
+  <form id="leadForm">
+    <input type="text" name="company_website" tabindex="-1" autocomplete="new-password" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;opacity:0;width:1px;height:1px;">
+    <input id="lpEmail" name="email" type="email" required placeholder="tvuj@email.cz" autocomplete="email">
+    <input id="lpPhone" name="phone" type="tel" placeholder="Telefon (nepovinné)" autocomplete="tel" inputmode="tel">
+    <div class="form-error" id="leadError" hidden role="alert"></div>
+    <button type="submit" class="btn btn-gold">Stáhnout ebook zdarma <span class="arrow">→</span></button>
+  </form>
+  <div class="lp-success" id="lpSuccess" role="status" hidden>
+    <iconify-icon icon="lucide:party-popper"></iconify-icon>
+    <span>Hotovo! Ebook už letí na tvůj e-mail. Mrkni i do spamu.</span>
+  </div>
+  <div class="lp-foot">Odesláním souhlasíš se zpracováním kontaktu kvůli zaslání ebooku. Nikomu ho nedáváme.</div>
+</aside>
+
+<!-- ============ CHECKOUT MODAL (FAPI předplatné) ============ -->
+<div class="gp-modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="coTitle" aria-hidden="true">
+  <div class="gp-modal-card">
+    <button class="gp-modal-close" id="coClose" type="button" aria-label="Zavřít objednávku">
+      <iconify-icon icon="lucide:x"></iconify-icon>
+    </button>
+    <div class="gp-modal-head">
+      <span class="gp-modal-eyebrow">Objednávka &middot; měsíční předplatné</span>
+      <h3 id="coTitle">Tarif</h3>
+      <p>Vyplň údaje níže a Parťák se ti hned ozve. <strong>Garance:</strong> měsíc navíc zdarma, když nebudeš spokojený.</p>
+    </div>
+    <div class="fapi-host" id="fapiHost"></div>
+    <div class="fapi-fallback">
+      Formulář se nenačetl? <a id="coFallback" href="https://form.fapi.cz/" target="_blank" rel="noopener">Otevři objednávku v novém okně →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ cal.com embed (30min demo) ============ -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "30min", { origin: "https://cal.com" });
+  Cal.ns["30min"]("ui", {
+    "theme": "light",
+    "cssVarsPerTheme": { "light": { "cal-brand": "#CC972D" } },
+    "hideEventTypeDetails": false,
+    "layout": "month_view"
+  });
+</script>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // ── Shared form submission utility ──
+  function submitForm(endpoint, data) {
+    var ctrl = new AbortController();
+    var timeoutId = setTimeout(function(){ ctrl.abort(); }, 15000);
+    return fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+      signal: ctrl.signal
+    }).then(function(res) {
+      clearTimeout(timeoutId);
+      return res.json().catch(function(){ return { success: false, error: 'Chyba serveru' }; }).then(function(json) {
+        if (!res.ok || !json.success) {
+          throw new Error(json.error || 'Chyba serveru');
+        }
+        return json;
+      });
+    }).catch(function(err) {
+      clearTimeout(timeoutId);
+      if (err.name === 'AbortError') throw new Error('Spojení trvalo příliš dlouho. Zkus to prosím znovu.');
+      throw err;
+    });
+  }
+
+  // Mobile menu drawer
+  (function(){
+    const toggle = document.getElementById('mobileToggle');
+    const menu = document.getElementById('mobileMenu');
+    const backdrop = document.getElementById('mobileMenuBackdrop');
+    const icon = document.getElementById('mobileToggleIcon');
+    if (!toggle || !menu || !backdrop) return;
+
+    // Non-modal drawer: the page deliberately stays scrollable while the menu is
+    // open, so no scroll lock is applied. The drawer is anchored to the sticky
+    // header and follows the top of the viewport as the user scrolls.
+    function open(){
+      menu.setAttribute('aria-hidden','false');
+      backdrop.setAttribute('aria-hidden','false');
+      toggle.setAttribute('aria-expanded','true');
+      toggle.setAttribute('aria-label','Zavřít menu');
+      if (icon) icon.setAttribute('icon','lucide:x');
+    }
+    function close(){
+      menu.setAttribute('aria-hidden','true');
+      backdrop.setAttribute('aria-hidden','true');
+      toggle.setAttribute('aria-expanded','false');
+      toggle.setAttribute('aria-label','Otevřít menu');
+      if (icon) icon.setAttribute('icon','lucide:menu');
+    }
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.getAttribute('aria-hidden') === 'false';
+      isOpen ? close() : open();
+    });
+    backdrop.addEventListener('click', close);
+    // Close on link click (smooth scroll to section then dismiss)
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && menu.getAttribute('aria-hidden') === 'false') close();
+    });
+    // Auto-close when resizing back to desktop
+    const mq = window.matchMedia('(min-width: 981px)');
+    mq.addEventListener('change', e => { if (e.matches) close(); });
+  })();
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Accordion: each item opens/closes independently with a slow slide and
+  // stays open until the user closes it. Falls back to native instant toggle
+  // when the user prefers reduced motion or WAAPI is unavailable.
+  (function(){
+    var accordion = document.querySelector('.accordion');
+    if (!accordion) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !document.body.animate) return; // native behaviour, [open] styling
+
+    accordion.classList.add('js-acc');
+
+    var DUR_OPEN = 560, DUR_CLOSE = 460;
+    var EASE_OPEN = 'cubic-bezier(.16,1,.3,1)';   // --ease-out-expo (dramatic slide)
+    var EASE_CLOSE = 'cubic-bezier(.25,1,.5,1)';  // --ease-out-quart
+
+    function Acc(el){
+      this.el = el;
+      this.summary = el.querySelector('summary');
+      this.content = el.querySelector('.acc-body');
+      this.heightAnim = null;
+      this.contentAnim = null;
+      this.closing = false;
+      this.expanding = false;
+      if (el.open) el.classList.add('is-open');
+      this.summary.addEventListener('click', this.onClick.bind(this));
+    }
+
+    Acc.prototype.onClick = function(e){
+      e.preventDefault();
+      this.el.style.overflow = 'hidden';
+      if (this.closing || !this.el.open) this.open();
+      else if (this.expanding || this.el.open) this.shrink();
+    };
+
+    Acc.prototype.cancelAnims = function(){
+      if (this.heightAnim) this.heightAnim.cancel();
+      if (this.contentAnim) this.contentAnim.cancel();
+    };
+
+    Acc.prototype.open = function(){
+      this.el.style.height = this.el.offsetHeight + 'px';
+      this.el.open = true;
+      this.el.classList.add('is-open');
+      window.requestAnimationFrame(this.expand.bind(this));
+    };
+
+    Acc.prototype.expand = function(){
+      this.expanding = true;
+      this.closing = false;
+      this.cancelAnims();
+      var start = this.el.offsetHeight;
+      // Absolute target (scrollHeight = full natural height while open) so an
+      // interrupted shrink→expand can't overshoot. Relative math (start ± content)
+      // computed a wrong target whenever the height was mid-animation.
+      var end = this.el.scrollHeight;
+      this.heightAnim = this.el.animate(
+        {height:[start + 'px', end + 'px']},
+        {duration:DUR_OPEN, easing:EASE_OPEN}
+      );
+      this.contentAnim = this.content.animate(
+        {opacity:[0,1], transform:['translateY(12px)','translateY(0)']},
+        {duration:DUR_OPEN, easing:EASE_OPEN}
+      );
+      this.heightAnim.onfinish = this.done.bind(this, true);
+      this.heightAnim.oncancel = (function(){ this.expanding = false; }).bind(this);
+    };
+
+    Acc.prototype.shrink = function(){
+      this.closing = true;
+      this.expanding = false;
+      this.el.classList.remove('is-open');
+      this.cancelAnims();
+      var start = this.el.offsetHeight;
+      // Absolute collapsed target (full height minus the body) so an interrupted
+      // expand→shrink can't under-shoot below the summary and clip it.
+      var end = this.el.scrollHeight - this.content.offsetHeight;
+      this.heightAnim = this.el.animate(
+        {height:[start + 'px', end + 'px']},
+        {duration:DUR_CLOSE, easing:EASE_CLOSE}
+      );
+      this.contentAnim = this.content.animate(
+        {opacity:[1,0], transform:['translateY(0)','translateY(8px)']},
+        {duration:DUR_CLOSE, easing:EASE_CLOSE}
+      );
+      this.heightAnim.onfinish = this.done.bind(this, false);
+      this.heightAnim.oncancel = (function(){ this.closing = false; }).bind(this);
+    };
+
+    Acc.prototype.done = function(open){
+      this.el.open = open;
+      this.heightAnim = this.contentAnim = null;
+      this.closing = this.expanding = false;
+      this.el.style.height = '';
+      this.el.style.overflow = '';
+      if (open) this.el.classList.add('is-open');
+      else this.el.classList.remove('is-open');
+    };
+
+    document.querySelectorAll('.accordion .acc-item').forEach(function(el){ new Acc(el); });
+  })();
+
+  // Lead popup — 50% scroll trigger, localStorage suppression
+  (function(){
+    var POPUP_SEEN_KEY = 'gp_popup_seen';
+    var LEAD_KEY = 'gp_lead_submitted';
+    var TTL_DAYS = 7;
+    var popup = document.getElementById('leadPopup');
+    if (!popup) return;
+
+    function isSuppressed(){
+      try {
+        if (localStorage.getItem(LEAD_KEY) === '1') return true;
+        var seen = parseInt(localStorage.getItem(POPUP_SEEN_KEY), 10);
+        if (isNaN(seen)) return false; // missing or corrupted timestamp → treat as not seen
+        var diff = (Date.now() - seen) / (1000 * 60 * 60 * 24);
+        return diff >= 0 && diff < TTL_DAYS;
+      } catch (e) { return false; }
+    }
+
+    function show(){
+      popup.hidden = false;
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          popup.setAttribute('aria-hidden', 'false');
+          var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (!prefersReduced) {
+            var firstInput = popup.querySelector('input');
+            if (firstInput) { try { firstInput.focus({ preventScroll: true }); } catch(e) { firstInput.focus(); } }
+          }
+        });
+      });
+    }
+
+    function hide(){
+      popup.setAttribute('aria-hidden', 'true');
+      setTimeout(function(){ popup.hidden = true; }, 350);
+    }
+
+    function dismiss(){
+      try { localStorage.setItem(POPUP_SEEN_KEY, String(Date.now())); } catch(e){}
+      var lf = document.getElementById('leadForm');
+      if (lf) lf._aborted = true;
+      hide();
+    }
+
+    function onScroll(){
+      if (isSuppressed()) { window.removeEventListener('scroll', onScroll); return; }
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight <= 0) return;
+      var pct = window.scrollY / docHeight;
+      if (pct >= 0.5) {
+        show();
+        window.removeEventListener('scroll', onScroll);
+        window.addEventListener('scroll', onBottomScroll, { passive: true });
+      }
+    }
+
+    function onBottomScroll(){
+      if (popup.hidden) { window.removeEventListener('scroll', onBottomScroll); return; }
+      var nearBottom = (window.scrollY + window.innerHeight) >= (document.documentElement.scrollHeight - 80);
+      if (nearBottom) {
+        hide();
+        window.removeEventListener('scroll', onBottomScroll);
+      }
+    }
+
+    if (!isSuppressed()) {
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    var closeBtn = document.getElementById('lpClose');
+    if (closeBtn) closeBtn.addEventListener('click', dismiss);
+
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && !popup.hidden) dismiss();
+    });
+
+    var form = document.getElementById('leadForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = form.querySelector('[type=submit]');
+        var errEl = document.getElementById('leadError');
+        form._aborted = false;
+        if (form.elements['company_website'] && form.elements['company_website'].value) {
+          try { localStorage.setItem(LEAD_KEY, '1'); } catch(_){}
+          form.hidden = true;
+          var fff = document.querySelector('.lp-foot');
+          if (fff) fff.hidden = true;
+          var succH = document.getElementById('lpSuccess');
+          if (succH) succH.hidden = false;
+          setTimeout(hide, 2800);
+          return;
+        }
+        var origText = btn ? btn.innerHTML : '';
+        if (btn) { btn.disabled = true; btn.innerHTML = 'Odesílám...'; }
+        if (errEl) { errEl.hidden = true; errEl.textContent = ''; }
+        var data = {
+          email: form.elements['email'] ? form.elements['email'].value : '',
+          phone: form.elements['phone'] ? form.elements['phone'].value : ''
+        };
+        submitForm('/.netlify/functions/ebook', data).then(function() {
+          if (form._aborted) return;
+          try { localStorage.setItem(LEAD_KEY, '1'); } catch(_){}
+          form.hidden = true;
+          var ff = document.querySelector('.lp-foot');
+          if (ff) ff.hidden = true;
+          var succ = document.getElementById('lpSuccess');
+          if (succ) succ.hidden = false;
+          setTimeout(hide, 2800);
+        }).catch(function(err) {
+          if (form._aborted) return;
+          if (btn) { btn.disabled = false; btn.innerHTML = origText; }
+          if (errEl) {
+            errEl.textContent = err.message || 'Nepodařilo se odeslat. Zkus to prosím znovu.';
+            errEl.hidden = false;
+          }
+        });
+      });
+    }
+  })();
+
+  // ── Static ebook lead-magnet form (mirrors the popup; suppresses popup once submitted) ──
+  (function(){
+    var form = document.getElementById('ebookForm');
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type=submit]');
+      var errEl = document.getElementById('ebookError');
+      if (form.elements['company_website'] && form.elements['company_website'].value) {
+        try { localStorage.setItem('gp_lead_submitted', '1'); } catch(_){}
+        form.classList.add('sent');
+        var succH = document.getElementById('ebookSuccess');
+        if (succH) succH.classList.add('show');
+        return;
+      }
+      var origText = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.innerHTML = 'Odesílám...'; }
+      if (errEl) { errEl.hidden = true; errEl.textContent = ''; }
+      var data = {
+        email: form.elements['email'] ? form.elements['email'].value : '',
+        phone: form.elements['phone'] ? form.elements['phone'].value : ''
+      };
+      submitForm('/.netlify/functions/ebook', data).then(function() {
+        try { localStorage.setItem('gp_lead_submitted', '1'); } catch(_){}
+        form.classList.add('sent');
+        var succ = document.getElementById('ebookSuccess');
+        if (succ) succ.classList.add('show');
+        var lp = document.getElementById('leadPopup');
+        if (lp && !lp.hidden) {
+          lp.setAttribute('aria-hidden', 'true');
+          setTimeout(function(){ lp.hidden = true; }, 350);
+        }
+      }).catch(function(err) {
+        if (btn) { btn.disabled = false; btn.innerHTML = origText; }
+        if (errEl) {
+          errEl.textContent = err.message || 'Nepodařilo se odeslat. Zkus to prosím znovu.';
+          errEl.hidden = false;
+        }
+      });
+    });
+  })();
+
+  // ── Poptávkový (kontaktní) formulář — třetí cesta ──
+  // POZN: zatím front-end atrapa (preventDefault). Backend (FAPI lead / Formspree / Web3Forms)
+  // napojíš na místě označeném TODO níže — stačí poslat new FormData(form) na endpoint.
+  (function(){
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+
+    // Chips pro preferovaný způsob kontaktu (jedno-výběr, zrcadlí se do skrytého inputu)
+    var chips = form.querySelectorAll('.contact-chip');
+    var prefInput = document.getElementById('cPref');
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        chips.forEach(function(c){ c.setAttribute('aria-pressed', 'false'); });
+        chip.setAttribute('aria-pressed', 'true');
+        if (prefInput) prefInput.value = chip.getAttribute('data-pref');
+      });
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type=submit]');
+      var errEl = document.getElementById('contactError');
+      if (form.elements['company_website'] && form.elements['company_website'].value) {
+        var cardH = form.closest('.contact-card');
+        var descH = cardH ? cardH.querySelector('.desc') : null;
+        if (descH) descH.hidden = true;
+        form.hidden = true;
+        var succH = document.getElementById('contactSuccess');
+        if (succH) succH.classList.add('show');
+        return;
+      }
+      var origText = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.innerHTML = 'Odesílám...'; }
+      if (errEl) { errEl.hidden = true; errEl.textContent = ''; }
+      var data = {
+        name: form.elements['name'] ? form.elements['name'].value : '',
+        phone: form.elements['phone'] ? form.elements['phone'].value : '',
+        email: form.elements['email'] ? form.elements['email'].value : '',
+        message: form.elements['message'] ? form.elements['message'].value : '',
+        preference: form.elements['preference'] ? form.elements['preference'].value : 'Telefon'
+      };
+      submitForm('/.netlify/functions/contact', data).then(function() {
+        var card = form.closest('.contact-card');
+        var desc = card ? card.querySelector('.desc') : null;
+        if (desc) desc.hidden = true;
+        form.hidden = true;
+        var succ = document.getElementById('contactSuccess');
+        if (succ) succ.classList.add('show');
+      }).catch(function(err) {
+        if (btn) { btn.disabled = false; btn.innerHTML = origText; }
+        if (errEl) {
+          errEl.textContent = err.message || 'Nepodařilo se odeslat. Zkus to prosím znovu.';
+          errEl.hidden = false;
+        }
+      });
+    });
+
+    // Skok z demo bandu / patičky do formuláře + zaostření prvního pole
+    document.querySelectorAll('[data-contact-jump]').forEach(function(link){
+      link.addEventListener('click', function(){
+        var first = document.getElementById('cName');
+        if (!first) return;
+        setTimeout(function(){
+          try { first.focus({ preventScroll: true }); } catch(err){ first.focus(); }
+        }, 520);
+      });
+    });
+  })();
+
+  // ── FAPI checkout modal: lazy-load the selected tier's order form ──
+  (function(){
+    var FORMS = {
+      start:  { id:'4a82141f-d02b-489d-93b0-66f81a8cec6a', name:'Začátek', price:'465 Kč' },
+      system: { id:'b62db8a1-103f-4b06-9fd5-5bf79ac6c84b', name:'Systém',  price:'4 650 Kč' },
+      growth: { id:'6a16df2e-f715-487a-b346-b53f59255f31', name:'Růst',    price:'11 950 Kč' }
+    };
+    var modal    = document.getElementById('checkoutModal');
+    var host     = document.getElementById('fapiHost');
+    var title    = document.getElementById('coTitle');
+    var fallback = document.getElementById('coFallback');
+    if (!modal || !host) return;
+    var loaded = {};
+    var lastFocus = null;
+
+    function showPane(tier){
+      Array.prototype.forEach.call(host.children, function(c){ c.style.display = 'none'; });
+      var pane = document.getElementById('fapi-' + tier);
+      if (!pane){
+        pane = document.createElement('div');
+        pane.id = 'fapi-' + tier;
+        pane.innerHTML = '<div class="fapi-loading"><span class="fapi-spinner"></span>Načítám objednávkový formulář…</div>';
+        host.appendChild(pane);
+      }
+      pane.style.display = '';
+      return pane;
+    }
+
+    function showLoadError(pane){
+      var l = pane.querySelector('.fapi-loading');
+      if (!l) { l = document.createElement('div'); l.className = 'fapi-loading'; pane.appendChild(l); }
+      l.innerHTML = 'Formulář se nepodařilo načíst. ' +
+        '<a href="' + fallback.href + '" target="_blank" rel="noopener">Otevřít objednávku v novém okně →</a>';
+    }
+
+    function loadForm(tier, pane){
+      if (loaded[tier]) return;
+      loaded[tier] = true;
+      var settled = false;
+      var timer;
+      var obs = new MutationObserver(function(){
+        if (pane.querySelector('.fapi-form-wrapper')){
+          settled = true;
+          clearTimeout(timer);
+          var l = pane.querySelector('.fapi-loading');
+          if (l) l.remove();
+          obs.disconnect();
+        }
+      });
+      obs.observe(pane, { childList:true, subtree:true });
+      function fail(){
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        obs.disconnect();
+        loaded[tier] = false; // allow a retry when the user reopens this tier
+        showLoadError(pane);
+      }
+      // Surface the fallback link if the third-party script never renders a form
+      // (network error, ad-blocker, CSP) instead of spinning forever + leaking the observer.
+      timer = setTimeout(fail, 12000);
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.src  = 'https://form.fapi.cz/script.php?id=' + FORMS[tier].id;
+      s.onerror = fail;
+      pane.appendChild(s); // FAPI inserts the form wrapper directly after this script
+    }
+
+    // The checkout dialog is truly modal (aria-modal="true"): mark every other
+    // top-level element inert so focus, pointer and the a11y tree are confined to
+    // the dialog. inert is a no-op on unsupporting browsers, so this degrades safely.
+    function setBackgroundInert(on){
+      Array.prototype.forEach.call(document.body.children, function(el){
+        if (el === modal) return;
+        if (on) el.setAttribute('inert', '');
+        else el.removeAttribute('inert');
+      });
+    }
+
+    function open(tier){
+      var f = FORMS[tier];
+      if (!f) return;
+      lastFocus = document.activeElement;
+      title.textContent = 'Tarif ' + f.name + ' — ' + f.price + ' / měsíc';
+      fallback.href = 'https://form.fapi.cz/?id=' + f.id;
+      var pane = showPane(tier);
+      loadForm(tier, pane);
+      document.body.classList.add('gp-modal-open');
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      setBackgroundInert(true);
+      var cb = document.getElementById('coClose'); // move focus into the dialog
+      if (cb) { try { cb.focus(); } catch(e){} }
+    }
+
+    function close(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('gp-modal-open');
+      setBackgroundInert(false);
+      if (lastFocus && lastFocus.focus){ try { lastFocus.focus(); } catch(e){} }
+    }
+
+    document.querySelectorAll('[data-checkout]').forEach(function(btn){
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        open(btn.getAttribute('data-checkout'));
+      });
+    });
+    var coClose = document.getElementById('coClose');
+    if (coClose) coClose.addEventListener('click', close);
+    modal.addEventListener('click', function(e){ if (e.target === modal) close(); });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && modal.classList.contains('open')) close();
+    });
+  })();
+
+</script>
+
+</body>
+</html>

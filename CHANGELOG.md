@@ -2,6 +2,59 @@
 
 All notable changes to GastroUp are documented here.
 
+## [1.0.2] — 2026-05-31
+
+### Fixed
+
+**Mobile Layout & UX Optimization**
+- Eliminated horizontal viewport overflow on small devices (320–430px) via `overflow-x: clip` containment + fixed overflow source elements
+  - Hero ghost CTA: changed `min-width: 160px` to `flex: 1 1 100%; min-width: 0` at ≤520px (now expands to container)
+  - Gold CTA label: changed `white-space: nowrap` to `white-space: normal` at ≤400px (now wraps to 2-line pill)
+  - Modal scroll-lock: changed `overflow: hidden` to `overflow-y: hidden` (prevents re-introducing horizontal pan)
+- Fixed header logo alignment against 46×46 hamburger icon via `min-height: 46px` at ≤580px
+- Unified spacing system:
+  - Introduced spacing tokens (`:root` custom properties): `--gutter-page`, `--gutter-page-md`, `--gutter-page-sm`, `--section-v-lg`, `--section-v-md`, `--card-p`, `--card-p-sm`, `--radius-card`
+  - Normalized section vertical rhythm: 64px (desktop) → 48px (mobile), with specific floor of 56px for navy formfounder
+  - Reduced excessive situace card inset: 34px total → 28px at ≤420px
+  - Standardized card padding: 28/24px (desktop) → 22/18px (mobile)
+- Implemented WCAG 2.5.5 touch targets (≥44×44px on pointer: coarse):
+  - `.acc-toggle` (FAQ): 44×44 via @media (pointer: coarse)
+  - `.lp-close` (modal close): 44×44 on touch
+  - `.foot-socials a` (footer social icons): 44×44 hit area on touch
+  - `.btn-gold` (main CTA): min-height: 44px
+- Applied per-section polish:
+  - Hero pill margin: 12px → 8px (compact spacing)
+  - Hero H1 line-height: 1.05 at ≤420px (prevents orphans)
+  - Partners strip: scaled + stacked cleanly at ≤400px
+  - Fine-print (`.micro`): centered at ≤580px (matches centered CTAs)
+  - Founder portrait clearance: added padding-bottom: 56px at ≤900px (prevents badge overlap)
+
+### Documentation
+
+- Added comprehensive mobile layout optimization guide: `docs/mobile-layout-optimization.md`
+  - Details overflow containment strategy, spacing tokens, touch target implementation
+  - Includes verification checklist (viewport tests, device testing, WCAG compliance)
+  - Documents all responsive breakpoints (400px, 420px, 520px, 580px, 980px)
+
+## [1.0.1] — 2026-05-31
+
+### Added
+
+**Contact Configuration**
+- Visible contact email `jakub.hnat@gastroup.cz` in website footer (mailto link)
+- Organization email field added to JSON-LD structured data in index.html
+
+### Changed
+
+- Updated form-notification recipient documentation from `pavelcermak@hypedigitaly.ai` to `jakub.hnat@gastroup.cz` in:
+  - `.env.example`
+  - `README.md`
+  - `docs/netlify-deployment.md`
+
+### Deployment Note
+
+- **Important:** The live form recipient is controlled by the Netlify environment variable `NOTIFICATION_TO`. Changes made to repo files are documentation only; you must update the environment variable in the Netlify dashboard (Site settings → Environment variables) for the change to take effect in production.
+
 ## [1.0.0] — 2026-05-31
 
 ### Added

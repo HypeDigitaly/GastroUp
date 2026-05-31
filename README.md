@@ -48,7 +48,7 @@ All variables are **runtime-only** (set in Netlify UI under **Site settings > En
 | Name | Required | Description | Default |
 |------|----------|-------------|---------|
 | `RESEND_API_KEY` | Yes | Resend API key for GastroUp (scope: "Sending access" only, domain: `notifications.gastroup.cz`). **Dedicated key, not shared with other projects.** | — |
-| `NOTIFICATION_TO` | Yes | Email address for team notifications (received when users submit forms) | `pavelcermak@hypedigitaly.ai` |
+| `NOTIFICATION_TO` | Yes | Email address for team notifications (received when users submit forms) | `jakub.hnat@gastroup.cz` |
 | `FROM_EMAIL` | Yes | Sender email address used in all outbound emails | `GastroUp <noreply@notifications.gastroup.cz>` |
 | `EBOOK_PDF_URL` | Yes | Public URL to ebook PDF for download. Use dummy URL during development. | `https://gastroup.cz/ebook/28-tipu.pdf` |
 | `CTA_URL` | Yes | Call-to-action redirect URL (e.g., form for lead capture) | `https://form.fapi.cz/?id=4a82141f-d02b-489d-93b0-66f81a8cec6a` |
@@ -106,6 +106,7 @@ Complete documentation is available in the `docs/` directory:
 
 - **[Build Pipeline](./docs/build-pipeline.md)** — HTML/image optimization, build process, troubleshooting
 - **[Performance Optimizations](./docs/performance-optimizations.md)** — Core Web Vitals, render-blocking elimination, image optimization
+- **[Mobile Layout Optimization](./docs/mobile-layout-optimization.md)** — Mobile UX optimization, overflow containment, responsive spacing tokens, touch targets (WCAG 2.5.5)
 - **[SEO](./docs/seo.md)** — Metadata, Open Graph, JSON-LD structured data, verification checklist
 - **[Netlify Deployment](./docs/netlify-deployment.md)** — Deploy workflow, go-live checklist, production configuration
 - **[Deferred Tasks](./docs/deferred-tasks.md)** — Font self-hosting, CSP hardening, GDPR compliance, future optimizations

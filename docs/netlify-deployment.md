@@ -305,7 +305,7 @@ curl -I https://gastroup.cz
 **Netlify Dashboard → Site settings > Environment variables**
 
 - [ ] `RESEND_API_KEY` — Production Resend key (Functions scope only)
-- [ ] `NOTIFICATION_TO` — Team email (pavelcermak@hypedigitaly.ai)
+- [ ] `NOTIFICATION_TO` — Team email (jakub.hnat@gastroup.cz)
 - [ ] `FROM_EMAIL` — Sender email (GastroUp <noreply@notifications.gastroup.cz>)
 - [ ] `EBOOK_PDF_URL` — Public ebook URL
 - [ ] `CTA_URL` — CTA redirect URL

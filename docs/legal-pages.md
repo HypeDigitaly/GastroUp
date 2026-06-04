@@ -169,14 +169,16 @@ To update privacy policy text:
 **Files affected:** `obchodni-podminky.html` (Articles II, IV)
 
 ### A3: Payment Chain (FAPI → Stripe)
-- [ ] FAPI form.fapi.cz integration confirmed live
-- [ ] Stripe backend verified as payment processor
+- [x] FAPI form.fapi.cz integration confirmed live
+- [x] Stripe backend verified as payment processor
 - [ ] T&C Article IV mentions payment security/PCI compliance
-- [ ] Privacy policy discloses Stripe as processor (if collecting payment data)
+- [x] Privacy policy discloses Stripe as processor (if collecting payment data) — **FAPI + Stripe now disclosed in processor list (2026-06-04)**
 
-**Verification:** Submit test order via FAPI form; confirm Stripe webhook logs; verify no direct mentions of "Stripe" in customer-facing docs (only FAPI).
+**Verification:** Submit test order via FAPI form; confirm Stripe webhook logs; verify payment chain is FAPI form (form.fapi.cz) → FAPI backend (fapi.cz) → Stripe (stripe.com).
 
-**Files affected:** `obchodni-podminky.html` (Article IV), `ochrana-osobnich-udaju.html` (processor section)
+**Attestation Status:** Client confirms FAPI→Stripe routing is the actual payment chain; both services now disclosed in privacy processor list.
+
+**Files affected:** `obchodni-podminky.html` (Article IV), `ochrana-osobnich-udaju.html` (processor section — updated 2026-06-04)
 
 ### A4: Physical Goods & Delivery (Zásilkovna)
 - [ ] If selling physical products: Zásilkovna integration mentioned in T&C Article V

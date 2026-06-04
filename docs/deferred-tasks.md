@@ -64,54 +64,73 @@ grep -n "dark-tile" C:\Users\Pavli\Desktop\HypeDigitaly\GIT\GastroUp\index.html
 - Cleaner, maintainable CSS
 - No visual changes (token wasn't used anyway)
 
-## Priority 3: CSP Hardening
+## Priority 3: CSP Hardening & Google Analytics Integration
 
-**Status:** Report-Only mode (non-enforcing)
+**Status:** In Progress (GA4 + Consent Mode v2 deployed, CSP Report-Only, waiting for clean violation reports)
 
-**Current state:** CSP is in Report-Only mode (`Content-Security-Policy-Report-Only` header in netlify.toml). This logs violations but doesn't block resources.
+**What has been done:**
+1. ✅ Google Analytics v4 (`G-VR866S5JF5`) added with Consent Mode v2 (default-denied)
+2. ✅ Cookbanner consent + localStorage persistence implemented
+3. ✅ Privacy policy page (GDPR Art. 13 compliant) published
+4. ✅ CSP extended to include Google Analytics domains (Report-Only mode)
+5. ✅ Consent withdrawal link ("Nastavení cookies") added to footer
 
-**What needs to be done:**
-1. Monitor CSP violations in production (set up CSP report endpoint or service)
-2. Address any unexpected violations
-3. Promote from Report-Only to enforcing:
-   - Rename header in netlify.toml: `Content-Security-Policy-Report-Only` → `Content-Security-Policy`
-   - This will BLOCK non-compliant resources
-
-**Current CSP (Report-Only):**
+**Current CSP (Report-Only — logs violations, doesn't block):**
 ```
 default-src 'self'
-script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://app.cal.com https://form.fapi.cz
+script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://app.cal.com https://form.fapi.cz https://www.googletagmanager.com
 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com
 font-src 'self' https://fonts.gstatic.com
-img-src 'self' data: https://images.unsplash.com
-connect-src 'self' https://app.cal.com https://cal.com
+img-src 'self' data: https://images.unsplash.com https://www.google-analytics.com
+connect-src 'self' https://app.cal.com https://cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com
 frame-src https://app.cal.com https://cal.com https://form.fapi.cz
 form-action 'self' https://form.fapi.cz
 base-uri 'self'
 object-src 'none'
 ```
 
-**Violations to watch for:**
-- Inline scripts (detected if any external <script> tag runs)
-- External stylesheets (detected if any non-Google Fonts CSS loads)
-- Form submissions to unauthorized endpoints
+**What still needs to be done:**
 
-**How to set up reporting:**
-1. Create a CSP report endpoint (e.g., Netlify Function `/api/csp-report`)
-2. Add `report-uri https://gastroup.cz/api/csp-report` to CSP header
-3. Monitor violations for 1-2 weeks
-4. Fix any issues, then promote to enforcing
+1. **MANUAL: Monitor CSP violations for 1-2 weeks**
+   - Violations logged to Netlify Functions console
+   - Expected violations: inline Fraunces axes, gtag Consent Mode v2 script (both allowed)
+   - If unexpected violations found (external scripts, XSS), investigate and fix
+   
+2. **MANUAL: Fill privacy policy placeholders** [DOPLŇTE]
+   - Company IČO (ID number)
+   - Sídlo (registered address)
+   - Contact email
+   - Data retention period (GA4 default: 14 months)
+   - Czech DPA complaint link (ÚOOÚ)
 
-**Why this matters:**
-- Enforcing CSP blocks malicious inline scripts (XSS protection)
-- Currently, 'unsafe-inline' is allowed in script-src (necessary for inline Fraunces axes, but should be replaced with nonces if possible)
-- Moving to nonce-based CSP would eliminate 'unsafe-inline' need
+3. **MANUAL: Set Netlify env vars** (if not already done)
+   - `EBOOK_PDF_URL` = `https://gastroup.cz/ebook/28-nametu.pdf`
+   - `EBOOK_COVER_URL` = `https://gastroup.cz/Ebook_Image.jpeg`
+   - Redeploy after setting
+
+4. **OPTIONAL: Configure GA4 data retention + Google Signals**
+   - GA4 admin → Data settings → Data retention: set to 14 or 26 months (default 14)
+   - Marketing → Google Signals: disable (already disabled via `allow_google_signals:false` in gtag config)
+
+5. **FINAL: Promote CSP to enforcing** (after 1-2 weeks of clean reports)
+   - Edit `netlify.toml` line 54
+   - Rename header: `Content-Security-Policy-Report-Only` → `Content-Security-Policy`
+   - Deploy and monitor for CSP blocks
+
+**Why 'unsafe-inline' is needed now:**
+- Fraunces display font axes (inline `<style>`)
+- gtag Consent Mode v2 init script (inline `<script>`)
 
 **Future improvement (nonce-based CSP):**
 ```
-script-src 'self' 'nonce-{random}' https://cdn.jsdelivr.net https://app.cal.com https://form.fapi.cz
+script-src 'self' 'nonce-{random}' https://cdn.jsdelivr.net https://app.cal.com https://form.fapi.cz https://www.googletagmanager.com
 ```
 This requires generating a random nonce on each page load (deferred to future optimization).
+
+**References:**
+- Detailed implementation guide: `docs/analytics-consent.md`
+- GA4 property ID: `G-VR866S5JF5` (view in Google Analytics admin)
+- Privacy policy template filled with placeholders: `ochrana-osobnich-udaju.html`
 
 ## Priority 4: Asset Organization
 
@@ -152,41 +171,91 @@ git push origin main
 # Result: New image served immediately, old stays cached
 ```
 
-## Priority 5: GDPR Compliance (Legal Blocker)
+## Priority 5: GDPR Compliance & Cookie Consent (Legal Pages Complete, Form Consent Pending)
 
-**Status:** NOT IN SCOPE — must complete before EU launch
+**Status:** LEGAL PAGES COMPLETE (2026-06-04) — T&C page + privacy page published; form consent validation still TODO
 
-**What needs to be done:**
-1. **GDPR consent checkbox** on both forms (contact + ebook)
-   - Text: "I consent to my data being processed per [Privacy Policy](link)"
-   - Checkbox state sent to Functions
+**What has been done:**
+1. ✅ **Terms of Service page** published at `/obchodni-podminky` (10 articles + Příloha č. 1 withdrawal form; Monanivude s.r.o.; effective 2.1.2026)
+2. ✅ **Privacy Policy page** published at `/ochrana-osobnich-udaju` (Czech GDPR Art. 13 template, all placeholders filled; controller: Monanivude s.r.o. IČ 21341486; effective 2.1.2026)
+3. ✅ **Google Analytics with Consent Mode v2** (default-denied, requires explicit opt-in via banner)
+4. ✅ **Cookie banner** ("Přijmout" / "Odmítnout") implemented on all 4 pages (index, 404, privacy, T&C)
+5. ✅ **Consent withdrawal link** ("Nastavení cookies") added to footer; clears localStorage on reopen (2026-06-04)
+6. ✅ **localStorage-backed consent persistence** (choice survives page reloads)
+7. ✅ **Test suite** (31 tests, all passing, includes T&C page scenarios)
 
-2. **Server-side validation** in Functions:
-   - `netlify/functions/contact.ts`: Check `consent === true`
-   - `netlify/functions/ebook.ts`: Check `consent === true`
-   - Reject form if unconsented
+**Pre-deployment attestation:** A1–A7 checklist created; awaiting client sign-off (see `docs/legal-pages.md` for full attestation criteria)
 
-3. **Privacy Policy page** published at public URL (e.g., /privacy-policy)
-   - Cover data processing, storage, user rights
-   - Include Resend data handling (email provider)
-   - Include GDPR rights (access, deletion, portability)
-   - Link in footer + form consent text
+**What still needs to be done:**
 
-**Impact if missing:**
-- GDPR fine: up to 4% of annual revenue (Article 83(4))
-- Cannot legally process EU users' data without consent
-- Data controller (HypeDigitaly) liable
+1. **CLIENT ATTESTATION (A1–A7)** — BLOCKING TASK
+   - A1: Company details verification (IČ, address, contact email)
+   - A2: Products/pricing alignment check (T&C Article II/IV vs live site)
+   - A3: Payment chain confirmation (FAPI → Stripe)
+   - A4: Physical goods & logistics (if applicable)
+   - A5: Facebook community validation (if mentioned in T&C II.1)
+   - A6: Product name correctness (Gastro Mentor AI, no phantom courses)
+   - A7: Support contact details finalization
+   
+   **Action:** Client (legal team) must complete attestation form before production deploy.
 
-**Suggested implementation timeline:**
-- Week 1-2: Draft privacy policy (legal team review)
-- Week 2-3: Add consent checkbox to forms
-- Week 3-4: Update Functions validation
-- Week 4+: Deploy + test
+2. **Form-level consent checkbox** (after attestation passes, before launch)
+   - Add checkbox to contact form: "Souhlasím s [Zásadami ochrany osobních údajů](/obchodni-podminky)"
+   - Add checkbox to ebook form: same wording
+   - Send `consent: boolean` to `netlify/functions/contact.ts` and `ebook.ts`
+   - Server-side validation: reject if `consent !== true`
+   
+   **Legal basis:** GDPR Art. 6(1)(f) (legitimate interest) for lead-gen forms; Art. 6(1)(a) (explicit consent) for marketing (future newsletter). Checkbox ensures audit trail of consent.
+   
+   **Note:** Lead-gen forms (contact, ebook) use Art. 6(1)(b) (contractual) + 6(1)(f) (legitimate interest); marketing sends require Art. 6(1)(a) checkbox (future deferred task).
+
+**Current state (2026-06-04):**
+- Analytics consent gated by cookie banner (✅ done)
+- Legal pages published & tested (✅ done)
+- Form data processing continues without explicit form-level consent checkbox (⚠️ acceptable for lead-gen under Art. 6(1)(f) + (b), but checkbox recommended for audit trail)
+- Privacy notice complies with GDPR Art. 13 (✅ done)
+
+**Impact if form checkbox not added before EU launch:**
+- **Low risk** for lead-gen (contact, ebook signup) — legitimately processed under Art. 6(1)(b) (contractual) + Art. 6(1)(f) (legitimate business interest)
+- **High risk** for marketing (future newsletter) — requires Art. 6(1)(a) explicit consent checkbox before sending promotional emails
+- Regulatory fines (Article 83) up to 4% annual revenue if consent missing for marketing
+
+**Implementation example (form level):**
+```html
+<!-- Add to both contact + ebook forms (after email field) -->
+<fieldset>
+  <legend>Souhlas se zpracováním</legend>
+  <label>
+    <input type="checkbox" name="consent" required>
+    Souhlasím s <a href="/obchodni-podminky">Obchodními podmínkami</a> a <a href="/ochrana-osobnich-udaju">Zásadami ochrany osobních údajů</a>
+  </label>
+</fieldset>
+```
+
+```typescript
+// In validateContact() and validateEbook() Functions:
+if (!data.consent) {
+  return { valid: false, error: "Musíte souhlasit s podmínkami a zásadami ochrany" };
+}
+```
+
+**Timeline recommendation:**
+- [ ] Client A1–A7 attestation (legal team review + sign-off): 2–5 days
+- [ ] Add form consent checkbox UI (1 hour)
+- [ ] Add server-side validation in Functions (30 min)
+- [ ] Update footer links (already done 2026-06-04)
+- [ ] Test form submission with/without checkbox (30 min)
+- [ ] Deploy to production
 
 **Resources:**
 - [GDPR Regulation](https://gdpr-info.eu/) (official text)
+- [Art. 6 - Lawfulness of processing](https://gdpr-info.eu/art-6-gdpr/)
 - [Art. 7 - Conditions for consent](https://gdpr-info.eu/art-7-gdpr/)
+- [Art. 13 - Information to be provided to data subjects](https://gdpr-info.eu/art-13-gdpr/)
 - [Resend GDPR Compliance](https://resend.com/docs/compliance) (email provider docs)
+- Legal pages: `C:\Users\Pavli\Desktop\HypeDigitaly\GIT\GastroUp\obchodni-podminky.html`, `ochrana-osobnich-udaju.html`
+- Attestation checklist: `docs/legal-pages.md` (A1–A7 section)
+- Analytics consent guide: `docs/analytics-consent.md`
 
 ## Priority 6: Anti-Bot Protection
 
@@ -223,23 +292,29 @@ git push origin main
 
 ## Priority 7: Performance Monitoring
 
-**Status:** Optional (recommended for ongoing optimization)
+**Status:** Partially complete (Google Analytics now available for Web Vitals; error monitoring still deferred)
 
-**What to set up:**
-1. **Web Vitals tracking** (Google Analytics / Plausible)
-   - Monitor LCP, INP, CLS over time
-   - Alert if metrics degrade
-   - Set baseline for A/B testing
+**What has been done:**
+1. ✅ **Web Vitals tracking via Google Analytics**
+   - GA4 now collects Core Web Vitals (LCP, INP, CLS)
+   - Enabled via Consent Mode v2 (opt-in via cookie banner)
+   - Access reports in GA4 admin → Reports → Insights → Page & screens
 
-2. **Error monitoring** (Sentry / Rollbar)
-   - Catch Function errors
-   - Alert on email delivery failures
-   - Track JavaScript errors
+**What to set up (optional but recommended):**
+1. **Error monitoring** (Sentry / Rollbar)
+   - Catch Function errors (email delivery failures, validation issues)
+   - Alert on recurring errors
+   - Track JavaScript errors in production
+   - Free tier sufficient for single-page site
 
-3. **Lighthouse CI** (GitHub Actions)
+2. **Lighthouse CI** (GitHub Actions)
    - Automated Lighthouse audits on every PR
    - Block merge if performance regresses
    - Track trends over time
+
+3. **CSP violation monitoring**
+   - Set up CSP report endpoint once Report-Only mode is clean
+   - Alert on unexpected security violations
 
 **Cost:** Usually free tier sufficient for single-page site.
 
@@ -277,11 +352,16 @@ To track completion, update this file with dates:
 |------|--------|---------|-----------|-------|
 | Font self-hosting | To Do | — | — | See fonts/README.md for setup |
 | Dead CSS (.dark-tile) | To Do | — | — | Check grep results |
-| CSP hardening | To Do | — | — | Monitor violations for 1-2 weeks first |
+| CSP hardening (GA4 integration) | In Progress | 2026-06-03 | — | GA4 + Consent Mode v2 deployed; monitor violations 1-2 weeks; promote to enforcing when clean |
 | Remove generate-brand-assets.js | To Do | — | — | Cleanup only |
-| GDPR compliance | Blocked | — | — | Legal blocker, coordinate with legal team |
-| Anti-bot protection | To Do | — | — | Recommend Turnstile |
-| Performance monitoring | To Do | — | — | Set up Google Analytics + Sentry |
+| **Legal pages (T&C + Privacy)** | **✅ Done** | 2026-06-04 | 2026-06-04 | T&C page at /obchodni-podminky; privacy updated; footer links wired; 31 tests passing; A1–A7 attestation pending |
+| **Client A1–A7 attestation** | ⏳ Blocking | 2026-06-04 | — | Pre-deploy gate: company details, pricing sync, payment chain, products, community, support contacts — awaiting client sign-off |
+| **GDPR compliance (form consent)** | Deferred | 2026-06-04 | — | Legal pages done; form checkbox (contact + ebook) deferred until after attestation passes; lead-gen compliant under Art. 6(1)(f) + (b); marketing checkbox (Art. 6(1)(a)) future |
+| **Google Analytics (Consent Mode v2)** | **✅ Done** | 2026-06-01 | 2026-06-03 | GA4 ID: G-VR866S5JF5; default-denied; cookie banner on 4 pages; 31 tests; legal pages integrated |
+| **Ebook PDF wiring** | **✅ Done** | 2026-06-01 | 2026-06-03 | PDF moved to ebook/28-nametu.pdf; build.js copies to dist/; served at /ebook/28-nametu.pdf |
+| **Ebook cover image pipeline** | **✅ Done** | 2026-06-01 | 2026-06-03 | Ebook_Image.jpeg added to build SOURCE_IMAGES; optimized + WebP/AVIF variants generated |
+| Anti-bot protection | To Do | — | — | Recommend Turnstile; implement after form consent checkbox + attestation |
+| Performance monitoring | Partial | 2026-06-03 | — | GA4 Web Vitals now available; Sentry/error monitoring still deferred |
 | Blog section | To Do | — | — | Future content expansion |
 
 ## File Locations

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="cs" class="no-js">
+<head>
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<!-- Consent Mode v2 default-denied — must run before gtag.js -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+  try{ if(localStorage.getItem('gp_cookie_consent')==='granted'){ gtag('consent','update',{analytics_storage:'granted'}); } }catch(e){}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VR866S5JF5"></script>
+<script>
+  gtag('js', new Date());
+  gtag('config','G-VR866S5JF5',{allow_google_signals:false,allow_ad_personalization_signals:false});
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ochrana osobních údajů — GastroUp</title>
+<meta name="description" content="Zásady ochrany osobních údajů GastroUp. Informace o zpracování osobních údajů dle čl. 13 GDPR." />
+<link rel="canonical" href="https://gastroup.cz/ochrana-osobnich-udaju">
+<meta http-equiv="Content-Language" content="cs">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#06264C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,36..144,300..600,0..100,0..1;1,36..144,300..600,0..100,0..1&family=Geist:wght@300..900&family=Geist+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,36..144,300..600,0..100,0..1;1,36..144,300..600,0..100,0..1&family=Geist:wght@300..900&family=Geist+Mono:wght@400;500;600&display=swap"></noscript>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js" defer></script>
+<style>
+  /* ── Design tokens ── */
+  :root{
+    --cream:#EFE3D3;
+    --cream-pale:#F6EFE3;
+    --cream-deep:#E5D5BF;
+    --gold:#CC972D;
+    --gold-bright:#E5AE3D;
+    --gold-deep:#A87718;
+    --navy:#06264C;
+    --navy-soft:#0E3A6D;
+    --navy-deep:#03152E;
+    --ink:#1A0F00;
+    --muted:rgba(6,38,76,.65);
+    --line:rgba(6,38,76,.12);
+    --line-strong:rgba(6,38,76,.22);
+    --font-display:'Fraunces','Playfair Display',Georgia,serif;
+    --font-sans:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-mono:'Geist Mono','JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --fr-display:"opsz" 144, "SOFT" 50, "WONK" 0;
+    --fr-italic-accent:"opsz" 144, "SOFT" 100, "WONK" 1;
+    --ease-out-quart:cubic-bezier(.25,1,.5,1);
+    --ease-spring:cubic-bezier(.34,1.56,.64,1);
+  }
+
+  /* ── Reset & base ── */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--cream);color:var(--navy);font-family:var(--font-sans);font-weight:400;-webkit-font-smoothing:antialiased;line-height:1.55;font-feature-settings:"ss01","ss02","cv01"}
+  body{overflow-x:hidden;display:flex;flex-direction:column;min-height:100vh}
+  @supports (overflow-x:clip){body{overflow-x:clip}}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  picture{display:contents}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  ::selection{background:var(--gold);color:var(--navy-deep)}
+
+  /* ── Scrollbar ── */
+  html{scrollbar-width:auto;scrollbar-color:var(--gold) var(--cream-deep)}
+  ::-webkit-scrollbar{width:14px;height:14px}
+  ::-webkit-scrollbar-track{background:var(--cream-deep);border-left:1px solid rgba(6,38,76,.06)}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gold-bright),var(--gold) 50%,var(--gold-deep));border:3px solid var(--cream-deep);border-radius:999px;background-clip:padding-box}
+  ::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--gold),var(--gold-deep));background-clip:padding-box}
+  ::-webkit-scrollbar-corner{background:var(--cream-deep)}
+
+  /* ── Layout ── */
+  .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+  main{flex:1}
+
+  /* ── NAV ── */
+  .nav{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:1px solid transparent;transition:border-color .3s ease,background .3s ease}
+  .nav.scrolled{border-color:var(--line);background:rgba(239,227,211,.92);backdrop-filter:saturate(140%) blur(6px)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:18px}
+  .logo{font-family:var(--font-display);font-weight:500;font-size:18px;letter-spacing:-.02em;display:flex;align-items:center;gap:12px;color:var(--navy);font-variation-settings:var(--fr-display);flex-shrink:0;white-space:nowrap}
+  .logo-img{height:40px;width:auto;display:block}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{font-family:var(--font-mono);font-size:11.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);opacity:.72;transition:opacity .25s var(--ease-out-quart)}
+  .nav-links a:hover{opacity:1}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;font-family:var(--font-sans);font-weight:500;font-size:14.5px;letter-spacing:-.005em;transition:transform .35s var(--ease-out-quart),box-shadow .35s var(--ease-out-quart),border-color .25s;white-space:nowrap;border:1px solid transparent;cursor:pointer;overflow:hidden;isolation:isolate;transform:translateZ(0);-webkit-tap-highlight-color:transparent}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0);transition-duration:.08s}
+  .btn-primary{background:linear-gradient(135deg,var(--navy-soft),var(--navy));color:var(--cream);box-shadow:0 6px 16px -8px rgba(3,21,46,.45),0 0 0 1px rgba(229,174,61,.2)}
+  .btn-primary:hover{background:var(--navy);box-shadow:0 12px 24px -10px rgba(3,21,46,.55),0 0 0 1px rgba(229,174,61,.30)}
+  .btn-ghost{background:transparent;color:var(--navy);border:1.5px solid rgba(6,38,76,.22)}
+  .btn-ghost:hover{border-color:rgba(204,151,45,.6);background:rgba(204,151,45,.07)}
+  .arrow{display:inline-block;transition:transform .35s var(--ease-out-quart)}
+  .btn:hover .arrow{transform:translateX(4px)}
+
+  /* ── Mobile toggle ── */
+  .mobile-toggle{width:44px;height:44px;border:0;background:transparent;box-shadow:none;padding:0;margin-right:0;display:inline-flex;align-items:center;justify-content:center;color:var(--navy);font-size:27px;transition:transform .25s var(--ease-out-quart),color .2s;flex-shrink:0}
+  .mobile-toggle iconify-icon{font-size:27px;display:inline-flex}
+  .mobile-toggle:hover{color:var(--navy-deep)}
+  .mobile-toggle:active{transform:scale(.92)}
+  @media (min-width:981px){.mobile-toggle{display:none !important}}
+
+  /* ── Mobile menu ── */
+  .mobile-menu{position:absolute;top:calc(100% + 8px);left:12px;right:12px;z-index:56;background:var(--cream-pale);border:1px solid var(--line);border-radius:22px;padding:20px 22px 22px;box-shadow:0 30px 60px -20px rgba(6,38,76,.32),0 8px 22px -10px rgba(6,38,76,.22);transform:translateY(-12px) scale(.98);transform-origin:top center;opacity:0;visibility:hidden;transition:opacity .25s var(--ease-out-quart),transform .35s var(--ease-out-quart),visibility .25s;max-height:calc(100vh - 110px);overflow-y:auto;overscroll-behavior:contain}
+  .mobile-menu[aria-hidden="false"]{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+  .mobile-menu-links{display:flex;flex-direction:column;gap:2px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+  .mobile-menu-links a{font-family:var(--font-display);font-weight:500;font-size:18px;letter-spacing:-.01em;color:var(--navy);padding:12px 4px;border-radius:10px;transition:background .2s,color .2s,padding-left .2s var(--ease-out-quart);display:flex;align-items:center;justify-content:space-between;min-height:48px}
+  .mobile-menu-links a::after{content:"→";color:var(--gold);opacity:0;transform:translateX(-4px);transition:opacity .2s,transform .2s var(--ease-out-quart);font-family:var(--font-sans);font-size:18px}
+  .mobile-menu-links a:hover,.mobile-menu-links a:focus-visible{background:rgba(6,38,76,.05);padding-left:14px;outline:none}
+  .mobile-menu-links a:hover::after,.mobile-menu-links a:focus-visible::after{opacity:1;transform:translateX(0)}
+  .mobile-menu-cta{width:100%;justify-content:center;padding:14px 22px;font-size:14.5px}
+  .mobile-menu-foot{margin-top:12px;font-size:12px;color:var(--muted);text-align:center;line-height:1.5}
+  .mobile-menu-backdrop{position:fixed;inset:0;z-index:54;background:rgba(3,21,46,.4);backdrop-filter:blur(2px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+  .mobile-menu-backdrop[aria-hidden="false"]{opacity:1;visibility:visible}
+
+  @media (max-width:980.98px){
+    .nav-links{display:none}
+    .nav-cta{display:none}
+    .logo{padding-left:0}
+  }
+  @media (max-width:580px){
+    .wrap{padding:0 18px}
+    .nav-inner{padding:14px 0;gap:10px}
+    .logo{font-size:16px;gap:10px;min-height:46px}
+    .mobile-menu{left:8px;right:8px;padding:18px 18px 20px}
+    .mobile-menu-links a{font-size:17px;padding:11px 4px}
+  }
+  @media (max-width:420px){
+    .wrap{padding:0 14px}
+  }
+
+  /* ── Logo mark ── */
+  .logo-mark{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;flex-shrink:0;transition:transform .35s cubic-bezier(.2,.8,.2,1);position:relative;isolation:isolate}
+  .logo-mark img{width:100%;height:100%;display:block;object-fit:contain;filter:drop-shadow(0 6px 14px rgba(6,38,76,.18));position:relative;z-index:2}
+  .logo:hover .logo-mark{transform:translateY(-2px) rotate(-4deg) scale(1.04)}
+  .foot-brand .logo-mark{width:72px;height:72px}
+  .foot-brand .logo-mark img{filter:drop-shadow(0 6px 14px rgba(0,0,0,.35))}
+  @media (max-width:720px){
+    .logo-mark{width:54px;height:54px}
+    .foot-brand .logo-mark{width:60px;height:60px}
+  }
+
+  /* ── Page header banner ── */
+  .page-banner{background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 55%,var(--navy-soft) 100%);color:var(--cream);padding:60px 0 52px;position:relative;overflow:hidden}
+  .page-banner::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(600px circle at 88% -20%,rgba(229,174,61,.16),transparent 55%),radial-gradient(400px circle at 5% 130%,rgba(229,174,61,.07),transparent 60%)}
+  .page-banner-inner{position:relative;z-index:1;max-width:800px}
+  .page-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--gold-bright);background:rgba(229,174,61,.14);border:1px solid rgba(229,174,61,.28);border-radius:999px;padding:6px 13px;margin-bottom:20px}
+  .page-eyebrow::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold-bright);flex-shrink:0}
+  .page-banner h1{font-family:var(--font-display);font-weight:400;font-size:clamp(32px,4.5vw,52px);line-height:1.05;letter-spacing:-.025em;color:var(--cream);margin-bottom:14px;font-variation-settings:var(--fr-display)}
+  .page-banner h1 em{font-style:italic;color:var(--gold-bright);font-weight:400;font-variation-settings:var(--fr-italic-accent)}
+  .page-banner .page-meta{font-size:14px;color:rgba(239,227,211,.75);line-height:1.5}
+  .page-banner .page-meta strong{color:rgba(239,227,211,.92);font-weight:500}
+
+  /* ── Article layout ── */
+  .policy-wrap{max-width:800px;margin:0 auto;padding:60px 28px 80px}
+  .policy-section{margin-bottom:44px}
+  .policy-section:last-of-type{margin-bottom:0}
+  .policy-section h2{font-family:var(--font-display);font-weight:500;font-size:clamp(20px,2.2vw,26px);line-height:1.15;letter-spacing:-.015em;color:var(--navy);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line);font-variation-settings:"opsz" 60, "SOFT" 50, "WONK" 0}
+  .policy-section p{font-size:15px;line-height:1.7;color:var(--ink);margin-bottom:12px}
+  .policy-section p:last-child{margin-bottom:0}
+  .policy-section ul,.policy-section ol{padding-left:20px;margin-bottom:12px}
+  .policy-section ul li,.policy-section ol li{font-size:15px;line-height:1.7;color:var(--ink);margin-bottom:6px}
+  .policy-section ul li:last-child,.policy-section ol li:last-child{margin-bottom:0}
+  .policy-section a{color:var(--gold-deep);text-decoration:underline;text-underline-offset:3px;transition:color .2s}
+  .policy-section a:hover{color:var(--gold)}
+  .policy-section strong{font-weight:600;color:var(--navy)}
+  .policy-section code{font-family:var(--font-mono);font-size:.9em;background:rgba(6,38,76,.07);padding:2px 6px;border-radius:5px;color:var(--navy)}
+
+  /* Data table (cookies) */
+  .cookie-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;overflow-x:auto;display:block}
+  .cookie-table th{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--navy);padding:10px 14px;border-bottom:2px solid var(--line-strong);text-align:left;white-space:nowrap}
+  .cookie-table td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink);line-height:1.55}
+  .cookie-table tr:last-child td{border-bottom:none}
+  .cookie-table tbody tr:hover td{background:rgba(204,151,45,.05)}
+
+  /* Info card (rights) */
+  .rights-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:16px 0}
+  .rights-card{background:var(--cream-pale);border:1px solid var(--line);border-radius:14px;padding:18px 16px}
+  .rights-card h3{font-family:var(--font-display);font-weight:500;font-size:16px;color:var(--navy);margin-bottom:6px;letter-spacing:-.01em;font-variation-settings:"opsz" 36, "SOFT" 50, "WONK" 0}
+  .rights-card p{font-size:13.5px;color:var(--muted);line-height:1.55;margin:0}
+
+
+  /* ── FOOTER ── */
+  footer{background:var(--navy-deep);color:var(--cream);padding:80px 0 32px;margin-top:auto}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;margin-bottom:60px}
+  .foot-brand .logo{color:var(--cream);margin-bottom:18px}
+  .foot-brand p{font-size:14px;color:rgba(239,227,211,.82);line-height:1.6;margin-bottom:26px;max-width:340px}
+  .foot-cta-label{font-family:var(--font-mono);font-style:normal;font-size:10.5px;letter-spacing:.16em;font-weight:500;color:var(--gold-bright);margin-bottom:10px;text-transform:uppercase}
+  .foot-col h6{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(239,227,211,.82);margin-bottom:18px;font-weight:600}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .foot-col ul a{font-size:14px;color:rgba(239,227,211,.85);transition:color .2s}
+  .foot-col ul a:hover{color:var(--gold)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);font-size:13px;color:rgba(239,227,211,.82)}
+  .foot-bottom ul{display:flex;gap:18px;list-style:none}
+  .foot-bottom ul a{color:rgba(239,227,211,.82);transition:color .2s}
+  .foot-bottom ul a:hover{color:var(--gold)}
+  .foot-socials{display:flex;gap:10px}
+  .foot-socials a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:rgba(239,227,211,.85);transition:background .2s,color .2s,transform .3s var(--ease-out-quart)}
+  .foot-socials a:hover{background:var(--navy-soft);color:var(--gold-bright);transform:translateY(-2px)}
+  .foot-contact-link,.foot-contact-mail{display:inline-flex;align-items:center;gap:7px;font-size:14px;color:rgba(239,227,211,.85);transition:color .2s;margin-top:10px}
+  .foot-contact-link:hover,.foot-contact-mail:hover{color:var(--gold)}
+  .foot-contact-copy{font-size:13.5px;color:rgba(239,227,211,.75);line-height:1.55;margin-bottom:4px}
+  @media (max-width:980.98px){
+    .foot-grid{grid-template-columns:1fr 1fr;gap:36px}
+    .foot-bottom{justify-content:center;text-align:center;flex-direction:column;gap:14px}
+    .foot-bottom ul{justify-content:center;flex-wrap:wrap;gap:14px}
+  }
+  @media (max-width:580px){
+    .foot-grid{grid-template-columns:1fr;gap:32px}
+    footer{padding:60px 0 28px}
+  }
+
+  /* ── GP COOKIE BANNER ── */
+  #gp-cookie-banner{display:none;position:fixed;bottom:0;left:0;right:0;z-index:65;background:var(--navy);color:var(--cream);padding:16px 24px;box-shadow:0 -4px 24px -8px rgba(3,21,46,.45);border-top:1px solid rgba(255,255,255,.08)}
+  #gp-cookie-banner.gp-cb-visible{display:block}
+  .gp-cb-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .gp-cb-text{flex:1;min-width:220px;font-size:13.5px;line-height:1.55;color:var(--cream)}
+  .gp-cb-text a{color:var(--gold-bright);text-decoration:underline;text-underline-offset:2px}
+  .gp-cb-text a:hover{color:var(--gold)}
+  .gp-cb-actions{display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap}
+  .gp-cb-accept,.gp-cb-decline{font-family:var(--font-sans);font-size:14px;font-weight:600;padding:10px 22px;border-radius:9px;cursor:pointer;border:2px solid transparent;transition:opacity .18s,transform .18s}
+  .gp-cb-accept:focus-visible,.gp-cb-decline:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .gp-cb-accept{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+  .gp-cb-accept:hover{opacity:.88;transform:translateY(-1px)}
+  .gp-cb-decline{background:transparent;color:var(--cream);border-color:rgba(239,227,211,.6)}
+  .gp-cb-decline:hover{border-color:var(--cream);opacity:.88;transform:translateY(-1px)}
+  @media (prefers-reduced-motion:reduce){.gp-cb-accept,.gp-cb-decline{transition:none}}
+  @media (max-width:600px){.gp-cb-inner{flex-direction:column;align-items:stretch;gap:12px}.gp-cb-actions{flex-direction:column}.gp-cb-accept,.gp-cb-decline{text-align:center}}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="logo" aria-label="GastroUp — domovská stránka">
+      <picture>
+        <source srcset="/Logo_GastroUp_2_transparent.avif" type="image/avif">
+        <source srcset="/Logo_GastroUp_2_transparent.webp" type="image/webp">
+        <img class="logo-img" src="/Logo_GastroUp_2_transparent.png" alt="GastroUp — poradce pro restaurace" width="957" height="311">
+      </picture>
+    </a>
+    <nav class="nav-links" aria-label="Hlavní navigace">
+      <a href="/#okruhy">Co to je</a>
+      <a href="/#situace">Jak to funguje</a>
+      <a href="/#cena">Cena</a>
+      <a href="/#zakladatel">O zakladateli</a>
+      <a href="/#poptavka">Kontakt</a>
+    </nav>
+    <a href="/#cena" class="btn btn-primary nav-cta">Vyzkoušet zdarma</a>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu">
+      <iconify-icon icon="lucide:menu" id="mobileToggleIcon"></iconify-icon>
+    </button>
+  </div>
+  <!-- Mobile drawer -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav class="mobile-menu-links">
+      <a href="/#okruhy">Co to je</a>
+      <a href="/#situace">Jak to funguje</a>
+      <a href="/#cena">Cena</a>
+      <a href="/#zakladatel">O zakladateli</a>
+      <a href="/#poptavka">Kontakt</a>
+    </nav>
+    <a href="/#cena" class="btn btn-primary mobile-menu-cta">Vyzkoušet zdarma <span class="arrow">→</span></a>
+    <p class="mobile-menu-foot">Měsíc navíc zdarma · Bez závazku</p>
+  </div>
+  <div class="mobile-menu-backdrop" id="mobileMenuBackdrop" aria-hidden="true"></div>
+</header>
+
+<!-- ============ PAGE BANNER ============ -->
+<div class="page-banner">
+  <div class="wrap">
+    <div class="page-banner-inner">
+      <div class="page-eyebrow">Právní dokumenty</div>
+      <h1>Ochrana <em>osobních údajů</em></h1>
+      <p class="page-meta">
+        Správce: Monanivude s.r.o. · Účinné od: <strong>2. 1. 2026</strong>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MAIN CONTENT ============ -->
+<main id="main-content">
+  <div class="policy-wrap">
+
+    <!-- 1. Kdo je správce? -->
+    <section class="policy-section" aria-labelledby="section-spravce">
+      <h2 id="section-spravce">1. Kdo je správce?</h2>
+      <p>
+        Správcem je Monanivude s.r.o. se sídlem na adrese: Vojtěšská 211/6, 110 00 Praha 1, IČ: 21341486, který provozuje webovou stránku www.gastroup.cz. Vaše osobní údaje zpracováváme jako správce, tj. určujeme, jak budou osobní údaje zpracovávány a za jakým účelem, po jak dlouhou dobu a vybírám případné další zpracovatele, kteří nám se zpracováním budou pomáhat.
+      </p>
+    </section>
+
+    <!-- 2. Kontaktní údaje -->
+    <section class="policy-section" aria-labelledby="section-kontakt">
+      <h2 id="section-kontakt">2. Kontaktní údaje</h2>
+      <p>
+        Pokud se na nás budete chtít v průběhu zpracování obrátit, můžete nás kontaktovat na email: jakub.hnat@gastroup.cz.
+      </p>
+    </section>
+
+    <!-- 3. Prohlašujeme -->
+    <section class="policy-section" aria-labelledby="section-prohlasujeme">
+      <h2 id="section-prohlasujeme">3. Prohlašujeme</h2>
+      <p>
+        Prohlašujeme, že jako správce vašich osobních údajů splňujeme veškeré zákonné povinnosti vyžadované platnou legislativou, zejména zákonem o ochraně osobních údajů a GDPR, a tedy že:
+      </p>
+      <ul>
+        <li>budeme zpracovávat vaše osobní údaje jen na základě platného právního důvodu, a to především oprávněného zájmu, plnění smlouvy, zákonné povinnosti či uděleného souhlasu,</li>
+        <li>plníme dle článku 13 GDPR informační povinnost ještě před zahájením zpracování osobních údajů,</li>
+        <li>umožníme vám a budeme vás podporovat v uplatňování a plnění vašich práv podle zákona o ochraně osobních údajů a GDPR.</li>
+      </ul>
+    </section>
+
+    <!-- 4. Rozsah osobních údajů a účely zpracování -->
+    <section class="policy-section" aria-labelledby="section-rozsah">
+      <h2 id="section-rozsah">4. Rozsah osobních údajů a účely zpracování</h2>
+      <p>
+        Zpracováváme osobní údaje, které nám svěříte sami, a to z následujících důvodů (pro naplnění těchto účelů):
+      </p>
+      <ul>
+        <li>
+          <strong>Poskytování služeb, plnění smlouvy</strong> — vaše osobní údaje v rozsahu: e-mail, nezbytně potřebujeme k plnění smlouvy (např. zaslání přístupů do aplikace, zasílání online kurzu, atd, dodání zboží).
+        </li>
+        <li>
+          <strong>Vedení účetnictví</strong> — jste-li zákazníky, vaše osobní údaje (fakturační údaje) nezbytně potřebujeme, abychom vyhověli zákonné povinnosti pro vystavování a evidenci daňových dokladů.
+        </li>
+        <li>
+          <strong>Marketing — zasílání newsletterů</strong> — Newsletter zatím nerozesíláme. Pokud jej spustíme, budete předem informováni a budeme používat vaše osobní údaje (e-mail a jméno) za účelem přímého marketingu. Jste-li naším zákazníkem, zasílali bychom vám newsletter z oprávněného zájmu, neboť důvodně předpokládáme, že vás naše novinky zajímají, a to po dobu 5 let od udělení souhlasu nebo do jeho odvolání. Pokud nejste naším zákazníkem, zasílali bychom vám newsletter jen na základě vašeho souhlasu, a to po dobu 5 let od udělení souhlasu nebo do jeho odvolání. V obou případech se můžete kdykoli odhlásit použitím odhlašovacího odkazu v každém zaslaném emailu.
+        </li>
+        <li>
+          <strong>Fotografická dokumentace, reference, živé akce, workshopy</strong> — pouze na základě vašeho souhlasu můžeme využít vaše fotografie, reference, zpětné vazby apod. a to do doby, než souhlas sami odvoláte.
+        </li>
+      </ul>
+      <p>
+        Vaše osobní údaje si ponecháváme po dobu běhu promlčecích lhůt, pokud zákon nestanoví delší dobu k jejich uchování nebo jsme v konkrétních případech neuvedli jinak.
+      </p>
+    </section>
+
+    <!-- 5. Zabezpečení a ochrana osobních údajů -->
+    <section class="policy-section" aria-labelledby="section-zabezpeceni">
+      <h2 id="section-zabezpeceni">5. Zabezpečení a ochrana osobních údajů</h2>
+      <p>
+        Chráníme osobní údaje v maximální možné míře pomocí moderních technologií, které odpovídají stupni technického rozvoje. Chráníme je jako kdyby byly naše vlastní. Přijali jsme a udržujeme veškerá možná (aktuálně známá) technická a organizační opatření, která zamezují zneužití, poškození nebo zničení vašich osobních údajů.
+      </p>
+    </section>
+
+    <!-- 6. Mlčenlivost -->
+    <section class="policy-section" aria-labelledby="section-mlcenlivost">
+      <h2 id="section-mlcenlivost">6. Mlčenlivost</h2>
+      <p>
+        Dovolujeme si Vás ujistit, že naši zaměstnanci i spolupracovníci, kteří budou zpracovávat Vaše osobní údaje, jsou povinni zachovávat mlčenlivost o osobních údajích a o bezpečnostních opatřeních, jejichž zveřejnění by ohrozilo zabezpečení Vašich osobních údajů. Tato mlčenlivost přitom trvá i po skončení závazkových vztahů s námi. Bez vašeho souhlasu nebudou vaše osobní údaje vydány žádné jiné třetí straně.
+      </p>
+    </section>
+
+    <!-- 7. Cookies -->
+    <section class="policy-section" aria-labelledby="section-cookies">
+      <h2 id="section-cookies">7. Cookies</h2>
+      <p>
+        Analytické cookies (Google Analytics 4) se aktivují <strong>pouze na základě souhlasu</strong> uděleného v cookie liště, v souladu s <strong>§ 89 odst. 3 zákona č. 127/2005 Sb., o elektronických komunikacích</strong>, a <strong>čl. 6 odst. 1 písm. a) GDPR</strong>.
+      </p>
+      <p>
+        Naš web využívá Google Consent Mode v2. Výchozí stav je <code>analytics_storage: denied</code>, což znamená, že měření návštěvnosti začne až po kliknutí na „Přijmout" v cookie liště. Volbu kdykoliv změníte kliknutím na „Nastavení cookies" v patičce.
+      </p>
+      <p>
+        <strong>Google Signals a personalizace reklam jsou vypnuty.</strong> Nepoužíváme reklamní ani remarketingové cookies (např. Facebook pixel).
+      </p>
+
+      <div style="overflow-x:auto;margin:16px 0">
+        <table class="cookie-table">
+          <thead>
+            <tr>
+              <th>Název</th>
+              <th>Typ</th>
+              <th>Účel</th>
+              <th>Platnost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>_ga</code></td>
+              <td>Cookie</td>
+              <td>Analytika</td>
+              <td>2 roky</td>
+            </tr>
+            <tr>
+              <td><code>_ga_VR866S5JF5</code></td>
+              <td>Cookie</td>
+              <td>Analytika</td>
+              <td>2 roky</td>
+            </tr>
+            <tr>
+              <td><code>gp_cookie_consent</code></td>
+              <td>localStorage</td>
+              <td>Uložení volby souhlasu — technicky nezbytné, nevyžaduje souhlas</td>
+              <td>Do vymazání prohlížeče</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 8. Příjemci a zpracovatelé -->
+    <section class="policy-section" aria-labelledby="section-prijemci">
+      <h2 id="section-prijemci">8. Příjemci a zpracovatelé</h2>
+      <p>
+        K vašim osobním údajům mají přístup naši zaměstnanci a spolupracovníci. Pro zajištění konkrétních zpracovatelských operací, které nedokážeme zajistit vlastními silami, využíváme služeb a aplikací zpracovatelů, kteří umí data ochránit ještě lépe než my a na dané zpracování se specializují.
+      </p>
+      <p>
+        Osobní údaje neprodáváme ani neposkytujeme třetím stranám pro jejich vlastní marketingové účely.
+      </p>
+      <p>
+        Používáme následující poskytovatele:
+      </p>
+      <ul>
+        <li>
+          <strong>Resend Inc.</strong> — odesílání transakčních e-mailů
+        </li>
+        <li>
+          <strong>Google LLC</strong> — Google Analytics 4 (analytika návštěvnosti)
+        </li>
+        <li>
+          <strong>Netlify, Inc.</strong> — hosting webu, serverové logy
+        </li>
+        <li>
+          <strong>Cal.com, Inc.</strong> — rezervace konzultací
+        </li>
+      </ul>
+    </section>
+
+    <!-- 9. Předávání dat mimo EU -->
+    <section class="policy-section" aria-labelledby="section-mimo-eu">
+      <h2 id="section-mimo-eu">9. Předávání dat mimo EU</h2>
+      <p>
+        Data zpracováváme výhradně v EU nebo v zemích zajišťujících odpovídající úroveň ochrany na základě rozhodnutí Evropské komise (zejména na základě rozhodnutí o odpovídající ochraně EU–USA Data Privacy Framework a standardních smluvních doložek).
+      </p>
+    </section>
+
+    <!-- 10. Doba uchovávání -->
+    <section class="policy-section" aria-labelledby="section-doba">
+      <h2 id="section-doba">10. Doba uchovávání osobních údajů</h2>
+      <ul>
+        <li>
+          <strong>E-mail pro zaslání e-booku:</strong> po dobu nezbytnou k doručení + 3 roky (promlčecí lhůta).
+        </li>
+        <li>
+          <strong>Kontaktní formulář:</strong> po dobu komunikace + 3 roky.
+        </li>
+        <li>
+          <strong>Newsletter (pokud jej spustíme):</strong> 5 let od udělení souhlasu nebo do jeho odvolání.
+        </li>
+        <li>
+          <strong>Google Analytics:</strong> 14 měsíců.
+        </li>
+        <li>
+          <strong>Daňové doklady a účetní záznamy:</strong> po dobu zákonných archivačních lhůt (až 10 let).
+        </li>
+      </ul>
+    </section>
+
+    <!-- 11. Vaše práva -->
+    <section class="policy-section" aria-labelledby="section-prava">
+      <h2 id="section-prava">11. Vaše práva</h2>
+      <p>
+        V souvislosti s ochranou osobních údajů máte řadu práv. Pokud budete chtít některého z těchto práv využít, prosím, kontaktujte nás prostřednictvím e-mailu: jakub.hnat@gastroup.cz.
+      </p>
+      <div class="rights-grid">
+        <div class="rights-card">
+          <h3>Právo na přístup</h3>
+          <p>Máte právo získat potvrzení, zda zpracováváme vaše údaje, a jejich kopii. Odpovíme bez zbytečného odkladu, nejpozději do jednoho měsíce (čl. 12 odst. 3 GDPR).</p>
+        </div>
+        <div class="rights-card">
+          <h3>Právo na opravu</h3>
+          <p>Máte právo požádat o opravu nepřesných nebo neúplných údajů. Odpovíme bez zbytečného odkladu, nejpozději do jednoho měsíce.</p>
+        </div>
+        <div class="rights-card">
+          <h3>Právo na výmaz</h3>
+          <p>Máte právo na smazání svých údajů. Odpovíme bez zbytečného odkladu, nejpozději do jednoho měsíce (u složitých žádostí lze lhůtu prodloužit o další dva měsíce).</p>
+        </div>
+        <div class="rights-card">
+          <h3>Právo na omezení zpracování</h3>
+          <p>Máte právo požádat o omezení zpracování. Odpovíme bez zbytečného odkladu, nejpozději do jednoho měsíce.</p>
+        </div>
+        <div class="rights-card">
+          <h3>Právo na přenositelnost</h3>
+          <p>Údaje vám poskytneme ve strojově čitelném formátu. Odpovíme bez zbytečného odkladu, nejpozději do jednoho měsíce.</p>
+        </div>
+        <div class="rights-card">
+          <h3>Právo vznést námitku</h3>
+          <p>Máte právo vznést námitku proti zpracování. Odpovíme bez zbytečného odkladu, nejpozději do jednoho měsíce.</p>
+        </div>
+        <div class="rights-card">
+          <h3>Právo odvolat souhlas</h3>
+          <p>Souhlas s cookies nebo marketingem můžete odvolat kdykoli bez negativních důsledků.</p>
+        </div>
+        <div class="rights-card">
+          <h3>Právo podat stížnost</h3>
+          <p>Máte právo podat stížnost u dozorového úřadu — viz níže.</p>
+        </div>
+      </div>
+
+      <p style="margin-top:20px">
+        <strong>Jak změnit volbu cookies:</strong> Klikněte na odkaz <a href="#gp-cookie-banner" class="gp-cookie-settings">Nastavení cookies</a> v patičce — zobrazí se lišta pro změnu souhlasu.
+      </p>
+    </section>
+
+    <!-- 12. Odhlášení ze zasílání newsletteru -->
+    <section class="policy-section" aria-labelledby="section-odhlaseni">
+      <h2 id="section-odhlaseni">12. Odhlášení ze zasílání newsletteru</h2>
+      <p>
+        Až newsletter spustíme, v každém zaslaném e-mailu bude odhlašovací odkaz. Kliknutím na něj můžete ukončit odběr bez jakýchkoliv negativních důsledků.
+      </p>
+    </section>
+
+    <!-- 13. Právo podat stížnost u ÚOOÚ -->
+    <section class="policy-section" aria-labelledby="section-uoou">
+      <h2 id="section-uoou">13. Právo podat stížnost u ÚOOÚ</h2>
+      <p>
+        Pokud se domníváte, že zpracování vašich osobních údajů porušuje GDPR nebo jiné platné právní předpisy, máte právo podat stížnost u dozorového úřadu, kterým je pro území České republiky:
+      </p>
+      <p>
+        <strong>Úřad pro ochranu osobních údajů (ÚOOÚ)</strong><br>
+        Adresa: Pplk. Sochora 27, 170 00 Praha 7<br>
+        Web: <a href="https://www.uoou.cz" target="_blank" rel="noopener noreferrer">www.uoou.cz</a><br>
+        Datová schránka: qkbaa2n<br>
+        E-mail: <a href="mailto:posta@uoou.cz">posta@uoou.cz</a>
+      </p>
+      <p>
+        Doporučujeme před podáním stížnosti nejprve kontaktovat nás, abychom situaci mohli rychle vyřešit přímo.
+      </p>
+    </section>
+
+    <!-- 14. Povinnost poskytnutí osobních údajů -->
+    <section class="policy-section" aria-labelledby="section-povinnost">
+      <h2 id="section-povinnost">14. Povinnost poskytnutí osobních údajů</h2>
+      <p>
+        Poskytnutí osobních údajů je dobrovolné a není zákonnou ani smluvní povinností. Platí však tato omezení:
+      </p>
+      <ul>
+        <li>
+          <strong>Stažení e-booku:</strong> zadání e-mailové adresy je nezbytné pro zaslání e-booku. Bez e-mailu není technicky možné e-book doručit. Zadání telefonního čísla je zcela dobrovolné.
+        </li>
+        <li>
+          <strong>Kontaktní formulář:</strong> poskytnutí kontaktních údajů je nezbytné pro odpověď na vaši poptávku.
+        </li>
+        <li>
+          <strong>Analytické cookies:</strong> souhlas s analytickými cookies je zcela dobrovolný a jejich odmítnutí nijak neomezuje přístup k obsahu webu.
+        </li>
+      </ul>
+    </section>
+
+    <!-- 15. Automatizované rozhodování a profilování -->
+    <section class="policy-section" aria-labelledby="section-automatizace">
+      <h2 id="section-automatizace">15. Automatizované rozhodování a profilování</h2>
+      <p>
+        Neprovádíme automatizované rozhodování ani profilování ve smyslu čl. 22 GDPR, které by mělo pro vás právní nebo obdobně závažné účinky.
+      </p>
+    </section>
+
+    <!-- 16. Změny těchto zásad -->
+    <section class="policy-section" aria-labelledby="section-zmeny">
+      <h2 id="section-zmeny">16. Změny těchto zásad</h2>
+      <p>
+        Tyto zásady ochrany osobních údajů můžeme čas od času aktualizovat, zejména v reakci na změny legislativy nebo způsobu zpracování. Aktuální verze je vždy zveřejněna na této stránce s datem účinnosti. O podstatných změnách vás budeme informovat e-mailem (pokud vaši adresu evidujeme) nebo výrazným upozorněním na webu.
+      </p>
+      <p>
+        Tyto zásady jsou účinné od 2. 1. 2026.
+      </p>
+      <p>
+        Poslední aktualizace: 4. 6. 2026.
+      </p>
+    </section>
+
+  </div><!-- /policy-wrap -->
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="/" class="logo" aria-label="GastroUp">
+          <picture>
+            <source srcset="/Logo_GastroUp_2_transparent.avif" type="image/avif">
+            <source srcset="/Logo_GastroUp_2_transparent.webp" type="image/webp">
+            <img class="logo-img" src="/Logo_GastroUp_2_transparent.png" alt="GastroUp — poradce pro restaurace" width="957" height="311" loading="lazy">
+          </picture>
+        </a>
+        <p>Poradce v telefonu pro majitele restaurací. Postavený na 20 letech reálné gastro praxe.</p>
+        <div class="foot-cta-label">Radši napsat než hned volat?</div>
+        <p class="foot-contact-copy">Nech nám kontakt a Jakub se ti ozve do 24 hodin — nezávazně a bez prodejního tlaku.</p>
+        <a href="/#poptavka" class="foot-contact-link"><iconify-icon icon="lucide:pen-line"></iconify-icon> Nech nám kontakt</a>
+        <a href="mailto:jakub.hnat@gastroup.cz" class="foot-contact-mail"><iconify-icon icon="lucide:mail"></iconify-icon> jakub.hnat@gastroup.cz</a>
+      </div>
+
+      <div class="foot-col">
+        <h6>Co nabízíme</h6>
+        <ul>
+          <li><a href="/#okruhy">Co to je</a></li>
+          <li><a href="/#situace">Jak to funguje</a></li>
+          <li><a href="/#cena">Pro koho</a></li>
+          <li><a href="/#cena">Cena</a></li>
+          <li><a href="/#ebook">Ebook zdarma</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h6>Pomoc</h6>
+        <ul>
+          <li><a href="/#cena">Objednat Parťáka</a></li>
+          <li><a href="/#poptavka">Kontakt</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h6>O nás</h6>
+        <ul>
+          <li><a href="/#zakladatel">O zakladateli</a></li>
+          <li><a href="/">Blog</a></li>
+          <li><a href="/">Mediální zmínky</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>© 2026 GastroUp</div>
+      <ul>
+        <li><a href="/ochrana-osobnich-udaju" aria-current="page">Ochrana osobních údajů</a></li>
+        <li><a href="#gp-cookie-banner" class="gp-cookie-settings">Nastavení cookies</a></li>
+        <li><a href="/obchodni-podminky">Obchodní podmínky</a></li>
+      </ul>
+      <div class="foot-socials">
+        <a href="#" aria-label="Facebook"><iconify-icon icon="lucide:facebook"></iconify-icon></a>
+        <a href="#" aria-label="Instagram"><iconify-icon icon="lucide:instagram"></iconify-icon></a>
+        <a href="#" aria-label="LinkedIn"><iconify-icon icon="lucide:linkedin"></iconify-icon></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- GP COOKIE BANNER START -->
+<div id="gp-cookie-banner" role="region" aria-label="Informace o cookies" aria-live="polite">
+  <div class="gp-cb-inner">
+    <p class="gp-cb-text">Používáme analytické cookies, abychom pochopili, jak náš web využíváte, a mohli ho vylepšovat. Vaše údaje neprodáváme ani nesdílíme pro marketingové účely třetích stran. <a href="/ochrana-osobnich-udaju">Více informací</a></p>
+    <div class="gp-cb-actions">
+      <button type="button" class="gp-cb-accept">Přijmout</button>
+      <button type="button" class="gp-cb-decline">Odmítnout</button>
+    </div>
+  </div>
+</div>
+<script>
+  (function(){
+    var CONSENT_KEY = 'gp_cookie_consent';
+    var banner = document.getElementById('gp-cookie-banner');
+    if (!banner) return;
+    function showBanner(){ banner.classList.add('gp-cb-visible'); }
+    function hideBanner(){ banner.classList.remove('gp-cb-visible'); }
+    window.gpReopenCookieBanner = function(){ try { localStorage.removeItem(CONSENT_KEY); } catch(e){} showBanner(); };
+    document.querySelectorAll('.gp-cookie-settings').forEach(function(link){ link.addEventListener('click', function(e){ e.preventDefault(); window.gpReopenCookieBanner(); }); });
+    var acceptBtn = banner.querySelector('.gp-cb-accept');
+    if (acceptBtn){ acceptBtn.addEventListener('click', function(){ try { localStorage.setItem(CONSENT_KEY, 'granted'); if (typeof gtag === 'function'){ gtag('consent', 'update', {analytics_storage: 'granted'}); } } catch(e){} hideBanner(); }); }
+    var declineBtn = banner.querySelector('.gp-cb-decline');
+    if (declineBtn){ declineBtn.addEventListener('click', function(){ try { localStorage.setItem(CONSENT_KEY, 'denied'); } catch(e){} hideBanner(); }); }
+    try { if (!localStorage.getItem(CONSENT_KEY)){ showBanner(); } } catch(e){ showBanner(); }
+  })();
+</script>
+<!-- GP COOKIE BANNER END -->
+
+<!-- Mobile menu JS -->
+<script>
+  (function(){
+    var nav = document.getElementById('nav');
+    var toggle = document.getElementById('mobileToggle');
+    var menu = document.getElementById('mobileMenu');
+    var backdrop = document.getElementById('mobileMenuBackdrop');
+    var icon = document.getElementById('mobileToggleIcon');
+    if (!toggle || !menu) return;
+
+    function openMenu(){
+      menu.setAttribute('aria-hidden','false');
+      backdrop.setAttribute('aria-hidden','false');
+      toggle.setAttribute('aria-expanded','true');
+      toggle.setAttribute('aria-label','Zavřít menu');
+      if (icon) icon.setAttribute('icon','lucide:x');
+    }
+    function closeMenu(){
+      menu.setAttribute('aria-hidden','true');
+      backdrop.setAttribute('aria-hidden','true');
+      toggle.setAttribute('aria-expanded','false');
+      toggle.setAttribute('aria-label','Otevřít menu');
+      if (icon) icon.setAttribute('icon','lucide:menu');
+    }
+
+    toggle.addEventListener('click', function(){
+      var isOpen = menu.getAttribute('aria-hidden') === 'false';
+      isOpen ? closeMenu() : openMenu();
+    });
+    if (backdrop) backdrop.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+    // Sticky nav border on scroll
+    window.addEventListener('scroll', function(){
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    }, {passive:true});
+  })();
+</script>
+
+</body>
+</html>

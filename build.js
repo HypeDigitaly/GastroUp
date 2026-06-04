@@ -7,7 +7,8 @@ const DIST_DIR = path.join(__dirname, 'dist');
 const SOURCE_HTML = path.join(__dirname, 'index.html');
 const SOURCE_IMAGES = [
   'Logo_GastroUp_2_transparent.png',
-  'Zakladatel_Jakub_Hnat.png'
+  'Zakladatel_Jakub_Hnat.png',
+  'Ebook_Image.jpeg'
 ];
 const COPY_FILES = [
   'og-image.png',
@@ -19,7 +20,9 @@ const COPY_FILES = [
   'sitemap.xml',
   'llms.txt',
   'site.webmanifest',
-  '404.html'
+  '404.html',
+  'ochrana-osobnich-udaju.html',
+  'obchodni-podminky.html'
 ];
 const EXCLUDE_DIRS = [
   'napady-fotografie.html',
@@ -75,26 +78,38 @@ const minifyOptions = {
         process.exit(1);
       }
 
-      const baseName = path.parse(imageName).name;
+      const parsed = path.parse(imageName);
+      const baseName = parsed.name;
+      const ext = parsed.ext.toLowerCase();
       console.log(`🖼️  Processing ${imageName}...`);
 
-      // Copy original PNG
-      const destPng = path.join(DIST_DIR, imageName);
-      fs.copyFileSync(imagePath, destPng);
-      const pngSize = fs.statSync(destPng).size;
-      console.log(`   ✓ Copied original PNG: ${pngSize} bytes`);
+      // Copy/optimize original image
+      const destOrig = path.join(DIST_DIR, imageName);
+      let origSize;
+
+      if (ext === '.jpeg' || ext === '.jpg') {
+        // Re-encode JPEG with optimization
+        await sharp(imagePath).jpeg({ quality: 80, mozjpeg: true }).toFile(destOrig);
+        origSize = fs.statSync(destOrig).size;
+        console.log(`   ✓ Optimized original JPEG: ${origSize} bytes`);
+      } else {
+        // Copy original PNG as-is
+        fs.copyFileSync(imagePath, destOrig);
+        origSize = fs.statSync(destOrig).size;
+        console.log(`   ✓ Copied original: ${origSize} bytes`);
+      }
 
       // Generate WebP
       const destWebp = path.join(DIST_DIR, `${baseName}.webp`);
       await sharp(imagePath).webp({ quality: 82 }).toFile(destWebp);
       const webpSize = fs.statSync(destWebp).size;
-      console.log(`   ✓ Generated WebP: ${webpSize} bytes (saved ${pngSize - webpSize} bytes)`);
+      console.log(`   ✓ Generated WebP: ${webpSize} bytes (saved ${origSize - webpSize} bytes)`);
 
       // Generate AVIF
       const destAvif = path.join(DIST_DIR, `${baseName}.avif`);
       await sharp(imagePath).avif({ quality: 55 }).toFile(destAvif);
       const avifSize = fs.statSync(destAvif).size;
-      console.log(`   ✓ Generated AVIF: ${avifSize} bytes (saved ${pngSize - avifSize} bytes)\n`);
+      console.log(`   ✓ Generated AVIF: ${avifSize} bytes (saved ${origSize - avifSize} bytes)\n`);
     }
 
     // ============ Step 3: Copy curated files ============
@@ -130,6 +145,22 @@ const minifyOptions = {
         if (fs.statSync(srcFile).isFile()) {
           fs.copyFileSync(srcFile, destFile);
           console.log(`   ✓ fonts/${file}`);
+        }
+      }
+    }
+
+    // Copy ebook directory if it exists
+    const ebookDir = path.join(__dirname, 'ebook');
+    if (fs.existsSync(ebookDir)) {
+      const destEbookDir = path.join(DIST_DIR, 'ebook');
+      fs.mkdirSync(destEbookDir, { recursive: true });
+      const ebookFiles = fs.readdirSync(ebookDir);
+      for (const file of ebookFiles) {
+        const srcFile = path.join(ebookDir, file);
+        const destFile = path.join(destEbookDir, file);
+        if (fs.statSync(srcFile).isFile()) {
+          fs.copyFileSync(srcFile, destFile);
+          console.log(`   ✓ ebook/${file}`);
         }
       }
     }

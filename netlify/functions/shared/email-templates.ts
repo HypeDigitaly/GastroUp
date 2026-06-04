@@ -7,14 +7,18 @@ import type { ContactFormData, EbookFormData, RequestMeta } from "./types";
 import { escapeHtml, sanitizeHeader, safeUrl } from "./utils";
 
 // ── URL constants ─────────────────────────────────────────────────────────────
-const PDF_URL = process.env.EBOOK_PDF_URL ?? "https://gastroup.cz/ebook/28-tipu.pdf";
+const PDF_URL = process.env.EBOOK_PDF_URL ?? "https://gastroup.cz/ebook/28-nametu.pdf";
 const CTA_URL = process.env.CTA_URL ?? "https://form.fapi.cz/?id=4a82141f-d02b-489d-93b0-66f81a8cec6a";
 const LOGO_URL = process.env.LOGO_URL ?? "https://gastroup.cz/Logo_GastroUp_2_transparent.png";
 const DEMO_URL = process.env.DEMO_URL ?? "https://cal.com/jakub-h-a2wrvi/30min";
+const EBOOK_COVER_URL = process.env.EBOOK_COVER_URL ?? "https://gastroup.cz/Ebook_Image.jpeg";
 
 // ── Module-init env-var warnings ──────────────────────────────────────────────
 if (!process.env.EBOOK_PDF_URL) {
   console.warn("[config] EBOOK_PDF_URL not set — using default placeholder URL");
+}
+if (!process.env.EBOOK_COVER_URL) {
+  console.warn("[config] EBOOK_COVER_URL not set — using default ebook cover image URL");
 }
 if (!process.env.CTA_URL) {
   console.warn("[config] CTA_URL not set — using default placeholder URL");
@@ -263,16 +267,28 @@ export function ebookNotificationText(data: EbookFormData, meta: RequestMeta): s
 // 7. ebookDeliveryHTML
 // =============================================================================
 export function ebookDeliveryHTML(): string {
-  const bodyContent = `          <tr>
+  const greetingRow = `          <tr>
             <td style="padding:32px 32px 0 32px;">
               <p style="margin:0 0 16px 0;font-size:17px;font-weight:600;color:${COLORS.text};">Ahoj,</p>
-              <p style="margin:0 0 24px 0;font-size:15px;line-height:1.6;color:${COLORS.text};">tady je pro Tebe 28 tipů na tematické akce — stáhni si je tady:</p>
+            </td>
+          </tr>`;
+
+  const coverUrl = safeUrl(EBOOK_COVER_URL);
+  const coverRow = coverUrl
+    ? `          <tr>
+            <td style="padding:8px 32px 4px;text-align:center;"><img src="${coverUrl}" alt="28 námětů na tematické akce" width="240" style="display:block;max-width:100%;height:auto;border:0;margin:0 auto;"></td>
+          </tr>`
+    : "";
+
+  const introRow = `          <tr>
+            <td style="padding:8px 32px 0 32px;">
+              <p style="margin:0 0 24px 0;font-size:15px;line-height:1.6;color:${COLORS.text};">tady je pro Tebe 28 námětů na tematické akce — stáhni si je tady:</p>
             </td>
           </tr>`;
 
   const middleContent = `          <tr>
             <td style="padding:16px 32px 0 32px;">
-              <p style="margin:0 0 16px 0;font-size:15px;line-height:1.6;color:${COLORS.text};">Tipy jsou navržené tak, aby šly rovnou použít — vyber si jeden, naplánuj ho na nejbližší možný termín, dej o tom vědět svým zákazníkům i sledujícím online a uvidíš rozdíl.</p>
+              <p style="margin:0 0 16px 0;font-size:15px;line-height:1.6;color:${COLORS.text};">Náměty jsou navržené tak, aby šly rovnou použít — vyber si jeden, naplánuj ho na nejbližší možný termín, dej o tom vědět svým zákazníkům i sledujícím online a uvidíš rozdíl.</p>
               <p style="margin:0 0 24px 0;font-size:15px;line-height:1.6;color:${COLORS.text};">Pokud Tě zajímá jak z podobných akcí udělat systém, který Ti plní restauraci i mimo sezónu a buduje vlastní základnu stálých hostů, Gastro Parťák Ti s tím pomůže — první měsíc vyjde na 465 Kč.</p>
             </td>
           </tr>`;
@@ -285,24 +301,26 @@ export function ebookDeliveryHTML(): string {
 
   const signoffContent = `          <tr>
             <td style="padding:16px 32px 24px 32px;">
-              <p style="margin:0 0 4px 0;font-size:15px;line-height:1.6;color:${COLORS.text};">Využij naše tipy na maximum,</p>
+              <p style="margin:0 0 4px 0;font-size:15px;line-height:1.6;color:${COLORS.text};">Využij naše náměty na maximum,</p>
               <p style="margin:0;font-size:15px;line-height:1.6;color:${COLORS.text};font-weight:600;">Tým GastroUP</p>
             </td>
           </tr>`;
 
-  const body = [
+  const bodyRows = [
     navyHeader(""),
-    bodyContent,
-    ctaButton("Stáhnout 28 tipů (PDF)", PDF_URL),
+    greetingRow,
+    coverRow,
+    introRow,
+    ctaButton("Stáhnout 28 námětů (PDF)", PDF_URL),
     middleContent,
     ctaButton("Vyzkoušet Gastro Parťáka za 465 Kč", CTA_URL, true),
     ebookDemoIntro,
     ctaButton("Rezervovat demo zdarma", DEMO_URL, true),
     signoffContent,
     htmlFooter(),
-  ].join("\n");
+  ].filter(Boolean).join("\n");
 
-  return htmlShell("Tvých 28 tipů na tematické akce", body);
+  return htmlShell("Tvých 28 námětů na tematické akce", bodyRows);
 }
 
 // =============================================================================
@@ -312,12 +330,12 @@ export function ebookDeliveryText(): string {
   return [
     "Ahoj,",
     "",
-    "tady je pro Tebe 28 tipů na tematické akce — stáhni si je tady:",
+    "tady je pro Tebe 28 námětů na tematické akce — stáhni si je tady:",
     "",
-    "Stáhnout 28 tipů (PDF):",
+    "Stáhnout 28 námětů (PDF):",
     safeUrl(PDF_URL),
     "",
-    "Tipy jsou navržené tak, aby šly rovnou použít — vyber si jeden, naplánuj ho na nejbližší možný termín, dej o tom vědět svým zákazníkům i sledujícím online a uvidíš rozdíl.",
+    "Náměty jsou navržené tak, aby šly rovnou použít — vyber si jeden, naplánuj ho na nejbližší možný termín, dej o tom vědět svým zákazníkům i sledujícím online a uvidíš rozdíl.",
     "",
     "Pokud Tě zajímá jak z podobných akcí udělat systém, který Ti plní restauraci i mimo sezónu a buduje vlastní základnu stálých hostů, Gastro Parťák Ti s tím pomůže — první měsíc vyjde na 465 Kč.",
     "",
@@ -327,7 +345,7 @@ export function ebookDeliveryText(): string {
     "Nebo si nejdřív domluv nezávazné demo zdarma:",
     safeUrl(DEMO_URL),
     "",
-    "Využij naše tipy na maximum,",
+    "Využij naše náměty na maximum,",
     "Tým GastroUP",
   ].join("\n");
 }

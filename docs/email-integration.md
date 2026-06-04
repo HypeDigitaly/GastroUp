@@ -323,6 +323,190 @@ The following items are **explicitly NOT implemented** in the current release. T
 | **SMS backup delivery** | Ebook delivery only via email; no SMS fallback | If email delivery fails, user has no way to get ebook | Optional enhancement: add SMS delivery via Twilio if email fails |
 | **A/B testing variants** | All users see same email templates | Cannot optimize confirmation email CTR or ebook pitch | Add template variant selection (e.g., via A/B flag in function) once baseline metrics established |
 
+## Ebook Asset Wiring
+
+### Overview
+
+The ebook PDF (`28-nametu.pdf`) and cover image (`Ebook_Image.jpeg`) are public assets served via the static site. They are referenced in the ebook delivery email template, allowing users to download the PDF and view the cover image immediately after signup.
+
+### Ebook PDF Distribution
+
+**Storage & Build:**
+- **Source:** `C:\Users\Pavli\Desktop\HypeDigitaly\GIT\GastroUp\ebook\28-nametu.pdf`
+- **Build step:** `build.js` copies `ebook/` folder to `dist/ebook/` (lines 151–165)
+- **Public URL:** `https://gastroup.cz/ebook/28-nametu.pdf` (served by Netlify CDN)
+
+**How to update the PDF:**
+1. Replace the file: `ebook/28-nametu.pdf` → save new PDF with same name
+2. Commit and push: `git add ebook/28-nametu.pdf && git commit -m "feat(ebook): update 28 nametu PDF"`
+3. Deploy automatically via GitHub → Netlify
+4. No need to update any code or env vars (URL already correct)
+
+**Cache policy:** 1-day max-age (24 hours), with 7-day stale-while-revalidate. This allows quick updates while reducing redundant CDN requests.
+
+```toml
+# netlify.toml cache header:
+[[headers]]
+  for = "/*.pdf"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+    Content-Disposition = "inline"
+```
+
+### Ebook Cover Image Pipeline
+
+**Source image:** `Ebook_Image.jpeg` (original JPEG at project root)
+
+**Build processing:**
+1. `build.js` SOURCE_IMAGES includes `'Ebook_Image.jpeg'` (line 11)
+2. On build:
+   - Re-encode JPEG with mozjpeg quality 80 (optimization) → `dist/Ebook_Image.jpeg`
+   - Generate WebP variant → `dist/Ebook_Image.webp`
+   - Generate AVIF variant → `dist/Ebook_Image.avif`
+
+**Output files:**
+- `dist/Ebook_Image.jpeg` (optimized original)
+- `dist/Ebook_Image.webp` (modern format, ~30% smaller)
+- `dist/Ebook_Image.avif` (next-gen format, ~50% smaller)
+
+**Cache policy:** 1-year immutable (rename-on-change pattern)
+
+```toml
+# netlify.toml cache headers (lines 88–90):
+[[headers]]
+  for = "/*.jpeg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+```
+
+### Email Delivery: PDF + Cover Image
+
+**Ebook delivery email template** (`netlify/functions/shared/email-templates.ts`, lines 269–324):
+
+1. **Greeting:** "Ahoj,"
+2. **Cover image (if URL valid):** 
+   - Calls `safeUrl(EBOOK_COVER_URL)` to validate HTTPS
+   - Renders `<img src="{coverUrl}" alt="28 námětů na tematické akce" width="240">`
+   - If URL invalid, row is omitted (graceful degradation)
+3. **Intro text:** "tady je pro Tebe 28 námětů..."
+4. **Primary CTA button:** "Stáhnout 28 námětů (PDF)" — links to `PDF_URL`
+5. **Body text:** How to use the ebook + Gastro Parťák trial pitch
+6. **Secondary CTA buttons:** "Vyzkoušet Gastro Parťáka za 465 Kč", "Rezervovat demo zdarma"
+7. **Signoff:** "Využij naše náměty na maximum, Tým GastroUP"
+
+**Environment variables:**
+
+| Variable | Purpose | Default | Required |
+|----------|---------|---------|----------|
+| `EBOOK_PDF_URL` | Public HTTPS URL to PDF download | `https://gastroup.cz/ebook/28-nametu.pdf` | Yes (before prod) |
+| `EBOOK_COVER_URL` | Public HTTPS URL to cover image (email display) | `https://gastroup.cz/Ebook_Image.jpeg` | Yes (before prod) |
+
+**Example configuration (Netlify UI):**
+- Site settings → Environment variables → Functions
+- Add `EBOOK_PDF_URL` = `https://gastroup.cz/ebook/28-nametu.pdf`
+- Add `EBOOK_COVER_URL` = `https://gastroup.cz/Ebook_Image.jpeg`
+- Deploy
+
+**URL validation:** Both URLs validated via `safeUrl()` function (utils.ts) — rejects non-HTTPS URLs and invalid characters.
+
+### Updating Ebook Assets
+
+**Workflow: Update PDF**
+```bash
+# 1. Replace the PDF
+cp /path/to/new/28-nametu.pdf ebook/28-nametu.pdf
+
+# 2. Commit
+git add ebook/28-nametu.pdf
+git commit -m "feat(ebook): update 28 nametu PDF"
+git push origin main
+
+# 3. Netlify auto-deploys, build.js copies to dist/ebook/
+# 4. Users receive ebook at: https://gastroup.cz/ebook/28-nametu.pdf
+```
+
+**Workflow: Update cover image**
+```bash
+# 1. Replace the JPEG
+cp /path/to/new/Ebook_Image.jpeg ./Ebook_Image.jpeg
+
+# 2. Commit
+git add Ebook_Image.jpeg
+git commit -m "design(ebook): update cover image (mozjpeg q80 re-encode)"
+
+# 3. Build process:
+#    - Re-encodes JPEG (mozjpeg q80)
+#    - Generates WebP + AVIF variants
+#    - Copies to dist/
+#    - Email template displays via <img src="/Ebook_Image.jpeg" alt="...">
+
+# 4. Deploy — users see new image immediately (1-year immutable cache)
+```
+
+**If changing PDF filename (e.g., from 28-nametu.pdf → 28-nametu-v2.pdf):**
+1. Add new PDF to `ebook/` folder
+2. Update `EBOOK_PDF_URL` env var in Netlify UI to point to new filename
+3. Redeploy
+4. Old PDF remains cached for 1 year; new PDF served immediately
+
+### Email Tracking & Privacy
+
+**Tracking disabled in ebook delivery email:**
+```javascript
+// netlify/functions/ebook.ts (approx. line 40):
+tracking: { opens: false, clicks: false }
+```
+
+This ensures:
+- No pixel tracking of email opens
+- No click tracking on links (including PDF download link)
+- No user behavior analysis via email
+- Compliant with privacy-first approach
+
+### Troubleshooting
+
+**Problem: Cover image not showing in delivered email**
+
+**Cause 1:** `EBOOK_COVER_URL` env var not set or URL incorrect
+- Check Netlify UI > Site settings > Environment variables > Functions
+- Verify `EBOOK_COVER_URL` = `https://gastroup.cz/Ebook_Image.jpeg`
+- Check that file exists: `ls dist/Ebook_Image.jpeg` after build
+
+**Cause 2:** Email client doesn't load remote images
+- Most email clients load images by default, but some (Gmail, Outlook) require user opt-in
+- Email includes alt text: "28 námětů na tematické akce"
+- Fallback text will display if image doesn't load
+
+**Solution:**
+1. Verify env var set correctly in Netlify
+2. Redeploy (via git push or Netlify UI)
+3. Send test email to verify
+4. Check email HTML source for `<img src="https://gastroup.cz/Ebook_Image.jpeg">`
+
+**Problem: PDF download link 404 after updating**
+
+**Cause:** `EBOOK_PDF_URL` env var still points to old PDF filename
+- Built PDF is at: `dist/ebook/28-nametu.pdf`
+- But env var still points to old URL
+
+**Solution:**
+1. Verify new PDF is in `ebook/` folder
+2. Update `EBOOK_PDF_URL` env var in Netlify UI
+3. Redeploy
+4. Test download link by visiting URL in browser
+
+**Pre-launch Checklist: Ebook Assets**
+
+- [ ] PDF file uploaded to `ebook/28-nametu.pdf` (no spaces, ASCII-safe filename)
+- [ ] Cover image at project root: `Ebook_Image.jpeg` (re-encoded mozjpeg q80)
+- [ ] `EBOOK_PDF_URL` set in Netlify env vars: `https://gastroup.cz/ebook/28-nametu.pdf`
+- [ ] `EBOOK_COVER_URL` set in Netlify env vars: `https://gastroup.cz/Ebook_Image.jpeg`
+- [ ] Build runs successfully: `npm run build` → `dist/ebook/28-nametu.pdf` exists
+- [ ] Manual smoke test: Visit `https://gastroup.cz/ebook/28-nametu.pdf` → file downloads
+- [ ] Submit ebook form with test email → verify delivery email received with cover image + download link
+
+---
+
 **Pre-launch checklist items from README:**
 - GDPR consent checkbox + privacy policy validation
 - Rate limiting / Cloudflare Turnstile CAPTCHA

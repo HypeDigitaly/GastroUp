@@ -5,8 +5,10 @@
   "type": "commonjs",
   "scripts": {
     "type-check": "tsc --noEmit",
-    "dev": "netlify dev",
-    "build": "node build.js"
+    "dev": "node build.js && netlify dev",
+    "build": "node build.js",
+    "test:consent": "node build.js && node test-consent.cjs",
+    "test:smoke": "node build.js && node test-smoke.cjs"
   },
   "dependencies": {
     "@netlify/functions": "^2.8.1"

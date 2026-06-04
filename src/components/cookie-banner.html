@@ -1,0 +1,84 @@
+<!-- GP COOKIE BANNER START -->
+<div id="gp-cookie-banner" role="region" aria-label="Informace o cookies" aria-live="polite">
+  <div class="gp-cb-inner">
+    <p class="gp-cb-text">
+      Používáme analytické cookies, abychom pochopili, jak náš web využíváte, a mohli ho vylepšovat.
+      Vaše údaje neprodáváme ani nesdílíme pro marketingové účely třetích stran.
+      <a href="/ochrana-osobnich-udaju">Více informací</a>
+    </p>
+    <div class="gp-cb-actions">
+      <button type="button" class="gp-cb-accept">Přijmout</button>
+      <button type="button" class="gp-cb-decline">Odmítnout</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var CONSENT_KEY = 'gp_cookie_consent';
+    var banner = document.getElementById('gp-cookie-banner');
+    if (!banner) return;
+
+    function showBanner(){
+      banner.classList.add('gp-cb-visible');
+    }
+
+    function hideBanner(){
+      banner.classList.remove('gp-cb-visible');
+    }
+
+    // Expose global reopen handler for "Nastavení cookies" footer link
+    window.gpReopenCookieBanner = function(){
+      try { localStorage.removeItem(CONSENT_KEY); } catch(e){}
+      showBanner();
+    };
+
+    // Wire footer "Nastavení cookies" link
+    document.querySelectorAll('.gp-cookie-settings').forEach(function(link){
+      link.addEventListener('click', function(e){
+        e.preventDefault();
+        window.gpReopenCookieBanner();
+      });
+    });
+
+    // Accept button
+    var acceptBtn = banner.querySelector('.gp-cb-accept');
+    if (acceptBtn){
+      acceptBtn.addEventListener('click', function(){
+        try {
+          localStorage.setItem(CONSENT_KEY, 'granted');
+          if (typeof gtag === 'function'){
+            gtag('consent', 'update', {analytics_storage: 'granted'});
+          }
+        } catch(e){}
+        hideBanner();
+      });
+    }
+
+    // Decline button — also push the denied state to gtag so a same-session
+    // withdrawal (accept → reopen → decline) stops collection immediately,
+    // not only after the next page load.
+    var declineBtn = banner.querySelector('.gp-cb-decline');
+    if (declineBtn){
+      declineBtn.addEventListener('click', function(){
+        try {
+          localStorage.setItem(CONSENT_KEY, 'denied');
+          if (typeof gtag === 'function'){
+            gtag('consent', 'update', {analytics_storage: 'denied'});
+          }
+        } catch(e){}
+        hideBanner();
+      });
+    }
+
+    // Show only when consent not yet set
+    try {
+      if (!localStorage.getItem(CONSENT_KEY)){
+        showBanner();
+      }
+    } catch(e){
+      showBanner();
+    }
+  })();
+</script>
+<!-- GP COOKIE BANNER END -->

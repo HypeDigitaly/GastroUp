@@ -1,8 +1,15 @@
 # Build Pipeline
 
+> **Architecture update (2026-06-04):** Pages are no longer single root HTML files.
+> All 4 pages (`index`, `obchodni-podminky`, `ochrana-osobnich-udaju`, `404`) are
+> **assembled from modular partials in `src/`** by `scripts/assemble.js`
+> (`<!-- @include … -->` directives + `{{param}}` substitution), then minified.
+> See [src/README.md](../src/README.md). References to "index.html in repo root"
+> below describe the assembled equivalent.
+
 ## Overview
 
-The GastroUp build pipeline is a Node.js-based system (`build.js`) that optimizes the static marketing site for production deployment. It automates HTML minification, image format conversion (WebP/AVIF), and curated file copying to the `dist/` directory.
+The GastroUp build pipeline is a Node.js-based system (`build.js`) that optimizes the static marketing site for production deployment. It automates page assembly from `src/` partials, HTML minification, image format conversion (WebP/AVIF), and curated file copying to the `dist/` directory.
 
 **Run the build:**
 ```bash
@@ -11,9 +18,9 @@ npm run build
 
 ## Build Steps
 
-### 1. HTML Minification
+### 1. Page Assembly + HTML Minification
 
-The build process minifies `index.html` using `html-minifier-terser` with aggressive settings:
+The build assembles each page in `build.js` `PAGES` from `src/pages/*.html` (resolving includes recursively, failing the build on any unresolved directive, missing `{{param}}`, or missing critical block — cookie banner / GA snippet / `</html>`), then minifies using `html-minifier-terser` with aggressive settings:
 
 - **Collapse whitespace**: removes unnecessary whitespace
 - **Remove comments**: strips HTML comments

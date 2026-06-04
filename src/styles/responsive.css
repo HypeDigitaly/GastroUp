@@ -1,0 +1,296 @@
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:980.98px){
+    .nav-links{display:none}
+    .nav-cta{display:none}
+    /* .mobile-toggle is visible by default — desktop @media hides it */
+    /* Logo aligns flush with the .wrap padding — no extra left inset, so it
+       sits as far left as the rest of the page content (and symmetric with the
+       hamburger on the right). */
+    .logo{padding-left:0}
+    .hero{padding:36px 0 72px}
+    .hero-grid{grid-template-columns:1fr;gap:48px}
+    .hero-visual{aspect-ratio:4/5;max-width:520px;margin:0 auto}
+    .okruhy{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(2,1fr);gap:20px 0}
+    .stat{border-right:none;padding:14px 20px}
+    .stat:nth-child(odd){border-right:1px solid var(--line)}
+    .stat:last-child{border-right:none}
+    .situace-grid{grid-template-columns:1fr}
+    .free-card{position:static}
+    .price-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}
+    .price-card.featured{transform:none}
+    .price-card.featured:hover{transform:translateY(-4px)}
+    .ff-grid{grid-template-columns:1fr;gap:40px}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:36px}
+    .section{padding:80px 0}
+    .section-vision{padding:64px 0 48px}
+    .section-light{margin:0 14px;padding:72px 0}
+    .formfounder{padding:80px 0 60px}
+    /* Hero CTAs stack more comfortably */
+    .hero-ctas{gap:10px}
+    .hero-ctas .btn{padding:14px 22px;font-size:14.5px}
+    .hero-ctas .btn-gold{flex:1 1 100%;justify-content:center;white-space:normal;flex-wrap:wrap;text-align:center;row-gap:2px;line-height:1.3}
+    .hero-ctas .btn-ghost{flex:1 1 auto;justify-content:center;min-width:160px}
+    /* Vision section: tighter cards */
+    .vision-card{padding:22px 18px}
+    /* Free-card: tame the huge "Čestný" headline */
+    .free-card{padding:28px 26px;border-radius:22px}
+    .free-card h3{font-size:clamp(38px,7vw,46px);line-height:1.05}
+    .free-card .pitch{font-size:16.5px}
+    /* Situace section grid keeps stacking with breathing room */
+    .situace-grid{padding:0 16px;gap:28px}
+    /* Accordion: tighter on mobile, but still readable */
+    .acc-item{padding:18px 20px;border-radius:16px}
+    .acc-item summary{font-size:16px;gap:14px;line-height:1.4}
+    .acc-num{font-size:10.5px}
+    .acc-toggle{width:32px;height:32px}
+    /* Pricing: featured card no longer overflows when scaled */
+    .price-card.featured{transform:none}
+    .price-card.featured:hover{transform:translateY(-3px)}
+    .price-card{padding:28px 24px}
+    /* Footer bottom — center & stack */
+    .foot-bottom{justify-content:center;text-align:center;flex-direction:column;gap:14px}
+    .foot-bottom ul{justify-content:center;flex-wrap:wrap;gap:14px}
+    /* Founder card stays tidy */
+    .founder-card{flex-wrap:wrap;gap:10px 14px}
+    .founder-card .who{flex:1 1 auto;min-width:140px}
+    .founder-card a{flex-shrink:0}
+    /* Section heads tighter */
+    .section-head{margin-bottom:48px}
+    /* Stat numbers refined */
+    .stat .n{font-size:32px}
+    .stat .l{font-size:12.5px}
+    /* Form-card tightening */
+    .form-card{padding:28px 24px;border-radius:22px}
+    /* Margin under "okruhy" — no longer needs the desktop offset */
+    .okruhy{padding-bottom:0}
+  }
+  /* ════ HERO PHONE — STACKED layout for laptop & mobile (≤980px) ════
+     When the hero grid collapses to one column, the phone-visual loses its
+     side-by-side context. The desktop layered floats (which assume a wide
+     hero-visual) start swamping the phone. So at any width ≤980px we switch
+     to the compact composition: tall 2/3 container, phone fully visible,
+     compact navy badge below bottom-right, video pill below bottom-left. */
+  @media (max-width:980.98px){
+    /* .hero prefix bumps specificity (0,3,0) over base .hero-visual.is-phone (0,2,0) */
+    .hero .hero-visual.is-phone{
+      aspect-ratio:2/3;
+      width:100%;
+      max-width:420px;
+      margin:0 auto;
+      display:flex;
+      flex-direction:row;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+      gap:0;
+      height:auto;
+      overflow:visible;
+    }
+    /* Disc backdrop — gentle halo behind phone */
+    .hero-visual.is-phone .phone-stage{
+      display:flex;
+      position:absolute;
+      inset:0;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .hero-visual.is-phone .phone-stage .disc{width:62%}
+
+    /* Phone — fully visible top-to-bottom */
+    .hero-visual.is-phone .phone{
+      position:relative;
+      width:52%;
+      max-width:none;
+      max-height:none;
+      aspect-ratio:9/19;
+      margin:0;
+      order:initial;
+      isolation:auto;
+      z-index:2;
+      animation:phoneFloat 7s ease-in-out infinite;
+    }
+    .hero-visual.is-phone .phone::after{display:none}
+
+    /* ⚠ All overrides use .hero-visual.is-phone prefix → specificity (0,3,0)
+       beats the (0,1,0) base rules that come LATER in source order. */
+
+    /* Chip ABOVE phone, slight top-bezel touch only */
+    .hero-visual.is-phone .float-tl{
+      position:absolute;
+      top:6%;
+      left:0;
+      right:auto;
+      bottom:auto;
+      max-width:60%;
+      margin:0;
+      order:initial;
+      align-self:auto;
+      padding:9px 13px;
+      border-radius:14px;
+      z-index:5;
+      display:flex;
+    }
+    .hero-visual.is-phone .float-tl .fc-dot{width:8px;height:8px}
+    .hero-visual.is-phone .float-tl .fc-text{font-size:12.5px;line-height:1.22}
+    .hero-visual.is-phone .float-tl .fc-text span{font-size:10.5px;margin-top:2px}
+
+    /* Navy card — COMPACT badge below phone bottom-right */
+    .hero-visual.is-phone .float-br{
+      display:block;
+      position:absolute;
+      bottom:-2%;
+      right:0;
+      top:auto;
+      left:auto;
+      width:auto;
+      max-width:54%;
+      margin:0;
+      order:initial;
+      padding:10px 12px 10px;
+      border-radius:14px;
+      z-index:5;
+    }
+    .hero-visual.is-phone .float-br .fc-eyebrow{font-size:8px;letter-spacing:.18em;margin-bottom:5px;gap:6px}
+    .hero-visual.is-phone .float-br .fc-pulse{width:5px;height:5px;box-shadow:0 0 0 2px rgba(34,182,124,.22), 0 0 6px rgba(34,182,124,.7)}
+    .hero-visual.is-phone .float-br .fc-title{font-size:11px;line-height:1.22}
+    .hero-visual.is-phone .float-br .fc-stats{
+      grid-template-columns:repeat(3,1fr);
+      gap:4px;
+      margin:7px 0 0;
+      padding:7px 0 0;
+      border-top:1px solid rgba(229,174,61,.16);
+      border-bottom:none;
+    }
+    .hero-visual.is-phone .float-br .fc-stats li{display:flex;padding-right:3px;border-right:1px solid rgba(255,255,255,.06)}
+    .hero-visual.is-phone .float-br .fc-stats li:last-child{border-right:none}
+    .hero-visual.is-phone .float-br .fc-stats .val{font-size:10px}
+    .hero-visual.is-phone .float-br .fc-stats .val em{font-size:8px}
+    .hero-visual.is-phone .float-br .fc-stats .lbl{font-size:7px;letter-spacing:.12em}
+    /* Hide noisy bits on stacked layouts so the card stays a small badge */
+    .hero-visual.is-phone .float-br .fc-tags{display:none}
+    .hero-visual.is-phone .float-br .fc-foot{display:none}
+
+    /* Video pill — BELOW phone, no overlap */
+    .hero-visual.is-phone .float-video{
+      position:absolute;
+      left:0;
+      bottom:-2%;
+      top:auto;
+      right:auto;
+      transform:none;
+      margin:0;
+      order:initial;
+      align-self:auto;
+      font-size:11.5px;
+      padding:5px 13px 5px 5px;
+      gap:8px;
+      z-index:6;
+    }
+    .hero-visual.is-phone .float-video .play{width:24px;height:24px;font-size:11px}
+    .hero-visual.is-phone .float-video:hover{transform:translateY(-2px)}
+  }
+
+  @media (max-width:580px){
+    .wrap{padding:0 18px}
+    /* Mobile-specific phone container size tweaks */
+    .hero .hero-visual.is-phone{max-width:380px}
+    .foot-grid{grid-template-columns:1fr;gap:32px}
+    .founder-info{grid-template-columns:1fr}
+    .vision-card{flex:1 1 100%;max-width:none}
+    .hero-hook{font-size:15px;margin-bottom:14px}
+    /* Tighter wraps for very small phones */
+    .nav-inner{padding:14px 0;gap:10px}
+    .logo{font-size:16px;gap:10px;padding-left:0;min-height:46px}
+    .form-card .field input,
+    .form-card .field textarea{padding:14px 14px;font-size:14.5px;border-width:2px}
+    /* T16: hero detail polish */
+    .hero-pill{margin-bottom:18px}
+    .partners{gap:12px}
+    .partners-label{font-size:11px}
+    .partners-marks{font-size:16px;gap:18px}
+    /* T17: micro fine-print centred with full-width CTAs */
+    .micro{text-align:center}
+    /* T18: situace eyebrow rhythm — !important needed to beat inline style="margin:0 0 28px" */
+    .situace-grid .section-head{margin:0 0 18px !important}
+    .acc-item summary{font-size:15px;gap:12px}
+    .acc-toggle{width:44px;height:44px;align-self:flex-start}
+    .acc-item summary > span:first-child{min-width:0;overflow-wrap:break-word}
+    .acc-body{font-size:14px}
+    .acc-body .solution{padding:14px 16px;font-size:13.5px}
+    .price-card{padding:26px 22px}
+    .price-num{font-size:38px}
+    .stat{padding:0 16px}
+    .stat .n{font-size:28px;gap:5px}
+    .stats{padding:28px 0}
+    .center-ctas{flex-direction:column;align-items:stretch}
+    .center-ctas .btn{justify-content:center;width:100%}
+    .formfounder{padding:64px 0 48px}
+    .founder h3{font-size:28px;line-height:1.1}
+    .free-card{padding:24px 20px}
+    .free-card h3{font-size:42px}
+    .free-card .sub-h3{margin-bottom:14px}
+    .free-card .pitch{font-size:15.5px}
+    .free-card .body{font-size:13.5px}
+    .section{padding:64px 0}
+    .section-vision{padding:48px 0 36px}
+    .hero{padding:36px 0 64px}
+    .section-light{padding:64px 0}
+    .section-head{margin-bottom:36px}
+    .mobile-menu{left:8px;right:8px;padding:18px 18px 20px}
+    .mobile-menu-links a{font-size:17px;padding:11px 4px}
+  }
+  @media (max-width:420px){
+    .wrap{padding:0 14px}
+    .hero h1{font-size:36px;letter-spacing:-.02em;line-height:1.05}
+    .hero p.lead{font-size:15.5px}
+    .section h2{font-size:28px}
+    .free-card h3{font-size:38px}
+    .stat .n{font-size:26px}
+    .price-num{font-size:34px}
+    /* Two-column stats become single-row when too cramped */
+    .stats{grid-template-columns:1fr;gap:16px 0}
+    .stat:nth-child(odd){border-right:none}
+    .stat{padding:14px 16px;border-right:none;border-bottom:1px solid var(--line)}
+    .stat:last-child{border-bottom:none}
+    /* Tiny screens — tighten further but keep same layout (high-specificity) */
+    .hero .hero-visual.is-phone{max-width:340px}
+    .hero-visual.is-phone .phone{width:50%}
+    .hero-visual.is-phone .float-tl{top:5%;max-width:56%;padding:8px 11px}
+    .hero-visual.is-phone .float-tl .fc-text{font-size:11.5px}
+    .hero-visual.is-phone .float-tl .fc-text span{font-size:10px}
+    .hero-visual.is-phone .float-br{bottom:-3%;right:0;max-width:52%;padding:9px 11px 9px}
+    .hero-visual.is-phone .float-br .fc-title{font-size:10px}
+    .hero-visual.is-phone .float-br .fc-stats .val{font-size:9.5px}
+    .hero-visual.is-phone .float-br .fc-stats .lbl{font-size:6.5px}
+    .hero-visual.is-phone .float-video{left:0;bottom:-3%;font-size:10.5px;padding:4px 11px 4px 4px}
+    .hero-visual.is-phone .float-video .play{width:22px;height:22px;font-size:10px}
+    /* T15: tighter accordion gap at 420px */
+    .acc-item summary{gap:10px}
+    /* T9: 14px gutter symmetric at 420px — card inset aligns with wrap padding */
+    .section-light{margin:0 14px;border-radius:24px}
+    .situace-grid{padding:0 14px}
+  }
+  /* T13: gold CTA wraps gracefully to ≤2 centred lines at 320px, guarantees ≥44px touch target */
+  @media (max-width:400px){
+    .hero-ctas .btn-gold,.free-card .btn-gold{
+      white-space:normal;        /* allow wrap — overrides .btn nowrap for this context only */
+      flex-wrap:wrap;
+      justify-content:center;
+      text-align:center;
+      row-gap:2px;
+      line-height:1.25;
+      min-height:44px;
+      padding:11px 16px;
+      font-size:13.5px;
+    }
+    /* FIX-6: Partners strip becomes intentional stacked block at 320px */
+    .partners{flex-direction:column;align-items:flex-start;gap:6px}
+  }
+  /* T14: hero ghost button clears 160px min-width at ≤520 — prevents overflow at 320px */
+  @media (max-width:520px){
+    .hero-ctas .btn-ghost{flex:1 1 100%;min-width:0}
+    .hero-ctas{gap:12px}
+  }
+

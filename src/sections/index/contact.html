@@ -1,0 +1,71 @@
+<!-- ============ POPTÁVKA / KONTAKT — třetí, nezávazná cesta vedle Objednat + Demo ============ -->
+<section class="section contact-section" id="poptavka">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-copy reveal">
+        <span class="eyebrow">Třetí cesta · bez závazku</span>
+        <h2>Nechceš hned platit ani vybírat termín? <em>Nech nám kontakt.</em></h2>
+        <p class="sub">Napiš pár řádků o svém podniku a co řešíš. Jakub se ti ozve osobně — v klidu, bez prodejního tlaku. Jen ti poradí, jestli a jak ti Parťák sedne.</p>
+        <ul class="contact-trust">
+          <li>
+            <iconify-icon icon="lucide:clock-3"></iconify-icon>
+            <div><strong>Ozveme se do 24 hodin</strong><span>Většinou ještě dneska.</span></div>
+          </li>
+          <li>
+            <iconify-icon icon="lucide:shield-check"></iconify-icon>
+            <div><strong>Nezávazné a zdarma</strong><span>Žádný prodejní nátlak, žádné otravné maily.</span></div>
+          </li>
+          <li>
+            <iconify-icon icon="lucide:message-circle-more"></iconify-icon>
+            <div><strong>Jak ti vyhovuje</strong><span>Ozveme se přes telefon, Telegram i e-mail — vyber si.</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-card contact-card reveal">
+        <span class="eyebrow">Poptávka</span>
+        <h3>Ozveme se ti</h3>
+        <p class="desc">Stačí pár údajů. Pole s <span class="req">*</span> jsou povinná.</p>
+        <form id="contactForm">
+          <input type="text" name="company_website" tabindex="-1" autocomplete="new-password" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;opacity:0;width:1px;height:1px;">
+          <div class="field">
+            <label for="cName">Jméno <span class="req">*</span></label>
+            <input id="cName" name="name" type="text" required placeholder="Tvoje jméno" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="cPhone">Telefon <span class="req">*</span></label>
+            <input id="cPhone" name="phone" type="tel" required placeholder="+420…" autocomplete="tel" inputmode="tel">
+          </div>
+          <div class="field">
+            <label for="cEmail">E-mail <span class="opt">(nepovinné)</span></label>
+            <input id="cEmail" name="email" type="email" placeholder="vase@restaurace.cz" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="cMsg">S čím potřebuješ pomoct? <span class="opt">(nepovinné)</span></label>
+            <textarea id="cMsg" name="message" placeholder="Mám bistro pro 40 lidí, řeším fluktuaci personálu a marže…"></textarea>
+          </div>
+          <div class="field">
+            <label>Jak se ti ozvat?</label>
+            <div class="contact-chips" role="group" aria-label="Preferovaný způsob kontaktu">
+              <button type="button" class="contact-chip" data-pref="Telefon" aria-pressed="true"><iconify-icon icon="lucide:phone"></iconify-icon>Telefon</button>
+              <button type="button" class="contact-chip" data-pref="Telegram" aria-pressed="false"><iconify-icon icon="lucide:send"></iconify-icon>Telegram</button>
+              <button type="button" class="contact-chip" data-pref="E-mail" aria-pressed="false"><iconify-icon icon="lucide:mail"></iconify-icon>E-mail</button>
+            </div>
+            <input type="hidden" name="preference" id="cPref" value="Telefon">
+          </div>
+          <div class="form-error" id="contactError" hidden role="alert"></div>
+          <button type="submit" class="btn btn-gold">Chci, ať se mi ozvete <span class="arrow">→</span></button>
+          <p class="form-foot">Odesláním souhlasíš se zpracováním kontaktu kvůli ozvání. Nikomu ho nedáváme.</p>
+        </form>
+        <div class="contact-success" id="contactSuccess" role="status" aria-live="polite">
+          <iconify-icon icon="lucide:party-popper"></iconify-icon>
+          <h4>Díky! Máme tvůj kontakt.</h4>
+          <p>Jakub se ti ozve do 24 hodin — většinou ještě dneska.</p>
+          <p class="success-demo-label">Chceš to probrat dřív? Domluv si nezávazné demo zdarma:</p>
+          <!-- @include components/cal-button.html class="btn btn-success-demo" label='Rezervovat demo zdarma <span class="arrow">→</span>' -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

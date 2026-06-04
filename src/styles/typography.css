@@ -1,0 +1,248 @@
+  /* Body text — slightly softer color, refined rendering */
+  body{color:var(--navy);font-weight:400;font-feature-settings:"ss01","ss02","cv01","cv11"}
+
+  /* All display headings inherit a Fraunces preset that is
+     opsz-tuned to their size. We re-apply per element so
+     specificity always wins over the legacy declarations.
+     IMPORTANT: no color here — each section sets its own. */
+  h1,h2,h3,h4,h5,h6,
+  .hero h1,
+  .section h2,
+  .okruh-body h3,
+  .free-card h3,
+  .free-card h3 + *,
+  .acc-item summary,
+  .price-num,
+  .form-card h3,
+  .founder h3,
+  .lp-title,
+  .chat-name,
+  .float-br .fc-title{
+    font-family:var(--font-display);
+    font-variation-settings:var(--fr-display);
+    font-feature-settings:"ss01";
+  }
+  /* Default heading color on LIGHT surfaces only */
+  h1,h2,h3,h4,h5,h6{color:var(--navy)}
+  /* Dark surfaces — restore cream */
+  .free-card h3, .free-card .pitch, .free-card .body,
+  .form-card h3, .form-card p, .form-card label,
+  .founder h3, .founder p,
+  .price-card.featured .price-num,
+  .price-card.featured .price-desc{
+    color:var(--cream);
+  }
+
+  /* Hero headline: max optical size + a touch of softness */
+  .hero h1{
+    font-weight:400;
+    font-size:clamp(42px,5.8vw,80px);
+    line-height:.98;
+    letter-spacing:-.03em;
+    font-variation-settings:"opsz" 144, "SOFT" 60, "WONK" 0;
+  }
+
+  /* Section H2 — slightly lighter weight reads more editorial */
+  .section h2{
+    font-weight:400;
+    font-size:clamp(34px,4.2vw,56px);
+    line-height:1.02;
+    letter-spacing:-.025em;
+    font-variation-settings:"opsz" 144, "SOFT" 50, "WONK" 0;
+  }
+
+  /* Mid headings */
+  .okruh-body h3, .free-card h3, .form-card h3,
+  .founder h3, .acc-item summary{
+    font-weight:500;
+    font-variation-settings:"opsz" 60, "SOFT" 50, "WONK" 0;
+  }
+
+  /* Italic accent — SAME color as the heading, just italic for emphasis.
+     No multi-color text — accessibility & calm reading first. */
+  .hero h1 em, .section h2 em, .founder h3 em, .form-card h3 em,
+  .free-card h3 em, .acc-item summary em,
+  .foot-cta-label em, .float-br .fc-title em{
+    font-style:italic;
+    color:inherit;
+    font-weight:500;
+    font-variation-settings:"opsz" 144, "SOFT" 50, "WONK" 0;
+    letter-spacing:-.005em;
+  }
+
+  /* Hero hook — Fraunces italic in muted navy */
+  .hero-hook{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:400;
+    font-variation-settings:"opsz" 36, "SOFT" 100, "WONK" 0;
+    color:rgba(6,38,76,.72);
+    letter-spacing:-.005em;
+  }
+
+  /* ── Mono labels: eyebrow, badges, micro-captions ── */
+  .eyebrow,
+  .free-badge,
+  .partners-label,
+  .free-card .included,
+  .acc-body .solution strong,
+  .price-tag,
+  .price-name,
+  .foot-col h6,
+  .founder-info h5,
+  .float-br .fc-eyebrow,
+  .foot-cta-label,
+  .field label,
+  .nav-links a{
+    font-family:var(--font-mono);
+    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-feature-settings:"ss01";
+  }
+
+  /* Eyebrow — refined pill, calm and readable */
+  .eyebrow{
+    font-size:10.5px;
+    letter-spacing:.16em;
+    padding:6px 12px 5px;
+    background:rgba(6,38,76,.06);
+    color:var(--navy);
+    border:1px solid rgba(6,38,76,.10);
+    font-weight:600;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:5px;height:5px;border-radius:50%;
+    background:var(--gold);
+  }
+  .formfounder .eyebrow{
+    background:rgba(239,227,211,.10);
+    color:var(--cream);
+    border-color:rgba(239,227,211,.18);
+  }
+  .formfounder .eyebrow::before{background:var(--gold)}
+
+  /* Nav links — Mono, micro, uppercase */
+  .nav-links a{
+    font-size:11.5px;
+    letter-spacing:.14em;
+    opacity:.72;
+    color:var(--navy);
+  }
+  .nav-links a:hover{opacity:1}
+
+  /* Section sub-captions / quiet labels */
+  .free-badge{
+    color:var(--gold-bright);
+    background:rgba(229,174,61,.15);
+    padding:5px 12px 4px;
+    border-radius:999px;
+    font-size:10.5px;letter-spacing:.16em;
+    display:inline-block;
+    border:1px solid rgba(229,174,61,.34);
+    font-weight:600;
+  }
+  .partners-label{font-size:11px;letter-spacing:.14em;color:rgba(6,38,76,.72)}
+  .free-card .included{font-size:10px;letter-spacing:.16em;color:rgba(239,227,211,.82)}
+  .acc-body .solution strong{font-size:11px;letter-spacing:.12em;color:var(--gold-deep)}
+  .price-tag{font-size:10px;letter-spacing:.14em;padding:5px 12px 4px;font-weight:600}
+  .price-name{font-size:10.5px;letter-spacing:.16em;color:rgba(6,38,76,.72)}
+  .foot-col h6{font-size:10.5px;letter-spacing:.16em;color:rgba(239,227,211,.82)}
+  .founder-info h5{font-size:11px;letter-spacing:.14em;color:var(--gold-bright)}
+  .float-br .fc-eyebrow{font-size:10px;letter-spacing:.18em;color:var(--gold-bright)}
+  .field label{font-size:10.5px;letter-spacing:.12em;color:rgba(239,227,211,.85)}
+
+  /* "foot-cta-label" footer eyebrow — italic accent style */
+  .foot-cta-label{
+    font-family:var(--font-mono);
+    font-style:normal;
+    font-size:10.5px;
+    letter-spacing:.16em;
+    color:var(--gold-bright);
+    font-weight:500;
+  }
+
+  /* Stat numbers — Fraunces with optical sizing */
+  .stat .n,
+  .price-num,
+  .free-card h3,
+  .founder-card .av,
+  .float-br .fc-foot strong{
+    font-variation-settings:"opsz" 144, "SOFT" 30, "WONK" 0;
+    font-feature-settings:"tnum","lnum","ss01";
+    letter-spacing:-.025em;
+  }
+
+  /* Accordion number — gold mustard digit */
+  .acc-num{
+    font-family:var(--font-mono);
+    font-weight:500;
+    color:var(--gold-deep);
+    font-size:11px;
+    letter-spacing:.06em;
+    font-variation-settings:normal;
+  }
+
+  /* Buttons — Geist, slightly tighter tracking */
+  .btn{
+    font-family:var(--font-sans);
+    font-weight:500;
+    letter-spacing:-.005em;
+  }
+
+  /* Hero pill — small Geist label with rounded chip */
+  .hero-pill{
+    font-family:var(--font-sans);
+    font-weight:500;
+    font-size:12.5px;
+    letter-spacing:.005em;
+    color:var(--navy);
+  }
+
+  /* Inputs */
+  .field input, .field textarea,
+  .lead-popup input{
+    font-family:var(--font-sans);
+    font-weight:400;
+    letter-spacing:-.005em;
+  }
+
+  /* Code-style mono touches inside small UI labels */
+  .partners-marks span:nth-child(2){
+    font-family:var(--font-mono);
+    font-weight:500;
+    letter-spacing:.06em;
+    font-size:14px;
+    text-transform:uppercase;
+  }
+  .partners-marks span:nth-child(1),
+  .partners-marks span:nth-child(3){
+    font-variation-settings:"opsz" 144, "SOFT" 100, "WONK" 1;
+  }
+
+  /* Footer chat avatar — mono initial */
+  .chat-avatar{
+    font-family:var(--font-display);
+    font-variation-settings:"opsz" 60, "SOFT" 50, "WONK" 0;
+    font-weight:500;
+  }
+
+  /* Phone status bar — mono, micro */
+  .phone-statusbar{
+    font-family:var(--font-mono);
+    font-weight:500;
+    font-size:10px;
+    letter-spacing:.04em;
+  }
+
+  /* Floating widget title in hero */
+  .float-br .fc-title{
+    font-variation-settings:"opsz" 36, "SOFT" 50, "WONK" 0;
+    font-weight:500;
+  }
+

@@ -63,7 +63,7 @@ File: `C:\Users\Pavli\Desktop\HypeDigitaly\GIT\GastroUp\obchodni-podminky.html`
 - `<meta name="robots" content="noindex,follow">` — indexed in search, but not sitemapped as priority page
 
 **Build Integration:**
-- `build.js` COPY_FILES: `obchodni-podminky.html` copied to `dist/obchodni-podminky.html`
+- `build.js` PAGES: `obchodni-podminky.html` assembled from `src/pages/obchodni-podminky.html` (+ shared `src/components/legal/*` partials) and minified to `dist/obchodni-podminky.html`
 - `sitemap.xml`: URL entry with lastmod `2026-06-04`
 - `netlify.toml`: Cache-Control header (max-age: 3600, must-revalidate)
 

@@ -134,10 +134,10 @@ See [deferred-tasks.md](./deferred-tasks.md) for:
 ## FAQ
 
 **Q: Where do I edit the website?**
-A: `index.html` in the repo root. After changes, run `npm run build` locally to test, then `git push origin main` to deploy.
+A: In `src/` — pages are assembled from partials at build time (see [src/README.md](../src/README.md)). Landing sections live in `src/sections/index/`, reusable buttons/banners in `src/components/`, CSS in `src/styles/`, JS in `src/js/`. After changes, run `npm run build` locally to test, then `git push origin main` to deploy.
 
 **Q: How do I test locally?**
-A: Run `netlify dev`, which starts a local server at http://localhost:8888 simulating Netlify (including Functions).
+A: Run `npm run dev`, which builds `dist/` from `src/` and starts a local server at http://localhost:8888 simulating Netlify (including Functions). There is no watch mode — re-run `npm run build` after `src/` edits.
 
 **Q: Why is my image not optimized?**
 A: Run `npm run build` — WebP/AVIF variants are only created during build, not in source repo.
@@ -165,7 +165,8 @@ A: To monitor violations in production before enforcing. After 1-2 weeks with no
 - `C:\Users\Pavli\Desktop\HypeDigitaly\GIT\GastroUp\package.json` — Build scripts and dependencies
 
 **Source:**
-- `C:\Users\Pavli\Desktop\HypeDigitaly\GIT\GastroUp\index.html` — Main marketing site
+- `C:\Users\Pavli\Desktop\HypeDigitaly\GIT\GastroUp\src\` — Modular page sources (pages, components, sections, styles, js)
+- `C:\Users\Pavli\Desktop\HypeDigitaly\GIT\GastroUp\scripts\assemble.js` — Build-time include engine
 - `C:\Users\Pavli\Desktop\HypeDigitaly\GIT\GastroUp\netlify\functions\*.ts` — Email Functions
 
 **Output (generated):**

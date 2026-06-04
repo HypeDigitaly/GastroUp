@@ -1,0 +1,33 @@
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo" aria-label="GastroUp">
+      <picture><source srcset="Logo_GastroUp_2_transparent.avif" type="image/avif"><source srcset="Logo_GastroUp_2_transparent.webp" type="image/webp"><img class="logo-img" src="Logo_GastroUp_2_transparent.png" alt="GastroUp — poradce pro restaurace" width="957" height="311"></picture>
+    </a>
+    <nav class="nav-links">
+      <a href="#okruhy">S čím pomůže</a>
+      <a href="#situace">Jak to funguje</a>
+      <a href="#cena">Pro koho</a>
+      <a href="#cena">Cena</a>
+      <a href="#zakladatel">O zakladateli</a>
+      <a href="#poptavka">Kontakt</a>
+    </nav>
+    <!-- @include components/checkout-cta.html tier="start" class="btn btn-primary nav-cta" label='<span class="price-strike">990&nbsp;Kč</span> Objednat za&nbsp;465,&#8209;&nbsp;Kč' -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu"><iconify-icon icon="lucide:menu" id="mobileToggleIcon"></iconify-icon></button>
+  </div>
+  <!-- Mobile drawer menu — absolutely positioned within sticky header -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav class="mobile-menu-links">
+      <a href="#okruhy">S čím pomůže</a>
+      <a href="#situace">Jak to funguje</a>
+      <a href="#cena">Pro koho</a>
+      <a href="#cena">Cena</a>
+      <a href="#zakladatel">O zakladateli</a>
+      <a href="#poptavka">Kontakt</a>
+    </nav>
+    <!-- @include components/checkout-promo-cta.html class="btn btn-gold mobile-menu-cta" -->
+    <p class="mobile-menu-foot">Bez závazku · Hotovo za 5 minut</p>
+  </div>
+  <div class="mobile-menu-backdrop" id="mobileMenuBackdrop" aria-hidden="true"></div>
+</header>
+

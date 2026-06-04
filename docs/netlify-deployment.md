@@ -11,7 +11,7 @@ GastroUp is deployed on Netlify with a static site (`dist/` from build pipeline)
 ```
 ┌─────────────────────────────────────┐
 │ 1. Development (main branch)         │
-│    - Edit index.html, build.js, etc  │
+│    - Edit src/ partials, build.js    │
 │    - Test locally: netlify dev       │
 └─────────────────────────────────────┘
                 ↓

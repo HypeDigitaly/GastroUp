@@ -1,0 +1,262 @@
+  /* ════════════════════════════════════════════════════════════
+     PREMIUM MOTION SYSTEM · "Aurora Gold"
+     Living, breathing micro-interactions for every clickable surface.
+     Tokens: --aurora-gold, --ease-spring, --glow-gold
+     ════════════════════════════════════════════════════════════ */
+
+  /* ── 0. Universal kinetic baseline ── */
+  @media (prefers-reduced-motion:no-preference){
+    .btn,.float-video,.lp-close,.foot-socials a,
+    .hero-pill,.nav-links a,.mobile-toggle,.acc-toggle,
+    .price-card,.okruh-card{
+      transition:transform .45s var(--ease-spring),
+                 box-shadow .45s var(--ease-out-quart),
+                 background .45s var(--ease-out-quart),
+                 color .25s var(--ease-out-quart),
+                 border-color .35s var(--ease-out-quart);
+    }
+  }
+
+  /* ── 1. Universal .btn — calm, premium, no flashy effects ── */
+  .btn{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+    transform:translateZ(0);
+    padding:13px 24px;
+    font-weight:500;
+    letter-spacing:-.005em;
+    border:1px solid transparent;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+    transition:transform .35s var(--ease-out-quart),
+               box-shadow .35s var(--ease-out-quart),
+               border-color .25s var(--ease-out-quart);
+  }
+  .btn > *{position:relative;z-index:2}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0);transition-duration:.08s}
+
+  /* ── 2. .btn-gold — solid mustard, no flow animation ── */
+  .btn-gold{
+    background:linear-gradient(135deg,var(--navy-soft) 0%,var(--navy) 60%,var(--navy-deep) 100%);
+    color:var(--cream);
+    box-shadow:0 12px 28px -12px rgba(3,21,46,.6),
+               0 0 0 1px rgba(229,174,61,.32),
+               0 6px 22px -10px rgba(229,174,61,.30);
+  }
+  .btn-gold:hover{
+    background:linear-gradient(135deg,#14457e 0%,var(--navy) 55%,var(--navy-deep) 100%);
+    color:#fff;
+    box-shadow:0 16px 36px -12px rgba(3,21,46,.72),
+               0 0 0 1px rgba(242,181,68,.5),
+               0 0 30px -6px rgba(242,181,68,.5);
+  }
+
+  /* ── 2b. Animated traveling-light border on gold CTAs ──
+        A conic gradient (a faint warm rim + one bright comet) rotates around
+        the pill, masked to a 1.6px ring so only the border edge lights up.
+        Runs on every gold CTA + the gold newsletter button. ── */
+  @property --gp-spin{ syntax:"<angle>"; initial-value:0deg; inherits:false; }
+  .btn-gold::after{
+    content:"";
+    position:absolute; inset:0;
+    border-radius:inherit;
+    padding:1.8px;                              /* ring thickness */
+    background:conic-gradient(from var(--gp-spin),
+        #FFF1CC 0deg,
+        rgba(245,196,90,.95) 14deg,
+        rgba(229,174,61,.22) 70deg,
+        rgba(229,174,61,.16) 255deg,
+        rgba(245,196,90,.62) 326deg,
+        #FFF1CC 360deg);
+    /* show only the ring (border-box minus content-box) */
+    -webkit-mask:linear-gradient(#000 0 0) content-box,
+                 linear-gradient(#000 0 0);
+            mask:linear-gradient(#000 0 0) content-box,
+                 linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+            mask-composite:exclude;
+    opacity:.92;
+    pointer-events:none;
+    z-index:1;                                  /* above gold fill, below text (z2) */
+    animation:gp-spin-border 3.6s linear infinite;
+    transition:opacity .35s var(--ease-out-quart);
+  }
+  @keyframes gp-spin-border{ to{ --gp-spin:360deg; } }
+  /* hover/focus: ring goes full-strength alongside the warm halo */
+  .btn-gold:hover::after,
+  .btn-gold:focus-visible::after{ opacity:1; }
+  /* Pause the border spin when the element is off-screen or reduced-motion is on */
+  .btn-gold.anim-paused::after{animation-play-state:paused}
+
+  /* ── 3. .btn-primary — solid navy, subtle lift only ── */
+  .btn-primary{
+    background:linear-gradient(135deg,var(--navy-soft),var(--navy));
+    color:var(--cream);
+    box-shadow:0 6px 16px -8px rgba(3,21,46,.45),
+               0 0 0 1px rgba(229,174,61,.2);
+  }
+  .btn-primary:hover{
+    background:var(--navy);
+    box-shadow:0 12px 24px -10px rgba(3,21,46,.55), 0 0 0 1px rgba(229,174,61,.30);
+  }
+
+  /* ── 4. .btn-ghost — clean outline, soft border tint on hover ── */
+  .btn-ghost{
+    background:transparent;
+    color:var(--navy);
+    border:1.5px solid rgba(6,38,76,.22);
+  }
+  .btn-ghost:hover{
+    border-color:rgba(204,151,45,.6);
+    background:rgba(204,151,45,.07);
+    box-shadow:0 6px 16px -10px rgba(6,38,76,.25);
+  }
+
+  /* ── 5. .btn-light — soft cream pill ── */
+  .btn-light{
+    background:#fff;
+    color:var(--navy);
+    border:1px solid var(--line);
+    box-shadow:0 4px 12px -6px rgba(6,38,76,.14);
+  }
+  .btn-light:hover{
+    background:#fff;
+    border-color:rgba(6,38,76,.22);
+    box-shadow:0 10px 20px -10px rgba(6,38,76,.20);
+  }
+
+  /* ── 6. Arrow — gentle slide only ── */
+  .btn .arrow{
+    display:inline-block;
+    transition:transform .35s var(--ease-out-quart);
+  }
+  .btn:hover .arrow{transform:translateX(4px)}
+
+  /* ── 7. Hero CTAs are slightly larger ── */
+  .hero-ctas .btn{padding:16px 30px;font-size:15px;border-radius:999px}
+
+  /* ── 8. Nav links — opacity-only hover (no color shift) ── */
+  .nav-links a{
+    position:relative;
+    padding:6px 0;
+    transition:opacity .25s var(--ease-out-quart);
+  }
+  .nav-links a:hover{opacity:1}
+
+  /* ── 11. Mobile toggle — soft squircle.
+     Default = visible (inline-flex). Desktop media below hides it.
+     Two competing rules earlier in the file caused it to never show; this
+     inverted approach is robust regardless of source order. */
+  .mobile-toggle{
+    width:44px;height:44px;
+    border:0;
+    /* Transparent control — just the bare 3-line glyph, no chip/box. */
+    background:transparent;
+    box-shadow:none;
+    padding:0;
+    /* margin-right MUST stay >= -wrap-padding, otherwise the button bleeds past
+       the viewport and creates a 10px horizontal overflow (clipped by
+       body{overflow-x:hidden}, but pannable on Chrome Android). Keep it at 0 so
+       the button sits fully inside the safe area and aligns with the logo. */
+    margin-right:0;
+    display:inline-flex;
+    align-items:center;justify-content:center;
+    color:var(--navy);
+    font-size:27px;
+    transition:transform .25s var(--ease-out-quart),color .2s;
+    flex-shrink:0;
+  }
+  .mobile-toggle iconify-icon{font-size:27px;display:inline-flex}
+  .mobile-toggle:hover{color:var(--navy-3)}
+  .mobile-toggle:active{transform:scale(.92)}
+  .mobile-toggle[aria-expanded="true"]{
+    background:transparent;
+    color:var(--navy);
+  }
+  .mobile-toggle[aria-expanded="true"] iconify-icon{color:var(--navy)}
+  @media (min-width:981px){
+    .mobile-toggle{display:none !important}
+  }
+
+  /* ── 12. Float-video — calm lift + soft glow ── */
+  .float-video{
+    transition:transform .35s var(--ease-out-quart),box-shadow .35s var(--ease-out-quart);
+    position:absolute;
+  }
+  .float-video:hover{
+    transform:translateY(-2px);
+    box-shadow:0 16px 32px -14px rgba(6,38,76,.35);
+  }
+  .float-video .play{
+    position:relative;
+    background:var(--gold);
+    transition:transform .35s var(--ease-out-quart);
+  }
+  .float-video:hover .play{transform:scale(1.05)}
+
+  /* ── 13. Lp-close — gentle rotate, no color flash ── */
+  .lp-close{
+    transition:transform .3s var(--ease-out-quart),background .25s,border-color .25s;
+    cursor:pointer;
+    position:absolute;
+    border:1px solid transparent;
+  }
+  .lp-close:hover{
+    transform:rotate(90deg);
+    background:var(--cream-deep);
+  }
+  .lp-close:active{transform:rotate(90deg) scale(.94)}
+
+  /* ── 15. Hero pill — soft hover, no scale ── */
+  .hero-pill{
+    position:relative;
+    transition:border-color .3s var(--ease-out-quart),background .3s,box-shadow .3s;
+    cursor:default;
+  }
+  .hero-pill:hover{
+    border-color:rgba(6,38,76,.22);
+    background:rgba(6,38,76,.04);
+  }
+
+  /* ── 17. Foot social icons — gentle lift, brand-aligned ── */
+  .foot-socials a{
+    position:relative;
+    overflow:hidden;
+    transition:transform .3s var(--ease-out-quart),color .25s,background .25s;
+  }
+  .foot-socials a:hover{
+    transform:translateY(-2px);
+    color:var(--gold-bright);
+    background:var(--navy-soft);
+    border-color:rgba(229,174,61,.4);
+  }
+  .foot-socials a:active{transform:translateY(0)}
+
+  /* ── 18. Accordion — calm hover, gold accent only on focus ── */
+  .acc-toggle{
+    position:relative;
+    transition:transform .3s var(--ease-out-quart),background .25s;
+  }
+  .acc-item:hover .acc-toggle{background:var(--cream-deep)}
+  .acc-item[open]:hover .acc-toggle{transform:rotate(45deg)}
+  .acc-item{transition:border-color .3s var(--ease-out-quart),box-shadow .3s,background .3s}
+  .acc-item:hover{
+    border-color:rgba(6,38,76,.22);
+    box-shadow:0 8px 20px -14px rgba(6,38,76,.18);
+  }
+  .acc-item[open]{
+    border-color:rgba(6,38,76,.22);
+    box-shadow:0 10px 28px -16px rgba(6,38,76,.18);
+  }
+
+  /* ── 19. Cards — calm lift only ── */
+  .okruh-card,.price-card{cursor:default}
+  .okruh-card{transition:transform .3s var(--ease-out-quart),box-shadow .3s,border-color .3s}
+  .okruh-card:hover{transform:translateY(-2px)}
+  .price-card{transition:transform .3s var(--ease-out-quart),box-shadow .3s,border-color .3s}
+  .price-card:hover{transform:translateY(-3px);box-shadow:0 16px 36px -18px rgba(6,38,76,.22)}
+
+  /* .lead-strip, .lead-card, .lead-head, .lead-form-grid, .lead-actions removed — not in HTML (C6a dead-CSS) */
+

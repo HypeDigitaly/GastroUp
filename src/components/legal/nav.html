@@ -1,0 +1,35 @@
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="logo" aria-label="GastroUp — domovská stránka">
+      <picture>
+        <source srcset="/Logo_GastroUp_2_transparent.avif" type="image/avif">
+        <source srcset="/Logo_GastroUp_2_transparent.webp" type="image/webp">
+        <img class="logo-img" src="/Logo_GastroUp_2_transparent.png" alt="GastroUp — poradce pro restaurace" width="957" height="311">
+      </picture>
+    </a>
+    <nav class="nav-links" aria-label="Hlavní navigace">
+      <a href="/#okruhy">Co to je</a>
+      <a href="/#situace">Jak to funguje</a>
+      <a href="/#cena">Cena</a>
+      <a href="/#zakladatel">O zakladateli</a>
+      <a href="/#poptavka">Kontakt</a>
+    </nav>
+    <a href="/#cena" class="btn btn-primary nav-cta">Vyzkoušet zdarma</a>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu">
+      <iconify-icon icon="lucide:menu" id="mobileToggleIcon"></iconify-icon>
+    </button>
+  </div>
+  <!-- Mobile drawer -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav class="mobile-menu-links">
+      <a href="/#okruhy">Co to je</a>
+      <a href="/#situace">Jak to funguje</a>
+      <a href="/#cena">Cena</a>
+      <a href="/#zakladatel">O zakladateli</a>
+      <a href="/#poptavka">Kontakt</a>
+    </nav>
+    <a href="/#cena" class="btn btn-primary mobile-menu-cta">Vyzkoušet zdarma <span class="arrow">→</span></a>
+    <p class="mobile-menu-foot">Měsíc navíc zdarma · Bez závazku</p>
+  </div>
+  <div class="mobile-menu-backdrop" id="mobileMenuBackdrop" aria-hidden="true"></div>
+</header>

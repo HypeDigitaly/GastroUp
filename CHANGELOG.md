@@ -2,6 +2,28 @@
 
 All notable changes to GastroUp are documented here.
 
+## [1.1.0] — 2026-06-04
+
+### Changed
+
+**Modular `src/` architecture (componentization refactor)**
+- Split the monolithic `index.html` (3,727 lines) into build-time partials under `src/` — every file ≤ 500 lines: `pages/` (4 page templates), `components/` (reusable parametrized blocks), `sections/index/` (landing sections in page order), `styles/` (16 CSS modules), `js/` (5 JS modules)
+- New build-time include engine `scripts/assemble.js`: `<!-- @include path key="value" -->` directives + `{{param}}` substitution; fail-fast on missing partials, missing params, malformed directives, circular includes, and path escapes
+- Reusable parametrized components replace 14 hand-copied button instances: `cal-button` / `cal-link` (Cal.com demo, 6×), `checkout-button` / `checkout-cta` / `checkout-promo-cta` (FAPI checkout, 8×)
+- Legal pages + 404 now share partials with the landing page: `components/analytics.html` (GA4 + Consent Mode v2), `components/cookie-banner.html`, `components/legal/{nav,footer,head-meta,mobile-menu}` (~450 duplicated lines per page eliminated); legal pages are now minified in `dist/` (previously copied verbatim)
+- Build integrity gates in `build.js`: pages must contain no unresolved directives/placeholders and must include the cookie banner + GA snippet + closing `</html>`
+- Verification: refactored `dist/index.html` byte-identical to pre-refactor build; 31/31 consent E2E tests pass
+- Root `index.html`, `obchodni-podminky.html`, `ochrana-osobnich-udaju.html`, `404.html` removed — `src/` is the single source of truth
+- `npm run dev` now builds before starting `netlify dev`; added `npm run test:consent`
+
+### Fixed
+
+- Cookie banner: declining consent now pushes `analytics_storage: 'denied'` to gtag immediately (same-session withdrawal after accept previously kept GA collecting until next page load)
+- Cal.com embed: when multiple demo buttons were clicked while embed.js was loading, every queued click opened a modal back-to-back; now only the most recent click opens
+- Nav scroll handler null-guarded (`#nav`-less pages no longer throw)
+- Removed dead CSS (~90 lines): `.dark-tile` (incl. wrong "shared selector usage" comment), `.logo-dot`, `.logo-text`, `.logo-mark`, `.logo-bubbles`/`.bubble` + `bubbleFloat` keyframes, `.founder-pill`, `.price-foot`; deleted `legacy-dark.css`; renamed `popup-logomark.css` → `lead-popup.css`
+- Removed unused `EXCLUDE_DIRS` constant from `build.js`
+
 ## [1.0.2] — 2026-05-31
 
 ### Fixed

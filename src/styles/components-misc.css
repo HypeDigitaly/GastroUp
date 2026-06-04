@@ -1,0 +1,227 @@
+  /* ── Price strike prefix inside CTA buttons ── */
+  .btn .price-strike{
+    display:inline-flex;
+    align-items:center;
+    position:relative;
+    font-family:var(--font-mono);
+    font-weight:500;
+    font-size:.78em;
+    letter-spacing:.02em;
+    margin-right:8px;
+    padding:2px 8px 1px;
+    border-radius:6px;
+    opacity:.72;
+    text-decoration:line-through;
+    text-decoration-thickness:1.5px;
+    text-decoration-color:currentColor;
+  }
+  .btn-gold .price-strike{
+    background:rgba(255,255,255,.12);
+    color:var(--cream);
+    text-decoration-color:rgba(239,227,211,.9);
+  }
+  .btn-primary .price-strike{
+    background:rgba(255,255,255,.10);
+    color:var(--cream);
+    text-decoration-color:rgba(239,227,211,.9);
+  }
+  .btn-light .price-strike,
+  .btn-ghost .price-strike{
+    background:rgba(6,38,76,.06);
+    color:var(--navy);
+    text-decoration-color:rgba(6,38,76,.85);
+  }
+  /* On narrow buttons, allow wrap so strike can sit above */
+  @media (max-width:520px){
+    .btn .price-strike{font-size:.72em;padding:1px 6px;margin-right:6px}
+  }
+
+  /* ── 20. Focus-visible rings (a11y) — comprehensive ── */
+  .btn:focus-visible,
+  .float-video:focus-visible,
+  .lp-close:focus-visible,
+  .foot-socials a:focus-visible,
+  .mobile-toggle:focus-visible,
+  .nav-links a:focus-visible,
+  .founder-card a:focus-visible,
+  .foot-col a:focus-visible,
+  .foot-bottom a:focus-visible{
+    outline:none;
+    box-shadow:0 0 0 2px var(--cream), 0 0 0 4px var(--navy);
+    border-radius:8px;
+  }
+  /* Focus on dark surfaces uses gold ring for clarity */
+  .formfounder .btn:focus-visible,
+  .foot-socials a:focus-visible,
+  .foot-col a:focus-visible,
+  .foot-bottom a:focus-visible,
+  .founder-card a:focus-visible{
+    box-shadow:0 0 0 2px var(--navy-deep), 0 0 0 4px var(--gold);
+  }
+  /* Accordion summary keyboard focus */
+  .acc-item summary:focus-visible{
+    outline:none;
+    box-shadow:0 0 0 3px rgba(204,151,45,.5);
+    border-radius:8px;
+  }
+  /* Details summary needs offset */
+  details > summary:focus{outline:none}
+
+  /* ── Minimum tap targets 44x44 (WCAG 2.5.5) ── */
+  @media (pointer:coarse){
+    .nav-links a,
+    .foot-col ul a,
+    .foot-bottom ul a{
+      min-height:44px;
+      display:inline-flex;
+      align-items:center;
+    }
+    .btn{min-height:44px}
+    .lp-close{width:44px;height:44px}
+    /* FIX-2: footer social icons — expand hit area to 44×44 (visual size unchanged) */
+    .foot-socials a{min-width:44px;min-height:44px}
+    /* FIX-3: accordion toggle ≥44×44 on all touch devices (covers 581–980px tablets) */
+    .acc-toggle{width:44px;height:44px}
+  }
+
+  /* ── Improved contrast on dark surfaces (WCAG AA) ── */
+  .foot-col h6,
+  .free-card .included,
+  .foot-bottom{color:rgba(239,227,211,.85)}
+  .foot-brand p{color:rgba(239,227,211,.85)}
+  .foot-bottom > div{color:rgba(239,227,211,.82)}
+
+  /* ── 22. Reduced motion: kill animations ── */
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+      animation-duration:.001s!important;
+      animation-iteration-count:1!important;
+      transition-duration:.15s!important;
+    }
+    body::before{animation:none}
+    .btn-gold::after{animation:none}
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     GASTROUP · 2026 ADDITIONS
+     Full-lockup logo · Dual CTA hub · FAPI checkout · cal.com demo
+     ════════════════════════════════════════════════════════════ */
+
+  /* ── Brand logo: full transparent lockup ── */
+  .logo-img{height:42px;width:auto;display:block;
+    filter:drop-shadow(0 5px 14px rgba(6,38,76,.16));
+    transition:transform .45s var(--ease-out-expo)}
+  .logo:hover .logo-img{transform:translateY(-1px) scale(1.015)}
+  .foot-brand .logo{display:inline-flex;margin-bottom:22px}
+  /* footer sits on navy → wrap lockup in a soft cream chip so the navy wordmark stays legible */
+  .logo-chip{display:inline-flex;align-items:center;padding:14px 22px;border-radius:18px;
+    background:var(--cream);
+    box-shadow:0 16px 40px -18px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.05)}
+  .foot-brand .logo-img{height:40px;filter:none}
+  @media (max-width:580px){
+    .logo-img{height:34px}
+    .foot-brand .logo-img{height:36px}
+    .logo-chip{padding:12px 18px;border-radius:15px}
+  }
+
+  /* .choice-* removed — section not present in HTML (C6a dead-CSS) */
+
+  /* ── Checkout / demo modal ── */
+  .gp-modal{position:fixed;inset:0;z-index:200;display:flex;align-items:flex-start;justify-content:center;
+    padding:38px 16px;overflow-y:auto;overscroll-behavior:contain;background:rgba(3,21,46,.55);backdrop-filter:blur(7px);
+    opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+  .gp-modal.open{opacity:1;visibility:visible}
+  .gp-modal-card{position:relative;width:100%;max-width:660px;margin:0 auto;
+    background:var(--cream-pale);border-radius:24px;
+    box-shadow:0 44px 110px -34px rgba(3,21,46,.65),0 0 0 1px rgba(6,38,76,.06);
+    padding:30px 30px 32px;transform:translateY(18px) scale(.985);
+    transition:transform .38s var(--ease-out-expo)}
+  .gp-modal.open .gp-modal-card{transform:none}
+  .gp-modal-close{position:absolute;top:15px;right:15px;width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;background:rgba(6,38,76,.07);
+    color:var(--navy);font-size:18px;transition:background .2s,transform .25s;z-index:4}
+  .gp-modal-close:hover{background:rgba(6,38,76,.14);transform:rotate(90deg)}
+  .gp-modal-head{margin-bottom:18px;padding-right:46px}
+  .gp-modal-eyebrow{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold-deep);font-weight:500;margin-bottom:9px}
+  .gp-modal-head h3{font-family:var(--font-display);font-weight:500;font-size:clamp(22px,3vw,27px);
+    letter-spacing:-.02em;color:var(--navy);line-height:1.08}
+  .gp-modal-head p{font-size:13.5px;color:var(--muted);margin-top:7px;line-height:1.5}
+  .fapi-host{min-height:120px}
+  .fapi-loading{display:flex;flex-direction:column;align-items:center;gap:15px;padding:46px 0;
+    color:var(--muted);font-size:13.5px}
+  .fapi-spinner{width:32px;height:32px;border-radius:50%;border:3px solid rgba(6,38,76,.14);
+    border-top-color:var(--gold);animation:gp-spin .8s linear infinite}
+  @keyframes gp-spin{to{transform:rotate(360deg)}}
+  .fapi-fallback{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+    font-size:12.5px;text-align:center;color:var(--muted)}
+  .fapi-fallback a{color:var(--gold-deep);text-decoration:underline;font-weight:600}
+  /* iOS scroll-lock via overflow is a pre-existing limitation — momentum scroll may still be possible on some iOS versions */
+  body.gp-modal-open{overflow-y:hidden}
+
+  /* ── Poptávka / kontakt: třetí, nezávazná cesta (nahradila newsletter) ── */
+  .contact-section{position:relative;overflow:hidden}
+  .contact-section::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(58% 80% at 90% -5%,rgba(204,151,45,.12),transparent 60%)}
+  .contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center;max-width:1080px;margin:0 auto}
+  .contact-copy h2{font-family:var(--font-display);font-weight:400;font-size:clamp(30px,3.6vw,46px);line-height:1.06;letter-spacing:-.02em;color:var(--navy)}
+  .contact-copy h2 em{font-style:italic;color:var(--gold-deep);font-variation-settings:var(--fr-italic-accent)}
+  .contact-copy .sub{font-size:15.5px;line-height:1.65;color:var(--muted);margin:18px 0 30px;max-width:470px}
+  .contact-trust{list-style:none;display:flex;flex-direction:column;gap:18px}
+  .contact-trust li{display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:var(--navy);line-height:1.45}
+  .contact-trust li > iconify-icon{flex-shrink:0;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(204,151,45,.14);color:var(--gold-deep);font-size:20px}
+  .contact-trust strong{display:block;font-weight:600;color:var(--navy)}
+  .contact-trust span{color:var(--muted);font-size:13px}
+  .contact-card .req{color:var(--gold-bright)}
+  .contact-card .opt{color:rgba(239,227,211,.82);font-weight:400;letter-spacing:0}
+  .contact-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .contact-chip{font-family:var(--font-sans);font-size:13px;font-weight:500;color:rgba(239,227,211,.82);
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:999px;
+    padding:8px 15px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:color .2s,background .2s,border-color .2s}
+  .contact-chip iconify-icon{font-size:15px}
+  .contact-chip:hover{border-color:rgba(204,151,45,.5);color:var(--cream)}
+  .contact-chip[aria-pressed="true"]{background:rgba(204,151,45,.16);border-color:var(--gold);color:var(--gold-bright)}
+  .contact-success{
+    display:none;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:30px 18px 20px;
+    opacity:0;transform:translateY(10px);
+    transition:opacity .5s var(--ease-out-quart),transform .5s var(--ease-out-quart);
+  }
+  .contact-success.show{display:flex}
+  .contact-success.visible{opacity:1;transform:translateY(0)}
+  .contact-success iconify-icon{font-size:44px;color:var(--gold-bright)}
+  .contact-success h4{font-family:var(--font-display);font-weight:500;font-size:23px;color:var(--cream)}
+  .contact-success p{font-size:14px;color:rgba(239,227,211,.85);line-height:1.55;max-width:330px}
+  .contact-success .success-demo-label{font-size:13px;color:rgba(239,227,211,.75);margin-top:4px}
+  .contact-success .btn-success-demo{margin-top:6px;background:rgba(204,151,45,.18);border:1px solid rgba(204,151,45,.45);color:var(--gold-bright);padding:11px 22px;font-size:14px;font-weight:500;border-radius:999px;transition:background .2s,border-color .2s,transform .2s}
+  .contact-success .btn-success-demo:hover{background:rgba(204,151,45,.28);border-color:rgba(229,174,61,.75);transform:translateY(-1px)}
+  @media (prefers-reduced-motion:reduce){
+    .contact-success{transition:none;transform:none}
+  }
+
+  /* Soft cross-link z demo bandu → poptávka (cal.com se NEgatuje) */
+  .demo-band-alt{margin-top:12px;font-size:13px;color:rgba(239,227,211,.85)}
+  .demo-band-alt a{color:var(--gold-bright);font-weight:500;border-bottom:1px solid rgba(229,174,61,.45);padding-bottom:1px;transition:color .2s,border-color .2s}
+  .demo-band-alt a:hover{color:#fff;border-color:rgba(229,174,61,.85)}
+
+  /* Footer kontaktní blok (nahradil newsletter widget) */
+  .foot-contact-copy{font-size:13px;color:rgba(239,227,211,.82);line-height:1.55;margin-bottom:14px;max-width:300px}
+  .foot-contact-link{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--cream);background:var(--navy-soft);border:1px solid rgba(229,174,61,.4);border-radius:12px;padding:11px 18px;transition:transform .2s,box-shadow .2s}
+  .foot-contact-link iconify-icon{font-size:16px}
+  .foot-contact-link:hover{transform:translateY(-2px);box-shadow:var(--glow-gold)}
+  .foot-contact-mail{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:14px;font-weight:500;color:rgba(239,227,211,.9);transition:color .2s}
+  .foot-contact-mail iconify-icon{font-size:16px;color:var(--gold)}
+  .foot-contact-mail:hover{color:var(--gold)}
+
+  @media (max-width:880px){
+    .contact-grid{grid-template-columns:1fr;gap:34px}
+  }
+
+  /* ── Form error state & disabled submit ── */
+  .form-error { margin-top:10px; padding:10px 14px; border-radius:8px;
+    background: rgba(220,53,69,.12); border:1px solid rgba(220,53,69,.35);
+    color:#f08080; font-size:13.5px; line-height:1.45; }
+  .btn:disabled, button:disabled { opacity:.6; cursor:not-allowed; pointer-events:none; }
+
+  /* ── C8: visually-hidden utility ── */
+  .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+

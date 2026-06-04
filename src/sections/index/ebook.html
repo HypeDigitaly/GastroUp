@@ -1,0 +1,49 @@
+<!-- ============ EBOOK LEAD MAGNET (statická sekce + popup) ============ -->
+<section class="section ebook-section" id="ebook">
+  <div class="wrap">
+    <div class="ebook-panel reveal">
+      <div class="ebook-visual" aria-hidden="true">
+        <span class="ebook-badge eb1" aria-hidden="true"><iconify-icon icon="lucide:calendar-days"></iconify-icon> Na celý rok</span>
+        <div class="ebook-cover">
+          <picture>
+            <source srcset="Ebook_Image.avif" type="image/avif">
+            <source srcset="Ebook_Image.webp" type="image/webp">
+            <img src="Ebook_Image.jpeg" alt="" width="250" height="338" loading="eager" decoding="async">
+          </picture>
+        </div>
+        <span class="ebook-badge eb2" aria-hidden="true"><iconify-icon icon="lucide:sparkles"></iconify-icon> 28 nápadů</span>
+      </div>
+
+      <div class="ebook-body">
+        <span class="eyebrow">Ebook zdarma</span>
+        <h2>28 námětů na akce, co ti <em>zaplní podnik</em></h2>
+        <p class="ebook-lead">Hotové nápady na tematické akce a sezónní menu — připravené na celý rok. Nech nám e-mail a pošleme ti je obratem. Telefon přidej, jen pokud chceš, ať se ti můžeme ozvat.</p>
+        <ul class="ebook-points">
+          <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon> 28 konkrétních námětů — od sezónních menu po tematické večery</li>
+          <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon> Rozplánované na celý rok, připravené hned použít</li>
+          <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon> Zdarma, bez závazku — a žádné otravné maily</li>
+        </ul>
+        <form class="ebook-form" id="ebookForm">
+          <input type="text" name="company_website" tabindex="-1" autocomplete="new-password" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;opacity:0;width:1px;height:1px;">
+          <div class="ebook-fields">
+            <input type="email" name="email" required placeholder="vase@restaurace.cz" autocomplete="email" aria-label="E-mailová adresa">
+            <input type="tel" name="phone" placeholder="Telefon (nepovinné)" autocomplete="tel" inputmode="tel" aria-label="Telefon (nepovinné)">
+          </div>
+          <div class="form-error" id="ebookError" hidden role="alert"></div>
+          <button type="submit" class="btn btn-gold">Stáhnout ebook zdarma <span class="arrow">→</span></button>
+        </form>
+        <p class="ebook-foot"><iconify-icon icon="lucide:lock"></iconify-icon> Tvůj e-mail nikomu nedáváme. Odhlásíš se jedním kliknutím.</p>
+        <div class="ebook-success" id="ebookSuccess" role="status">
+          <iconify-icon icon="lucide:party-popper"></iconify-icon>
+          <div>
+            <h4>Hotovo! Ebook už letí k tobě.</h4>
+            <p>Mrkni do e-mailu (i do spamu) — za chvilku ti dorazí 28 námětů na celý rok.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DARK SHOWCASE odstraněn — sloučeno do sekce #okruhy (sjednoceno kvůli redundanci) -->
+

@@ -4,7 +4,7 @@ GastroUp is a marketing website for restaurant/hospitality industry clients. It 
 
 ## Tech Stack
 
-- **Frontend**: Static HTML/CSS/JavaScript (no build step required)
+- **Frontend**: Static HTML/CSS/JavaScript assembled at build time from modular partials in `src/` (see **[src/README.md](./src/README.md)**) — output remains single-file inlined HTML
 - **Serverless**: TypeScript Netlify Functions (Node.js 20 runtime)
 - **Email**: Resend REST API for transactional emails
 - **Hosting**: Netlify (static site + Functions)
@@ -32,10 +32,10 @@ npm run build
 ```
 
 This command (also run automatically by Netlify during deploy):
-1. **Minifies `index.html`** — removes whitespace, comments, minifies inline CSS/JS (~22% size reduction)
-2. **Optimizes images** — generates WebP and AVIF variants for PNG images (up to 97% smaller)
-3. **Copies curated files** — bundles only production-ready assets to `dist/` directory
-4. **Excludes development artifacts** — internal pages, brand-assets, design files, node_modules
+1. **Assembles all pages from `src/` partials** — `scripts/assemble.js` resolves `<!-- @include … -->` directives and `{{param}}` placeholders into single-file HTML (index, legal pages, 404)
+2. **Minifies every page** — removes whitespace, comments, minifies inline CSS/JS (~22% size reduction on index)
+3. **Optimizes images** — generates WebP and AVIF variants for PNG images (up to 97% smaller)
+4. **Copies curated files** — bundles only production-ready assets to `dist/` directory
 
 **Output:** `dist/` directory (served directly to CDN by Netlify)
 
@@ -98,7 +98,9 @@ For detailed deployment guide, see **[Netlify Deployment](./docs/netlify-deploym
 
 ## Architecture
 
-- **`index.html`** — Static marketing site (root of repository)
+- **`src/`** — Modular page sources: `pages/` (entry templates), `components/` (reusable parametrized blocks), `sections/index/` (landing sections), `styles/`, `js/` — see [src/README.md](./src/README.md)
+- **`scripts/assemble.js`** — Build-time include engine (`<!-- @include … -->` + `{{param}}` substitution)
+- **`build.js`** — Assembles + minifies all pages, optimizes images, writes `dist/`
 - **`netlify/functions/contact.ts`** — Handles contact form submissions (email to team + user confirmation)
 - **`netlify/functions/ebook.ts`** — Handles ebook signup (email to team + ebook download link to user)
 - **`netlify/functions/shared/`** — Shared utilities: TypeScript types, email template generation, validation helpers

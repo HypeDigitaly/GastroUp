@@ -1,0 +1,5 @@
+  /* Withdrawal form block */
+  .withdrawal-form{background:var(--cream-pale);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin:20px 0;font-size:15px;line-height:1.8;color:var(--ink)}
+  .withdrawal-form p{margin-bottom:10px;font-size:15px;line-height:1.8;color:var(--ink)}
+  .withdrawal-form p:last-child{margin-bottom:0}
+

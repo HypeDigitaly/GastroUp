@@ -1,0 +1,46 @@
+  /* ============ FORM + FOUNDER ============ */
+  .formfounder{padding:120px 0 80px;background:var(--navy);color:var(--cream)}
+  .ff-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:flex-start}
+  .form-card{background:var(--navy-2);border-radius:24px;padding:36px;border:1px solid rgba(255,255,255,.08)}
+  .form-card .eyebrow{background:rgba(204,151,45,.16);color:var(--gold-bright);margin-bottom:18px}
+  .form-card h3{font-family:var(--font-display);font-weight:500;font-size:34px;line-height:1.1;letter-spacing:-.02em;color:var(--cream);margin-bottom:14px}
+  .form-card .desc{font-size:14.5px;color:rgba(239,227,211,.85);line-height:1.6;margin-bottom:24px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:12.5px;letter-spacing:.04em;color:rgba(239,227,211,.85);margin-bottom:6px;font-weight:500}
+  .field input,.field textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--cream);font-family:var(--font-sans);font-size:14.5px;padding:12px 14px;border-radius:12px;transition:border-color .2s,background .2s}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.06)}
+  .field textarea{min-height:84px;resize:vertical}
+  .form-card .btn{width:100%;justify-content:center;padding:14px;margin-top:6px}
+  .form-foot{font-size:12px;color:rgba(239,227,211,.82);margin-top:12px;text-align:center}
+
+  .founder h3{font-family:var(--font-display);font-weight:500;font-size:clamp(30px,3.4vw,42px);line-height:1.05;letter-spacing:-.02em;color:var(--cream);margin-bottom:22px}
+  .founder p{font-size:15px;line-height:1.65;color:rgba(239,227,211,.85);margin-bottom:16px}
+  .founder p strong{color:var(--cream);font-weight:600}
+  .founder p em{font-style:italic;color:inherit;font-weight:500}
+  .founder-info{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+  .founder-info div{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px}
+  .founder-info h5{font-size:13px;letter-spacing:.04em;color:var(--gold-bright);font-weight:600;margin-bottom:6px}
+  .founder-info p{font-size:13.5px;color:rgba(239,227,211,.85);margin:0;line-height:1.5}
+  .founder-card{margin-top:30px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:14px}
+  .founder-card .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#E5AE3D,#A87718);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);color:var(--navy-deep);font-weight:600;font-size:18px}
+  .founder-card .who{flex:1}
+  .founder-card .who div:first-child{font-weight:600;font-size:14.5px;color:var(--cream)}
+  .founder-card .who div:last-child{font-size:12.5px;color:rgba(239,227,211,.82)}
+  .founder-card a{font-size:13px;color:var(--gold-bright);border-bottom:1px solid rgba(204,151,45,.4);padding-bottom:2px;font-weight:500}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--navy-3);color:var(--cream);padding:80px 0 32px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;margin-bottom:60px}
+  .foot-brand .logo{color:var(--cream);margin-bottom:18px}
+  .foot-brand p{font-size:14px;color:rgba(239,227,211,.82);line-height:1.6;margin-bottom:26px;max-width:340px}
+  .foot-cta-label{font-size:13px;color:var(--gold);font-style:italic;font-family:var(--font-display);margin-bottom:10px;font-weight:500}
+  .foot-col h6{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(239,227,211,.82);margin-bottom:18px;font-weight:600}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .foot-col ul a{font-size:14px;color:rgba(239,227,211,.85);transition:color .2s}
+  .foot-col ul a:hover{color:var(--gold)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);font-size:13px;color:rgba(239,227,211,.82)}
+  .foot-bottom ul{display:flex;gap:18px;list-style:none}
+  .foot-socials{display:flex;gap:10px}
+  .foot-socials a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:rgba(239,227,211,.85);transition:background .2s,color .2s}
+  .foot-socials a:hover{background:var(--navy-soft);color:var(--gold-bright)}
+

@@ -1,0 +1,23 @@
+<!-- ============ LEAD POPUP (28 nápadů na tematická menu) ============ -->
+<aside class="lead-popup" id="leadPopup" role="dialog" aria-labelledby="lpTitle" aria-modal="false" aria-hidden="true" hidden>
+  <button class="lp-close" type="button" aria-label="Zavřít" id="lpClose">
+    <iconify-icon icon="lucide:x"></iconify-icon>
+  </button>
+  <div class="lp-icon"><iconify-icon icon="lucide:book-open-text"></iconify-icon></div>
+  <div class="lp-eyebrow">Ebook zdarma</div>
+  <div class="lp-title" id="lpTitle">28 námětů na tematické akce</div>
+  <div class="lp-sub">Inspirace na celý rok. Nech nám e-mail (telefon jen pokud chceš) a ebook ti hned pošleme.</div>
+  <form id="leadForm">
+    <input type="text" name="company_website" tabindex="-1" autocomplete="new-password" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;opacity:0;width:1px;height:1px;">
+    <input id="lpEmail" name="email" type="email" required placeholder="tvuj@email.cz" autocomplete="email">
+    <input id="lpPhone" name="phone" type="tel" placeholder="Telefon (nepovinné)" autocomplete="tel" inputmode="tel">
+    <div class="form-error" id="leadError" hidden role="alert"></div>
+    <button type="submit" class="btn btn-gold">Stáhnout ebook zdarma <span class="arrow">→</span></button>
+  </form>
+  <div class="lp-success" id="lpSuccess" role="status" hidden>
+    <iconify-icon icon="lucide:party-popper"></iconify-icon>
+    <span>Hotovo! Ebook už letí na tvůj e-mail. Mrkni i do spamu.</span>
+  </div>
+  <div class="lp-foot">Odesláním souhlasíš se zpracováním kontaktu kvůli zaslání ebooku. Nikomu ho nedáváme.</div>
+</aside>
+

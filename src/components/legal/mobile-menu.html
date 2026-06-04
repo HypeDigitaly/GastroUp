@@ -1,0 +1,39 @@
+<!-- Mobile menu JS -->
+<script>
+  (function(){
+    var nav = document.getElementById('nav');
+    var toggle = document.getElementById('mobileToggle');
+    var menu = document.getElementById('mobileMenu');
+    var backdrop = document.getElementById('mobileMenuBackdrop');
+    var icon = document.getElementById('mobileToggleIcon');
+    if (!toggle || !menu) return;
+
+    function openMenu(){
+      menu.setAttribute('aria-hidden','false');
+      backdrop.setAttribute('aria-hidden','false');
+      toggle.setAttribute('aria-expanded','true');
+      toggle.setAttribute('aria-label','Zavřít menu');
+      if (icon) icon.setAttribute('icon','lucide:x');
+    }
+    function closeMenu(){
+      menu.setAttribute('aria-hidden','true');
+      backdrop.setAttribute('aria-hidden','true');
+      toggle.setAttribute('aria-expanded','false');
+      toggle.setAttribute('aria-label','Otevřít menu');
+      if (icon) icon.setAttribute('icon','lucide:menu');
+    }
+
+    toggle.addEventListener('click', function(){
+      var isOpen = menu.getAttribute('aria-hidden') === 'false';
+      isOpen ? closeMenu() : openMenu();
+    });
+    if (backdrop) backdrop.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+    // Sticky nav border on scroll
+    window.addEventListener('scroll', function(){
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    }, {passive:true});
+  })();
+</script>

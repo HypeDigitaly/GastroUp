@@ -1,0 +1,84 @@
+  /* ── THICK-BORDER FORM FIELDS (dark surfaces) ── */
+  .form-card .field label{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgba(239,227,211,.82);
+    margin-bottom:8px;
+    font-weight:500;
+  }
+  .form-card .field input,
+  .form-card .field textarea{
+    width:100%;
+    background:transparent;
+    border:2.5px solid var(--cream);
+    color:var(--cream);
+    font-family:var(--font-sans);
+    font-size:15px;
+    font-weight:400;
+    padding:16px 18px;
+    border-radius:14px;
+    transition:border-color .2s var(--ease-out-quart),
+               background .2s var(--ease-out-quart),
+               box-shadow .2s var(--ease-out-quart);
+    letter-spacing:-.005em;
+  }
+  .form-card .field input::placeholder,
+  .form-card .field textarea::placeholder{
+    color:rgba(239,227,211,.82);
+  }
+  .form-card .field input:hover,
+  .form-card .field textarea:hover{
+    border-color:#fff;
+    background:rgba(255,255,255,.04);
+  }
+  .form-card .field input:focus,
+  .form-card .field textarea:focus{
+    outline:none;
+    border-color:var(--gold);
+    background:rgba(255,255,255,.05);
+    box-shadow:0 0 0 4px rgba(204,151,45,.22);
+  }
+  /* Autofill — keep dark theme intact */
+  .form-card .field input:-webkit-autofill{
+    -webkit-text-fill-color:var(--cream);
+    -webkit-box-shadow:0 0 0 100px var(--navy) inset;
+    caret-color:var(--cream);
+  }
+  .form-card .field textarea{min-height:96px;resize:vertical}
+
+  /* Light-surface form fields (popup) get thick navy borders */
+  .lead-popup .field input,
+  .lead-popup input[type="email"]{
+    border-width:2px;
+    border-color:rgba(6,38,76,.20);
+    border-radius:14px;
+    padding:14px 16px;
+    transition:border-color .25s,box-shadow .25s,background .25s;
+  }
+  .lead-popup input:hover{border-color:rgba(6,38,76,.4)}
+  .lead-popup input:focus{
+    outline:none;
+    border-color:var(--gold);
+    box-shadow:0 0 0 4px rgba(204,151,45,.18);
+    background:#fff;
+  }
+
+  /* .lead-card @media (max-width:860px) removed — not in HTML (C6a dead-CSS) */
+
+  /* Founder-only mode: collapse ff-grid to single column */
+  .formfounder--solo .ff-grid{
+    grid-template-columns:1fr;
+    max-width:820px;
+    margin:0 auto;
+  }
+  /* Founder-only WITH portrait: two-column, portrait left */
+  .formfounder--solo.formfounder--portrait .ff-grid{
+    grid-template-columns:minmax(260px,360px) 1fr;
+    max-width:1080px;
+    gap:64px;
+    align-items:center;
+  }
+

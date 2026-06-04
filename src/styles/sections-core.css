@@ -1,0 +1,124 @@
+  /* ============ THREE OKRUHY ============ */
+  .section{padding:120px 0}
+  .section-head{text-align:center;max-width:780px;margin:0 auto 64px}
+  .eyebrow{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px;padding:6px 14px;background:rgba(204,151,45,.12);border-radius:999px}
+  .section h2{font-family:var(--font-display);font-weight:500;font-size:clamp(34px,4vw,52px);line-height:1.05;letter-spacing:-.02em;color:var(--navy);margin-bottom:18px}
+  .section h2 em{font-style:italic;color:inherit;font-weight:500}
+  .section .sub{font-size:16.5px;color:var(--muted);line-height:1.6;max-width:640px;margin:0 auto 28px}
+  .center-ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+  .okruhy{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px;align-items:start}
+  @media (max-width:980.98px){.okruhy{grid-template-columns:1fr;gap:20px}}
+
+  .okruh-card{
+    position:relative;background:var(--cream-pale);border-radius:var(--radius);overflow:hidden;
+    border:1px solid var(--line);
+    transition:transform .55s var(--ease-out-quart), box-shadow .55s var(--ease-out-quart), border-color .35s ease;
+  }
+  .okruh-card::before{
+    content:"";position:absolute;top:0;left:24px;right:24px;height:1px;z-index:6;
+    background:linear-gradient(90deg,transparent,var(--gold-bright),transparent);
+    opacity:0;transition:opacity .5s var(--ease-out-quart);
+  }
+  .okruh-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-card);border-color:rgba(204,151,45,.32)}
+  .okruh-card:hover::before{opacity:1}
+
+  /* Editorial asymmetry — middle card drops slightly on desktop.
+     We reserve vertical space below the grid so the offset card never overlaps
+     the stats strip that follows. */
+  @media (min-width:981px){
+    .okruhy > .okruh-card:nth-child(2){transform:translateY(28px)}
+    .okruhy > .okruh-card:nth-child(2):hover{transform:translateY(20px)}
+    .okruhy{padding-bottom:56px}
+  }
+
+  .okruh-img{aspect-ratio:4/5;position:relative;overflow:hidden;isolation:isolate}
+  .okruh-img.o1{background:linear-gradient(135deg,#1a3d6e,#06264C);}
+  .okruh-img.o2{background:linear-gradient(135deg,#CC972D,#7a5818);}
+  .okruh-img.o3{background:linear-gradient(135deg,#06264C,#0e447e);}
+  /* SVG layer — visible only when photo fails to load (graceful fallback) */
+  .okruh-img > svg{position:absolute;inset:0;width:100%;height:100%;opacity:.85;z-index:1}
+
+  /* Photograph layer */
+  .okruh-photo{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;
+    transition:transform 1.4s var(--ease-out-quart), filter .7s ease;
+    filter:saturate(.94) contrast(1.04);
+  }
+  .okruh-card:hover .okruh-photo{transform:scale(1.06);filter:saturate(1.05) contrast(1.08)}
+
+  /* Brand color grade — navy shadows + gold cast */
+  .okruh-grade{
+    position:absolute;inset:0;z-index:3;pointer-events:none;
+    background:
+      linear-gradient(180deg, rgba(3,21,46,0) 28%, rgba(3,21,46,.55) 78%, rgba(3,21,46,.85) 100%),
+      linear-gradient(135deg, rgba(204,151,45,.10) 0%, transparent 45%, rgba(6,38,76,.20) 100%);
+  }
+  /* Film grain */
+  .okruh-img::after{
+    content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .98  0 0 0 0 .95  0 0 0 0 .87  0 0 0 .08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity:.45;mix-blend-mode:overlay;
+  }
+
+  /* Editorial numeral */
+  .okruh-num{
+    position:absolute;top:20px;left:24px;z-index:5;display:flex;align-items:flex-start;gap:10px;
+    font-family:var(--font-display);font-style:italic;font-weight:300;font-size:52px;line-height:.85;
+    color:var(--cream-pale);letter-spacing:-.04em;
+    font-variation-settings:"opsz" 96,"SOFT" 100,"WONK" 1;
+    text-shadow:0 2px 22px rgba(0,0,0,.4);
+  }
+  .okruh-num::before{
+    content:"";display:block;width:24px;height:1px;background:var(--gold-bright);margin-top:24px;
+    transition:width .55s var(--ease-out-quart);
+    box-shadow:0 0 8px rgba(229,174,61,.6);
+  }
+  .okruh-card:hover .okruh-num::before{width:54px}
+
+  /* Photo caption strip */
+  .okruh-caption{
+    position:absolute;left:24px;right:24px;bottom:18px;z-index:5;
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    color:rgba(246,239,227,.92);
+    transition:transform .55s var(--ease-out-quart),color .35s;
+  }
+  .okruh-caption span:last-child{color:var(--gold-bright);font-weight:500}
+  .okruh-card:hover .okruh-caption{transform:translateY(-3px)}
+  .okruh-card:hover .okruh-caption{color:rgba(246,239,227,.95)}
+
+  .okruh-body{padding:28px 30px 32px;position:relative}
+  .okruh-body .pillar-tag{
+    font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold);font-weight:500;margin-bottom:14px;display:inline-flex;align-items:center;gap:10px;
+  }
+  .okruh-body .pillar-tag::before{content:"";width:18px;height:1px;background:var(--gold)}
+  .okruh-body h3{font-family:var(--font-display);font-weight:500;font-size:25px;letter-spacing:-.015em;color:var(--navy);margin-bottom:12px;line-height:1.15;font-variation-settings:"opsz" 36,"SOFT" 50,"WONK" 0}
+  .okruh-body h3 em{font-style:italic;color:var(--gold);font-weight:500;font-variation-settings:"opsz" 36,"SOFT" 100,"WONK" 1}
+  .okruh-body p{font-size:14.5px;color:var(--muted);line-height:1.65}
+
+  @media (max-width:980.98px){
+    .okruh-img{aspect-ratio:16/11}
+    .okruh-num{font-size:42px}
+  }
+
+  /* ============ VIZE (7 bodů) ============ */
+  .section-vision{padding:80px 0 64px}
+  .section-vision .section-head{margin-bottom:48px}
+  .vision-grid{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;max-width:1180px;margin:0 auto}
+  .vision-grid::after{content:"";flex:1 1 240px;max-width:280px;visibility:hidden}
+  .vision-card{flex:1 1 240px;max-width:280px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 22px;display:flex;flex-direction:column;gap:14px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+  .vision-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card);border-color:var(--line-strong)}
+  .vision-icon{width:44px;height:44px;border-radius:12px;background:rgba(204,151,45,.14);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:22px}
+  .vision-text{font-family:var(--font-display);font-weight:500;font-size:17px;line-height:1.3;color:var(--navy);letter-spacing:-.005em}
+
+  /* ============ STATS ============ */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:24px;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);padding:36px 0}
+  .stat{text-align:left;padding:0 28px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:none}
+  .stat .n{font-family:var(--font-display);font-weight:500;font-size:clamp(34px,3.6vw,44px);line-height:1;letter-spacing:-.02em;color:var(--navy);margin-bottom:10px;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+  .stat .n em{color:inherit;font-style:normal}
+  .stat .n .unit{font-family:var(--font-sans);font-weight:500;font-size:.42em;color:var(--muted);letter-spacing:.005em;line-height:1.1}
+  .stat .l{font-size:13.5px;color:var(--muted);line-height:1.45}
+

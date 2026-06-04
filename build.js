@@ -2,9 +2,17 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 const { minify } = require('html-minifier-terser');
+const { assemble } = require('./scripts/assemble.js');
 
 const DIST_DIR = path.join(__dirname, 'dist');
-const SOURCE_HTML = path.join(__dirname, 'index.html');
+// Pages are assembled from src/ partials (see scripts/assemble.js):
+// src/pages/*.html templates pull in src/components, src/sections, src/styles, src/js.
+const PAGES = [
+  'index.html',
+  'obchodni-podminky.html',
+  'ochrana-osobnich-udaju.html',
+  '404.html'
+];
 const SOURCE_IMAGES = [
   'Logo_GastroUp_2_transparent.png',
   'Zakladatel_Jakub_Hnat.png',
@@ -19,22 +27,8 @@ const COPY_FILES = [
   'robots.txt',
   'sitemap.xml',
   'llms.txt',
-  'site.webmanifest',
-  '404.html',
-  'ochrana-osobnich-udaju.html',
-  'obchodni-podminky.html'
+  'site.webmanifest'
 ];
-const EXCLUDE_DIRS = [
-  'napady-fotografie.html',
-  'Logo-Design',
-  'Assets',
-  'brand-assets',
-  'Kampaně',
-  'Website-Copy',
-  'node_modules',
-  'docs'
-];
-
 const minifyOptions = {
   collapseWhitespace: true,
   removeComments: true,
@@ -54,21 +48,31 @@ const minifyOptions = {
 
     console.log('🔨 Starting build process...\n');
 
-    // ============ Step 1: Minify HTML ============
-    if (!fs.existsSync(SOURCE_HTML)) {
-      console.error(`ERROR: index.html not found at ${SOURCE_HTML}`);
-      process.exit(1);
+    // ============ Step 1: Assemble pages from src/ partials + minify ============
+    let originalSize = 0;
+    let minifiedSize = 0;
+    for (const page of PAGES) {
+      const assembledHTML = assemble(`pages/${page}`);
+      const pageOriginalSize = Buffer.byteLength(assembledHTML, 'utf8');
+
+      console.log(`📄 Assembling + minifying ${page} (${pageOriginalSize} bytes)...`);
+      const minifiedHTML = await minify(assembledHTML, minifyOptions);
+      const pageMinifiedSize = Buffer.byteLength(minifiedHTML, 'utf8');
+
+      // ── Integrity gates: a page must never ship with an unresolved
+      //    directive/placeholder or a missing critical block ──
+      assertPage(page, !/<!--\s*@include\b/.test(minifiedHTML), 'unresolved @include directive leaked into output');
+      assertPage(page, !/\{\{[\w-]+\}\}/.test(minifiedHTML), 'unresolved {{param}} placeholder leaked into output');
+      assertPage(page, minifiedHTML.includes('</html>'), 'output truncated (missing </html>)');
+      assertPage(page, minifiedHTML.includes('gp-cookie-banner'), 'cookie consent banner missing');
+      assertPage(page, minifiedHTML.includes('googletagmanager.com/gtag/js'), 'GA/consent snippet missing');
+
+      fs.writeFileSync(path.join(DIST_DIR, page), minifiedHTML, 'utf8');
+      console.log(`   ✓ Minified: ${pageMinifiedSize} bytes (saved ${pageOriginalSize - pageMinifiedSize} bytes, ${Math.round((1 - pageMinifiedSize / pageOriginalSize) * 100)}%)\n`);
+
+      originalSize += pageOriginalSize;
+      minifiedSize += pageMinifiedSize;
     }
-
-    const originalHTML = fs.readFileSync(SOURCE_HTML, 'utf8');
-    const originalSize = Buffer.byteLength(originalHTML, 'utf8');
-
-    console.log(`📄 Minifying index.html (${originalSize} bytes)...`);
-    const minifiedHTML = await minify(originalHTML, minifyOptions);
-    const minifiedSize = Buffer.byteLength(minifiedHTML, 'utf8');
-
-    fs.writeFileSync(path.join(DIST_DIR, 'index.html'), minifiedHTML, 'utf8');
-    console.log(`   ✓ Minified: ${minifiedSize} bytes (saved ${originalSize - minifiedSize} bytes, ${Math.round((1 - minifiedSize / originalSize) * 100)}%)\n`);
 
     // ============ Step 2: Process images with sharp ============
     for (const imageName of SOURCE_IMAGES) {
@@ -180,6 +184,12 @@ const minifyOptions = {
     process.exit(1);
   }
 })();
+
+function assertPage(page, condition, message) {
+  if (!condition) {
+    throw new Error(`Integrity check failed for ${page}: ${message}`);
+  }
+}
 
 function getAllFiles(dirPath, arrayOfFiles = []) {
   const files = fs.readdirSync(dirPath);

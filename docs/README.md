@@ -44,6 +44,7 @@ Complete documentation for the GastroUp marketing site and its build/optimizatio
 | Document | Purpose |
 |----------|---------|
 | [changes-2026-06-04-ebook-fix-and-copy-updates.md](./changes-2026-06-04-ebook-fix-and-copy-updates.md) | Ebook 404 redirect, email template updates, navigation/copy rewrite, cal.com fallback hardening, pending ops |
+| [cal-embed-rebuild-2026-06-04.md](./cal-embed-rebuild-2026-06-04.md) | Cal.com modal rebuild on official loader, warm-up load, early-click bridge, watchdog, testing |
 | [build-pipeline.md](./build-pipeline.md) | How the automated build works, image optimization, troubleshooting |
 | [performance-optimizations.md](./performance-optimizations.md) | Core Web Vitals, render-blocking elimination, results |
 | [seo.md](./seo.md) | Open Graph, JSON-LD structured data, robots.txt, sitemap |

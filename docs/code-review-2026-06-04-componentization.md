@@ -70,6 +70,8 @@ loading, `onload` replayed **every** queued click as a `modal()` call back-to-ba
 *(Note: the companion agent claim that the second click is "silently dropped" was a
 **false positive** — clicks are pushed to `pendingQueue` before `initAndOpen()` is called.)*
 
+> **Superseded 2026-06-04:** `src/js/cal-embed.js` was rebuilt on the official cal.com loader (see [docs/cal-embed-rebuild-2026-06-04.md](./cal-embed-rebuild-2026-06-04.md)); line references to `src/js/cal-embed.js` in this review are stale.
+
 ### 🟠→✅ F4. ~90 lines of dead CSS shipped on every page load
 Verified zero usages in any `src/` HTML/JS (including JS-created classes) for:
 `.dark-tile` (6 files; the "shared selector usage" comment was wrong), `.logo-dot`, `.logo-text`,

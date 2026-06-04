@@ -4,6 +4,18 @@ All notable changes to GastroUp are documented here.
 
 ## [1.1.0] — 2026-06-04
 
+### Fixed
+
+**Cal.com Demo zdarma modal — rebuild on official embed loader**
+- Modal rebuild on the official cal.com embed loader (IIFE verbatim) with SDK-native declarative binding (`[data-cal-namespace][data-cal-link]`), eliminating repeated-invocation freeze/double-load/unclosable overlay bugs caused by the previous bespoke lazy-load state machine.
+- **SDK-native binding:** Shadow state machine removed; the official loader auto-binds 6 Demo zdarma triggers. No custom `modal()` calls on the happy path.
+- **Interaction warm-up loading:** `embed.js` loads on first hover/touch/focus of any booking trigger (not pre-load) — preserves consent posture (zero `app.cal.com` requests for passive visitors who never approach a trigger).
+- **Early-click bridge:** Click before SDK readiness queues the modal open via the official stub queue and opens automatically on load (no dead click, no visible lag). Official stub queue semantics prevent fallback on working SDK.
+- **Stuck-loading watchdog:** Single shared timer (15 s) removes only `state="loading"`/`state="failed"` boxes; cleared by official `linkReady` event. Broken-box cleanup prevents stacking overlays without breaking SDK fast-reopen path.
+- **Failure fallback:** Scripted error + poll exhaustion or load-grace window blown → window.open + `.cal-fallback-toast` recovery UX (unchanged).
+- **Test coverage:** New `test-cal-modal.cjs` regression suite (20 checks, requires network, run on demand: `node build.js && node test-cal-modal.cjs`). Covers open → close (X) → reopen → rapid 5× invocation → different triggers → stuck-loading fallback.
+- See `docs/cal-embed-rebuild-2026-06-04.md` for architecture details, tuning constants (STUCK_MS=15000, LOAD_GRACE_MS=9000, POLL_INTERVAL=200, POLL_TRIES=50), testing instructions, and CSP requirements.
+
 ### Changed
 
 **Modular `src/` architecture (componentization refactor)**

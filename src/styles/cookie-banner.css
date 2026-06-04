@@ -44,4 +44,3 @@
   /* END GP COOKIE BANNER */
   .cal-fallback-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#142441;color:#fff;padding:12px 20px;border-radius:10px;z-index:9999;box-shadow:0 8px 30px rgba(0,0,0,.35);font-size:15px}
   .cal-fallback-toast a{color:#CC972D}
-  [data-cal-loading]{opacity:.7;pointer-events:none;cursor:wait}

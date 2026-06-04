@@ -2990,7 +2990,7 @@
       var d=C.document;
       C.Cal=C.Cal||function(){
         var cal=C.Cal;var ar=arguments;
-        if(!cal.loaded){cal.ns={};cal.q=cal.q||[];}
+        if(!cal.loaded){cal.ns={};cal.q=cal.q||[];cal.loaded=true;}
         if(ar[0]===L){
           var api=function(){p(api,arguments);};
           var namespace=ar[1];api.q=api.q||[];
@@ -3025,6 +3025,17 @@
     function initAndOpen(calLink) {
       if (calReady) { openModal(calLink); return; }
       if (document.querySelector('script[data-cal-embed]')) return; // already loading
+
+      // Queue init + ui BEFORE the script loads — embed.js requires a populated
+      // Cal.q at execution time, otherwise it bails and never processes the queue.
+      Cal('init', '30min', { origin: 'https://cal.com' });
+      Cal.ns['30min']('ui', {
+        theme: 'light',
+        cssVarsPerTheme: { light: { 'cal-brand': '#CC972D' } },
+        hideEventTypeDetails: false,
+        layout: 'month_view'
+      });
+
       var s = document.createElement('script');
       s.setAttribute('data-cal-embed', '');
       s.src = 'https://app.cal.com/embed/embed.js';
@@ -3051,13 +3062,6 @@
       s.onload = function() {
         clearTimeout(calTimer);
         calReady = true;
-        Cal('init', '30min', { origin: 'https://cal.com' });
-        Cal.ns['30min']('ui', {
-          theme: 'light',
-          cssVarsPerTheme: { light: { 'cal-brand': '#CC972D' } },
-          hideEventTypeDetails: false,
-          layout: 'month_view'
-        });
         var i;
         for (i = 0; i < pendingQueue.length; i++) {
           pendingQueue[i].restore();

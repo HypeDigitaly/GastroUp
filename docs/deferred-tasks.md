@@ -360,6 +360,7 @@ To track completion, update this file with dates:
 | **Google Analytics (Consent Mode v2)** | **✅ Done** | 2026-06-01 | 2026-06-03 | GA4 ID: G-VR866S5JF5; default-denied; cookie banner on 4 pages; 31 tests; legal pages integrated |
 | **Ebook PDF wiring** | **✅ Done** | 2026-06-01 | 2026-06-03 | PDF moved to ebook/28-nametu.pdf; build.js copies to dist/; served at /ebook/28-nametu.pdf |
 | **Ebook cover image pipeline** | **✅ Done** | 2026-06-01 | 2026-06-03 | Ebook_Image.jpeg added to build SOURCE_IMAGES; optimized + WebP/AVIF variants generated |
+| **Ebook 404 fix + copy updates** | **✅ Done** | 2026-06-04 | 2026-06-04 | 301 redirect 28-tipu.pdf → 28-nametu.pdf; email button label updated; nav copy rewritten; guarantee removed site-wide; cal.com fallback hardened; 134 lines changed; **pending ops:** Update EBOOK_PDF_URL env var in Netlify UI |
 | Anti-bot protection | To Do | — | — | Recommend Turnstile; implement after form consent checkbox + attestation |
 | Performance monitoring | Partial | 2026-06-03 | — | GA4 Web Vitals now available; Sentry/error monitoring still deferred |
 | Blog section | To Do | — | — | Future content expansion |

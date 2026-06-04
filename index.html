@@ -18,7 +18,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>GastroUp — AI parťák pro majitele restaurací</title>
-<meta name="description" content="Gastro Parťák je AI poradce v telefonu pro majitele restaurací — pomůže s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech gastro praxe. Měsíc zdarma." />
+<meta name="description" content="Gastro Parťák je AI poradce v telefonu pro majitele restaurací — pomůže s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech gastro praxe." />
 <link rel="canonical" href="https://gastroup.cz/">
 <meta http-equiv="Content-Language" content="cs">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="GastroUp">
 <meta property="og:locale" content="cs_CZ">
 <meta property="og:title" content="GastroUp — AI parťák pro majitele restaurací">
-<meta property="og:description" content="Gastro Parťák je AI poradce v telefonu pro majitele restaurací — pomůže s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech gastro praxe. Měsíc zdarma.">
+<meta property="og:description" content="Gastro Parťák je AI poradce v telefonu pro majitele restaurací — pomůže s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech gastro praxe.">
 <meta property="og:image" content="https://gastroup.cz/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="GastroUp — Gastro Parťák pro majitele restaurací">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="GastroUp — AI parťák pro majitele restaurací">
-<meta name="twitter:description" content="Gastro Parťák je AI poradce v telefonu pro majitele restaurací — pomůže s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech gastro praxe. Měsíc zdarma.">
+<meta name="twitter:description" content="Gastro Parťák je AI poradce v telefonu pro majitele restaurací — pomůže s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech gastro praxe.">
 <meta name="twitter:image" content="https://gastroup.cz/og-image.png">
 <meta name="twitter:image:alt" content="GastroUp — Gastro Parťák pro majitele restaurací">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -338,7 +338,7 @@
   .vision-text{font-family:var(--font-display);font-weight:500;font-size:17px;line-height:1.3;color:var(--navy);letter-spacing:-.005em}
 
   /* ============ STATS ============ */
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:24px;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);padding:36px 0}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:24px;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);padding:36px 0}
   .stat{text-align:left;padding:0 28px;border-right:1px solid var(--line)}
   .stat:last-child{border-right:none}
   .stat .n{font-family:var(--font-display);font-weight:500;font-size:clamp(34px,3.6vw,44px);line-height:1;letter-spacing:-.02em;color:var(--navy);margin-bottom:10px;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
@@ -705,6 +705,7 @@
     .stats{grid-template-columns:repeat(2,1fr);gap:20px 0}
     .stat{border-right:none;padding:14px 20px}
     .stat:nth-child(odd){border-right:1px solid var(--line)}
+    .stat:last-child{border-right:none}
     .situace-grid{grid-template-columns:1fr}
     .free-card{position:static}
     .price-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}
@@ -2117,6 +2118,9 @@
     .gp-cb-accept,.gp-cb-decline{text-align:center}
   }
   /* END GP COOKIE BANNER */
+  .cal-fallback-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#142441;color:#fff;padding:12px 20px;border-radius:10px;z-index:9999;box-shadow:0 8px 30px rgba(0,0,0,.35);font-size:15px}
+  .cal-fallback-toast a{color:#CC972D}
+  [data-cal-loading]{opacity:.7;pointer-events:none;cursor:wait}
 </style>
 <script type="application/ld+json">
 {
@@ -2137,7 +2141,7 @@
       "@type": "ProfessionalService",
       "@id": "https://gastroup.cz/#service",
       "name": "Gastro Parťák",
-      "description": "Gastro Parťák je AI poradce v telefonu pro majitele restaurací — pomáhá s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech praxe v gastru. Garance: měsíc navíc zdarma, když nebudeš spokojený.",
+      "description": "Gastro Parťák je AI poradce v telefonu pro majitele restaurací — pomáhá s týmem, hosty, náklady i cenotvorbou. Postavený na 20 letech praxe v gastru.",
       "areaServed": "CZ",
       "provider": {"@id": "https://gastroup.cz/#organization"},
       "founder": {
@@ -2255,7 +2259,7 @@
       <picture><source srcset="Logo_GastroUp_2_transparent.avif" type="image/avif"><source srcset="Logo_GastroUp_2_transparent.webp" type="image/webp"><img class="logo-img" src="Logo_GastroUp_2_transparent.png" alt="GastroUp — poradce pro restaurace" width="957" height="311"></picture>
     </a>
     <nav class="nav-links">
-      <a href="#okruhy">Co to je</a>
+      <a href="#okruhy">S čím pomůže</a>
       <a href="#situace">Jak to funguje</a>
       <a href="#cena">Pro koho</a>
       <a href="#cena">Cena</a>
@@ -2268,7 +2272,7 @@
   <!-- Mobile drawer menu — absolutely positioned within sticky header -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <nav class="mobile-menu-links">
-      <a href="#okruhy">Co to je</a>
+      <a href="#okruhy">S čím pomůže</a>
       <a href="#situace">Jak to funguje</a>
       <a href="#cena">Pro koho</a>
       <a href="#cena">Cena</a>
@@ -2276,7 +2280,7 @@
       <a href="#poptavka">Kontakt</a>
     </nav>
     <a href="#cena" data-checkout="start" class="btn btn-gold mobile-menu-cta"><span class="price-strike">990&nbsp;Kč</span> <span class="btn-label">Objednat výhodně a&nbsp;vyzkoušet&nbsp;<span class="arrow">→</span></span></a>
-    <p class="mobile-menu-foot">Měsíc navíc zdarma · Bez závazku</p>
+    <p class="mobile-menu-foot">Bez závazku · Hotovo za 5 minut</p>
   </div>
   <div class="mobile-menu-backdrop" id="mobileMenuBackdrop" aria-hidden="true"></div>
 </header>
@@ -2296,7 +2300,7 @@
         <a href="#cena" data-checkout="start" class="btn btn-gold"><span class="price-strike">990&nbsp;Kč</span> <span class="btn-label">Objednat výhodně a&nbsp;vyzkoušet&nbsp;<span class="arrow">→</span></span></a>
         <button type="button" class="btn btn-ghost" data-cal-namespace="30min" data-cal-link="jakub-h-a2wrvi/30min" data-cal-config='{"layout":"month_view"}'>Demo zdarma</button>
       </div>
-      <div class="micro">Měsíc navíc zdarma, když nebudeš spokojený &middot; Bez závazku &middot; Hotovo za 5 minut</div>
+      <div class="micro">Bez závazku &middot; Hotovo za 5 minut</div>
       <div class="partners">
         <div class="partners-label">Postavil ho restauratér s&nbsp;20 lety v&nbsp;gastru</div>
         <div class="partners-marks">
@@ -2546,8 +2550,8 @@
       <div class="stat"><div class="n"><em>70&nbsp;000</em><span class="unit">Kč</span></div><div class="l">průměrně víc peněz za&nbsp;měsíc — úspory plus tržby</div></div>
       <div class="stat"><div class="n">24<em>/</em>7</div><div class="l">Parťáka máš v&nbsp;mobilu pořád</div></div>
       <div class="stat"><div class="n">5<span class="unit">minut</span></div><div class="l">spustíš, nic nenastavuješ</div></div>
-      <div class="stat"><div class="n"><em>Měsíc</em></div><div class="l">navíc zdarma, když nebudeš spokojený</div></div>
     </div>
+    <p class="sub reveal" style="text-align:center;margin:28px auto 0">Kde se to číslo bere? Část ušetříš na surovinách, směnách a energiích — Parťák ti ukáže, kde ti utíkají peníze. Zbytek přinesou vyšší tržby z tematických akcí a vracejících se stálých hostů. Modelový průměr u podniků, jako je ten tvůj.</p>
   </div>
 </section>
 
@@ -2580,7 +2584,7 @@
           <div>Jakub Hnát</div>
           <div>Zakladatel a mentor</div>
         </div>
-        <a href="#" data-cal-namespace="30min" data-cal-link="jakub-h-a2wrvi/30min" data-cal-config='{"layout":"month_view"}'>Demo zdarma →</a>
+        <a href="https://cal.com/jakub-h-a2wrvi/30min" target="_blank" rel="noopener" data-cal-namespace="30min" data-cal-link="jakub-h-a2wrvi/30min" data-cal-config='{"layout":"month_view"}'>Demo zdarma →</a>
       </div>
     </div>
   </div>
@@ -2597,16 +2601,15 @@
 
       <div class="free-card reveal">
         <div class="free-badge">Garance</div>
-        <h3>Čestný</h3>
-        <div class="sub-h3">Gastro Parťákovský</div>
-        <div class="pitch">Když za první měsíc neuvidíš výsledky, ze kterých budeš nadšený, ozvi se nám.</div>
-        <div class="body">Projdeme si spolu tvoji situaci a dostaneš měsíc navíc zdarma. Takhle prostě funguje Gastro Parťákovská garance.</div>
+        <h3>Parťákova</h3>
+        <div class="sub-h3">garance</div>
+        <div class="pitch">Za první měsíc budeš vědět, kde ti unikají peníze, jak zastavit fluktuaci a co dělat jinak — efektivně.</div>
+        <div class="body">Pokud ne, zavoláme si a vyřešíme to. Takhle funguje Gastro Parťákova garance!</div>
         <div class="included">Co u nás dostaneš</div>
         <ul class="free-list">
           <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon>Začínáš na 465 Kč měsíčně</li>
           <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon>Plný přístup k Parťákovi přes Telegram</li>
           <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon>Osobní zaškolení přes Telegram</li>
-          <li><iconify-icon icon="lucide:check-circle-2"></iconify-icon>Měsíc navíc zdarma, když nebudeš spokojený</li>
         </ul>
         <a href="#cena" data-checkout="start" class="btn btn-gold"><span class="price-strike">990&nbsp;Kč</span> <span class="btn-label">Objednat výhodně a&nbsp;vyzkoušet&nbsp;<span class="arrow">→</span></span></a>
       </div>
@@ -2679,7 +2682,7 @@
     <div class="section-head reveal">
       <span class="eyebrow">Začni ještě dnes</span>
       <h2>Objednej rovnou — nebo si nech <em>poradit</em></h2>
-      <p class="sub">Vyber si tarif a Parťák se ti ozve na Telegramu ještě dnes. Nevíš, který zvolit? Pojď na demo zdarma. <strong>Garance:</strong> když po prvním měsíci nebudeš spokojený, dostaneš měsíc navíc zdarma.</p>
+      <p class="sub">Vyber si tarif a Parťák se ti ozve na Telegramu ještě dnes. Nevíš, který zvolit? Pojď na demo zdarma. <strong>Garance:</strong> za první měsíc budeš vědět, kde ti unikají peníze — pokud ne, zavoláme si a vyřešíme to.</p>
     </div>
 
     <div class="price-grid">
@@ -2893,7 +2896,7 @@
       <div class="foot-col">
         <h6>Co nabízíme</h6>
         <ul>
-          <li><a href="#okruhy">Co to je</a></li>
+          <li><a href="#okruhy">S čím pomůže</a></li>
           <li><a href="#situace">Jak to funguje</a></li>
           <li><a href="#cena">Pro koho</a></li>
           <li><a href="#cena">Cena</a></li>
@@ -2905,7 +2908,7 @@
         <h6>Pomoc</h6>
         <ul>
           <li><a href="#cena" data-checkout="start">Objednat Parťáka</a></li>
-          <li><a href="#" data-cal-namespace="30min" data-cal-link="jakub-h-a2wrvi/30min" data-cal-config='{"layout":"month_view"}'>Demo zdarma</a></li>
+          <li><a href="https://cal.com/jakub-h-a2wrvi/30min" target="_blank" rel="noopener" data-cal-namespace="30min" data-cal-link="jakub-h-a2wrvi/30min" data-cal-config='{"layout":"month_view"}'>Demo zdarma</a></li>
           <li><a href="#poptavka" data-contact-jump>Kontakt</a></li>
         </ul>
       </div>
@@ -2928,9 +2931,10 @@
         <li><a href="/obchodni-podminky">Obchodní podmínky</a></li>
       </ul>
       <div class="foot-socials">
+        <!-- Socials hidden until profile URLs exist
         <a href="#" aria-label="Facebook"><iconify-icon icon="lucide:facebook"></iconify-icon></a>
         <a href="#" aria-label="Instagram"><iconify-icon icon="lucide:instagram"></iconify-icon></a>
-        <a href="#" aria-label="LinkedIn"><iconify-icon icon="lucide:linkedin"></iconify-icon></a>
+        -->
       </div>
     </div>
   </div>
@@ -2968,7 +2972,7 @@
     <div class="gp-modal-head">
       <span class="gp-modal-eyebrow">Objednávka &middot; měsíční předplatné</span>
       <h3 id="coTitle">Tarif</h3>
-      <p>Vyplň údaje níže a Parťák se ti hned ozve. <strong>Garance:</strong> měsíc navíc zdarma, když nebudeš spokojený.</p>
+      <p>Vyplň údaje níže a Parťák se ti hned ozve. <strong>Garance:</strong> za první měsíc budeš vědět, kde ti unikají peníze — pokud ne, zavoláme si a vyřešíme to.</p>
     </div>
     <div class="fapi-host" id="fapiHost"></div>
     <div class="fapi-fallback">
@@ -3000,21 +3004,52 @@
       };
     })(window,'','init');
 
+    var CAL_URL = 'https://cal.com/jakub-h-a2wrvi/30min';
     var calReady = false;
-    var pendingLink = null;
+    var calFailed = false;
+    var pendingQueue = [];
 
     function openModal(calLink) {
       Cal.ns['30min']('modal', { calLink: calLink, config: { layout: 'month_view' } });
     }
 
+    function showToast() {
+      if (document.querySelector('.cal-fallback-toast')) return;
+      var t = document.createElement('div');
+      t.className = 'cal-fallback-toast';
+      t.innerHTML = 'Kalendář se nepodařilo načíst — ' +
+        '<a href="' + CAL_URL + '" target="_blank" rel="noopener">otevři rezervaci přímo<\/a>';
+      document.body.appendChild(t);
+    }
+
     function initAndOpen(calLink) {
       if (calReady) { openModal(calLink); return; }
-      pendingLink = calLink;
       if (document.querySelector('script[data-cal-embed]')) return; // already loading
       var s = document.createElement('script');
       s.setAttribute('data-cal-embed', '');
       s.src = 'https://app.cal.com/embed/embed.js';
+
+      var failHandlerCalled = false;
+      var calTimer = null;
+
+      function failHandler() {
+        if (failHandlerCalled) return;
+        failHandlerCalled = true;
+        clearTimeout(calTimer);
+        calFailed = true;
+        var i;
+        for (i = 0; i < pendingQueue.length; i++) {
+          pendingQueue[i].restore();
+        }
+        pendingQueue = [];
+        showToast();
+      }
+
+      s.onerror = failHandler;
+      calTimer = setTimeout(failHandler, 8000);
+
       s.onload = function() {
+        clearTimeout(calTimer);
         calReady = true;
         Cal('init', '30min', { origin: 'https://cal.com' });
         Cal.ns['30min']('ui', {
@@ -3023,41 +3058,38 @@
           hideEventTypeDetails: false,
           layout: 'month_view'
         });
-        if (pendingLink) { openModal(pendingLink); pendingLink = null; }
+        var i;
+        for (i = 0; i < pendingQueue.length; i++) {
+          pendingQueue[i].restore();
+          openModal(pendingQueue[i].calLink);
+        }
+        pendingQueue = [];
       };
+
       document.head.appendChild(s);
     }
 
-    document.querySelectorAll('[data-cal-namespace]').forEach(function(el) {
-      el.addEventListener('click', function(e) {
-        e.preventDefault();
-        var calLink = el.getAttribute('data-cal-link');
-        // Brief disabled/loading state
-        el.setAttribute('disabled', '');
-        el.style.opacity = '0.7';
-        var restore = function() { el.removeAttribute('disabled'); el.style.opacity = ''; };
-        if (calReady) {
-          restore();
-          openModal(calLink);
-        } else {
-          var s = document.querySelector('script[data-cal-embed]');
-          if (s) {
-            // Script tag exists but hasn't fired onload yet — queue the link
-            pendingLink = calLink;
-            var prevOnload = s.onload;
-            s.onload = function() { if(prevOnload) prevOnload.call(this); restore(); };
+    var els = document.querySelectorAll('[data-cal-namespace]');
+    var idx;
+    for (idx = 0; idx < els.length; idx++) {
+      (function(el) {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (calFailed) { window.open(CAL_URL, '_blank'); return; }
+          if (el.dataset.calLoading) return;
+          el.dataset.calLoading = '1';
+          var calLink = el.getAttribute('data-cal-link');
+          var restore = function() { delete el.dataset.calLoading; };
+          if (calReady) {
+            restore();
+            openModal(calLink);
           } else {
-            var origOnload = null;
+            pendingQueue.push({ calLink: calLink, restore: restore });
             initAndOpen(calLink);
-            var ns = document.querySelector('script[data-cal-embed]');
-            if (ns) {
-              var baseOnload = ns.onload;
-              ns.onload = function() { if(baseOnload) baseOnload.call(this); restore(); };
-            } else { restore(); }
           }
-        }
-      });
-    });
+        });
+      })(els[idx]);
+    }
   })();
 </script>
 

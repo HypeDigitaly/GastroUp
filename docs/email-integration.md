@@ -389,7 +389,7 @@ The ebook PDF (`28-nametu.pdf`) and cover image (`Ebook_Image.jpeg`) are public 
    - Renders `<img src="{coverUrl}" alt="28 námětů na tematické akce" width="240">`
    - If URL invalid, row is omitted (graceful degradation)
 3. **Intro text:** "tady je pro Tebe 28 námětů..."
-4. **Primary CTA button:** "Stáhnout 28 námětů (PDF)" — links to `PDF_URL`
+4. **Primary CTA button:** "Stáhnout ebook zdarma" — links to `PDF_URL` (updated 2026-06-04; previously "Stáhnout 28 námětů (PDF)")
 5. **Body text:** How to use the ebook + Gastro Parťák trial pitch
 6. **Secondary CTA buttons:** "Vyzkoušet Gastro Parťáka za 465 Kč", "Rezervovat demo zdarma"
 7. **Signoff:** "Využij naše náměty na maximum, Tým GastroUP"
@@ -494,6 +494,23 @@ This ensures:
 2. Update `EBOOK_PDF_URL` env var in Netlify UI
 3. Redeploy
 4. Test download link by visiting URL in browser
+
+**Problem: Users clicking links in old emails receive 404 (legacy filename)**
+
+**Cause:** Ebook filename changed (e.g., `28-tipu.pdf` → `28-nametu.pdf`) but emails already sent with old URL don't have redirect
+
+**Solution:**
+1. Add redirect in `netlify.toml`:
+   ```toml
+   [[redirects]]
+     from = "/ebook/28-tipu.pdf"
+     to = "/ebook/28-nametu.pdf"
+     status = 200
+   ```
+2. Update `EBOOK_PDF_URL` env var in Netlify UI to new filename
+3. Redeploy
+4. Test old URL: `curl -L https://gastroup.cz/ebook/28-tipu.pdf -I` (should return 200, not 404)
+5. Test new URL: `curl -L https://gastroup.cz/ebook/28-nametu.pdf -I` (should return 200)
 
 **Pre-launch Checklist: Ebook Assets**
 

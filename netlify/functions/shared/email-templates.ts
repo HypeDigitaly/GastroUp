@@ -15,13 +15,13 @@ const EBOOK_COVER_URL = process.env.EBOOK_COVER_URL ?? "https://gastroup.cz/Eboo
 
 // ── Module-init env-var warnings ──────────────────────────────────────────────
 if (!process.env.EBOOK_PDF_URL) {
-  console.warn("[config] EBOOK_PDF_URL not set — using default placeholder URL");
+  console.warn("[config] EBOOK_PDF_URL not set — using default production URL");
 }
 if (!process.env.EBOOK_COVER_URL) {
   console.warn("[config] EBOOK_COVER_URL not set — using default ebook cover image URL");
 }
 if (!process.env.CTA_URL) {
-  console.warn("[config] CTA_URL not set — using default placeholder URL");
+  console.warn("[config] CTA_URL not set — using default production URL");
 }
 if (!process.env.LOGO_URL) {
   console.warn("[config] LOGO_URL not set — using default; verify asset exists at production URL");
@@ -311,7 +311,7 @@ export function ebookDeliveryHTML(): string {
     greetingRow,
     coverRow,
     introRow,
-    ctaButton("Stáhnout 28 námětů (PDF)", PDF_URL),
+    ctaButton("Stáhnout ebook zdarma", PDF_URL),
     middleContent,
     ctaButton("Vyzkoušet Gastro Parťáka za 465 Kč", CTA_URL, true),
     ebookDemoIntro,
@@ -332,7 +332,7 @@ export function ebookDeliveryText(): string {
     "",
     "tady je pro Tebe 28 námětů na tematické akce — stáhni si je tady:",
     "",
-    "Stáhnout 28 námětů (PDF):",
+    "Stáhnout ebook zdarma:",
     safeUrl(PDF_URL),
     "",
     "Náměty jsou navržené tak, aby šly rovnou použít — vyber si jeden, naplánuj ho na nejbližší možný termín, dej o tom vědět svým zákazníkům i sledujícím online a uvidíš rozdíl.",

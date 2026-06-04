@@ -36,6 +36,13 @@
   to = "/"
   status = 301
 
+# Legacy ebook filename (28-tipu) — emails sent before 2026-06 rename still link here
+[[redirects]]
+  from = "/ebook/28-tipu.pdf"
+  to = "/ebook/28-nametu.pdf"
+  status = 301
+  # force = true  # uncomment if pre-flight curl of /ebook/28-tipu.pdf returned 200 (stale deploy serving old file)
+
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"

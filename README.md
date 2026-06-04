@@ -133,6 +133,23 @@ Tone is casual and friendly (tykání per content team direction). Templates are
 
 ## Changelog
 
+### 2026-06-04: Ebook 404 fix + Copy updates (navigation, guarantee rewrite, cal.com fallback)
+
+**Fixes & UX:**
+- **Ebook 404 redirect** — Added 301 redirect `/ebook/28-tipu.pdf` → `/ebook/28-nametu.pdf` (legacy URL from already-sent emails now works)
+- **Email template** — Download button renamed "Stáhnout ebook zdarma"; console warnings corrected with exact production URLs
+- **Navigation copy** — "Co to je" → "S čím pomůže" (benefit-focused)
+- **Guarantee rewrite** — Removed "měsíc navíc zdarma" promise site-wide (10 locations); rewritten guarantee card with outcome focus
+- **Stats grid** — 4 tiles → 3 tiles (removed redundant guarantee); added explanatory paragraph under 70k stat
+- **Cal.com embed** — Timeout handler (8s) + fallback toast ("Kalendář se nepodařilo načíst — otevři rezervaci přímo") + queued click replay + no-JS link fallback
+- **Footer icons** — LinkedIn removed; Facebook/Instagram commented out (pending profile URLs)
+
+**Reviewed by:** code-reviewer, security-engineer, javascript-pro (all PASS; 0 critical/high/medium; 8 low cosmetic deferred)
+
+**Pending ops:** Update/delete stale `EBOOK_PDF_URL` env var in Netlify UI; verify redirect + test ebook form email in production (see `docs/changes-2026-06-04-ebook-fix-and-copy-updates.md`)
+
+---
+
 ### 2026-06-04: Legal pages (T&C + Privacy) + Banner microcopy + Test suite (31 tests)
 
 **Features Added:**
@@ -176,6 +193,12 @@ Tone is casual and friendly (tykání per content team direction). Templates are
 **Related Documentation:**
 - See `docs/analytics-consent.md` for detailed analytics & consent implementation
 - See `docs/email-integration.md` for ebook asset wiring details
+
+---
+
+## Latest Documentation
+
+For the 2026-06-04 ebook fix and copy updates, see **[Ebook 404 Fix & Copy Updates](./docs/changes-2026-06-04-ebook-fix-and-copy-updates.md)** for full implementation details, pending ops tasks, and deployment checklist.
 
 ---
 

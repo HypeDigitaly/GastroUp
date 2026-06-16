@@ -60,8 +60,8 @@ function check(name, cond, detail) {
     check('3 pricing cards', (await page.locator('.price-card').count()) === 3);
     check('7 vision cards', (await page.locator('.vision-card').count()) === 7);
     check('7 accordion items', (await page.locator('.acc-item').count()) === 7);
-    check('6 cal.com triggers', (await page.locator('[data-cal-namespace]').count()) === 6);
-    check('9 checkout triggers', (await page.locator('[data-checkout]').count()) === 9);
+    check('7 cal.com triggers', (await page.locator('[data-cal-namespace]').count()) === 7);
+    check('10 checkout triggers', (await page.locator('[data-checkout]').count()) === 10);
 
     // accordion opens (item 2 — item 1 starts open by default)
     const secondAcc = page.locator('.acc-item').nth(1);

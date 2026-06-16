@@ -29,7 +29,7 @@
   .hero-hook{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:clamp(16px,1.7vw,21px);color:rgba(6,38,76,.72);line-height:1.45;margin-bottom:24px;letter-spacing:-.005em;max-width:540px}
 
   /* ============ HERO ============ */
-  .hero{padding:48px 0 100px;position:relative}
+  .hero{padding:48px 0 40px;position:relative}
   .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
   .hero-pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;background:rgba(6,38,76,.06);border:1px solid var(--line);font-size:13px;font-weight:500;color:var(--ink);margin-bottom:28px}
   .hero-pill .avatars{display:flex}

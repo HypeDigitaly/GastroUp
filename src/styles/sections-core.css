@@ -122,3 +122,75 @@
   .stat .n .unit{font-family:var(--font-sans);font-weight:500;font-size:.42em;color:var(--muted);letter-spacing:.005em;line-height:1.1}
   .stat .l{font-size:13.5px;color:var(--muted);line-height:1.45}
 
+  /* ============ VIDEO ============ */
+  /* The section is pulled up so the player peeks into the hero's lower band —
+     it reads as "rising into view" rather than sitting in a dead cream gap.
+     z-index keeps the frame above the hero's ambient backdrop. */
+  /* Pulled up so the cue + player rise into the hero's lower band instead of
+     stranding in a dead cream gap. The cue is the single lead-in (it replaces
+     the old eyebrow), so spacing below it is tight — one cohesive group. */
+  .section-video{position:relative;z-index:3;padding:0 0 104px;margin-top:-72px}
+  .section-video .section-head{margin-bottom:30px}
+
+  /* Scroll cue — animated mouse-wheel that bridges hero → video and serves as
+     the section's eyebrow/affordance in one (clickable → #video). */
+  .scroll-cue{
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    width:max-content;margin:0 auto 22px;
+    color:var(--navy);text-decoration:none;cursor:pointer;
+    animation:cueFloat 2.6s var(--ease-out-quart) infinite;
+  }
+  .scroll-mouse{
+    width:25px;height:40px;border:2px solid rgba(6,38,76,.5);border-radius:13px;
+    position:relative;background:rgba(255,255,255,.35);
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  .scroll-dot{
+    position:absolute;left:50%;top:7px;width:4px;height:8px;border-radius:3px;
+    background:var(--gold);transform:translateX(-50%);
+    animation:scrollWheel 1.7s cubic-bezier(.6,.05,.3,1) infinite;
+  }
+  .scroll-cue-label{
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    font-weight:600;color:var(--gold);transition:color .3s ease;
+  }
+  .scroll-cue:hover .scroll-mouse{border-color:var(--gold);box-shadow:0 0 0 4px rgba(204,151,45,.12)}
+  .scroll-cue:hover .scroll-cue-label{color:var(--gold-2,var(--gold))}
+  @keyframes scrollWheel{
+    0%{opacity:0;transform:translate(-50%,0)}
+    25%{opacity:1}
+    70%{opacity:1}
+    100%{opacity:0;transform:translate(-50%,15px)}
+  }
+  @keyframes cueFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+  /* Player — rises out of the page with a soft gold rim-light on top */
+  .section-video .video-frame{
+    position:relative;max-width:940px;margin:0 auto;aspect-ratio:16/9;
+    border-radius:var(--radius);overflow:hidden;background:var(--navy);
+    border:1px solid var(--line);
+    box-shadow:0 2px 0 rgba(255,255,255,.5),
+               0 40px 90px -34px rgba(6,38,76,.55),
+               0 14px 40px -22px rgba(6,38,76,.4);
+  }
+  /* Gold rim catching light along the top edge — the "peek" accent */
+  .section-video .video-frame::before{
+    content:"";position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;
+    box-shadow:inset 0 1px 0 rgba(229,174,61,.55), inset 0 0 0 1px rgba(255,255,255,.04);
+  }
+  .section-video .video-frame iframe{position:relative;z-index:1;width:100%;height:100%;border:0;display:block}
+
+  /* Post-video CTA — catches the visitor at peak interest */
+  .video-cta{text-align:center;margin-top:38px}
+  .video-cta-lead{
+    font-family:var(--font-display);font-weight:500;letter-spacing:-.01em;
+    font-size:clamp(20px,2.3vw,27px);line-height:1.25;color:var(--navy);margin-bottom:22px;
+  }
+  .video-cta-lead em{font-style:italic;color:var(--gold);font-weight:500}
+  .section-video .center-ctas .btn{padding:15px 26px;font-size:15px}
+  .video-cta-micro{font-size:13px;color:var(--muted);margin-top:15px}
+
+  @media (prefers-reduced-motion: reduce){
+    .scroll-cue{animation:none}
+    .scroll-dot{animation:none;opacity:1}
+  }

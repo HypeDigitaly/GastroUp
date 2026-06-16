@@ -38,7 +38,7 @@
 
   /* ── 20. Focus-visible rings (a11y) — comprehensive ── */
   .btn:focus-visible,
-  .float-video:focus-visible,
+  .scroll-cue:focus-visible,
   .lp-close:focus-visible,
   .foot-socials a:focus-visible,
   .mobile-toggle:focus-visible,

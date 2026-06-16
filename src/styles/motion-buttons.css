@@ -6,7 +6,7 @@
 
   /* ── 0. Universal kinetic baseline ── */
   @media (prefers-reduced-motion:no-preference){
-    .btn,.float-video,.lp-close,.foot-socials a,
+    .btn,.scroll-cue,.lp-close,.foot-socials a,
     .hero-pill,.nav-links a,.mobile-toggle,.acc-toggle,
     .price-card,.okruh-card{
       transition:transform .45s var(--ease-spring),
@@ -179,22 +179,6 @@
   @media (min-width:981px){
     .mobile-toggle{display:none !important}
   }
-
-  /* ── 12. Float-video — calm lift + soft glow ── */
-  .float-video{
-    transition:transform .35s var(--ease-out-quart),box-shadow .35s var(--ease-out-quart);
-    position:absolute;
-  }
-  .float-video:hover{
-    transform:translateY(-2px);
-    box-shadow:0 16px 32px -14px rgba(6,38,76,.35);
-  }
-  .float-video .play{
-    position:relative;
-    background:var(--gold);
-    transition:transform .35s var(--ease-out-quart);
-  }
-  .float-video:hover .play{transform:scale(1.05)}
 
   /* ── 13. Lp-close — gentle rotate, no color flash ── */
   .lp-close{
